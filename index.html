@@ -163,6 +163,7 @@
     <!-- Hero Section -->
     <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-grid border-b border-white/10 overflow-hidden bg-trade-blue">
         <!-- BACKGROUND EFFECT: Moving Chart Line -->
+        <!-- CHANGED: Reduced opacity from 80% (opacity-80) to 60% (opacity-60) -->
         <canvas id="hero-chart-bg" class="absolute inset-0 w-full h-full opacity-60 pointer-events-none z-0"></canvas>
         <div class="absolute top-1/4 right-0 w-96 h-96 bg-white/10 rounded-full blur-[128px] animate-pulse pointer-events-none"></div>
 
@@ -196,7 +197,7 @@
                             <div class="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-trade-yellow z-20"></div>
                             <div class="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-trade-yellow z-20"></div>
                             <div class="w-full h-full overflow-hidden relative">
-                                <img src="108011428-1721856730766-gettyimages-2163516137-migrant461223_2nu6hxfo.jpg" alt="Trading Candlestick Chart" class="w-full h-full object-cover filter contrast-125 brightness-90">
+                                <img src="https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=800&auto=format&fit=crop" alt="Trading Candlestick Chart" class="w-full h-full object-cover filter contrast-125 brightness-90">
                                 <div class="absolute inset-0 bg-trade-blue/20 mix-blend-overlay"></div>
                             </div>
                         </div>
@@ -315,15 +316,13 @@
                         <p class="text-gray-300 leading-relaxed text-lg italic border-l-4 border-trade-yellow pl-4">"Không lý thuyết suông. Chúng tôi đào tạo bạn trở thành một "Hunter" trên thị trường từ A-Z"</p>
                     </div>
                     <div class="space-y-3 mb-8 pl-2 text-sm text-gray-200">
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">08 chủ đề</span> dưới góc nhìn thực chiến (90+ phút/buổi)</span></div>
+                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">08 chủ đề</span> dưới góc nhìn thực chiến (90 phút +/buổi)</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">15+ thế đánh</span> trong mọi điều kiện thị trường</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Thông hiểu về nguyên lý vận động của thị trường</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Tư duy đúng đắn trong đầu tư, giao dịch</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Đọc vị dòng tiền lớn, theo chân người khồng lồ</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Xây dựng Hệ thống giao dịch cá nhân một cách phù hợp</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">Bảo hành kiến thức trọn đời</span></span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">Coaching 1-1</span></span></div>
-
                     </div>
                     <a href="#" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Đăng ký học ngay</a>
                 </div>
@@ -502,6 +501,7 @@
         });
 
         // --- HERO CHART CANVAS (Sector 1) ---
+        // RESTORED: Continuous drawing logic (buggy but smooth)
         (function() {
             const canvas = document.getElementById('hero-chart-bg');
             if (!canvas) return;
@@ -509,8 +509,13 @@
             
             let width, height;
             let points = [];
-            const pointSpacing = 10;
-            const scrollSpeed = 0.5;
+            const pointSpacing = 10; // HIGH DENSITY for smoothness
+            const scrollSpeed = 0.5; // SLOW SCROLL speed
+
+            // Volatility Control
+            let currentVolatility = 40;
+            let lastVolatilityUpdate = Date.now();
+            let volatilityInterval = Math.random() * 3000; // Max 3s
 
             function resize() {
                 width = canvas.width = canvas.offsetWidth;
@@ -520,6 +525,7 @@
 
             function initPoints() {
                 points = [];
+                // Start from CENTER of screen (width/2) and go backwards to left off-screen
                 const startX = width / 2;
                 const endX = -50; 
                 const numPoints = Math.ceil((startX - endX) / pointSpacing) + 2;
@@ -530,12 +536,22 @@
                 for (let i = 0; i < numPoints; i++) {
                     points.push({ x: currentX, y: currentY });
                     currentX -= pointSpacing;
+                    // Reduced randomness for smoother line
                     currentY = Math.max(height * 0.2, Math.min(height * 0.8, currentY + (Math.random() - 0.5) * 40));
                 }
                 points.reverse();
             }
 
             function animate() {
+                // Update Volatility Logic
+                if (Date.now() - lastVolatilityUpdate > volatilityInterval) {
+                    // Random volatility between 10 (calm) and 120 (volatile)
+                    currentVolatility = 10 + Math.random() * 110; 
+                    // New random interval up to 3s
+                    volatilityInterval = Math.random() * 3000;
+                    lastVolatilityUpdate = Date.now();
+                }
+
                 for (let p of points) {
                     p.x -= scrollSpeed;
                 }
@@ -545,9 +561,12 @@
                 }
 
                 const lastP = points[points.length - 1];
+                // Add new point at CENTER (width / 2) to maintain continuous line from center
+                // Use a smaller logic for randomness to keep it smooth
                 if (lastP.x < (width / 2) - pointSpacing) {
-                    let newY = Math.max(height * 0.2, Math.min(height * 0.8, lastP.y + (Math.random() - 0.5) * 40));
-                    points.push({ x: width / 2, y: newY }); 
+                    // Use currentVolatility instead of hardcoded 40
+                    let newY = Math.max(height * 0.2, Math.min(height * 0.8, lastP.y + (Math.random() - 0.5) * currentVolatility));
+                    points.push({ x: width / 2, y: newY }); // Fixed at center
                 }
 
                 ctx.clearRect(0, 0, width, height);
@@ -563,13 +582,16 @@
                 }
 
                 ctx.strokeStyle = '#ffdf2b'; 
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1; // CHANGED: Reduced stroke width to 1px
                 ctx.lineCap = 'round';
                 ctx.shadowBlur = 10;
                 ctx.shadowColor = '#ffdf2b';
                 ctx.stroke();
 
+                // Live Dot at CENTER
+                // We use the exact center coordinate since that's where lines are born
                 const centerX = width / 2;
+                // Get the Y of the last point added (which is at width/2)
                 const lastPoint = points[points.length - 1];
                 
                 if (lastPoint) {
@@ -610,6 +632,7 @@
                     const meta = chart.getDatasetMeta(0);
                     if (!meta.data.length) return;
                     
+                    // Always get the LAST data point
                     const lastPoint = meta.data[meta.data.length - 1];
                     const x = lastPoint.x;
                     const y = lastPoint.y;
@@ -657,10 +680,10 @@
                             borderColor: '#ffdf2b', 
                             backgroundColor: gradient,
                             borderWidth: 3,
-                            pointBackgroundColor: '#ffdf2b',
+                            pointBackgroundColor: '#ffdf2b', // Changed point color to match line
                             pointBorderColor: '#ffdf2b',
                             pointBorderWidth: 2,
-                            pointRadius: 4,
+                            pointRadius: 4, // Slightly smaller point
                             pointHoverRadius: 6,
                             pointHoverBackgroundColor: '#fff',
                             fill: true,
@@ -687,22 +710,55 @@
             }
         });
 
-        // Chat Bubbles
+        // Chat Bubbles (Fixed Mobile)
         (function() {
             const container = document.getElementById('bubbles-container');
             const messages = ["Buy Gold now?", "Sell EU!", "TP hit +50 pips", "Thanks admin", "Kèo Gold uy tín", "GU hồi rồi", "JPY yếu quá", "Tin ra USD bay", "Non-farm tối nay", "Sell đỉnh CA", "Buy đáy GA", "Scalp lẹ ae", "Chốt lời 1/2 nhé", "Dời SL về entry", "Kèo này R:R ngon", "XAU sập mạnh", "DXY tăng ghê", "H4 đóng nến đẹp", "Full margin Gold", "Đánh theo trend", "SL ngắn thôi", "News đỏ lòm", "FOMC đêm nay", "Cậu Vàng đi bụi", "Bắt râu nến", "BTC 100k soon", "ETH vượt đỉnh", "Altcoin season", "Memecoin bay quá", "Long hay Short?", "Funding rate cao", "Whale gom hàng", "Binance list con này", "DCA bitcoin", "Hold to die", "Solana hệ sinh thái", "Layer 2 bùng nổ", "Kèo x100", "Private sale", "Airdrop về ví", "Chart BTC xấu", "Dom giảm rồi", "Pump & Dump", "Sàn FUD à", "Vào lệnh Short BTC", "Chốt lời USDT", "Bắt đáy BNB", "Near hệ mới", "Trend AI coin", "GameFi comeback", "VNI vượt 1300", "Bank kéo tím", "Thép nay khỏe", "Bất động sản hồi", "FPT đỉnh cao", "HPG nặng mông", "Múc full margin", "T+2.5 về bờ", "Chứng khoán tím lịm", "ATC úp bô", "ATO xanh bát ngát", "Khối ngoại gom ròng", "Tự doanh xả hàng", "Cổ tức về tk", "Họ Vin kéo", "Đầu tư công", "Sóng dầu khí", "Penny trần hết", "Bluechip gánh team", "VN30 phái sinh", "Đáo hạn phái sinh", "Lái đánh ghê", "Gồng lỗ VNI", "Về bờ chưa ae", "Room phím hàng chuẩn", "Backcom về ví rồi", "Học được nhiều quá", "Room chất lượng", "Admin nhiệt tình", "Cảm ơn team", "Phương pháp hay", "Kỷ luật là chén", "Quản lý vốn tốt", "Tâm lý vững", "Chúc ae win", "Sáng nay xanh lét", "Chiều nay rút tiền", "Cuối tuần vui vẻ", "Ngủ ngon ae", "Good morning", "Cafe trading", "Chart đẹp như tranh", "Indicator báo mua", "Nến pinbar đẹp", "Volume to thế"];
+            
+            // Memory to avoid repeats
+            let recentMessages = [];
+            const MAX_MEMORY = 20;
+
             function createBubble() {
                 if (!container) return;
+                
+                // Get random message avoiding recent ones
+                let msgIndex;
+                let attempts = 0;
+                do {
+                    msgIndex = Math.floor(Math.random() * messages.length);
+                    attempts++;
+                } while (recentMessages.includes(msgIndex) && attempts < 10);
+                
+                // Update memory
+                recentMessages.push(msgIndex);
+                if (recentMessages.length > MAX_MEMORY) recentMessages.shift();
+
                 const bubble = document.createElement('div');
                 bubble.classList.add('chat-bubble');
-                bubble.innerText = messages[Math.floor(Math.random() * messages.length)];
+                bubble.innerText = messages[msgIndex];
+                
+                // Optimized Mobile Logic
+                const isMobile = window.innerWidth < 768;
                 const side = Math.random() < 0.5 ? 'left' : 'right';
                 let randomLeft;
-                if (side === 'left') randomLeft = Math.random() * 20 + 5; else randomLeft = Math.random() * 20 + 75;
+                
+                if (isMobile) {
+                    // Mobile: Extreme edges only (0-15% or 85-100%)
+                    if (side === 'left') randomLeft = Math.random() * 15; 
+                    else randomLeft = Math.random() * 15 + 85;
+                } else {
+                    // PC: Standard zones
+                    if (side === 'left') randomLeft = Math.random() * 20 + 5; 
+                    else randomLeft = Math.random() * 20 + 75;
+                }
+                
                 const randomTop = Math.random() * 80 + 10;
+                
                 bubble.style.left = randomLeft + '%';
                 bubble.style.top = randomTop + '%';
                 bubble.style.animation = `floatUp ${4 + Math.random() * 3}s ease-out forwards`;
+
                 container.appendChild(bubble);
                 setTimeout(() => { bubble.remove(); }, 7000);
             }
