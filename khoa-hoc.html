@@ -37,7 +37,7 @@
         }
     </script>
     <style>
-        .font-numbers { font-variant-numeric: tabular-nums; letter-spacing: -1px; }
+        .font-numbers { font-variant-numeric: tabular-nums; }
         
         /* Modal Animation */
         .modal-enter { opacity: 0; transform: scale(0.9); }
@@ -257,7 +257,8 @@
             <!-- Countdown Timer -->
             <div class="mb-10 flex justify-center items-center gap-4 relative z-10">
                 <p class="text-xs uppercase tracking-widest font-bold text-gray-300 mr-2 self-center">Ưu đãi kết thúc sau:</p>
-                <div id="countdown" class="text-4xl font-black text-white tracking-widest font-mono bg-white/10 px-6 py-3 rounded border border-white/20 shadow-inner font-numbers">
+                <!-- Updated font to match Price (font-numbers, no font-mono, tight tracking) -->
+                <div id="countdown" class="text-4xl font-black text-white tracking-tight bg-white/10 px-6 py-3 rounded border border-white/20 shadow-inner font-numbers">
                     00:00:00:00
                 </div>
             </div>
@@ -320,8 +321,9 @@
                 
                 <!-- Payment Method Tabs -->
                 <div class="flex justify-center mb-8 border-b border-gray-200">
-                    <button onclick="switchTab('bank')" id="tab-bank" class="w-1/2 pb-3 font-bold text-trade-blue border-b-4 border-trade-blue focus:outline-none transition-all">Banking VN</button>
-                    <button onclick="switchTab('usdt')" id="tab-usdt" class="w-1/2 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all">USDT (BEP20)</button>
+                    <button onclick="switchTab('bank')" id="tab-bank" class="w-1/3 pb-3 font-bold text-trade-blue border-b-4 border-trade-blue focus:outline-none transition-all">Banking VN</button>
+                    <button onclick="switchTab('usdt')" id="tab-usdt" class="w-1/3 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all">USDT (BEP20)</button>
+                    <button onclick="switchTab('binance')" id="tab-binance" class="w-1/3 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all">Binance Pay</button>
                 </div>
 
                 <!-- Bank Content -->
@@ -364,7 +366,8 @@
                 <!-- USDT Content -->
                 <div id="content-usdt" class="payment-content hidden text-center">
                     <div class="bg-gray-100 p-2 inline-block border border-gray-200 mb-4 rounded-lg">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0b0661895a815cd929af65bcad8d55527d86f763" alt="USDT QR" class="w-48 h-48 object-contain mx-auto">
+                        <!-- Updated to use local images for specific amounts -->
+                        <img src="" alt="USDT QR" class="w-48 h-48 object-contain mx-auto" id="usdtQRImage">
                     </div>
 
                     <div class="bg-blue-50 p-4 rounded-lg mb-4 text-left border border-blue-100">
@@ -375,12 +378,40 @@
                                 <i class="fa-regular fa-copy"></i>
                             </button>
                         </div>
-                        <p class="text-[10px] text-red-500 mt-1 italic">*Chỉ gửi USDT mạng BEP20 (BSC). Gửi sai mạng sẽ mất tiền.</p>
+                        <!-- Updated Warning Text -->
+                        <p class="text-[10px] text-red-500 mt-1 italic font-medium">*Chỉ gửi USDT mạng BEP20 (BSC). Vui lòng KIỂM TRA THẬT KỸ địa chỉ nhận tiền trước khi gửi</p>
                     </div>
 
                     <div class="bg-yellow-50 p-4 rounded-lg text-left border border-yellow-200 flex justify-between items-center">
                         <span class="text-xs text-gray-500 font-bold uppercase">Số tiền cần thanh toán:</span>
                         <span class="font-bold text-xl text-red-600 font-numbers" id="usdtAmount">420 USDT</span>
+                    </div>
+                </div>
+
+                <!-- Binance Pay Content (New) -->
+                <div id="content-binance" class="payment-content hidden text-center">
+                    <div class="bg-gray-100 p-2 inline-block border border-gray-200 mb-4 rounded-lg">
+                        <!-- Using same QR images logic -->
+                        <img src="" alt="Binance Pay QR" class="w-48 h-48 object-contain mx-auto" id="binanceQRImage">
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4 text-left border border-blue-100">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-500 text-xs uppercase font-bold">Phương thức</span>
+                            <span class="font-bold text-trade-blue">Binance Pay</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-xs uppercase font-bold">Binance ID</span>
+                            <div class="flex items-center">
+                                <span class="font-mono font-bold text-lg text-trade-blue mr-2">203128884</span>
+                                <i class="fa-regular fa-copy text-gray-400 hover:text-trade-blue cursor-pointer" onclick="copyText('203128884')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 p-4 rounded-lg text-left border border-yellow-200 flex justify-between items-center">
+                        <span class="text-xs text-gray-500 font-bold uppercase">Số tiền cần thanh toán:</span>
+                        <span class="font-bold text-xl text-red-600 font-numbers" id="binanceAmount">420 USDT</span>
                     </div>
                 </div>
 
@@ -439,9 +470,15 @@
         // --- PAYMENT MODAL LOGIC ---
         const modal = document.getElementById('paymentModal');
         const modalContent = document.getElementById('paymentModalContent');
+        
         const bankAmount = document.getElementById('bankAmount');
-        const usdtAmount = document.getElementById('usdtAmount');
         const bankQR = document.getElementById('bankQRImage');
+
+        const usdtAmount = document.getElementById('usdtAmount');
+        const usdtQR = document.getElementById('usdtQRImage');
+
+        const binanceAmount = document.getElementById('binanceAmount');
+        const binanceQR = document.getElementById('binanceQRImage');
 
         function openPaymentModal() {
             const endTime = getEndTime();
@@ -449,20 +486,31 @@
             isDiscounted = (endTime - now) > 0;
 
             // Techcombank Info for VietQR
-            // BIN: 970407, Acc: 689689259999, Name: BUI THANH CONG
             const bankBin = '970407'; 
             const bankNumber = '689689259999';
             const accountName = 'BUI THANH CONG';
-            // Note: Template 'compact2' is standard for VietQR
+            
+            // STATIC SETTING FOR USDT
+            usdtQR.src = "usdt.jpg";
 
             if (isDiscounted) {
+                // Discounted Price
                 bankAmount.innerText = "11,250,000 VND";
                 usdtAmount.innerText = "420 USDT";
+                binanceAmount.innerText = "420 USDT";
+                
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=11250000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
+                // Update specific QR images for Binance
+                binanceQR.src = "420.jpg";
             } else {
+                // Original Price
                 bankAmount.innerText = "15,000,000 VND";
                 usdtAmount.innerText = "555 USDT";
+                binanceAmount.innerText = "555 USDT";
+                
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=15000000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
+                // Update specific QR images for Binance
+                binanceQR.src = "555.jpg";
             }
 
             modal.classList.remove('hidden');
@@ -485,23 +533,32 @@
         function switchTab(type) {
             const btnBank = document.getElementById('tab-bank');
             const btnUsdt = document.getElementById('tab-usdt');
+            const btnBinance = document.getElementById('tab-binance');
+            
             const contentBank = document.getElementById('content-bank');
             const contentUsdt = document.getElementById('content-usdt');
+            const contentBinance = document.getElementById('content-binance');
 
+            // Reset all
+            [btnBank, btnUsdt, btnBinance].forEach(btn => {
+                btn.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
+                btn.classList.add('text-gray-400');
+            });
+            [contentBank, contentUsdt, contentBinance].forEach(content => content.classList.add('hidden'));
+
+            // Activate specific
             if (type === 'bank') {
                 btnBank.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
                 btnBank.classList.remove('text-gray-400');
-                btnUsdt.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
-                btnUsdt.classList.add('text-gray-400');
                 contentBank.classList.remove('hidden');
-                contentUsdt.classList.add('hidden');
-            } else {
+            } else if (type === 'usdt') {
                 btnUsdt.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
                 btnUsdt.classList.remove('text-gray-400');
-                btnBank.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
-                btnBank.classList.add('text-gray-400');
                 contentUsdt.classList.remove('hidden');
-                contentBank.classList.add('hidden');
+            } else if (type === 'binance') {
+                btnBinance.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
+                btnBinance.classList.remove('text-gray-400');
+                contentBinance.classList.remove('hidden');
             }
         }
 
