@@ -136,10 +136,10 @@
     <nav class="fixed w-full z-50 bg-trade-blue/80 backdrop-blur-md border-b border-white/10 transition-all duration-300 shadow-2xl" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <!-- Logo with Link -->
+                <a href="index.html" class="flex-shrink-0 flex items-center">
                     <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
-                </div>
+                </a>
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
@@ -271,11 +271,13 @@
                     <ul class="space-y-6 mb-10">
                         <li class="flex items-center group">
                             <div class="w-10 h-10 border border-trade-blue flex items-center justify-center mr-4 group-hover:bg-trade-blue group-hover:text-white text-trade-blue transition-colors"><i class="fa-solid fa-check"></i></div>
-                            <span class="text-gray-700 font-bold group-hover:translate-x-2 transition-transform">Hoàn phí trực tiếp vào tài khoản (Direct).</span>
+                            <!-- UPDATED: Removed "(Direct)" -->
+                            <span class="text-gray-700 font-bold group-hover:translate-x-2 transition-transform">Hoàn phí trực tiếp vào tài khoản.</span>
                         </li>
                         <li class="flex items-center group">
                             <div class="w-10 h-10 border border-trade-blue flex items-center justify-center mr-4 group-hover:bg-trade-blue group-hover:text-white text-trade-blue transition-colors"><i class="fa-solid fa-check"></i></div>
-                            <span class="text-gray-700 font-bold group-hover:translate-x-2 transition-transform">Áp dụng cho mọi loại tài khoản (Standard, ECN).</span>
+                            <!-- UPDATED: Removed "(Standard, ECN)" -->
+                            <span class="text-gray-700 font-bold group-hover:translate-x-2 transition-transform">Áp dụng cho mọi loại tài khoản.</span>
                         </li>
                         <li class="flex items-center group">
                             <div class="w-10 h-10 border border-trade-blue flex items-center justify-center mr-4 group-hover:bg-trade-blue group-hover:text-white text-trade-blue transition-colors"><i class="fa-solid fa-check"></i></div>
@@ -291,7 +293,6 @@
             <div class="border-t border-gray-200 pt-12 reveal-on-scroll effect-zoom-up">
                 <p class="text-center text-sm uppercase tracking-[0.2em] text-gray-500 mb-8 font-extrabold">Đăng ký mở tài khoản & Nhận hoàn phí ngay</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- CHANGED: Buttons trigger Modal instead of link -->
                     <button onclick="openModal('exness')" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg cursor-pointer">
                         <span class="text-3xl font-extrabold text-trade-blue group-hover:text-trade-blue mb-2">Exness</span>
                         <span class="text-xs uppercase tracking-widest text-gray-500 mb-6 group-hover:text-trade-blue font-bold">Forex & Gold</span>
@@ -341,7 +342,8 @@
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Xây dựng Hệ thống giao dịch cá nhân</span></div>
                         <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">Bảo hành kiến thức trọn đời</span> & <span class="font-bold text-trade-yellow">Coaching 1-1</span></span></div>
                     </div>
-                    <a href="https://t.me/mmto1b" target="_blank" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Đăng ký học ngay</a>
+                    <!-- UPDATED: Button "Tìm hiểu thêm" links to "khoa-hoc.html" -->
+                    <a href="khoa-hoc.html" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Tìm hiểu thêm</a>
                 </div>
 
                 <!-- Signal Service & Chart -->
@@ -370,13 +372,16 @@
 
                 <!-- NEW SERVICE: COPY TRADE (Coming Soon) -->
                 <div class="group border border-white/10 bg-white/5 p-8 flex flex-col h-full relative overflow-hidden reveal-on-scroll effect-zoom-up delay-300 shadow-xl backdrop-blur-md">
+                    <!-- Overlay for Coming Soon Effect -->
                     <div class="absolute inset-0 bg-trade-dark/60 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center text-center transition-opacity duration-500 group-hover:bg-trade-dark/40">
+                        <!-- Updated Coming Soon Text -->
                         <p class="text-white font-bold text-sm uppercase tracking-widest animate-pulse">
                             Coming Soon <br>
                             <span class="text-trade-yellow text-3xl font-black mt-2 block">Q2/2026</span>
                         </p>
                     </div>
 
+                    <!-- Content (Dimmed) -->
                     <div class="opacity-40 filter grayscale group-hover:grayscale-0 transition-all duration-500">
                         <div class="flex justify-between items-start mb-8">
                             <div class="w-16 h-16 border-2 border-white flex items-center justify-center">
@@ -425,7 +430,7 @@
                 <article class="group cursor-pointer reveal-on-scroll effect-drop-down hover-lift">
                     <a href="cai-dat-backcom-exness.html" class="block w-full h-full"> 
                         <div class="relative h-64 overflow-hidden border border-white/10 mb-6 bg-black shadow-lg">
-                            <img src="65363243f185eaef8f80db604be3961d.jpeg" alt="Exness Guide" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
+                            <img src="108011428-1721856730766-gettyimages-2163516137-migrant461223_2nu6hxfo.jpg" alt="Exness Guide" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
                             <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 uppercase animate-pulse">Đọc Nhiều Nhất</div>
                             <div class="absolute inset-0 bg-gradient-to-t from-trade-blue to-transparent opacity-80"></div>
                             <div class="absolute top-4 left-4 bg-trade-blue px-4 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase shadow-lg">Hướng dẫn</div>
@@ -463,7 +468,7 @@
                 <!-- Card 3 -->
                 <article class="group cursor-pointer reveal-on-scroll effect-drop-down delay-500 hover-lift">
                     <div class="relative h-64 overflow-hidden border border-white/10 mb-6 bg-black shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=800&auto=format&fit=crop" alt="Crypto" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
+                        <img src="65363243f185eaef8f80db604be3961d.jpeg" alt="Crypto" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-trade-blue to-transparent opacity-80"></div>
                         <div class="absolute top-4 left-4 bg-trade-blue px-4 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase shadow-lg">Tâm lý</div>
                     </div>
@@ -489,7 +494,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="lg:col-span-2 pr-8">
                     <div class="flex items-center gap-3 mb-8">
-                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                        <!-- Updated Logo Link -->
+                        <a href="index.html" class="font-extrabold text-2xl tracking-wider uppercase text-white hover:text-trade-yellow transition-colors">Nhà Trade Học</a>
                     </div>
                     <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.</p>
                     <div class="flex space-x-4">
@@ -524,21 +530,15 @@
     <!-- BROKER INFO MODAL -->
     <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
         <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
-            <!-- Close Button -->
             <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
                 <i class="fa-solid fa-times text-xl"></i>
             </button>
-            
             <div class="p-8 text-center">
                 <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
                 <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
-                
-                <!-- QR Code Area -->
                 <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
                     <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
                 </div>
-                
-                <!-- Info Grid -->
                 <div class="space-y-4 text-left">
                     <div>
                         <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
@@ -549,7 +549,6 @@
                             </button>
                         </div>
                     </div>
-                    
                     <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                         Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
                     </a>
@@ -588,7 +587,6 @@
         });
 
         // --- HERO CHART CANVAS (Sector 1) ---
-        // RESTORED: Continuous drawing logic (buggy but smooth)
         (function() {
             const canvas = document.getElementById('hero-chart-bg');
             if (!canvas) return;
@@ -596,13 +594,13 @@
             
             let width, height;
             let points = [];
-            const pointSpacing = 10; // HIGH DENSITY for smoothness
-            const scrollSpeed = 0.5; // SLOW SCROLL speed
+            const pointSpacing = 10; 
+            const scrollSpeed = 0.5; 
 
             // Volatility Control
             let currentVolatility = 40;
             let lastVolatilityUpdate = Date.now();
-            let volatilityInterval = Math.random() * 3000; // Max 3s
+            let volatilityInterval = Math.random() * 3000;
 
             function resize() {
                 width = canvas.width = canvas.offsetWidth;
@@ -612,29 +610,22 @@
 
             function initPoints() {
                 points = [];
-                // Start from CENTER of screen (width/2) and go backwards to left off-screen
                 const startX = width / 2;
                 const endX = -50; 
                 const numPoints = Math.ceil((startX - endX) / pointSpacing) + 2;
-                
                 let currentX = startX;
                 let currentY = height / 2;
-
                 for (let i = 0; i < numPoints; i++) {
                     points.push({ x: currentX, y: currentY });
                     currentX -= pointSpacing;
-                    // Reduced randomness for smoother line
                     currentY = Math.max(height * 0.2, Math.min(height * 0.8, currentY + (Math.random() - 0.5) * 40));
                 }
                 points.reverse();
             }
 
             function animate() {
-                // Update Volatility Logic
                 if (Date.now() - lastVolatilityUpdate > volatilityInterval) {
-                    // Random volatility between 10 (calm) and 120 (volatile)
                     currentVolatility = 10 + Math.random() * 110; 
-                    // New random interval up to 3s
                     volatilityInterval = Math.random() * 3000;
                     lastVolatilityUpdate = Date.now();
                 }
@@ -648,12 +639,9 @@
                 }
 
                 const lastP = points[points.length - 1];
-                // Add new point at CENTER (width / 2) to maintain continuous line from center
-                // Use a smaller logic for randomness to keep it smooth
                 if (lastP.x < (width / 2) - pointSpacing) {
-                    // Use currentVolatility instead of hardcoded 40
                     let newY = Math.max(height * 0.2, Math.min(height * 0.8, lastP.y + (Math.random() - 0.5) * currentVolatility));
-                    points.push({ x: width / 2, y: newY }); // Fixed at center
+                    points.push({ x: width / 2, y: newY });
                 }
 
                 ctx.clearRect(0, 0, width, height);
@@ -669,16 +657,13 @@
                 }
 
                 ctx.strokeStyle = '#ffdf2b'; 
-                ctx.lineWidth = 1; // CHANGED: Reduced stroke width to 1px
+                ctx.lineWidth = 1; 
                 ctx.lineCap = 'round';
                 ctx.shadowBlur = 10;
                 ctx.shadowColor = '#ffdf2b';
                 ctx.stroke();
 
-                // Live Dot at CENTER
-                // We use the exact center coordinate since that's where lines are born
                 const centerX = width / 2;
-                // Get the Y of the last point added (which is at width/2)
                 const lastPoint = points[points.length - 1];
                 
                 if (lastPoint) {
@@ -719,11 +704,9 @@
                     const meta = chart.getDatasetMeta(0);
                     if (!meta.data.length) return;
                     
-                    // Always get the LAST data point
                     const lastPoint = meta.data[meta.data.length - 1];
                     const x = lastPoint.x;
                     const y = lastPoint.y;
-
                     const time = Date.now() % 1500;
                     const t = time / 1500;
                     const maxRadius = 25;
@@ -732,19 +715,16 @@
                     const currentAlpha = 1 - t;
 
                     ctx.save();
-                    
                     ctx.beginPath();
                     ctx.arc(x, y, currentRadius, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(255, 223, 43, ${currentAlpha * 0.5})`;
                     ctx.fill();
-
                     ctx.beginPath();
                     ctx.arc(x, y, 6, 0, Math.PI * 2);
                     ctx.fillStyle = '#ffffff';
                     ctx.shadowColor = '#ffdf2b';
                     ctx.shadowBlur = 15;
                     ctx.fill();
-
                     ctx.restore();
                     requestAnimationFrame(() => chart.draw());
                 }
@@ -767,10 +747,10 @@
                             borderColor: '#ffdf2b', 
                             backgroundColor: gradient,
                             borderWidth: 3,
-                            pointBackgroundColor: '#ffdf2b', // Changed point color to match line
+                            pointBackgroundColor: '#ffdf2b', 
                             pointBorderColor: '#ffdf2b',
                             pointBorderWidth: 2,
-                            pointRadius: 4, // Slightly smaller point
+                            pointRadius: 4, 
                             pointHoverRadius: 6,
                             pointHoverBackgroundColor: '#fff',
                             fill: true,
@@ -802,14 +782,12 @@
             const container = document.getElementById('bubbles-container');
             const messages = ["Buy Gold now?", "Sell EU!", "TP hit +50 pips", "Thanks admin", "Kèo Gold uy tín", "GU hồi rồi", "JPY yếu quá", "Tin ra USD bay", "Non-farm tối nay", "Sell đỉnh CA", "Buy đáy GA", "Scalp lẹ ae", "Chốt lời 1/2 nhé", "Dời SL về entry", "Kèo này R:R ngon", "XAU sập mạnh", "DXY tăng ghê", "H4 đóng nến đẹp", "Full margin Gold", "Đánh theo trend", "SL ngắn thôi", "News đỏ lòm", "FOMC đêm nay", "Cậu Vàng đi bụi", "Bắt râu nến", "BTC 100k soon", "ETH vượt đỉnh", "Altcoin season", "Memecoin bay quá", "Long hay Short?", "Funding rate cao", "Whale gom hàng", "Binance list con này", "DCA bitcoin", "Hold to die", "Solana hệ sinh thái", "Layer 2 bùng nổ", "Kèo x100", "Private sale", "Airdrop về ví", "Chart BTC xấu", "Dom giảm rồi", "Pump & Dump", "Sàn FUD à", "Vào lệnh Short BTC", "Chốt lời USDT", "Bắt đáy BNB", "Near hệ mới", "Trend AI coin", "GameFi comeback", "VNI vượt 1300", "Bank kéo tím", "Thép nay khỏe", "Bất động sản hồi", "FPT đỉnh cao", "HPG nặng mông", "Múc full margin", "T+2.5 về bờ", "Chứng khoán tím lịm", "ATC úp bô", "ATO xanh bát ngát", "Khối ngoại gom ròng", "Tự doanh xả hàng", "Cổ tức về tk", "Họ Vin kéo", "Đầu tư công", "Sóng dầu khí", "Penny trần hết", "Bluechip gánh team", "VN30 phái sinh", "Đáo hạn phái sinh", "Lái đánh ghê", "Gồng lỗ VNI", "Về bờ chưa ae", "Room phím hàng chuẩn", "Backcom về ví rồi", "Học được nhiều quá", "Room chất lượng", "Admin nhiệt tình", "Cảm ơn team", "Phương pháp hay", "Kỷ luật là chén", "Quản lý vốn tốt", "Tâm lý vững", "Chúc ae win", "Sáng nay xanh lét", "Chiều nay rút tiền", "Cuối tuần vui vẻ", "Ngủ ngon ae", "Good morning", "Cafe trading", "Chart đẹp như tranh", "Indicator báo mua", "Nến pinbar đẹp", "Volume to thế"];
             
-            // Memory to avoid repeats
             let recentMessages = [];
             const MAX_MEMORY = 20;
 
             function createBubble() {
                 if (!container) return;
                 
-                // Get random message avoiding recent ones
                 let msgIndex;
                 let attempts = 0;
                 do {
@@ -817,7 +795,6 @@
                     attempts++;
                 } while (recentMessages.includes(msgIndex) && attempts < 10);
                 
-                // Update memory
                 recentMessages.push(msgIndex);
                 if (recentMessages.length > MAX_MEMORY) recentMessages.shift();
 
@@ -825,17 +802,14 @@
                 bubble.classList.add('chat-bubble');
                 bubble.innerText = messages[msgIndex];
                 
-                // Optimized Mobile Logic
                 const isMobile = window.innerWidth < 768;
                 const side = Math.random() < 0.5 ? 'left' : 'right';
                 let randomLeft;
                 
                 if (isMobile) {
-                    // Mobile: Extreme edges only (0-15% or 85-100%)
                     if (side === 'left') randomLeft = Math.random() * 15; 
                     else randomLeft = Math.random() * 15 + 85;
                 } else {
-                    // PC: Standard zones
                     if (side === 'left') randomLeft = Math.random() * 20 + 5; 
                     else randomLeft = Math.random() * 20 + 75;
                 }
