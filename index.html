@@ -130,16 +130,18 @@
         }
     </style>
 </head>
-<body class="bg-trade-blue text-trade-white font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue overflow-x-hidden">
+<body class="bg-trade-blue text-trade-white font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue overflow-x-hidden relative">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-trade-blue/80 backdrop-blur-md border-b border-white/10 transition-all duration-300 shadow-2xl" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
                 </div>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#hoan-phi" class="text-sm uppercase tracking-widest hover:text-trade-yellow transition-colors duration-300 relative group">
                         Hoàn Phí
@@ -153,7 +155,7 @@
                         Kiến Thức
                         <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-trade-yellow transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#cong-dong" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-brutal hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-brutal hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                         Tham Gia
                     </a>
                 </div>
@@ -170,7 +172,7 @@
                 <a href="#hoan-phi" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Hoàn Phí</a>
                 <a href="#dich-vu" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Dịch Vụ</a>
                 <a href="#kien-thuc" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Kiến Thức</a>
-                <a href="#cong-dong" class="block mt-4 px-3 py-2 text-center border border-trade-yellow text-trade-yellow font-bold uppercase">Tham Gia Cộng Đồng</a>
+                <a href="https://t.me/nhatradehocspace" class="block mt-4 px-3 py-2 text-center border border-trade-yellow text-trade-yellow font-bold uppercase">Tham Gia Cộng Đồng</a>
             </div>
         </div>
     </nav>
@@ -289,21 +291,22 @@
             <div class="border-t border-gray-200 pt-12 reveal-on-scroll effect-zoom-up">
                 <p class="text-center text-sm uppercase tracking-[0.2em] text-gray-500 mb-8 font-extrabold">Đăng ký mở tài khoản & Nhận hoàn phí ngay</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <a href="https://one.exnessonelink.com/a/12yyhitqq7" target="_blank" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg">
+                    <!-- CHANGED: Buttons trigger Modal instead of link -->
+                    <button onclick="openModal('exness')" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg cursor-pointer">
                         <span class="text-3xl font-extrabold text-trade-blue group-hover:text-trade-blue mb-2">Exness</span>
                         <span class="text-xs uppercase tracking-widest text-gray-500 mb-6 group-hover:text-trade-blue font-bold">Forex & Gold</span>
                         <div class="w-full py-3 bg-trade-blue text-white font-bold text-center uppercase tracking-widest group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors shadow-sm">Mở Tài Khoản</div>
-                    </a>
-                    <a href="https://www.binance.com/vi/activity/referral-entry/CPA?ref=CPA_00UAE3JFX9" target="_blank" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg">
+                    </button>
+                    <button onclick="openModal('binance')" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg cursor-pointer">
                         <span class="text-3xl font-extrabold text-trade-blue group-hover:text-trade-blue mb-2">Binance</span>
                         <span class="text-xs uppercase tracking-widest text-gray-500 mb-6 group-hover:text-trade-blue font-bold">Crypto</span>
                         <div class="w-full py-3 bg-trade-blue text-white font-bold text-center uppercase tracking-widest group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors shadow-sm">Mở Tài Khoản</div>
-                    </a>
-                    <a href="#" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg">
+                    </button>
+                    <button onclick="openModal('vpbanks')" class="group relative border-2 border-gray-200 hover:border-trade-blue p-6 transition-all duration-300 bg-gray-50 hover:bg-white flex flex-col items-center justify-center hover:-translate-y-2 shadow-lg cursor-pointer">
                         <span class="text-3xl font-extrabold text-trade-blue group-hover:text-trade-blue mb-2">VPBankS</span>
                         <span class="text-xs uppercase tracking-widest text-gray-500 mb-6 group-hover:text-trade-blue font-bold">Stock VN</span>
                         <div class="w-full py-3 bg-trade-blue text-white font-bold text-center uppercase tracking-widest group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors shadow-sm">Mở Tài Khoản</div>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -367,16 +370,13 @@
 
                 <!-- NEW SERVICE: COPY TRADE (Coming Soon) -->
                 <div class="group border border-white/10 bg-white/5 p-8 flex flex-col h-full relative overflow-hidden reveal-on-scroll effect-zoom-up delay-300 shadow-xl backdrop-blur-md">
-                    <!-- Overlay for Coming Soon Effect -->
                     <div class="absolute inset-0 bg-trade-dark/60 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center text-center transition-opacity duration-500 group-hover:bg-trade-dark/40">
-                        <!-- Updated Coming Soon Text -->
                         <p class="text-white font-bold text-sm uppercase tracking-widest animate-pulse">
                             Coming Soon <br>
                             <span class="text-trade-yellow text-3xl font-black mt-2 block">Q2/2026</span>
                         </p>
                     </div>
 
-                    <!-- Content (Dimmed) -->
                     <div class="opacity-40 filter grayscale group-hover:grayscale-0 transition-all duration-500">
                         <div class="flex justify-between items-start mb-8">
                             <div class="w-16 h-16 border-2 border-white flex items-center justify-center">
@@ -415,21 +415,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-end mb-16 reveal-on-scroll effect-slide-left">
                 <div>
-                    <!-- CHANGED: Kiến Thức Mới to Kiến Thức -->
                     <h2 class="text-4xl lg:text-5xl font-black text-white uppercase mb-2 tracking-tight">Kiến Thức</h2>
                     <div class="w-16 h-2 bg-trade-yellow"></div>
                 </div>
                 <a href="#" class="hidden md:inline-block text-sm font-extrabold text-trade-yellow uppercase tracking-widest hover:text-white transition-colors border-b border-trade-yellow pb-1 hover:border-white">Xem tất cả <i class="fa-solid fa-chevron-right ml-1"></i></a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1: Backcom Guide (FEATURED - NEW) -->
+                <!-- Card 1 -->
                 <article class="group cursor-pointer reveal-on-scroll effect-drop-down hover-lift">
                     <a href="cai-dat-backcom-exness.html" class="block w-full h-full"> 
                         <div class="relative h-64 overflow-hidden border border-white/10 mb-6 bg-black shadow-lg">
-                            <img src="images.png" alt="Exness Guide" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
-                            <!-- Overlay Badge -->
+                            <img src="65363243f185eaef8f80db604be3961d.jpeg" alt="Exness Guide" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
                             <div class="absolute top-0 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 uppercase animate-pulse">Đọc Nhiều Nhất</div>
-                            <!-- REMOVED DARK OVERLAY -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-trade-blue to-transparent opacity-80"></div>
                             <div class="absolute top-4 left-4 bg-trade-blue px-4 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase shadow-lg">Hướng dẫn</div>
                         </div>
                         <div class="pr-4 relative">
@@ -443,12 +441,12 @@
                     </a>
                 </article>
 
-                <!-- Card 2: Trading Math -->
+                <!-- Card 2 -->
                 <article class="group cursor-pointer reveal-on-scroll effect-drop-down delay-200 hover-lift">
                     <a href="trading-la-toan-hoc.html" class="block w-full h-full"> 
                         <div class="relative h-64 overflow-hidden border border-white/10 mb-6 bg-black shadow-lg">
                             <img src="593433934_2320758825033467_1287742921545181090_n.jpg" alt="Trading Math" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
-                            <!-- REMOVED DARK OVERLAY -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-trade-blue to-transparent opacity-80"></div>
                             <div class="absolute top-4 left-4 bg-trade-blue px-4 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase shadow-lg">Tư duy</div>
                         </div>
                         <div class="pr-4 relative">
@@ -462,11 +460,11 @@
                     </a>
                 </article>
 
-                <!-- Card 3: Psychology (Placeholder/Generic) -->
+                <!-- Card 3 -->
                 <article class="group cursor-pointer reveal-on-scroll effect-drop-down delay-500 hover-lift">
                     <div class="relative h-64 overflow-hidden border border-white/10 mb-6 bg-black shadow-lg">
                         <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?q=80&w=800&auto=format&fit=crop" alt="Crypto" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-all duration-700">
-                        <!-- REMOVED DARK OVERLAY -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-trade-blue to-transparent opacity-80"></div>
                         <div class="absolute top-4 left-4 bg-trade-blue px-4 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase shadow-lg">Tâm lý</div>
                     </div>
                     <div class="pr-4 relative">
@@ -522,6 +520,43 @@
             </div>
         </div>
     </footer>
+
+    <!-- BROKER INFO MODAL -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <!-- QR Code Area -->
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <!-- Info Grid -->
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script>
@@ -816,8 +851,91 @@
             }
             setInterval(createBubble, 600);
         })();
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        const brokerData = {
+            'exness': {
+                name: 'Exness',
+                code: '12yyhitqq7',
+                link: 'https://one.exnessonelink.com/a/12yyhitqq7'
+            },
+            'binance': {
+                name: 'Binance',
+                code: 'CPA_00UAE3JFX9',
+                link: 'https://www.binance.com/vi/activity/referral-entry/CPA?ref=CPA_00UAE3JFX9'
+            },
+            'vpbanks': {
+                name: 'VPBankS',
+                code: 'Đang cập nhật',
+                link: '#'
+            }
+        };
+
+        function openModal(brokerKey) {
+            const data = brokerData[brokerKey];
+            if (!data) return;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; // Placeholder image
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Wait for transition
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy"); // Fallback for older browsers
+            
+            // Visual feedback
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
     </script>
-
 </body>
-
 </html>
