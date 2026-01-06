@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Viện Kiến Thức - Nhà Trade Học</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #00167c; }
+        ::-webkit-scrollbar-thumb { background: #ffdf2b; }
+        ::-webkit-scrollbar-thumb:hover { background: #e6c820; }
+        
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .filter-btn.active {
+            background-color: #ffdf2b;
+            color: #00167c;
+            border-color: #ffdf2b;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <!-- Active Link Style -->
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-trade-yellow border-b-2 border-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-trade-yellow hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-trade-blue border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="index.html#hoan-phi" class="block px-3 py-2 text-base font-medium text-white hover:text-trade-yellow">Hoàn Phí</a>
+                <a href="index.html#dich-vu" class="block px-3 py-2 text-base font-medium text-white hover:text-trade-yellow">Dịch Vụ</a>
+                <a href="kien-thuc.html" class="block px-3 py-2 text-base font-medium text-trade-yellow font-bold">Kiến Thức</a>
+                <a href="https://t.me/nhatradehocspace" class="block mt-4 px-3 py-2 text-center border border-trade-yellow text-trade-yellow font-bold uppercase">Cộng Đồng</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 bg-trade-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-tight">Thư Viện <span class="text-trade-yellow">Kiến Thức</span></h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Tổng hợp các bài viết chuyên sâu về giao dịch tài chính, từ cơ bản đến nâng cao.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Filter Bar -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12" id="filter-container">
+            <button class="filter-btn active px-6 py-2 border border-trade-blue text-trade-blue rounded-full font-bold text-sm uppercase hover:bg-trade-blue hover:text-white transition-all" data-filter="all">Tất Cả</button>
+            <button class="filter-btn px-6 py-2 border border-gray-300 text-gray-500 rounded-full font-bold text-sm uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="huong-dan">Hướng Dẫn</button>
+            <button class="filter-btn px-6 py-2 border border-gray-300 text-gray-500 rounded-full font-bold text-sm uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="tu-duy">Tư Duy</button>
+            <button class="filter-btn px-6 py-2 border border-gray-300 text-gray-500 rounded-full font-bold text-sm uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="tam-ly">Tâm Lý</button>
+            <button class="filter-btn px-6 py-2 border border-gray-300 text-gray-500 rounded-full font-bold text-sm uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="phuong-phap">Phương Pháp</button>
+            <button class="filter-btn px-6 py-2 border border-gray-300 text-gray-500 rounded-full font-bold text-sm uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="bao-cao">Báo Cáo</button>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+            
+            <!-- Article 1: Hướng dẫn -->
+            <article class="filter-item huong-dan group cursor-pointer hover-lift flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <a href="cai-dat-backcom-exness.html" class="block flex-1 flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="65363243f185eaef8f80db604be3961d.jpeg" alt="Exness Guide" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-trade-blue px-3 py-1 text-white text-xs font-bold uppercase rounded shadow-md">Hướng Dẫn</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors line-clamp-2">Hướng dẫn cài đặt Backcom Exness chi tiết nhất</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">Các bước đăng ký, đổi mã đối tác và xác minh tài khoản để nhận mức hoàn phí cao nhất từ hệ thống Nhà Trade Học.</p>
+                        <div class="flex justify-between items-center text-xs text-gray-400 font-bold uppercase tracking-wider mt-auto pt-4 border-t border-gray-100">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>28 Dec 2025</span>
+                            <span>3 phút đọc</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Article 2: Tư duy -->
+            <article class="filter-item tu-duy group cursor-pointer hover-lift flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <a href="trading-la-toan-hoc.html" class="block flex-1 flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="593433934_2320758825033467_1287742921545181090_n.jpg" alt="Trading Math" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-trade-yellow px-3 py-1 text-trade-blue text-xs font-bold uppercase rounded shadow-md">Tư Duy</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors line-clamp-2">Trading là Toán học, không phải phép màu: Giải mã "Kỳ Vọng Dương"</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">Trong giao dịch chuyên nghiệp, "Đúng hay Sai" không quan trọng bằng việc "Khi đúng bạn được bao nhiêu tiền, và khi sai bạn mất bao nhiêu".</p>
+                        <div class="flex justify-between items-center text-xs text-gray-400 font-bold uppercase tracking-wider mt-auto pt-4 border-t border-gray-100">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>05 Jan 2026</span>
+                            <span>5 phút đọc</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Article 3: Tâm lý -->
+            <article class="filter-item tam-ly group cursor-pointer hover-lift flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <!-- Using placeholder link # for demo articles -->
+                <a href="#" class="block flex-1 flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="fomo.jpg" alt="FOMO" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-red-600 px-3 py-1 text-white text-xs font-bold uppercase rounded shadow-md">Tâm Lý</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors line-clamp-2">Quản lý vốn FOMO: Kẻ thù số 1 của Trader mới</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">Tại sao bạn luôn cắt lỗ đúng đáy và mua đúng đỉnh? Bài viết này sẽ mổ xẻ tâm lý đám đông và cách đi ngược lại nó.</p>
+                        <div class="flex justify-between items-center text-xs text-gray-400 font-bold uppercase tracking-wider mt-auto pt-4 border-t border-gray-100">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>01 Jan 2026</span>
+                            <span>4 phút đọc</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Article 4: Phương pháp (Demo) -->
+            <article class="filter-item phuong-phap group cursor-pointer hover-lift flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <a href="#" class="block flex-1 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-gray-200 flex items-center justify-center">
+                        <!-- Placeholder Image -->
+                        <i class="fa-solid fa-chart-candlestick text-6xl text-gray-300"></i>
+                        <div class="absolute top-4 left-4 bg-green-600 px-3 py-1 text-white text-xs font-bold uppercase rounded shadow-md">Phương Pháp</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors line-clamp-2">Price Action nâng cao: Đọc hiểu nến Pinbar</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">Không phải mọi cây nến Pinbar đều là tín hiệu đảo chiều. Học cách lọc tín hiệu nhiễu bằng cấu trúc thị trường.</p>
+                        <div class="flex justify-between items-center text-xs text-gray-400 font-bold uppercase tracking-wider mt-auto pt-4 border-t border-gray-100">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>15 Dec 2025</span>
+                            <span>6 phút đọc</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Article 5: Báo cáo (Demo) -->
+            <article class="filter-item bao-cao group cursor-pointer hover-lift flex flex-col h-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                <a href="#" class="block flex-1 flex flex-col">
+                    <div class="relative h-56 overflow-hidden bg-gray-200 flex items-center justify-center">
+                        <i class="fa-solid fa-file-contract text-6xl text-gray-300"></i>
+                        <div class="absolute top-4 left-4 bg-purple-600 px-3 py-1 text-white text-xs font-bold uppercase rounded shadow-md">Báo Cáo</div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-1">
+                        <h3 class="text-xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors line-clamp-2">Tổng kết thị trường Quý 4/2025: Vàng lập đỉnh mới?</h3>
+                        <p class="text-gray-500 text-sm mb-4 line-clamp-3 flex-1">Phân tích toàn cảnh thị trường tài chính cuối năm 2025 và dự phóng xu hướng đầu năm 2026.</p>
+                        <div class="flex justify-between items-center text-xs text-gray-400 font-bold uppercase tracking-wider mt-auto pt-4 border-t border-gray-100">
+                            <span><i class="fa-regular fa-calendar mr-2"></i>31 Dec 2025</span>
+                            <span>10 phút đọc</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <a href="index.html" class="font-extrabold text-2xl tracking-wider uppercase text-white hover:text-trade-yellow transition-colors">Nhà Trade Học</a>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-youtube text-lg"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-trade-yellow">Trang Chủ</a></li>
+                        <li><a href="index.html#hoan-phi" class="hover:text-trade-yellow">Hoàn Phí</a></li>
+                        <li><a href="index.html#dich-vu" class="hover:text-trade-yellow">Dịch Vụ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>contact.nhatradehoc@gmail.com</li>
+                        <li>Hà Nội, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center opacity-50">
+                <p class="text-xs">© 2026 Nhà Trade Học. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Filter Script -->
+    <script>
+        // Mobile Menu
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.filter-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-trade-yellow', 'text-trade-blue', 'border-trade-yellow');
+                    b.classList.add('border-gray-300', 'text-gray-500');
+                });
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                btn.classList.remove('border-gray-300', 'text-gray-500');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.classList.remove('hidden');
+                        // Add fade-in animation
+                        item.animate([
+                            { opacity: 0, transform: 'translateY(20px)' },
+                            { opacity: 1, transform: 'translateY(0)' }
+                        ], {
+                            duration: 300,
+                            easing: 'ease-out'
+                        });
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
