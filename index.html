@@ -494,7 +494,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12">
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="lg:col-span-2 pr-8">
@@ -511,17 +511,16 @@
                 </div>
                 <div>
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
-                    <ul class="space-y-4">
-                        <li><a href="#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
-                        <li><a href="#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
-                        <li><a href="#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-trade-yellow">Trang Chủ</a></li>
+                        <li><a href="hoan-phi.html" class="hover:text-trade-yellow">Hoàn Phí</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
-                    <ul class="space-y-4">
-                        <li class="flex items-start text-sm text-gray-400"><i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i> contact.nhatradehoc@gmail.com</li>
-                        <li class="flex items-start text-sm text-gray-400"><i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i> Hà Nội, Việt Nam</li>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>contact.nhatradehoc@gmail.com</li>
+                        <li>Hà Nội, Việt Nam</li>
                     </ul>
                 </div>
             </div>
@@ -531,6 +530,22 @@
             </div>
         </div>
     </footer>
+
+    <!-- MARKETING POPUP -->
+    <div id="marketingPopup" class="fixed bottom-4 right-4 z-[70] hidden opacity-0 translate-y-10 transition-all duration-500 w-full max-w-sm px-4 md:px-0 md:w-80">
+        <div class="bg-white border-2 border-trade-blue shadow-brutal-dark p-6 relative">
+            <button onclick="closePopup()" class="absolute -top-3 -right-3 w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold shadow-md hover:bg-trade-yellow hover:text-trade-blue transition-colors rounded-full">
+                <i class="fa-solid fa-times text-sm"></i>
+            </button>
+            <div class="text-left">
+                <h4 class="text-trade-blue font-black uppercase text-lg leading-tight mb-2">Bạn đang giao dịch mà <span class="bg-trade-yellow px-1">không được hoàn phí?</span></h4>
+                <p class="text-gray-600 text-sm mb-4 leading-relaxed">Đừng để tiền rơi! Nhận lại tới <span class="font-bold text-trade-blue">40% phí giao dịch</span> ngay hôm nay.</p>
+                <a href="hoan-phi.html" class="block w-full py-3 bg-trade-blue text-white font-bold text-xs uppercase tracking-widest text-center hover:bg-trade-yellow hover:text-trade-blue transition-all shadow-brutal-dark hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                    Đăng ký hoàn phí ngay
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- BROKER INFO MODAL -->
     <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
@@ -553,6 +568,8 @@
                                 <i class="fa-regular fa-copy mr-2"></i> Copy
                             </button>
                         </div>
+                        <!-- Guide Link Container (Will be populated by JS) -->
+                        <div id="modalGuideContainer" class="mt-2 text-right"></div>
                     </div>
                     <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                         Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
@@ -589,7 +606,29 @@
                 }
                 tickerEl.innerHTML = html;
             }
+
+            // Trigger Marketing Popup after 3 seconds
+            setTimeout(() => {
+                const popup = document.getElementById('marketingPopup');
+                if (popup) {
+                    popup.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before animating opacity/transform
+                    setTimeout(() => {
+                        popup.classList.remove('opacity-0', 'translate-y-10');
+                    }, 10);
+                }
+            }, 3000);
         });
+
+        function closePopup() {
+            const popup = document.getElementById('marketingPopup');
+            if (popup) {
+                popup.classList.add('opacity-0', 'translate-y-10');
+                setTimeout(() => {
+                    popup.classList.add('hidden');
+                }, 500);
+            }
+        }
 
         // --- HERO CHART CANVAS (Sector 1) ---
         (function() {
@@ -838,22 +877,26 @@
         const modalQR = document.getElementById('modalQR');
         const modalCode = document.getElementById('modalCode');
         const modalLink = document.getElementById('modalLink');
+        const modalGuideContainer = document.getElementById('modalGuideContainer');
 
         const brokerData = {
             'exness': {
                 name: 'Exness',
                 code: '12yyhitqq7',
-                link: 'https://one.exnessonelink.com/a/12yyhitqq7'
+                link: 'https://one.exnessonelink.com/a/12yyhitqq7',
+                guideLink: 'cai-dat-backcom-exness.html' // Added guide link
             },
             'binance': {
                 name: 'Binance',
                 code: 'CPA_00UAE3JFX9',
-                link: 'https://www.binance.com/vi/activity/referral-entry/CPA?ref=CPA_00UAE3JFX9'
+                link: 'https://www.binance.com/vi/activity/referral-entry/CPA?ref=CPA_00UAE3JFX9',
+                guideLink: '#' // Placeholder link
             },
             'vpbanks': {
                 name: 'VPBankS',
                 code: 'Đang cập nhật',
-                link: '#'
+                link: '#',
+                guideLink: '#' // Placeholder link
             }
         };
 
@@ -864,6 +907,13 @@
             modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
             modalCode.value = data.code;
             modalLink.href = data.link;
+
+            // Handle Guide Link
+            if (data.guideLink) {
+                modalGuideContainer.innerHTML = `<a href="${data.guideLink}" class="text-xs font-bold text-trade-blue hover:text-trade-yellow transition-colors italic underline decoration-1 underline-offset-4">Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i></a>`;
+            } else {
+                modalGuideContainer.innerHTML = '';
+            }
 
             if (data.link !== '#') {
                 modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
@@ -918,4 +968,3 @@
     </script>
 </body>
 </html>
-
