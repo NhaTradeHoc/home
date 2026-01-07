@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sau Venezuela Là Greenland? - Nhà Trade Học</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- Font Awesome (6.5.1) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        /* Style cho placeholder ảnh */
+        .image-placeholder {
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16/9; /* Tỉ lệ chuẩn video/ảnh */
+            margin: 2.5rem 0;
+            color: #64748b;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .image-placeholder:hover {
+            border-color: #00167c;
+            color: #00167c;
+            background-color: #eef2ff;
+        }
+    </style>
+    <!-- Share Logic Script -->
+    <script>
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-trade-blue">Địa Chính Trị</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-2xl md:text-5xl font-black text-trade-blue mb-8 leading-snug md:leading-normal">
+                SAU VENEZUELA LÀ <br>
+                <span class="bg-trade-yellow px-1 inline-block mt-1 md:mt-2 leading-none py-1">GREENLAND?</span>
+            </h1>
+            <p class="text-xl font-bold text-gray-500 mb-6 font-serif">Từ Caracas đến Nuuk - Sự hồi sinh của Học thuyết Monroe</p>
+
+            <!-- Meta Info -->
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>15 Jan 2026 &bull; 15 phút đọc</div>
+            </div>
+
+            <!-- Featured Image (Updated from Homepage) -->
+            <div class="relative w-full aspect-[2/1] mb-12 shadow-brutal-dark overflow-hidden border-2 border-trade-blue group flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Greenland Geopolitics" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose text-justify">
+            
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Từ Caracas Đến Nuuk - Sự Hồi Sinh Của Học Thuyết Monroe</h2>
+            
+            <p>
+                Bước vào quý đầu tiên của năm 2026, trật tự địa chính trị toàn cầu đã chứng kiến một sự dịch chuyển kiến tạo mang tính lịch sử. Sự kiện lực lượng đặc nhiệm Hoa Kỳ tiến hành chiến dịch quân sự táo bạo tại Caracas, dẫn đến việc bắt giữ Tổng thống Venezuela Nicolas Maduro và phu nhân Cilia Flores, không chỉ đơn thuần là một cuộc thay đổi chế độ tại Nam Mỹ. Sâu xa hơn, nó đánh dấu sự tái khẳng định mạnh mẽ và quyết liệt nhất của <strong>Học thuyết Monroe</strong> trong thế kỷ 21 dưới thời chính quyền Tổng thống Donald Trump nhiệm kỳ hai.
+            </p>
+            <p>
+                Thông điệp được gửi đi từ Nhà Trắng là vô cùng rõ ràng: Hoa Kỳ sẽ không chấp nhận bất kỳ sự hiện diện thù địch hoặc ảnh hưởng chiến lược của các cường quốc đối thủ (cụ thể là Nga và Trung Quốc) tại Tây Bán Cầu.
+            </p>
+            <p>
+                Trong bối cảnh "hậu Venezuela" đầy biến động này, sự chú ý của Washington đã ngay lập tức chuyển hướng về phía Bắc, tập trung vào một mục tiêu chiến lược còn dang dở nhưng mang ý nghĩa sinh tử đối với an ninh quốc gia Hoa Kỳ: <strong>Greenland</strong>.
+            </p>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Tâm lý "Thừa thắng xông lên" tại Washington và Tầm nhìn "Pháo đài Tây Bán Cầu"</h2>
+            
+            <p>
+                Sau thành công tại Caracas, các nhà hoạch định chiến lược tại Washington, đặc biệt là các think-tank bảo thủ như Heritage Foundation, đã nhanh chóng thúc đẩy ý tưởng về việc hoàn thiện <strong>"Pháo đài Tây Bán Cầu" (Fortress Western Hemisphere)</strong>. Theo tư duy này, sau khi đã ổn định sườn phía Nam (Venezuela), Mỹ cần phải ngay lập tức khóa chặt sườn phía Bắc (Greenland/Bắc Cực) để đối phó với sự trỗi dậy của Nga và Trung Quốc tại khu vực này.
+            </p>
+            <p>
+                Tổng thống Trump, trong các phát biểu trên mạng xã hội Truth Social và các cuộc phỏng vấn, đã tái khẳng định rằng việc kiểm soát Greenland là "nhu cầu tuyệt đối" (absolute necessity) cho an ninh quốc gia. Khác với năm 2019, tuyên bố này vào năm 2026 được đưa ra trong bối cảnh Mỹ vừa chứng minh năng lực hành động quyết liệt, khiến các đối tác và đối thủ phải nhìn nhận nó một cách nghiêm túc hơn nhiều. Không còn là một "trò đùa bất động sản", Greenland hiện được xem là mảnh ghép cuối cùng để hoàn thiện chiếc khiên phòng thủ Bắc Mỹ.
+            </p>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Greenland: Tâm Điểm Của Cuộc Cạnh Tranh Quyền Lực Đại Dương</h2>
+            <p>
+                Để hiểu rõ động lực đằng sau chiến lược của Hoa Kỳ, cần phân tích sâu ba trụ cột giá trị chiến lược mà Greenland mang lại. Đây không chỉ là vấn đề lãnh thổ, mà là vấn đề sống còn về an ninh và công nghệ.
+            </p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">3.1. Pháo đài Pituffik: Giá trị không thể thay thế trong Phòng thủ Tên lửa</h3>
+            <p>
+                Căn cứ Không gian Pituffik (trước đây là Căn cứ Không quân Thule) là tài sản quân sự quan trọng nhất của Hoa Kỳ nằm ngoài lãnh thổ lục địa ở Bắc Bán cầu. Pituffik có vị trí chiến lược: Nằm ở tọa độ 76 độ Vĩ Bắc, cách vòng Bắc Cực 700 dặm, chính giữa đường bay ngắn nhất của tên lửa đạn đạo xuyên lục địa (ICBM) từ Nga hoặc Trung Quốc nhắm vào Bờ Đông Hoa Kỳ.
+            </p>
+            <p>
+                Căn cứ này sở hữu hệ thống Radar Cảnh báo sớm Tên lửa Đạn đạo (BMEWS) AN/FPS-132 Upgraded Early Warning Radar. Với sự phát triển của tên lửa siêu thanh từ phía Nga và Trung Quốc, thời gian phản ứng bị rút ngắn đáng kể. Vị trí tiền tiêu của Pituffik trở nên quan trọng hơn bao giờ hết. Bất kỳ sự gián đoạn nào trong hoạt động tại Pituffik do các vấn đề chính trị với Đan Mạch hoặc Greenland đều tạo ra một "điểm mù" chết người. Chính vì vậy, Mỹ muốn chuyển từ quyền "thuê" căn cứ sang quyền "kiểm soát" vĩnh viễn thông qua một hiệp ước trực tiếp với một Greenland độc lập nhưng phụ thuộc Mỹ.
+            </p>
+
+            <!-- Added Image 3.1 -->
+             <div class="mb-12 shadow-brutal-dark border-2 border-trade-blue">
+                <img src="image.jpg" alt="Căn cứ Pituffik" class="w-full h-full object-cover">
+                <p class="text-xs text-center text-gray-500 py-2 italic bg-gray-50">Căn cứ Pituffik - Vị trí chiến lược (Ảnh minh họa)</p>
+            </div>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">3.2. Mặt trận Tài nguyên: Kvanefjeld và Cuộc chiến Đất hiếm</h3>
+            <p>
+                Dưới lòng băng tuyết của Greenland là mỏ Kvanefjeld, một trong những mỏ đất hiếm (Rare Earth Elements - REE) và uranium lớn nhất thế giới chưa được khai thác.
+            </p>
+            <p>
+                Kvanefjeld ước tính chứa hơn 1 tỷ tấn quặng, bao gồm các nguyên tố đất hiếm quan trọng như Neodymium, Praseodymium, Dysprosium và Terbium. Đây là những nguyên liệu không thể thiếu để sản xuất nam châm vĩnh cửu cho động cơ xe điện, tuabin gió, và quan trọng nhất là các hệ thống vũ khí hiện đại như tiêm kích F-35 và tàu ngầm hạt nhân lớp Virginia.
+            </p>
+            <div class="bg-gray-100 p-6 border-l-4 border-red-500 my-4">
+                <p><strong>Mối đe dọa từ Trung Quốc:</strong> Công ty Shenghe Resources của Trung Quốc hiện nắm giữ cổ phần lớn trong dự án này thông qua Energy Transition Minerals. Washington coi đây là một mối đe dọa an ninh quốc gia trực tiếp. Việc Trung Quốc kiểm soát nguồn cung đất hiếm ngay tại Bắc Cực, sát nách Mỹ, là điều không thể chấp nhận được trong bối cảnh cuộc chiến công nghệ đang leo thang.</p>
+            </div>
+            <p>
+                Kiểm soát Greenland đồng nghĩa với việc Mỹ có thể sử dụng các cơ chế pháp lý (như CFIUS mở rộng) để loại bỏ Shenghe Resources, chuyển giao quyền khai thác cho các tập đoàn phương Tây, từ đó phá vỡ thế độc quyền đất hiếm của Trung Quốc và đảm bảo chuỗi cung ứng chiến lược.
+            </p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">3.3. Đại chiến lược Bắc Cực: Kiểm soát Hành lang GIUK</h3>
+            <p>
+                Biến đổi khí hậu đang làm tan băng nhanh chóng, biến Bắc Cực từ một vùng băng giá thành một đại dương mới có thể đi lại được. Tuyến đường biển phương Bắc (Northern Sea Route - NSR) dọc theo bờ biển Nga và Hành lang Tây Bắc (Northwest Passage) dọc theo Canada giúp rút ngắn thời gian vận chuyển từ Châu Á sang Châu Âu và Bắc Mỹ. Greenland nằm ngay ngã ba của các tuyến đường này.
+            </p>
+            <p>
+                Greenland, cùng với Iceland và Vương quốc Anh, tạo thành <strong>khe hổng GIUK (Greenland-Iceland-UK Gap)</strong>. Đây là cửa ngõ duy nhất để Hạm đội phương Bắc của Nga tiến ra Đại Tây Dương. Kiểm soát Greenland cho phép Mỹ và NATO duy trì khả năng phong tỏa lực lượng tàu ngầm hạt nhân của Nga ngay từ trong trứng nước, bảo vệ các tuyến đường vận tải biển quan trọng qua Đại Tây Dương.
+            </p>
+            <p>
+                Trung Quốc, tự xưng là "quốc gia cận Bắc Cực", đang tích cực tìm kiếm chỗ đứng tại đây thông qua "Con đường Tơ lụa Cực Bắc". Các nỗ lực của Trung Quốc nhằm mua lại sân bay hoặc căn cứ hải quân cũ tại Greenland trong quá khứ đã bị Mỹ chặn đứng, nhưng ý định vẫn còn đó.
+            </p>
+
+            <!-- Added Image 3.3 -->
+            <div class="mb-12 shadow-brutal-dark border-2 border-trade-blue">
+                <img src="GIUK-gap.jpg" alt="Bản đồ Hành lang GIUK" class="w-full h-full object-cover">
+                <p class="text-xs text-center text-gray-500 py-2 italic bg-gray-50">Khe hổng GIUK (Greenland-Iceland-UK Gap)</p>
+            </div>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Chiến Lược Hai Mặt (Double-Sided Strategy)</h2>
+            <p>
+                Để đạt được mục tiêu Greenland, chính quyền Trump năm 2026 không lặp lại sai lầm của năm 2019. Thay vào đó, họ triển khai một chiến lược "Cây gậy và Củ cà rốt" tinh vi, nhắm vào hai đối tượng khác nhau: Đan Mạch (đối tượng chịu sức ép) và Greenland (đối tượng được lôi kéo).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                <!-- Hard Power -->
+                <div class="border border-red-200 bg-red-50 p-5 shadow-sm">
+                    <h4 class="font-bold text-red-800 uppercase mb-3 text-lg"><i class="fa-solid fa-gavel mr-2"></i> 4.1. Quyền lực Cứng</h4>
+                    <p class="text-sm font-bold mb-2">Vai trò của JD Vance: Cô lập Châu Âu, Gây sức ép lên Đan Mạch</p>
+                    <p class="text-sm leading-relaxed">
+                        Phó Tổng thống JD Vance đóng vai trò "Bad Cop". Tại Hội nghị An ninh Munich, ông chỉ trích các đồng minh Châu Âu là "kẻ ăn bám". Thông điệp ngầm: Nếu Đan Mạch cản trở Mỹ vấn đề Greenland, cam kết Điều 5 NATO có thể bị xem xét lại. Đan Mạch không thể mạo hiểm mất chiếc ô an ninh Mỹ chỉ vì Greenland.
+                    </p>
+                </div>
+
+                <!-- Sharp Power -->
+                 <div class="border border-blue-200 bg-blue-50 p-5 shadow-sm">
+                    <h4 class="font-bold text-blue-800 uppercase mb-3 text-lg"><i class="fa-solid fa-pen-nib mr-2"></i> 4.2. Quyền lực Sắc bén</h4>
+                    <p class="text-sm font-bold mb-2">Thâm nhập Thể chế: Đánh vào lòng dân tộc chủ nghĩa Inuit</p>
+                    <p class="text-sm leading-relaxed">
+                        <strong>Thao túng tường thuật:</strong> Lan truyền thông điệp Đan Mạch là thực dân, Mỹ là đối tác giải phóng.<br>
+                        <strong>Ngoại giao trực tiếp:</strong> Tái lập Lãnh sự quán tại Nuuk, bỏ qua trung gian Copenhagen. Hứa hẹn gói đầu tư hạ tầng khổng lồ mà Đan Mạch không thể so bì.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Cơ Chế COFA: "Con Ngựa Thành Troia" Pháp Lý</h2>
+            <p>
+                Trọng tâm trí tuệ của chiến lược 2026 không phải là mua bán lãnh thổ, mà là một cơ chế pháp lý tinh vi được gọi là <strong>Compact of Free Association (COFA)</strong>.
+            </p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">5.1. Hiệp ước Liên kết Tự do là gì?</h3>
+            <p>
+                COFA là mô hình quan hệ giữa Mỹ và các quốc gia Thái Bình Dương (Micronesia, Marshall, Palau). Các nước này có chủ quyền, ghế tại LHQ, nhưng ủy thác hoàn toàn quyền <strong>quốc phòng và an ninh</strong> cho Hoa Kỳ. Đổi lại, Mỹ cung cấp tài chính và quyền cho công dân sinh sống tại Mỹ không cần visa.
+            </p>
+            <p class="font-bold text-trade-blue">
+                Điều khoản quan trọng nhất: "Strategic Denial". Mỹ có quyền phủ quyết sự hiện diện quân sự của bất kỳ nước thứ ba nào. Đây là "chiếc chìa khóa vàng" để loại bỏ Nga và Trung Quốc.
+            </p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">5.2. Lộ trình Độc lập - Liên kết</h3>
+            <p>
+                Alexander Gray (Heritage Foundation) là kiến trúc sư chính. Thay vì mua Greenland (vi phạm luật quốc tế), Mỹ khuyến khích Greenland tuyên bố độc lập khỏi Đan Mạch. Ngay sau đó, Greenland ký COFA với Mỹ.
+            </p>
+            <ul class="list-disc pl-6 space-y-2 mb-6 bg-gray-50 p-4 border border-gray-200">
+                <li><strong>Mỹ:</strong> Kiểm soát quân sự tuyệt đối với chi phí thấp hơn sáp nhập.</li>
+                <li><strong>Greenland:</strong> Độc lập chính trị, ghế LHQ, an ninh đảm bảo, kinh tế thịnh vượng hơn.</li>
+            </ul>
+
+            <!-- Removed Placeholder Image from 5.2 -->
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">6. Bối Cảnh Chính Trị Nội Bộ Greenland: Những Người Mở Cổng</h2>
+            <p>Chiến lược của Mỹ không thể thành công nếu không có sự đồng thuận từ bên trong Nuuk.</p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">6.1. Sự trỗi dậy của Đảng Naleraq và Pele Broberg</h3>
+            <p>
+                Đảng Naleraq là đồng minh tự nhiên nhất. Broberg chủ trương độc lập ngay lập tức, từng tuyên bố "Đan Mạch chẳng tốt đẹp gì hơn Mỹ". Mỹ xem Naleraq là công cụ để phá vỡ liên kết với Đan Mạch.
+            </p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">6.2. Ba phe phái chính trị</h3>
+            <ul class="space-y-4 mb-6">
+                <li class="flex items-start"><span class="text-trade-yellow mr-2">●</span> <strong>Đảng Inuit Ataqatigiit (IA):</strong> Cánh tả, bảo vệ môi trường, phản đối khai thác uranium, thận trọng với Mỹ.</li>
+                <li class="flex items-start"><span class="text-trade-yellow mr-2">●</span> <strong>Đảng Siumut:</strong> Truyền thống, ủng hộ khai thác nhưng gắn bó xã hội dân chủ.</li>
+                <li class="flex items-start"><span class="text-trade-yellow mr-2">●</span> <strong>Đảng Naleraq:</strong> Muốn độc lập nhanh, chấp nhận rủi ro địa chính trị.</li>
+            </ul>
+            <p>Mỹ đang hỗ trợ liên minh Siumut cánh hữu và Naleraq để đẩy lùi IA.</p>
+
+            <h3 class="font-sans font-bold text-xl text-trade-blue mt-8 mb-4">6.3. Xu hướng Dư luận 2025-2026</h3>
+            <p>
+                Thăm dò 2025: <strong>84%</strong> người Greenland muốn độc lập (tăng từ 67.7% năm 2019). Sự phẫn nộ với các bê bối lịch sử của Đan Mạch đang tăng cao. Mỹ đang gieo ý tưởng: "Độc lập + Mỹ" tốt hơn "Tự trị + Đan Mạch".
+            </p>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">7. Phản Ứng Của Các Đối Thủ Cạnh Tranh Và Đồng Minh</h2>
+            
+            <p><strong>Trung Quốc:</strong> Chiến lược "Con đường Tơ lụa Cực Bắc" bị đe dọa. Mất quyền tiếp cận Kvanefjeld là đòn giáng mạnh vào kiểm soát đất hiếm. Có thể trừng phạt kinh tế Đan Mạch nhưng khả năng can thiệp trực tiếp hạn chế.</p>
+            <p><strong>Nga:</strong> Coi đây là đe dọa trực tiếp Hạm đội phương Bắc. Sẽ tăng cường máy bay ném bom Tu-95 gần Alaska/Greenland và triển khai tên lửa siêu thanh.</p>
+            <p><strong>Đan Mạch và EU:</strong> Thế tiến thoái lưỡng nan. Copenhagen không thể cấm Greenland độc lập (do Đạo luật 2009). Trước sức mạnh tài chính và áp lực an ninh của Mỹ, Đan Mạch đang ở thế yếu.</p>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">8. Các Kịch Bản</h2>
+
+            <div class="space-y-6 mt-6">
+                <div class="bg-white border-l-4 border-trade-blue p-6 shadow-md">
+                    <h4 class="font-bold text-trade-blue text-lg mb-2">Kịch bản 1: "Pax Americana Borealis" (Xác suất cao nhất)</h4>
+                    <p class="text-sm">Greenland độc lập năm 2028, ký COFA với Mỹ. Mỹ tiếp quản Pituffik vĩnh viễn, khai thác Kvanefjeld. Đan Mạch rút lui trong danh dự.</p>
+                </div>
+                
+                <div class="bg-white border-l-4 border-gray-400 p-6 shadow-md opacity-80">
+                    <h4 class="font-bold text-gray-700 text-lg mb-2">Kịch bản 2: Bế tắc & Khủng hoảng (Trung bình)</h4>
+                    <p class="text-sm">Đan Mạch không công nhận COFA. Khủng hoảng ngoại giao NATO. Greenland chia rẽ nội bộ sâu sắc, bất ổn xã hội.</p>
+                </div>
+
+                <div class="bg-white border-l-4 border-gray-300 p-6 shadow-md opacity-60">
+                    <h4 class="font-bold text-gray-500 text-lg mb-2">Kịch bản 3: Sự quay xe của Nuuk (Thấp)</h4>
+                    <p class="text-sm">Đảng IA thắng cử, từ chối Mỹ, duy trì hiện trạng với Đan Mạch nhưng đàm phán lại quyền lợi.</p>
+                </div>
+            </div>
+
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">9. Kết Luận</h2>
+            <p>
+                Sự kiện Venezuela năm 2026 không phải là một chiến thắng đơn lẻ, mà là sự khởi đầu cho một chiến lược tái cấu trúc trật tự thế giới của Hoa Kỳ, nơi lợi ích an ninh quốc gia và kiểm soát tài nguyên được đặt lên trên các quy tắc ngoại giao truyền thống.
+            </p>
+            <div class="mt-8 p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-2xl">
+                <p class="text-xl font-light italic leading-relaxed">
+                    "Sau Venezuela là Greenland? Câu trả lời là <strong>CÓ</strong>, nhưng con đường đến Nuuk sẽ không trải đầy vỏ đạn như ở Caracas, mà được lát bằng những văn bản pháp lý phức tạp của COFA, những lời hứa hẹn về sự thịnh vượng từ dầu khí, và áp lực vô hình nhưng nghẹt thở từ một siêu cường đang quyết tâm khóa chặt 'Pháo đài Tây Bán Cầu'."
+                </p>
+                <div class="w-24 h-1 bg-trade-yellow mx-auto mt-6"></div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Social Share Section (Brutal Style) -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="border-t-2 border-gray-100 pt-8">
+            <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ bài viết</h3>
+            <div class="flex gap-4 flex-wrap">
+                <!-- Facebook -->
+                <button onclick="shareFacebook()" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Facebook">
+                    <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                </button>
+                <!-- X (Twitter) -->
+                <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on X">
+                    <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                </button>
+                <!-- Threads -->
+                <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Threads">
+                    <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                </button>
+                <!-- Telegram -->
+                <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Telegram">
+                    <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                </button>
+                <!-- Copy Link -->
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link!')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Copy Link">
+                    <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Articles Section (Text Only - Uppercase) -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
+        <h3 class="text-2xl font-black text-trade-blue uppercase mb-8 flex items-center">
+            <span class="bg-trade-yellow w-2 h-8 mr-3 block"></span> Bài Viết Liên Quan
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Article Link 1 -->
+            <a href="canh-bac-dau-mo-venezuela.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Canh Bạc Dầu Mỏ Khổng Lồ Của Donald Trump Tại Venezuela
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+            
+            <!-- Article Link 2 -->
+             <a href="trading-la-toan-hoc.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Trading Là Toán Học: Giải Mã "Kỳ Vọng Dương"
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-trade-yellow">Trang Chủ</a></li>
+                        <li><a href="hoan-phi.html" class="hover:text-trade-yellow">Hoàn Phí</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li>contact.nhatradehoc@gmail.com</li>
+                        <li>Hà Nội, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 text-center opacity-50">
+                <p class="text-xs">© 2026 Nhà Trade Học. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
