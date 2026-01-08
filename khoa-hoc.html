@@ -44,6 +44,15 @@
         .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         .modal-exit { opacity: 1; transform: scale(1); }
         .modal-exit-active { opacity: 0; transform: scale(0.9); transition: opacity 0.2s ease, transform 0.2s ease; }
+
+        /* Calendar Styles */
+        .calendar-day.disabled { background-color: #f3f4f6; color: #d1d5db; cursor: not-allowed; text-decoration: line-through; }
+        .calendar-day.selected { background-color: #00167c; color: #ffdf2b; border-color: #00167c; font-weight: bold; }
+        .calendar-day:not(.disabled):hover { border-color: #ffdf2b; }
+        
+        /* Payment Tab Styles */
+        .payment-tab.active { border-bottom-color: #00167c; color: #00167c; }
+        .payment-tab { border-bottom-color: transparent; color: #9ca3af; }
     </style>
 </head>
 <body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
@@ -101,8 +110,8 @@
         <h2 class="text-3xl font-black text-trade-blue uppercase mb-12 text-center">Nội Dung Chi Tiết Khóa Học</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-
-            <!-- Buổi 1 (Updated with Canva Modal Trigger) -->
+            <!-- (Giữ nguyên nội dung 8 buổi học như cũ) -->
+            <!-- Buổi 1 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl flex flex-col h-full">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 01</div>
                 <h3 class="text-xl font-bold text-trade-blue mb-4 group-hover:text-trade-yellow transition-colors">Nguyên lý vận động & Thành phần thị trường</h3>
@@ -111,13 +120,10 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Nguyên lý khớp lệnh & Tính thanh khoản.</li>
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Nhận diện "Cá Mập" (Big Boys) và dấu chân của họ.</li>
                 </ul>
-                
-                <!-- PREVIEW BUTTON -->
                 <button onclick="openSlideModal()" class="w-full py-3 bg-gray-100 hover:bg-trade-blue hover:text-white text-trade-blue font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-gray-200 hover:border-trade-blue">
                     <i class="fa-regular fa-play-circle text-lg"></i> Xem Slide Bài Giảng
                 </button>
             </div>
-
             <!-- Buổi 2 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 02</div>
@@ -129,7 +135,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Quy trình tạo ra một con sóng hoàn chỉnh của Nhà cái.</li>
                 </ul>
             </div>
-
             <!-- Buổi 3 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 03</div>
@@ -141,7 +146,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Nghệ thuật "Gồng lãi" và cắt lỗ dứt khoát.</li>
                 </ul>
             </div>
-
             <!-- Buổi 4 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 04</div>
@@ -153,7 +157,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Quản lý vốn và quản lý lợi nhuận sau khi khớp lệnh.</li>
                 </ul>
             </div>
-
             <!-- Buổi 5 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 05</div>
@@ -165,7 +168,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Nhận diện dấu hiệu Đảo chiều (Reversal) sớm.</li>
                 </ul>
             </div>
-
             <!-- Buổi 6 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 06</div>
@@ -177,7 +179,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Ứng dụng Wyckoff cơ bản để xác định tích lũy/phân phối.</li>
                 </ul>
             </div>
-
             <!-- Buổi 7 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl border-l-4 border-l-trade-yellow">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 07 (Nâng Cao)</div>
@@ -188,7 +189,6 @@
                     <li class="flex items-start"><i class="fa-solid fa-check text-trade-blue mt-1 mr-2 text-xs"></i> Xử lý các tình huống kẹt lệnh khó.</li>
                 </ul>
             </div>
-
             <!-- Buổi 8 -->
             <div class="bg-white p-8 border border-gray-200 hover:border-trade-blue transition-all group shadow-sm hover:shadow-xl border-l-4 border-l-trade-yellow">
                 <div class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Buổi 08 (Nâng Cao)</div>
@@ -241,30 +241,120 @@
             </div>
         </div>
 
-        <!-- NEW: Pricing & Flash Sale -->
+        <!-- NEW: Schedule Selection (Moved ABOVE Pricing) -->
+        <div class="max-w-4xl mx-auto mb-16 bg-white border-2 border-trade-blue p-8 shadow-brutal-dark">
+            <h2 class="text-2xl font-black text-trade-blue uppercase mb-6 flex items-center">
+                <i class="fa-regular fa-calendar-check mr-3 text-trade-yellow"></i> Lịch Khai Giảng & Đăng Ký
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Status -->
+                <div class="space-y-4">
+                    <div class="bg-gray-100 p-4 border border-gray-200 opacity-60">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-gray-500 uppercase">Tháng 01/2026</span>
+                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 uppercase">Đã Full</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Đã kín lịch học viên.</p>
+                    </div>
+                    <div class="bg-green-50 p-4 border border-green-200">
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-trade-blue uppercase">Tháng 02/2026</span>
+                            <span class="bg-green-600 text-white text-xs font-bold px-2 py-1 uppercase animate-pulse">Mở đăng ký</span>
+                        </div>
+                        <p class="text-xs text-green-700 mt-1 font-bold">Bắt đầu từ 05/02/2026</p>
+                    </div>
+                </div>
+
+                <!-- Note -->
+                <div class="bg-blue-50 p-4 border border-blue-100 text-sm text-gray-600 leading-relaxed">
+                    <p class="font-bold text-trade-blue mb-2"><i class="fa-solid fa-circle-info mr-1"></i> Lưu ý:</p>
+                    <p>Khóa học 1-1 được cá nhân hóa.</p>
+                    <p class="mt-2">Để đảm bảo chất lượng tiếp thu, lịch học quy định:</p>
+                    <ul class="list-disc list-inside mt-1 ml-2 text-xs">
+                        <li>Tối đa <strong>2 buổi / tuần</strong>.</li>
+                        <li>Mỗi buổi cách nhau ít nhất <strong>2 ngày</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Selector Form -->
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-trade-blue mb-2">1. Chọn Ngày Bắt Đầu (Dự kiến)</label>
+                    <input type="date" id="startDate" min="2026-02-05" class="w-full p-3 border border-gray-300 focus:border-trade-blue focus:outline-none font-mono text-sm bg-gray-50">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-trade-blue mb-2">2. Lịch Học Mong Muốn (Chọn 2 ngày)</label>
+                    <div class="grid grid-cols-4 md:grid-cols-7 gap-2" id="daySelector">
+                        <!-- Value 0 for Sunday to match getDay(), 1 for Mon, etc. -->
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="1">Thứ 2</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="2">Thứ 3</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="3">Thứ 4</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="4">Thứ 5</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="5">Thứ 6</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="6">Thứ 7</button>
+                        <button class="day-btn p-2 border border-gray-300 text-sm font-bold text-gray-500 hover:border-trade-blue transition-colors" data-day="0">CN</button>
+                    </div>
+                    <p class="text-xs text-red-500 mt-2 hidden" id="scheduleError">Vui lòng chọn 2 ngày cách nhau ít nhất 2 ngày (VD: T2 & T5).</p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-trade-blue mb-2">3. Khung Giờ</label>
+                    <select id="timeSlot" class="w-full p-3 border border-gray-300 focus:border-trade-blue focus:outline-none text-sm bg-gray-50">
+                        <option value="Tối (19h30 - 21h00)">Buổi Tối (19h30 - 21h00)</option>
+                        <option value="Tối (21h00 - 22h30)">Buổi Tối (21h00 - 22h30)</option>
+                        <option value="Chiều (14h00 - 15h30)">Buổi Chiều (14h00 - 15h30)</option>
+                        <option value="Sáng (09h00 - 10h30)">Buổi Sáng (09h00 - 10h30)</option>
+                    </select>
+                </div>
+
+                <!-- ADDED: Discount Code Input -->
+                <div class="pt-4 border-t border-gray-200">
+                    <label class="block text-xs font-bold uppercase text-trade-blue mb-2">4. Mã Giảm Giá (Nếu có)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="couponInput" class="w-full p-3 border border-gray-300 focus:border-trade-blue focus:outline-none text-sm bg-gray-50 font-mono uppercase" placeholder="Nhập mã ưu đãi...">
+                        <button onclick="applyCoupon()" class="px-6 py-3 bg-gray-800 text-white font-bold text-xs uppercase hover:bg-trade-blue transition-colors">Áp Dụng</button>
+                    </div>
+                    <p id="couponMsg" class="text-xs mt-2 hidden font-bold"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEW: Pricing & Flash Sale (Moved Below Schedule) -->
         <div class="text-center bg-trade-blue text-white p-12 relative overflow-hidden shadow-brutal-yellow rounded-lg mx-auto max-w-4xl">
             <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             
             <h2 class="text-3xl font-black uppercase mb-8 relative z-10">Chi Phí Khóa Học</h2>
             
-            <div class="mb-10 relative z-10 inline-block">
-                <span class="text-gray-400 line-through text-2xl font-bold mr-4 block md:inline">15.000.000đ</span>
+            <div class="mb-10 relative z-10 inline-block min-h-[80px]">
+                <!-- ID added for hiding/showing logic -->
+                <span id="priceOriginal" class="text-gray-400 line-through text-2xl font-bold mr-4 block md:inline">15.000.000đ</span>
                 <div class="relative inline-block">
                     <!-- Giá -->
-                    <span class="text-trade-yellow text-6xl font-black tracking-tight font-numbers">11.250.000đ</span>
-                    <!-- Nhãn Flash Sale đè lên giá -->
-                    <span class="absolute -top-6 -right-12 bg-red-600 text-white text-sm font-black px-4 py-1 uppercase transform rotate-12 shadow-lg border-2 border-white animate-pulse z-20 whitespace-nowrap">
+                    <span id="priceSale" class="text-trade-yellow text-6xl font-black tracking-tight font-numbers">11.250.000đ</span>
+                    <!-- Nhãn Flash Sale -->
+                    <span id="saleBadge" class="absolute -top-6 -right-12 bg-red-600 text-white text-sm font-black px-4 py-1 uppercase transform rotate-12 shadow-lg border-2 border-white animate-pulse z-20 whitespace-nowrap">
                         Flash Sale -25%
+                    </span>
+                    <!-- Nhãn Coupon (Hidden by default) -->
+                    <span id="couponBadge" class="absolute -top-6 -right-12 bg-green-600 text-white text-sm font-black px-4 py-1 uppercase transform rotate-12 shadow-lg border-2 border-white z-20 whitespace-nowrap hidden">
+                        Coupon -25%
                     </span>
                 </div>
             </div>
 
             <!-- Countdown Timer -->
-            <div class="mb-10 flex justify-center items-center gap-4 relative z-10">
+            <div id="countdownContainer" class="mb-10 flex justify-center items-center gap-4 relative z-10">
                 <p class="text-xs uppercase tracking-widest font-bold text-gray-300 mr-2 self-center">Ưu đãi kết thúc sau:</p>
                 <div id="countdown" class="text-4xl font-black text-white tracking-widest font-mono bg-white/10 px-6 py-3 rounded border border-white/20 shadow-inner font-numbers">
                     00:00:00:00
                 </div>
+            </div>
+            <!-- Expired Message (Hidden by default) -->
+            <div id="expiredMsg" class="mb-10 relative z-10 hidden">
+                 <p class="text-sm uppercase tracking-widest font-bold text-gray-400">Ưu đãi Flash Sale đã kết thúc</p>
             </div>
 
             <div class="relative z-10">
@@ -275,11 +365,80 @@
             </div>
         </div>
 
+        <!-- FAQ Section -->
+        <div class="max-w-3xl mx-auto mt-20 mb-12">
+            <h2 class="text-2xl font-black text-trade-blue uppercase mb-8 text-center">Câu hỏi thường gặp</h2>
+            <div class="space-y-4">
+                
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>1. Người mới chưa biết gì có học được không?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Chắc chắn được. Giáo trình được thiết kế đi từ tư duy nền tảng đến kỹ thuật nâng cao. Ngay cả khi bạn là trang giấy trắng, bạn sẽ được định hình tư duy đúng ngay từ đầu, tránh được những sai lầm tốn kém mà Trader tự học thường mắc phải.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>2. Học xong có thực chiến kiếm tiền được ngay không?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Khóa học tập trung 100% vào thực chiến. Ngay trong quá trình học, bạn sẽ được thực hành trên biểu đồ thực tế. Tuy nhiên, trading là một nghề cần rèn luyện. Sau 8 buổi, bạn sẽ có "cần câu xịn" và "kỹ thuật câu", nhưng để bắt được cá lớn đều đặn, bạn cần kỷ luật áp dụng kiến thức đó dưới sự đồng hành của chúng tôi.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>3. Nếu bận không tham gia được buổi học trực tuyến thì sao?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Khóa học tổ chức theo dạng 1 kèm 1 nên bạn có thể liên hệ mentor để sắp xếp lại lịch học phù hợp với bạn, vì chúng tôi đề cao chất lượng giảng dạy lên hàng đầu.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>4. Vốn nhỏ (vài trăm $) có nên học không?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Rất nên. Đầu tư vào kiến thức là khoản đầu tư thông thái nhất. Với số vốn nhỏ, nếu không có kiến thức, bạn rất dễ "cháy" tài khoản liên tục. Khóa học sẽ dạy bạn cách "sinh tồn" trên thị trường, sau đó mới nhân số vốn nhỏ đó lên một cách bền vững.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>5. Sau khóa học có được hỗ trợ nữa không?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Có. Giá trị của khóa học không chỉ ở kiến thức mà còn ở quá trình chúng tôi đồng hành với bạn, cho đến khi bạn có thể tự mình giao dịch hiệu quả.
+                    </div>
+                </details>
+
+                <details class="group bg-white border border-gray-200 rounded-sm shadow-sm">
+                    <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-trade-blue hover:bg-gray-50 transition-colors">
+                        <span>6. Có những hình thức thanh toán nào?</span>
+                        <span class="transition-transform group-open:rotate-180"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <div class="text-gray-600 text-sm p-4 pt-0 border-t border-gray-100 mt-2 leading-relaxed">
+                        Chúng tôi hỗ trợ 3 hình thức thanh toán chính: Chuyển khoản ngân hàng nội địa (VietQR), Thanh toán bằng Crypto (USDT mạng BEP20/BSC) và Binance Pay. Thông tin chi tiết sẽ hiển thị khi bạn bấm nút "Đăng Ký Ngay".
+                    </div>
+                </details>
+
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer -->
     <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- ... Footer Content ... -->
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="lg:col-span-2 pr-8">
                     <div class="flex items-center gap-3 mb-8">
@@ -313,19 +472,15 @@
         </div>
     </footer>
 
-    <!-- SLIDE MODAL (Canva Embed) -->
+    <!-- SLIDE MODAL -->
     <div id="slideModal" class="fixed inset-0 z-[70] flex items-center justify-center bg-black/95 hidden opacity-0 transition-opacity duration-300">
-        <!-- Close Button -->
         <button onclick="closeSlideModal()" class="absolute top-4 right-4 text-white hover:text-trade-yellow transition-colors z-50 p-4">
             <i class="fa-solid fa-times text-3xl"></i>
         </button>
 
         <div class="w-full h-full max-w-7xl max-h-[90vh] flex flex-col justify-center items-center relative p-4" id="slideContainer">
             <div class="w-full relative shadow-2xl border border-gray-800 rounded-lg overflow-hidden bg-black">
-                <!-- Canva Embed Code -->
-                <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
-                 padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 0; margin-bottom: 0; overflow: hidden;
-                 border-radius: 8px; will-change: transform;">
+                <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 0; margin-bottom: 0; overflow: hidden; border-radius: 8px; will-change: transform;">
                   <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
                     src="https://www.canva.com/design/DAGRSQ_zeWg/cppvkBqXFcolZPr2hw5cMg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
                   </iframe>
@@ -347,10 +502,13 @@
             <div class="p-8">
                 <h3 class="text-2xl font-bold uppercase text-trade-blue mb-6 text-center">Thanh Toán Khóa Học</h3>
                 
+                <div class="bg-blue-50 border border-blue-100 p-3 mb-6 rounded text-sm text-gray-600 hidden" id="scheduleSummary"></div>
+
                 <!-- Payment Method Tabs -->
                 <div class="flex justify-center mb-8 border-b border-gray-200">
-                    <button onclick="switchTab('bank')" id="tab-bank" class="w-1/2 pb-3 font-bold text-trade-blue border-b-4 border-trade-blue focus:outline-none transition-all">Banking VN</button>
-                    <button onclick="switchTab('usdt')" id="tab-usdt" class="w-1/2 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all">USDT (BEP20)</button>
+                    <button onclick="switchTab('bank')" id="tab-bank" class="w-1/3 pb-3 font-bold text-trade-blue border-b-4 border-trade-blue focus:outline-none transition-all payment-tab active">Banking VN</button>
+                    <button onclick="switchTab('usdt')" id="tab-usdt" class="w-1/3 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all payment-tab">USDT (BEP20)</button>
+                    <button onclick="switchTab('binance')" id="tab-binance" class="w-1/3 pb-3 font-bold text-gray-400 hover:text-trade-blue focus:outline-none transition-all payment-tab">Binance Pay</button>
                 </div>
 
                 <!-- Bank Content -->
@@ -381,7 +539,7 @@
                         <p class="text-xs text-gray-500 font-bold uppercase mb-1">Nội dung chuyển khoản (Bắt buộc):</p>
                         <div class="flex items-center justify-between bg-white p-2 border border-yellow-300 rounded mb-2">
                             <span class="font-mono font-bold text-trade-blue">KHDT_TEN_SDT</span>
-                            <span class="text-xs text-gray-400 italic">(Vui lòng thay thế TEN và SDT của bạn)</span>
+                            <span class="text-xs text-gray-400 italic">(Thay TEN và SDT của bạn)</span>
                         </div>
                         <div class="flex justify-between items-center mt-3">
                             <span class="text-xs text-gray-500 font-bold uppercase">Số tiền cần thanh toán:</span>
@@ -393,7 +551,7 @@
                 <!-- USDT Content -->
                 <div id="content-usdt" class="payment-content hidden text-center">
                     <div class="bg-gray-100 p-2 inline-block border border-gray-200 mb-4 rounded-lg">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x0b0661895a815cd929af65bcad8d55527d86f763" alt="USDT QR" class="w-48 h-48 object-contain mx-auto">
+                        <img src="" alt="USDT QR" class="w-48 h-48 object-contain mx-auto" id="usdtQRImage">
                     </div>
 
                     <div class="bg-blue-50 p-4 rounded-lg mb-4 text-left border border-blue-100">
@@ -413,8 +571,33 @@
                     </div>
                 </div>
 
+                <!-- Binance Pay Content -->
+                <div id="content-binance" class="payment-content hidden text-center">
+                    <div class="bg-gray-100 p-2 inline-block border border-gray-200 mb-4 rounded-lg">
+                        <img src="" alt="Binance Pay QR" class="w-48 h-48 object-contain mx-auto" id="binanceQRImage">
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg mb-4 text-left border border-blue-100">
+                        <p class="text-xs text-gray-500 font-bold uppercase mb-1">Scan to pay with Binance App:</p>
+                        <p class="text-xs text-gray-600 mb-2">Mở App Binance > Quét mã QR > Xác nhận thanh toán.</p>
+                        <div class="border-t border-blue-200 my-3"></div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-gray-500 text-xs font-bold uppercase">Binance ID (Pay ID):</span>
+                            <div class="flex items-center">
+                                <span class="font-mono font-bold text-trade-blue mr-2">879904257</span>
+                                <i class="fa-regular fa-copy text-gray-400 hover:text-trade-blue cursor-pointer" onclick="copyText('879904257')"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 p-4 rounded-lg text-left border border-yellow-200 flex justify-between items-center">
+                        <span class="text-xs text-gray-500 font-bold uppercase">Số tiền cần thanh toán:</span>
+                        <span class="font-bold text-xl text-red-600 font-numbers" id="binanceAmount">420 USDT</span>
+                    </div>
+                </div>
+
                  <div class="mt-6 flex justify-center">
-                     <a href="https://t.me/mmto1b" target="_blank" class="inline-flex items-center px-6 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                     <a href="https://t.me/mmto1b" target="_blank" id="confirmLink" class="inline-flex items-center px-6 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded hover:bg-trade-yellow hover:text-trade-blue transition-colors">
                         <i class="fa-brands fa-telegram mr-2"></i> Liên hệ Admin sau khi chuyển khoản
                      </a>
                  </div>
@@ -422,11 +605,29 @@
         </div>
     </div>
 
-    <!-- Countdown & Modal Script -->
+    <!-- Script -->
     <script>
-        // 72 Hours in milliseconds
         const DURATION = 72 * 60 * 60 * 1000; 
-        let isDiscounted = true; 
+        let isFlashSaleActive = true; 
+        let isCouponApplied = false;
+
+        // SHA-256 Hashing Helper for Coupon Security
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // VALID COUPON HASHES (SHA-256)
+        // Code "KM25" -> 0655...
+        // Code "TRADEHOC" -> ...
+        // Bạn có thể thêm hash của các mã khác vào mảng này.
+        // Để tạo hash: mở Console (F12) và chạy: await sha256("MÃ_CỦA_BẠN") rồi copy chuỗi kết quả vào đây.
+        const validCouponHashes = [
+            "065531d054942548483863773138383833333333333333333333333333333333", // Dummy hash for example, replace with real one
+            "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b" // SHA256 of "KM25"
+        ];
 
         function getEndTime() {
             let storedEndTime = localStorage.getItem('flashSaleEndTime');
@@ -444,18 +645,39 @@
             const now = new Date().getTime();
             let distance = endTime - now;
 
+            const priceSale = document.getElementById('priceSale');
+            const priceOriginal = document.getElementById('priceOriginal');
+            const saleBadge = document.getElementById('saleBadge');
+            const countdownEl = document.getElementById("countdown");
+            const countdownContainer = document.getElementById("countdownContainer");
+            const expiredMsg = document.getElementById("expiredMsg");
+
+            // Logic: Nếu hết giờ
             if (distance < 0) {
-                document.getElementById("countdown").innerHTML = "00:00:00:00";
-                isDiscounted = false;
+                isFlashSaleActive = false;
+                countdownEl.innerHTML = "00:00:00:00";
+                
+                // Ẩn countdown, hiện thông báo hết hạn
+                countdownContainer.classList.add('hidden');
+                expiredMsg.classList.remove('hidden');
+
+                // Nếu chưa nhập mã giảm giá -> Về giá gốc
+                if (!isCouponApplied) {
+                    priceSale.innerText = "15.000.000đ";
+                    priceOriginal.classList.add('hidden');
+                    saleBadge.classList.add('hidden');
+                }
                 return;
             }
 
+            // Nếu còn giờ
+            isFlashSaleActive = true;
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = 
+            countdownEl.innerHTML = 
                 (days < 10 ? "0" + days : days) + "d : " + 
                 (hours < 10 ? "0" + hours : hours) + "h : " + 
                 (minutes < 10 ? "0" + minutes : minutes) + "m : " + 
@@ -465,31 +687,183 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- PAYMENT MODAL LOGIC ---
+        // --- COUPON LOGIC ---
+        async function applyCoupon() {
+            const input = document.getElementById('couponInput');
+            const msg = document.getElementById('couponMsg');
+            const code = input.value.trim().toUpperCase();
+
+            if (!code) {
+                msg.innerText = "Vui lòng nhập mã!";
+                msg.classList.remove('hidden', 'text-green-600');
+                msg.classList.add('text-red-600');
+                return;
+            }
+
+            const inputHash = await sha256(code);
+
+            if (validCouponHashes.includes(inputHash)) {
+                // Success
+                isCouponApplied = true;
+                msg.innerText = "Áp dụng mã thành công! Giảm 25%.";
+                msg.classList.remove('hidden', 'text-red-600');
+                msg.classList.add('text-green-600');
+                
+                // Update UI Pricing Immediately
+                document.getElementById('priceSale').innerText = "11.250.000đ";
+                document.getElementById('priceOriginal').classList.remove('hidden'); // Show original 15m
+                document.getElementById('priceOriginal').innerText = "15.000.000đ";
+                
+                document.getElementById('saleBadge').classList.add('hidden'); // Hide Flash Sale badge
+                document.getElementById('couponBadge').classList.remove('hidden'); // Show Coupon badge
+                
+            } else {
+                // Fail
+                isCouponApplied = false;
+                msg.innerText = "Mã giảm giá không hợp lệ hoặc đã hết hạn.";
+                msg.classList.remove('hidden', 'text-green-600');
+                msg.classList.add('text-red-600');
+                
+                // Reset UI if Flash Sale also expired
+                if (!isFlashSaleActive) {
+                    document.getElementById('priceSale').innerText = "15.000.000đ";
+                    document.getElementById('priceOriginal').classList.add('hidden');
+                    document.getElementById('couponBadge').classList.add('hidden');
+                }
+            }
+        }
+
+        // --- SCHEDULE & PAYMENT MODAL ---
+        // ... (Day selection logic same as before) ...
+        const dayBtns = document.querySelectorAll('.day-btn');
+        let selectedDays = [];
+        
+        dayBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const day = btn.getAttribute('data-day');
+                if (selectedDays.includes(day)) {
+                    selectedDays = selectedDays.filter(d => d !== day);
+                    btn.classList.remove('selected', 'bg-trade-blue', 'text-white', 'border-trade-blue');
+                    btn.classList.add('text-gray-500', 'border-gray-300');
+                } else {
+                    if (selectedDays.length < 2) {
+                        selectedDays.push(day);
+                        btn.classList.add('selected', 'bg-trade-blue', 'text-white', 'border-trade-blue');
+                        btn.classList.remove('text-gray-500', 'border-gray-300');
+                    }
+                }
+                validateSchedule();
+            });
+        });
+
+        function validateSchedule() {
+            const errorMsg = document.getElementById('scheduleError');
+            if (selectedDays.length === 2) {
+                // Simple logic: index distance
+                const daysMap = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5, '0': 6 };
+                const idx1 = daysMap[selectedDays[0]];
+                const idx2 = daysMap[selectedDays[1]];
+                const diff = Math.abs(idx1 - idx2);
+                
+                // Gap requirement: diff >= 3 (e.g., Mon(0) to Thu(3) is 3 days apart -> Tue, Wed in between)
+                // Note: User asked for "at least 2 days gap". Mon -> Thu is 2 days gap.
+                if (diff < 3) {
+                     errorMsg.classList.remove('hidden');
+                     errorMsg.innerText = "Khoảng cách chưa đủ 2 ngày nghỉ (VD: Thứ 2 & Thứ 5).";
+                     return false;
+                } else {
+                     errorMsg.classList.add('hidden');
+                     return true;
+                }
+            } else {
+                errorMsg.classList.add('hidden');
+            }
+            return false;
+        }
+
+        // Modal Variables
         const modal = document.getElementById('paymentModal');
         const modalContent = document.getElementById('paymentModalContent');
         const bankAmount = document.getElementById('bankAmount');
         const usdtAmount = document.getElementById('usdtAmount');
+        const binanceAmount = document.getElementById('binanceAmount');
         const bankQR = document.getElementById('bankQRImage');
+        const usdtQR = document.getElementById('usdtQRImage');
+        const binanceQR = document.getElementById('binanceQRImage');
+        const scheduleSummary = document.getElementById('scheduleSummary');
+        const confirmLink = document.getElementById('confirmLink');
 
         function openPaymentModal() {
-            const endTime = getEndTime();
-            const now = new Date().getTime();
-            isDiscounted = (endTime - now) > 0;
+            // Validate Schedule
+            const startDateValue = document.getElementById('startDate').value;
+            const timeSlot = document.getElementById('timeSlot').value;
+            
+            if (!startDateValue) return alert("Vui lòng chọn ngày bắt đầu dự kiến!");
+            if (new Date(startDateValue) < new Date('2026-02-05')) return alert("Lịch trống sớm nhất bắt đầu từ ngày 05/02/2026!");
+            if (selectedDays.length !== 2) return alert("Vui lòng chọn 2 buổi học trong tuần!");
+            if (!validateSchedule()) return alert("Vui lòng chọn lịch học cách nhau ít nhất 2 ngày!");
 
-            // Techcombank Info for VietQR
+            // Check if Start Date matches selected days
+            const startDayOfWeek = new Date(startDateValue).getDay();
+            const selectedDaysInts = selectedDays.map(d => parseInt(d));
+            if (!selectedDaysInts.includes(startDayOfWeek)) {
+                const dayNames = {0: 'Chủ Nhật', 1: 'Thứ 2', 2: 'Thứ 3', 3: 'Thứ 4', 4: 'Thứ 5', 5: 'Thứ 6', 6: 'Thứ 7'};
+                const expectedDays = selectedDaysInts.map(d => dayNames[d]).join(' hoặc ');
+                return alert(`Ngày bắt đầu bạn chọn là ${dayNames[startDayOfWeek]}. Vui lòng chọn ngày trùng với lịch học mong muốn (${expectedDays}).`);
+            }
+
+            // Map selected days to text
+            const dayNamesMap = {'1': 'Thứ 2', '2': 'Thứ 3', '3': 'Thứ 4', '4': 'Thứ 5', '5': 'Thứ 6', '6': 'Thứ 7', '0': 'CN'};
+            const selectedDaysText = selectedDays.map(d => dayNamesMap[d]).join(' & ');
+
+            // Update Summary
+            scheduleSummary.innerHTML = `
+                <p><strong>Lịch đăng ký:</strong> ${selectedDaysText}</p>
+                <p><strong>Khung giờ:</strong> ${timeSlot}</p>
+                <p><strong>Ngày bắt đầu:</strong> ${startDateValue}</p>
+                ${isCouponApplied ? '<p class="text-green-600 font-bold mt-1"><i class="fa-solid fa-check"></i> Đã áp dụng mã giảm giá</p>' : ''}
+            `;
+            scheduleSummary.classList.remove('hidden');
+
+            // Determine if Discount is active (Flash Sale OR Coupon)
+            const finalDiscount = isFlashSaleActive || isCouponApplied;
+
+            // Prepare Telegram Msg
+            const msg = `Chào Admin, tôi đã thanh toán khóa học.\n- Lịch: ${selectedDaysText}\n- Giờ: ${timeSlot}\n- Ngày bắt đầu: ${startDateValue}\n- Giá: ${finalDiscount ? '11.250.000' : '15.000.000'}`;
+            confirmLink.href = `https://t.me/mmto1b?text=${encodeURIComponent(msg)}`;
+
+            // Banking Info
             const bankBin = '970407'; 
             const bankNumber = '689689259999';
             const accountName = 'BUI THANH CONG';
 
-            if (isDiscounted) {
+            if (finalDiscount) {
+                // --- GIÁ GIẢM ---
                 bankAmount.innerText = "11,250,000 VND";
                 usdtAmount.innerText = "420 USDT";
+                if(binanceAmount) binanceAmount.innerText = "420 USDT";
+                
+                // QR VietQR (Auto)
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=11250000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
+                
+                // >>> CHÈN LINK ẢNH QR CỦA BẠN VÀO ĐÂY (GIÁ GIẢM 420 USDT) <<<
+                usdtQR.src = "usdt.jpg"; 
+                binanceQR.src = "420.jpg"; 
             } else {
+                // --- GIÁ GỐC ---
                 bankAmount.innerText = "15,000,000 VND";
                 usdtAmount.innerText = "555 USDT";
+                if(binanceAmount) binanceAmount.innerText = "555 USDT";
+                
+                // QR VietQR (Auto)
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=15000000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
+                
+                // >>> CHÈN LINK ẢNH QR CỦA BẠN VÀO ĐÂY (GIÁ GỐC 555 USDT) <<<
+                // usdtQR.src = "usdt.jpg"; 
+                // binanceQR.src = "555.jpg"; 
+                // Fallback tạm thời nếu chưa có ảnh:
+                usdtQR.src = "https://placehold.co/200x200?text=QR_USDT_555"; 
+                binanceQR.src = "https://placehold.co/200x200?text=QR_Binance_555"; 
             }
 
             modal.classList.remove('hidden');
@@ -500,82 +874,52 @@
             }, 10);
         }
 
+        // ... (Close & Tab Switch & Copy functions remain the same) ...
         function closePaymentModal() {
             modal.classList.add('opacity-0');
             modalContent.classList.remove('scale-100');
             modalContent.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
-
         function switchTab(type) {
             const btnBank = document.getElementById('tab-bank');
             const btnUsdt = document.getElementById('tab-usdt');
+            const btnBinance = document.getElementById('tab-binance');
             const contentBank = document.getElementById('content-bank');
             const contentUsdt = document.getElementById('content-usdt');
+            const contentBinance = document.getElementById('content-binance');
+
+            [btnBank, btnUsdt, btnBinance].forEach(btn => {
+                btn.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
+                btn.classList.add('text-gray-400');
+            });
+            [contentBank, contentUsdt, contentBinance].forEach(content => content.classList.add('hidden'));
 
             if (type === 'bank') {
                 btnBank.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
                 btnBank.classList.remove('text-gray-400');
-                btnUsdt.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
-                btnUsdt.classList.add('text-gray-400');
                 contentBank.classList.remove('hidden');
-                contentUsdt.classList.add('hidden');
-            } else {
+            } else if (type === 'usdt') {
                 btnUsdt.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
                 btnUsdt.classList.remove('text-gray-400');
-                btnBank.classList.remove('border-b-4', 'border-trade-blue', 'text-trade-blue');
-                btnBank.classList.add('text-gray-400');
                 contentUsdt.classList.remove('hidden');
-                contentBank.classList.add('hidden');
+            } else if (type === 'binance') {
+                btnBinance.classList.add('border-b-4', 'border-trade-blue', 'text-trade-blue');
+                btnBinance.classList.remove('text-gray-400');
+                contentBinance.classList.remove('hidden');
             }
         }
-
         function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Đã sao chép: " + text);
-            }).catch(err => {
-                console.error('Lỗi sao chép', err);
-            });
+            navigator.clipboard.writeText(text).then(() => { alert("Đã sao chép: " + text); }).catch(err => { console.error('Lỗi sao chép', err); });
         }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closePaymentModal(); });
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closePaymentModal();
-            }
-        });
-
-        // --- SLIDE MODAL LOGIC (Simplified for Embed) ---
+        // Slide Modal Logic
         const slideModal = document.getElementById('slideModal');
-
-        function openSlideModal() {
-            slideModal.classList.remove('hidden');
-            setTimeout(() => slideModal.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
-
-        function closeSlideModal() {
-            slideModal.classList.add('opacity-0');
-            setTimeout(() => {
-                slideModal.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        }
-
-        // Close on click outside
-        slideModal.addEventListener('click', (e) => {
-            if (e.target === slideModal || e.target.id === 'slideContainer') {
-                closeSlideModal();
-            }
-        });
-        
-        // Close on Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !slideModal.classList.contains('hidden')) {
-                closeSlideModal();
-            }
-        });
+        function openSlideModal() { slideModal.classList.remove('hidden'); setTimeout(() => slideModal.classList.remove('opacity-0'), 10); document.body.style.overflow = 'hidden'; }
+        function closeSlideModal() { slideModal.classList.add('opacity-0'); setTimeout(() => { slideModal.classList.add('hidden'); document.body.style.overflow = ''; }, 300); }
+        slideModal.addEventListener('click', (e) => { if (e.target === slideModal || e.target.id === 'slideContainer') closeSlideModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !slideModal.classList.contains('hidden')) closeSlideModal(); });
     </script>
 
 </body>
