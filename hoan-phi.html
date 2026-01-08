@@ -95,7 +95,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
-                <a href="kien-thuc.html" class="flex-shrink-0 flex items-center group">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
                     <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
                     <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
                 </a>
@@ -452,6 +452,8 @@
                                 <i class="fa-regular fa-copy mr-2"></i> Copy
                             </button>
                         </div>
+                        <!-- Guide Link Container (Will be populated by JS) -->
+                        <div id="modalGuideContainer" class="mt-2 text-right"></div>
                     </div>
                     
                     <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
@@ -538,22 +540,27 @@
         const modalQR = document.getElementById('modalQR');
         const modalCode = document.getElementById('modalCode');
         const modalLink = document.getElementById('modalLink');
+        const modalGuideContainer = document.getElementById('modalGuideContainer'); // Đảm bảo đã lấy đúng ID container
 
+        // DỮ LIỆU SÀN (Sửa link bài viết hướng dẫn tại đây)
         const brokerData = {
             'exness': {
                 name: 'Exness',
                 code: '12yyhitqq7',
-                link: 'https://one.exnessonelink.com/a/12yyhitqq7'
+                link: 'https://one.exnessonelink.com/a/12yyhitqq7',
+                guideLink: 'cai-dat-backcom-exness.html' // Đã có bài viết
             },
             'binance': {
                 name: 'Binance',
-                code: 'CPA_00UAE3JFX9',
-                link: 'https://www.binance.com/vi/activity/referral-entry/CPA?ref=CPA_00UAE3JFX9'
+                code: 'NHATRADEHOC',
+                link: 'https://accounts.binance.com/register?ref=NHATRADEHOC',
+                guideLink: '#' // Link tạm (#), dòng hướng dẫn vẫn hiện nhưng bấm không đi đâu cả
             },
             'vpbanks': {
                 name: 'VPBankS',
                 code: 'Đang cập nhật',
-                link: '#'
+                link: '#',
+                guideLink: '#' // Link tạm (#)
             }
         };
 
@@ -565,12 +572,20 @@
             modalCode.value = data.code;
             modalLink.href = data.link;
 
+            // XỬ LÝ LINK HƯỚNG DẪN (Logic giống trang chủ)
+            // Chỉ cần có thuộc tính guideLink là sẽ hiện dòng chữ (kể cả là #)
+            if (data.guideLink) {
+                modalGuideContainer.innerHTML = `<a href="${data.guideLink}" class="text-xs font-bold text-trade-blue hover:text-trade-yellow transition-colors italic underline decoration-1 underline-offset-4">Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i></a>`;
+            } else {
+                modalGuideContainer.innerHTML = '';
+            }
+
             if (data.link !== '#') {
                 modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
                 modalLink.classList.remove('pointer-events-none', 'opacity-50');
                 modalLink.innerText = 'Truy cập liên kết đăng ký';
             } else {
-                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; // Placeholder image
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
                 modalLink.classList.add('pointer-events-none', 'opacity-50');
                 modalLink.innerText = 'Đang cập nhật link';
             }
@@ -618,5 +633,4 @@
     </script>
 
 </body>
-
 </html>
