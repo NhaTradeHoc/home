@@ -37,6 +37,9 @@
         }
     </script>
     <style>
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+
         .font-numbers { font-variant-numeric: tabular-nums; letter-spacing: -1px; }
         
         /* Modal Animation */
@@ -67,11 +70,13 @@
                 </a>
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
-                    <a href="index.html#kien-thuc" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
-                    <a href="https://t.me/mmto1b" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Đăng Ký Ngay</a>
+                    <!-- Sửa link Kiến Thức -->
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <!-- Sửa link Đăng Ký -->
+                    <a href="#dang-ky" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Đăng Ký Ngay</a>
                 </div>
                 <!-- Mobile Menu Button (Optional, added specifically for layout balance) -->
-                 <a href="https://t.me/mmto1b" target="_blank" class="md:hidden px-4 py-2 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase rounded hover:bg-trade-yellow hover:text-trade-blue transition-all">Đăng Ký</a>
+                 <a href="#dang-ky" class="md:hidden px-4 py-2 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase rounded hover:bg-trade-yellow hover:text-trade-blue transition-all">Đăng Ký</a>
             </div>
         </div>
     </nav>
@@ -243,7 +248,8 @@
         </div>
 
         <!-- NEW: Schedule Selection -->
-        <div class="max-w-4xl mx-auto mb-16 bg-white border-2 border-trade-blue p-6 md:p-8 shadow-brutal-dark">
+        <!-- Thêm id="dang-ky" để link anchor hoạt động -->
+        <div id="dang-ky" class="max-w-4xl mx-auto mb-16 bg-white border-2 border-trade-blue p-6 md:p-8 shadow-brutal-dark">
             <h2 class="text-xl md:text-2xl font-black text-trade-blue uppercase mb-6 flex items-center">
                 <i class="fa-regular fa-calendar-check mr-3 text-trade-yellow"></i> Lịch Khai Giảng & Đăng Ký
             </h2>
@@ -884,8 +890,8 @@
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=11250000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
                 
                 // >>> CHÈN LINK ẢNH QR CỦA BẠN VÀO ĐÂY (GIÁ GIẢM 420 USDT) <<<
-                usdtQR.src = "image_83cd06.jpg"; 
-                binanceQR.src = "image_83cd0c.jpg"; 
+                usdtQR.src = "usdt.jpg"; 
+                binanceQR.src = "420.jpg"; 
             } else {
                 // --- GIÁ GỐC ---
                 bankAmount.innerText = "15,000,000 VND";
