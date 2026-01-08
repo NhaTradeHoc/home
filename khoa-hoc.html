@@ -902,9 +902,8 @@
                 bankQR.src = `https://img.vietqr.io/image/${bankBin}-${bankNumber}-compact2.png?amount=15000000&addInfo=KHDT_TEN_SDT&accountName=${encodeURIComponent(accountName)}`;
                 
                 // >>> CHÈN LINK ẢNH QR CỦA BẠN VÀO ĐÂY (GIÁ GỐC 555 USDT) <<<
-                // usdtQR.src = "usdt.jpg"; 
-                // binanceQR.src = "555.jpg"; 
-                // Fallback tạm thời nếu chưa có ảnh: 
+                usdtQR.src = "usdt.jpg"; 
+                binanceQR.src = "555.jpg"; 
             }
 
             modal.classList.remove('hidden');
