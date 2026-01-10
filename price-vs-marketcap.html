@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giá (Price) và Vốn hóa (Market Cap): Tại sao Coin giá 0.1$ chưa chắc đã "rẻ"?</title>
+    <meta name="description" content="Phân biệt Giá cả (Price) và Vốn hóa (Market Cap). Vạch trần sai lầm khi mua coin 'nhiều số 0' và cách tính toán tiềm năng tăng trưởng thực tế của một dự án Crypto.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Custom Table Styles */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+        .custom-table th {
+            background-color: #00167c;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-family: 'Manrope', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        .custom-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .custom-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .custom-table tr:hover {
+            background-color: #f0f9ff;
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-trade-blue">Hướng dẫn</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                GIÁ (PRICE) VÀ VỐN HÓA (MARKET CAP): <br>
+                TẠI SAO COIN GIÁ 0.1$ CHƯA CHẮC ĐÃ <br>
+                <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">"RẺ" HƠN COIN 10.000$?</span>
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>25 Nov 2025 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="pr0.jpeg" alt="Price vs Market Cap Banner" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-xl font-medium text-gray-900 mb-8 border-l-4 border-trade-yellow pl-6 italic py-2 bg-yellow-50/50">
+                <p class="mb-2">Một tâm lý rất thường gặp ở người mới tham gia Crypto:</p>
+                <p>"Đồng Bitcoin giá 50.000$ đắt quá, mình không mua nổi. Mình sẽ mua đồng Coin X này, giá chỉ 0.00001$, mình mua được cả triệu coin. Chỉ cần nó lên 1$ thôi là mình thành tỷ phú."</p>
+            </div>
+
+            <p>
+                Đây là một ảo tưởng tai hại. Trong tài chính, <strong>Giá cả (Price)</strong> không nói lên việc một đồng coin là đắt hay rẻ. Thứ quyết định giá trị và tiềm năng tăng trưởng của dự án là <strong>Vốn hóa thị trường (Market Cap)</strong>.
+            </p>
+            <p>Bài viết này sẽ giúp bạn thoát khỏi "cái bẫy giá rẻ" bằng một bài toán lớp 3 đơn giản nhưng cực kỳ quan trọng.</p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Công thức định giá thực sự</h2>
+            
+            <p>Bạn cần khắc cốt ghi tâm công thức cơ bản sau:</p>
+            
+            <div class="bg-trade-blue text-white p-6 rounded-lg my-6 shadow-brutal text-center">
+                <p class="text-xl md:text-2xl font-mono font-bold tracking-wide italic">
+                    Market Cap = Price X Circulating Supply
+                </p>
+            </div>
+
+            <ul class="list-none space-y-3 mb-6">
+                <li class="flex items-start"><i class="fa-solid fa-chart-pie text-trade-blue mt-1 mr-3 shrink-0"></i> <span><strong>Market Cap (Vốn hóa thị trường):</strong> Tổng giá trị của toàn bộ số coin đang lưu thông. Đây mới là thước đo độ lớn của dự án.</span></li>
+                <li class="flex items-start"><i class="fa-solid fa-tag text-trade-blue mt-1 mr-3 shrink-0"></i> <span><strong>Price (Giá):</strong> Giá của 1 đồng coin.</span></li>
+                <li class="flex items-start"><i class="fa-solid fa-coins text-trade-blue mt-1 mr-3 shrink-0"></i> <span><strong>Circulating Supply (Cung lưu thông):</strong> Tổng số lượng coin đang lưu hành trên thị trường.</span></li>
+            </ul>
+
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 mb-6">
+                <h4 class="font-bold text-trade-blue uppercase mb-3"><i class="fa-solid fa-calculator mr-2"></i> Ví dụ minh họa:</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 border border-gray-200 rounded">
+                        <p class="font-bold text-green-600">Dự án A</p>
+                        <p class="text-sm">Có 10 đồng coin</p>
+                        <p class="text-sm">Giá mỗi đồng: <span class="font-bold">100$</span></p>
+                        <p class="mt-2 font-mono font-bold text-trade-blue">Vốn hóa = 1.000$</p>
+                    </div>
+                    <div class="bg-white p-4 border border-gray-200 rounded">
+                        <p class="font-bold text-blue-600">Dự án B</p>
+                        <p class="text-sm">Có 1.000 đồng coin</p>
+                        <p class="text-sm">Giá mỗi đồng: <span class="font-bold">1$</span></p>
+                        <p class="mt-2 font-mono font-bold text-trade-blue">Vốn hóa = 1.000$</p>
+                    </div>
+                </div>
+                <p class="mt-4 text-sm text-gray-600 italic">
+                    <strong>Kết luận:</strong> Về mặt giá trị kinh tế, Dự án A và Dự án B to bằng nhau (cùng 1.000$). Việc đồng Coin B có giá 1$ (rẻ hơn 100 lần so với A) chỉ là do số lượng coin của nó nhiều gấp 100 lần mà thôi.
+                </p>
+            </div>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Ảo tưởng "Coin nhiều số 0 sẽ dễ nhân tài khoản"</h2>
+            
+            <p>Hãy lấy ví dụ thực tế về <strong>Shiba Inu (SHIB)</strong> và <strong>Bitcoin (BTC)</strong> (Số liệu ước lượng để dễ hình dung):</p>
+            
+            <ul class="list-disc pl-5 space-y-2 mb-4">
+                <li><strong>Bitcoin:</strong> Giá 60.000$. Cung lưu thông khoảng 19 triệu coin.</li>
+                <li><strong>Shiba Inu:</strong> Giá 0.00001$. Cung lưu thông khoảng <span class="text-red-600 font-bold">589 nghìn tỷ coin</span> (589.000.000.000.000).</li>
+            </ul>
+
+            <div class="bg-red-50 p-6 border-l-4 border-red-500 my-6">
+                <p class="font-bold text-red-800 mb-2">Nhiều người mua SHIB với hy vọng nó sẽ lên 1$. Hãy thử tính toán xem điều đó có khả thi không:</p>
+                <p class="text-sm mb-2">Nếu SHIB lên giá 1$, vốn hóa của nó sẽ là:</p>
+                <p class="font-mono text-lg font-bold text-trade-blue bg-white inline-block px-2 py-1 border border-red-200">
+                    1$ x 589.000.000.000.000 = 589.000 tỷ USD
+                </p>
+            </div>
+
+            <p class="font-bold text-trade-blue mb-4">Để bạn dễ hình dung con số này "vô lý" đến mức nào:</p>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-center">
+                    <div class="w-32 font-bold text-sm">Vốn hóa Vàng</div>
+                    <div class="flex-1 h-4 bg-gray-200 rounded overflow-hidden relative">
+                        <div class="h-full bg-yellow-400 w-[2%]"></div>
+                        <span class="absolute right-2 top-0 text-[10px] text-gray-500">~14.000 tỷ USD</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-32 font-bold text-sm">GDP nước Mỹ</div>
+                    <div class="flex-1 h-4 bg-gray-200 rounded overflow-hidden relative">
+                        <div class="h-full bg-blue-400 w-[4%]"></div>
+                        <span class="absolute right-2 top-0 text-[10px] text-gray-500">~23.000 tỷ USD</span>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-32 font-bold text-sm">SHIB giá 1$</div>
+                    <div class="flex-1 h-4 bg-gray-200 rounded overflow-hidden relative">
+                        <div class="h-full bg-red-600 w-full animate-pulse"></div>
+                        <span class="absolute right-2 top-0 text-[10px] text-white font-bold">589.000 tỷ USD (KHÔNG THỂ)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p>Nếu SHIB lên 1$, nó sẽ có giá trị gấp 5-6 lần tổng kinh tế toàn cầu cộng lại. Điều này là không thể xảy ra. Do đó, đừng bao giờ kỳ vọng mù quáng vào việc một đồng coin "nhiều số 0" sẽ lên 1$ nếu bạn chưa tính Vốn hóa của nó.</p>
+
+            <!-- Image 2 -->
+             <figure class="my-8">
+                <img src="pr1.webp" alt="Biểu đồ so sánh vốn hóa vô lý">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Sự vô lý khi kỳ vọng coin rác lên 1$ mà không nhìn tổng cung</figcaption>
+            </figure>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Case Study: Yearn Finance (YFI) - Bài học về "Giá đắt"</h2>
+            <p>Vào năm 2021, đồng YFI từng có giá vượt qua cả Bitcoin (có lúc lên tới <strong>90.000$/đồng</strong>). Người mới nhìn vào sẽ hét lên: "Đắt quá, ai mà mua nổi!"</p>
+
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-100 mt-4">
+                <h4 class="font-bold text-blue-800 mb-2">Nhưng thực tế:</h4>
+                <ul class="list-disc pl-5 space-y-2 text-sm">
+                    <li>Tổng cung của YFI cực hiếm: Chỉ có <strong>36.000</strong> đồng coin.</li>
+                    <li>Vốn hóa lúc đó của YFI chỉ khoảng <strong>1-2 tỷ USD</strong>.</li>
+                </ul>
+                <p class="mt-4 text-sm">So với các dự án khác trong top 50 (vốn hóa 10-20 tỷ USD), thì YFI lúc đó thực ra là <strong>"Rẻ"</strong> (theo định giá Market Cap), mặc dù giá đơn vị của nó rất cao.</p>
+            </div>
+            
+            <p class="mt-4 font-bold text-trade-blue italic">Bài học: Đừng sợ những đồng coin có giá cao (Price cao). Nếu tổng cung của nó thấp, thì dư địa tăng trưởng (Market Cap) của nó vẫn có thể còn rất lớn.</p>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Cách sử dụng Market Cap để tìm "Kèo ngon" (Hidden Gems)</h2>
+            <p>Thay vì nhìn giá, hãy nhìn Market Cap để phân loại dự án:</p>
+
+            <div class="space-y-6 mt-6">
+                <!-- Large Cap -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-green-500 pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-bold uppercase">Large Cap</span>
+                        <p class="text-sm text-gray-500 mt-1">> 10 Tỷ USD</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Bitcoin, Ethereum, BNB, Solana</p>
+                        <p class="text-sm text-gray-600"><strong>Đặc điểm:</strong> An toàn, biến động thấp. Khó có thể x10, x20 trong thời gian ngắn. Phù hợp để giữ tiền.</p>
+                    </div>
+                </div>
+
+                <!-- Mid Cap -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-yellow-500 pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold uppercase">Mid Cap</span>
+                        <p class="text-sm text-gray-500 mt-1">1 Tỷ - 10 Tỷ USD</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Layer 1 mới, Top dApps</p>
+                        <p class="text-sm text-gray-600"><strong>Đặc điểm:</strong> Cân bằng giữa rủi ro và lợi nhuận. Có khả năng x2, x5 nếu vào đúng chu kỳ.</p>
+                    </div>
+                </div>
+
+                <!-- Low Cap -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-red-500 pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-bold uppercase">Low Cap</span>
+                        <p class="text-sm text-gray-500 mt-1">< 100 Triệu USD</p>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Coin mới, Meme coin</p>
+                        <p class="text-sm text-gray-600"><strong>Đặc điểm:</strong> Rủi ro cực cao, có thể về 0. Tuy nhiên, đây là nơi duy nhất có thể giúp bạn x50, x100 tài khoản.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-trade-blue text-white p-6 rounded-lg mt-8 shadow-lg">
+                <p class="font-bold mb-2"><i class="fa-solid fa-lightbulb text-trade-yellow mr-2"></i> Chiến thuật:</p>
+                <p class="text-sm text-gray-200">Nếu bạn muốn x100 tài khoản, bạn phải tìm những đồng coin có <strong>Vốn hóa thấp (Low Cap)</strong>, chứ không phải tìm những đồng coin có <strong>Giá thấp</strong>. Một đồng coin giá 0.1$ nhưng vốn hóa đã 10 tỷ USD thì rất khó x100.</p>
+            </div>
+
+            <!-- Image 3 -->
+             <figure class="my-8">
+                <img src="pr2.jpg" alt="Tháp tài sản Crypto">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Phân loại tháp tài sản theo Vốn hóa</figcaption>
+            </figure>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="text-lg leading-relaxed mb-6">
+                    "Đừng để những con số 0 đánh lừa bạn. Hãy là nhà đầu tư thông thái nhìn vào giá trị thực (Market Cap)."
+                </p>
+                
+                <div class="text-left bg-white/10 p-4 rounded mb-6">
+                    <p class="font-bold text-trade-yellow mb-2 uppercase text-sm">Quy trình kiểm tra trước khi mua:</p>
+                    <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-300">
+                        <li>Lên CoinMarketCap hoặc CoinGecko.</li>
+                        <li>Kiểm tra <strong>Circulating Supply</strong> (Tổng cung lưu thông).</li>
+                        <li>Nhân Giá với Tổng cung để ra <strong>Market Cap</strong>.</li>
+                        <li>So sánh Market Cap đó với các đối thủ đi trước.</li>
+                    </ol>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-gray-400 italic text-sm mb-4">Bài viết tiếp theo:</p>
+                    <a href="tokenomics.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Tokenomics: Nghệ thuật đằng sau nền kinh tế Token <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Social Share Section -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="border-t-2 border-gray-100 pt-8">
+            <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ bài viết</h3>
+            <div class="flex gap-4 flex-wrap">
+                <button onclick="shareFacebook()" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Facebook">
+                    <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on X">
+                    <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Threads">
+                    <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Telegram">
+                    <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link!')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Copy Link">
+                    <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Posts -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
+        <h3 class="text-2xl font-black text-trade-blue uppercase mb-8 flex items-center">
+            <span class="bg-trade-yellow w-2 h-8 mr-3 block"></span> Bài Viết Liên Quan
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="stablecoin.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Stablecoin Là Gì? (USDT, USDC, DAI)
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+             <a href="spot-vs-future.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Spot vs Futures: Đầu Tư Hay Đầu Cơ?
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BROKER INFO MODAL (Standardized) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                        <a href="huong-dan-mo-tai-khoan-binance.html" class="block mt-2 text-xs text-trade-blue font-bold hover:text-trade-yellow transition-colors italic text-center">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.prose img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // --- MODAL LOGIC (Standardized) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Static data for Binance 
+        const binanceData = {
+            name: 'Binance',
+            code: 'NHATRADEHOC',
+            link: 'https://accounts.binance.com/register?ref=NHATRADEHOC'
+        };
+
+        function openModal() {
+            const data = binanceData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
