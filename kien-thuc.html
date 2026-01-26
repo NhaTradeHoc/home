@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thư Viện Kiến Thức - Nhà Trade Học</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -144,16 +147,108 @@
                 </div>
             </div>
 
-            <!-- Articles Grid -->
+            <!-- Articles Grid (2 CỘT TRÊN MOBILE - grid-cols-2) -->
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" id="articles-grid">
                 
+                <!-- 24 Jan 2026: Random Walk (MỚI) -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="buocchan.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="A_conceptual_and_2k_202601232127.jpeg" alt="Random Walk" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Thị trường bước những bước ngẫu nhiên… một cách có quy luật</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về bản chất hỗn loạn của cung cầu và quy luật tâm lý đám đông.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 16 Jan 2026: P2P Guide (MỚI) -->
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="huong-dan-nap-rut-p2p.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="p2p0.png" alt="P2P Guide" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hướng Dẫn Nạp Rút Tiền P2P An Toàn Tuyệt Đối</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Cách mua bán USDT bằng VND an toàn, tránh bị lừa đảo và khóa tài khoản.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 15 Jan 2026: Greenland (MỚI) -->
+                <article class="filter-item dia-chinh-tri vi-mo bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="sau-venezuela-la-greenland.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Greenland" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Sau Venezuela Là Greenland? Sự Hồi Sinh Học Thuyết Monroe</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Mỹ sẽ không chấp nhận bất kỳ sự hiện diện thù địch nào tại Tây Bán Cầu.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">15 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 11 Jan 2026: Blockchain -->
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="blockchain.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="bc0.jpg" alt="Blockchain" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Blockchain là gì? Giải thích công nghệ "Sổ cái" bằng ngôn ngữ đời thường</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải mã cơ chế vận hành của công nghệ thay đổi thế giới.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">11 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 10 Jan 2026: Lai Kep -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="laikep.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="lk0.jpg" alt="Lai Kep" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Lãi kép & Tư duy dài hạn: Tại sao "Làm giàu chậm" lại nhanh nhất?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Khám phá sức mạnh của Lãi kép và chiến lược đầu tư bền vững.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">10 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 09 Jan 2026: Overtrading -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="otd.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="otd0.png" alt="Overtrading" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Overtrading & Revenge Trading - Khi con quỷ trong bạn thức giấc</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Làm sao để dừng lại khi đang thua lỗ? Kỹ năng quan trọng nhất sau Cắt lỗ.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">09 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
                 <!-- 08 Jan 2026: Probability Mindset -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="Probability-mindset.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="prob0.png" alt="Probability Mindset" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Tư duy xác suất: Hãy tư duy như một Sòng bài (Casino)</h3>
@@ -169,11 +264,25 @@
                         <div class="relative aspect-video overflow-hidden">
                             <img src="journal0.webp" alt="Trading Journal" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-phuong-phap px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Phương Pháp</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Nhật ký giao dịch (Trading Journal): "Chiếc gương soi"</h3>
                             <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giúp bạn ngừng đốt tiền và bắt đầu kiếm lãi từ những sai lầm.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">07 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 07 Jan 2026: Venezuela Oil -->
+                <article class="filter-item dia-chinh-tri bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="canh-bac-dau-mo-venezuela.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="b77a17fa-01da-4256-b4bc-14d89a7b0c24.jpg" alt="Venezuela Oil" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Canh Bạc Dầu Mỏ Khổng Lồ Của Donald Trump Tại Venezuela</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Quốc gia này sở hữu trữ lượng dầu mỏ lớn nhất thế giới, nhưng khai thác là một vấn đề khác.</p>
                             <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">07 Jan 2026</span>
                         </div>
                     </a>
@@ -185,7 +294,6 @@
                         <div class="relative aspect-video overflow-hidden">
                             <img src="tvh0.webp" alt="Trader vs Holder" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Trader vs. Holder: Bạn là ai trong thị trường này?</h3>
@@ -205,6 +313,21 @@
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hiệu ứng Dunning-Kruger: Tại sao "Người mới" thường tự tin thái quá</h3>
                             <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải mã cái giá phải trả cho sự ảo tưởng sức mạnh.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">05 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+                
+                <!-- 05 Jan 2026: Trading Math -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="trading-la-toan-hoc.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="593433934_2320758825033467_1287742921545181090_n.jpg" alt="Trading Math" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Trading là Toán học: Giải mã "Kỳ Vọng Dương"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Trong giao dịch chuyên nghiệp, đúng sai không quan trọng bằng quản lý rủi ro.</p>
                             <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">05 Jan 2026</span>
                         </div>
                     </a>
@@ -251,81 +374,6 @@
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Cắt lỗ (Stop Loss): Nghệ thuật "Chấp nhận thua" để thắng lớn</h3>
                             <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Bài toán lỗ 50% cần lãi 100%. Tại sao gồng lỗ thì giỏi mà gồng lời thì dở?</p>
                             <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">02 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-                
-                <!-- 24 Jan 2026: Random Walk -->
-                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="buocchan.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="A_conceptual_and_2k_202601232127.jpeg" alt="Random Walk" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Thị trường bước những bước ngẫu nhiên… một cách có quy luật</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về bản chất hỗn loạn của cung cầu và quy luật tâm lý đám đông.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- 16 Jan 2026: P2P Guide -->
-                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="huong-dan-nap-rut-p2p.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="p2p0.png" alt="P2P Guide" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hướng Dẫn Nạp Rút Tiền P2P An Toàn Tuyệt Đối</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Cách mua bán USDT bằng VND an toàn, tránh bị lừa đảo và khóa tài khoản.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- 15 Jan 2026: Greenland -->
-                <article class="filter-item dia-chinh-tri vi-mo bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="sau-venezuela-la-greenland.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Greenland" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Sau Venezuela Là Greenland? Sự Hồi Sinh Học Thuyết Monroe</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Mỹ sẽ không chấp nhận bất kỳ sự hiện diện thù địch nào tại Tây Bán Cầu.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">15 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-                
-                <!-- 07 Jan 2026: Venezuela Oil -->
-                <article class="filter-item dia-chinh-tri bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="canh-bac-dau-mo-venezuela.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="b77a17fa-01da-4256-b4bc-14d89a7b0c24.jpg" alt="Venezuela Oil" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Canh Bạc Dầu Mỏ Khổng Lồ Của Donald Trump Tại Venezuela</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Quốc gia này sở hữu trữ lượng dầu mỏ lớn nhất thế giới, nhưng khai thác là một vấn đề khác.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">07 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- 05 Jan 2026: Trading Math -->
-                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="trading-la-toan-hoc.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="593433934_2320758825033467_1287742921545181090_n.jpg" alt="Trading Math" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Trading là Toán học: Giải mã "Kỳ Vọng Dương"</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Trong giao dịch chuyên nghiệp, đúng sai không quan trọng bằng quản lý rủi ro.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">05 Jan 2026</span>
                         </div>
                     </a>
                 </article>
