@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hợp đồng thông minh (Smart Contract): Khi Code thay thế Luật sư</title>
+    <meta name="description" content="Hợp đồng thông minh là gì? Tại sao nó là 'bộ não' của Blockchain? Giải thích cơ chế 'Nếu... Thì...' và cách Smart Contract loại bỏ hoàn toàn bên trung gian tốn kém.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-trade-blue">Hướng dẫn</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                HỢP ĐỒNG THÔNG MINH (SMART CONTRACT): <br>
+                <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">KHI CODE THAY THẾ LUẬT SƯ</span>
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>13 Jan 2026 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="smct0.png" alt="Smart Contract Banner" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg" onerror="this.src='https://placehold.co/1200x600?text=Smart+Contract+Banner'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-xl font-medium text-gray-900 mb-8 border-l-4 border-trade-yellow pl-6 italic py-2 bg-yellow-50/50">
+                <p class="mb-2">Hãy tưởng tượng bạn muốn mua một ngôi nhà.</p>
+                <p>Quy trình hiện tại: Bạn gặp người bán -> Đặt cọc -> Ra văn phòng công chứng -> Ra ngân hàng chuyển tiền -> Ra sở tài nguyên sang tên.</p>
+            </div>
+
+            <p>
+                Cả quá trình mất 30 ngày, tốn hàng chục triệu phí bôi trơn và luôn nơm nớp lo sợ: "Lỡ mình chuyển tiền xong nó không sang tên thì sao?".
+            </p>
+            <p>
+                <strong>Hợp đồng thông minh</strong> sinh ra để biến quy trình 30 ngày đó xuống còn <strong>3 giây</strong>, với chi phí gần như bằng 0 và độ an toàn tuyệt đối.
+            </p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Hợp đồng thông minh là gì?</h2>
+            <p>Đừng để cái tên "Hợp đồng" đánh lừa bạn. Nó không phải là tờ giấy có chữ ký. Nó là một <strong>Đoạn mã lập trình chạy trên Blockchain</strong>.</p>
+            
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 my-6">
+                <h4 class="font-bold text-trade-blue uppercase mb-3"><i class="fa-solid fa-calculator mr-2"></i> Ví dụ dễ hiểu nhất: Chiếc máy bán nước tự động (Vending Machine)</h4>
+                <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700">
+                    <li>Nếu bạn bỏ vào 10.000đ và bấm nút Coca.</li>
+                    <li>Thì máy tự động nhả chai Coca ra.</li>
+                    <li>Nếu bạn bỏ thiếu tiền -> Máy trả lại tiền.</li>
+                </ul>
+                <p class="mt-4 text-sm italic font-bold">Điểm mấu chốt: Chiếc máy này hoạt động tự động 100%. Không cần cô bán hàng, không cần ai kiểm tra tiền giả (máy tự soi), không ai có thể mặc cả giá.</p>
+            </div>
+
+            <p>Hợp đồng thông minh trên Blockchain cũng y hệt vậy: <strong>Tự động thực thi khi điều kiện được thỏa mãn</strong>.</p>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Cơ chế "Nếu... Thì..." (If This Then That)</h2>
+            <p>Smart Contract hoạt động dựa trên logic đơn giản nhưng sắt đá:</p>
+            
+            <div class="bg-blue-50 p-4 border-l-4 border-trade-blue text-center my-6">
+                <p class="font-mono font-bold text-lg text-trade-blue">NẾU [Điều kiện A xảy ra] -> THÌ [Hành động B tự động thực thi]</p>
+            </div>
+
+            <h4 class="font-bold text-trade-blue mb-2">Ví dụ trong Cá cược bóng đá:</h4>
+            <p>Hai người A và B cá cược trận chung kết World Cup. Mỗi người gửi 100$ vào một Smart Contract (Tổng 200$).</p>
+            <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-700">
+                <li><strong>Quy tắc lập trình sẵn:</strong> "Nếu Đội Pháp thắng, chuyển toàn bộ 200$ cho A. Nếu Đội Argentina thắng, chuyển 200$ cho B."</li>
+                <li><strong>Kết quả:</strong> Ngay giây phút trọng tài thổi còi kết thúc và dữ liệu được cập nhật, Smart Contract tự động chuyển tiền cho người thắng.</li>
+            </ul>
+            <p class="text-green-700 font-bold italic">Không ai có thể quỵt tiền, không cần một "nhà cái" đứng giữa cầm tiền và thu phí (phế).</p>
+
+            <!-- Image 1 -->
+            <figure class="my-8">
+                <img src="smct1.webp" alt="Cơ chế If This Then That" onerror="this.src='https://placehold.co/800x400?text=If+This+Then+That+Logic'">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Logic vận hành không thể thay đổi của Smart Contract</figcaption>
+            </figure>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Tại sao nó lại là cuộc cách mạng?</h2>
+            <p>Smart Contract giải quyết 3 vấn đề lớn nhất của giao dịch truyền thống:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+                <div class="bg-white p-4 border border-green-200 rounded shadow-sm text-center">
+                    <i class="fa-solid fa-handshake-slash text-3xl text-green-600 mb-3"></i>
+                    <h4 class="font-bold text-trade-blue mb-2">Niềm tin (Trustless)</h4>
+                    <p class="text-xs text-gray-600">Bạn không cần tin người lạ, chỉ cần tin vào Code. Code không biết nói dối.</p>
+                </div>
+                <div class="bg-white p-4 border border-blue-200 rounded shadow-sm text-center">
+                    <i class="fa-solid fa-bolt text-3xl text-blue-600 mb-3"></i>
+                    <h4 class="font-bold text-trade-blue mb-2">Tốc độ & Chi phí</h4>
+                    <p class="text-xs text-gray-600">Loại bỏ hoàn toàn trung gian (Luật sư, Ngân hàng). Mọi thứ diễn ra tức thì.</p>
+                </div>
+                <div class="bg-white p-4 border border-red-200 rounded shadow-sm text-center">
+                    <i class="fa-solid fa-lock text-3xl text-red-600 mb-3"></i>
+                    <h4 class="font-bold text-trade-blue mb-2">Bất biến (Immutable)</h4>
+                    <p class="text-xs text-gray-600">Một khi đã lên Blockchain, không ai (kể cả người viết) có thể sửa đổi luật chơi.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Ứng dụng thực tế: Nó đang thay đổi thế giới ra sao?</h2>
+            <p>Smart Contract chính là nền tảng để tạo ra <strong>DeFi (Tài chính phi tập trung)</strong> và <strong>NFT</strong>.</p>
+
+            <div class="space-y-6 my-6">
+                <!-- DeFi -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-trade-blue pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-trade-blue text-white px-3 py-1 rounded-full text-xs font-bold uppercase">Tài chính (DeFi)</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Vay & Cho vay tự động</p>
+                        <p class="text-sm text-gray-600">Gửi tiền vào Smart Contract (như Aave) để cho vay lấy lãi. Người vay thế chấp Bitcoin. Nếu giá giảm, Smart Contract tự động thanh lý để trả tiền cho bạn. Một ngân hàng không nhân viên, vận hành 24/7.</p>
+                    </div>
+                </div>
+
+                <!-- Insurance -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-green-500 pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">Bảo hiểm</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Bảo hiểm tự động</p>
+                        <p class="text-sm text-gray-600">Mua bảo hiểm trễ chuyến bay. Nếu chuyến bay delay > 2 tiếng (dữ liệu từ sân bay), tiền đền bù tự động "Ting ting" về ví. Không cần làm đơn, không cần chờ xét duyệt.</p>
+                    </div>
+                </div>
+
+                <!-- NFT -->
+                <div class="flex flex-col md:flex-row gap-4 border-l-4 border-yellow-500 pl-4 py-2">
+                    <div class="md:w-1/4">
+                        <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase">NFT</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <p class="font-bold text-trade-blue">Tiền bản quyền (Royalty)</p>
+                        <p class="text-sm text-gray-600">Nhạc sĩ phát hành bài hát NFT. Smart Contract quy định: "Mỗi lần bán lại trích 10% cho tác giả". Nhạc sĩ nhận tiền mãi mãi, không sợ bị ăn chặn.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image 2 -->
+            <figure class="my-8">
+                <img src="smct2.jpg" alt="Ứng dụng thực tế của Smart Contract" onerror="this.src='https://placehold.co/800x400?text=Real+World+Applications'">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Smart Contract đang cách mạng hóa Tài chính, Bảo hiểm và Nghệ thuật</figcaption>
+            </figure>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Trải nghiệm Smart Contract ngay hôm nay</h2>
+            <p>Bạn không cần biết code để sử dụng Smart Contract. Mỗi khi bạn thực hiện một lệnh Swap (Hoán đổi) trên sàn phi tập trung hay gửi tiết kiệm (Earn), là bạn đang tương tác với chúng.</p>
+            <p class="mb-4">Với <strong>Binance Web3 Wallet</strong> (Ví Web3 tích hợp ngay trong app Binance), bạn có thể tiếp cận thế giới DApps một cách an toàn nhất.</p>
+
+            <!-- BINANCE PROMO BOX -->
+            <div class="mt-6 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Khám Phá Thế Giới Web3 Cùng Binance</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã giới thiệu độc quyền:</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">NHATRADEHOC</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+
+                <ul class="text-sm text-left mx-auto max-w-md space-y-2 mb-6">
+                    <li class="flex items-start"><i class="fa-solid fa-check text-green-600 mt-1 mr-2"></i> <strong>Lợi ích:</strong> Giảm 40% phí giao dịch khi mua coin nền tảng (ETH, BNB, SOL...).</li>
+                    <li class="flex items-start"><i class="fa-solid fa-shield-halved text-green-600 mt-1 mr-2"></i> <strong>An toàn:</strong> Cánh cổng an toàn vào thế giới DeFi, tránh link lừa đảo.</li>
+                </ul>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Mở tài khoản ngay
+                </button>
+                <p class="mt-4 text-xs text-gray-500 italic">Hành động: Vào mục Web3 Wallet trên app Binance để bắt đầu trải nghiệm.</p>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="text-lg leading-relaxed mb-6 italic">
+                    "Hợp đồng thông minh là bộ não, biến Blockchain từ một cuốn sổ cái đơn thuần thành một siêu máy tính toàn cầu."
+                </p>
+                
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-gray-400 italic text-sm mb-4">Bài viết tiếp theo: Tại sao chúng ta cần Crypto?</p>
+                    <a href="fiat.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Tiền Pháp định (Fiat) vs. Crypto: Vì sao tiền của bạn mất giá? <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Social Share Section -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="border-t-2 border-gray-100 pt-8">
+            <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ bài viết</h3>
+            <div class="flex gap-4 flex-wrap">
+                <button onclick="shareFacebook()" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Facebook">
+                    <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on X">
+                    <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Threads">
+                    <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Telegram">
+                    <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link!')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Copy Link">
+                    <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Posts -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
+        <h3 class="text-2xl font-black text-trade-blue uppercase mb-8 flex items-center">
+            <span class="bg-trade-yellow w-2 h-8 mr-3 block"></span> Bài Viết Liên Quan
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="blockchain.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Blockchain Là Gì? Giải Thích Đơn Giản
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+             <a href="pow.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    Cơ Chế Đồng Thuận: PoW vs PoS
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BROKER INFO MODAL (Standardized) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Binance</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.prose img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // --- MODAL LOGIC (Standardized) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Static data for Binance 
+        const binanceData = {
+            name: 'Binance',
+            code: 'NHATRADEHOC',
+            link: 'https://accounts.binance.com/register?ref=NHATRADEHOC'
+        };
+
+        function openModal() {
+            const data = binanceData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
