@@ -199,7 +199,688 @@
                 </article>
 
                  <!-- 14 Jan 2026: Lịch sử tiền tệ -->
+                <article class="filter-item tu-duy bg<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Viện Kiến Thức - Nhà Trade Học</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0, 22, 124, 0.2); }
+        
+        .filter-btn.active {
+            background-color: #ffdf2b;
+            color: #00167c;
+            border-color: #ffdf2b;
+            box-shadow: 2px 2px 0px 0px #00167c;
+        }
+        
+        /* Badge Colors */
+        .badge-huong-dan { background-color: #00167c; color: white; }
+        .badge-tu-duy { background-color: #7c3aed; color: white; } /* Purple */
+        .badge-phuong-phap { background-color: #10b981; color: white; } /* Emerald */
+        .badge-vi-mo { background-color: #f97316; color: white; } /* Orange */
+        .badge-dia-chinh-tri { background-color: #dc2626; color: white; } /* Red */
+    </style>
+</head>
+<body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-trade-yellow border-b-2 border-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-16 bg-trade-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-tight">Thư Viện <span class="text-trade-yellow">Kiến Thức</span></h1>
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                Tổng hợp các bài viết chuyên sâu về giao dịch tài chính, từ cơ bản đến nâng cao.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <div class="mb-16">
+            <h2 class="text-2xl font-black uppercase text-trade-blue mb-6 flex items-center">
+                <i class="fa-solid fa-fire text-red-500 mr-3"></i> Đọc Nhiều Nhất
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <article class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <a href="huong-dan-mo-tai-khoan-binance.html" class="flex flex-col h-full">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="bi0.png" alt="Binance Guide" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 badge-huong-dan px-3 py-1 text-xs font-bold uppercase rounded shadow-md">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors">Hướng Dẫn Mở Tài Khoản Binance Chi Tiết Nhất</h3>
+                            <p class="text-gray-500 mb-6 line-clamp-2">Nhận ưu đãi giảm 40% phí giao dịch trọn đời. Hướng dẫn xác minh danh tính (KYC) và bảo mật 2 lớp chuẩn chỉnh.</p>
+                            <div class="mt-auto flex items-center text-sm font-bold text-trade-yellow uppercase tracking-widest">
+                                Đọc ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <a href="cai-dat-backcom-exness.html" class="flex flex-col h-full">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="65363243f185eaef8f80db604be3961d.jpeg" alt="Exness Guide" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute top-4 left-4 badge-huong-dan px-3 py-1 text-xs font-bold uppercase rounded shadow-md">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-trade-blue mb-3 group-hover:text-trade-light-blue transition-colors">Hướng dẫn cài đặt Backcom Exness</h3>
+                            <p class="text-gray-500 mb-6 line-clamp-2">Các bước đăng ký và đổi mã đối tác để nhận mức hoàn phí cao nhất từ hệ thống Nhà Trade Học.</p>
+                            <div class="mt-auto flex items-center text-sm font-bold text-trade-yellow uppercase tracking-widest">
+                                Đọc ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+
+        <div id="latest-posts">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4">
+                <h2 class="text-2xl font-black uppercase text-trade-blue mb-4 md:mb-0">Mới Cập Nhật</h2>
+                
+                <div class="flex flex-wrap gap-2" id="filter-container">
+                    <button class="filter-btn active px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="all">Tất Cả</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="huong-dan">Hướng Dẫn</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="tu-duy">Tư Duy</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="phuong-phap">Phương Pháp</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="vi-mo">Vĩ Mô</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="dia-chinh-tri">Địa Chính Trị</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" id="articles-grid">
+                
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="web3.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="web3_0.png" alt="Web3 Evolution" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Web 1.0 - 2.0 - 3.0: Cuộc chiến đòi lại "Sổ đỏ" trên không gian mạng</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao nói trong Web 2.0 "Bạn là sản phẩm", còn trong Web 3.0 "Bạn là chủ sở hữu"?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">17 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="dao.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="dao0.png" alt="DAO" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">DAO là gì? Mô hình công ty tương lai nơi "Sếp" chính là cộng đồng</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Cách cộng đồng sử dụng Token để bỏ phiếu và điều hành tổ chức mà không cần CEO.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="defi.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="defi0.jpg" alt="DeFi" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">DeFi là gì? Khi bạn sa thải Giám đốc ngân hàng và tự làm chủ tiền của mình</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Ngân hàng phi tập trung hoạt động 24/7 và quyền kiểm soát nằm trọn trong tay bạn.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="buocchan.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="A_conceptual_and_2k_202601232127.jpeg" alt="Random Walk" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Thị trường bước những bước ngẫu nhiên… một cách có quy luật</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về bản chất hỗn loạn của cung cầu và quy luật tâm lý đám đông.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="huong-dan-nap-rut-p2p.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="p2p0.png" alt="P2P Guide" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hướng Dẫn Nạp Rút Tiền P2P An Toàn Tuyệt Đối</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Cách mua bán USDT bằng VND an toàn, tránh bị lừa đảo và khóa tài khoản.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item dia-chinh-tri vi-mo bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="sau-venezuela-la-greenland.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Greenland" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Sau Venezuela Là Greenland? Sự Hồi Sinh Học Thuyết Monroe</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Mỹ sẽ không chấp nhận bất kỳ sự hiện diện thù địch nào tại Tây Bán Cầu.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">15 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fiat.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fiat0.jpeg" alt="Lịch sử tiền tệ" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Lịch sử tiền tệ: Từ Vỏ ốc đến Bitcoin và Tại sao tiền trong ví bạn đang "bốc hơi"?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao Bitcoin được gọi là "Vàng kỹ thuật số"?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">14 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="smct.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="smct0.png" alt="Smart Contract" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hợp đồng thông minh (Smart Contract): Khi Code thay thế Luật sư</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao nó là "bộ não" của Blockchain? Giải thích cơ chế "Nếu... Thì...".</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">13 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="pow.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="pow0.webp" alt="PoW vs PoS" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Cơ chế đồng thuận (Consensus): PoW vs. PoS</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Cuộc chiến giữa "Thợ đào cơ bắp" và "Đại gia nhiều tiền".</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">12 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="blockchain.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="bc0.jpg" alt="Blockchain" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Blockchain là gì? Giải thích công nghệ "Sổ cái" bằng ngôn ngữ đời thường</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải mã cơ chế vận hành của công nghệ thay đổi thế giới.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">11 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="laikep.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="lk0.jpg" alt="Lai Kep" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Lãi kép & Tư duy dài hạn: Tại sao "Làm giàu chậm" lại nhanh nhất?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Khám phá sức mạnh của Lãi kép và chiến lược đầu tư bền vững.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">10 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="otd.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="otd0.png" alt="Overtrading" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Overtrading & Revenge Trading - Khi con quỷ trong bạn thức giấc</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Làm sao để dừng lại khi đang thua lỗ? Kỹ năng quan trọng nhất sau Cắt lỗ.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">09 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="Probability-mindset.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="prob0.png" alt="Probability Mindset" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Tư duy xác suất: Hãy tư duy như một Sòng bài (Casino)</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao cố gắng "Dự đoán đúng" lại khiến bạn nghèo đi?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">08 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item phuong-phap bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="tradingjournal.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="journal0.webp" alt="Trading Journal" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-phuong-phap px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Phương Pháp</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Nhật ký giao dịch (Trading Journal): "Chiếc gương soi"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giúp bạn ngừng đốt tiền và bắt đầu kiếm lãi từ những sai lầm.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">07 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="filter-item dia-chinh-tri bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="canh-bac-dau-mo-venezuela.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="b77a17fa-01da-4256-b4bc-14d89a7b0c24.jpg" alt="Venezuela Oil" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-dia-chinh-tri px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Địa Chính Trị</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Canh Bạc Dầu Mỏ Khổng Lồ Của Donald Trump Tại Venezuela</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Quốc gia này sở hữu trữ lượng dầu mỏ lớn nhất thế giới, nhưng khai thác là một vấn đề khác.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">07 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="tradevshold.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="tvh0.webp" alt="Trader vs Holder" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Trader vs. Holder: Bạn là ai trong thị trường này?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Đừng bao giờ biến thành "Cổ đông bất đắc dĩ" của một dự án rác.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">06 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="Dunning.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="dunning0.jpg" alt="Dunning Kruger" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hiệu ứng Dunning-Kruger: Tại sao "Người mới" thường tự tin thái quá</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải mã cái giá phải trả cho sự ảo tưởng sức mạnh.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">05 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+                
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="trading-la-toan-hoc.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="593433934_2320758825033467_1287742921545181090_n.jpg" alt="Trading Math" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Trading là Toán học: Giải mã "Kỳ Vọng Dương"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Trong giao dịch chuyên nghiệp, đúng sai không quan trọng bằng quản lý rủi ro.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">05 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="rr.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="rr0.jpg" alt="Risk Reward" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Tỷ lệ R:R - Công thức "Thần thánh" giúp bạn sai nhiều hơn đúng mà vẫn giàu</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Bài toán chứng minh bạn chỉ cần thắng 40% số lệnh vẫn có lãi lớn.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">04 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fudandnews.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fud0.png" alt="FUD & News" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Kỷ luật cảm xúc: Giải mã FUD và Chiến thuật "Tin ra là bán"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao giá thường giảm khi có tin tốt? Cách lọc tin tức để không trở thành con rối.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">03 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="sl.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="sl0.png" alt="Stop Loss" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Cắt lỗ (Stop Loss): Nghệ thuật "Chấp nhận thua" để thắng lớn</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Bài toán lỗ 50% cần lãi 100%. Tại sao gồng lỗ thì giỏi mà gồng lời thì dở?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">02 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fomo1.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fomo0.jpg" alt="FOMO" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Hiệu Ứng FOMO: Kẻ Thù Số 1 Của Trader và cách cai nghiện</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải mã tâm lý FOMO và 5 liều thuốc đặc trị giúp bạn giữ cái đầu lạnh.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="chuky4nam.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="4nam0.jpg" alt="Chu kỳ 4 năm" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Chu kỳ thị trường & Bitcoin Halving: Tấm bản đồ kho báu</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về dòng chảy tiền tệ và 4 mùa của thị trường để biết khi nào nên Mua, khi nào nên Bán.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item phuong-phap bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="dca.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="dca0.webp" alt="DCA Strategy" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-phuong-phap px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Phương Pháp</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Quản lý vốn & Chiến lược DCA: Bí kíp biến "Đu đỉnh" thành "Về bờ"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Công thức phân bổ vốn 40-30-30 và cách dùng Recurring Plan để tự động hóa đầu tư.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="scam.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="scam0.avif" alt="Scam Alert" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Chiêu trò lừa đảo Crypto phổ biến & Cách phòng tránh</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Phishing, Airdrop giả, Ponzi... và cách biến tài khoản Binance thành pháo đài bất khả xâm phạm.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="tokenomics.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="tk0.png" alt="Tokenomics" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Tokenomics cơ bản: Cách soi "Luật chơi" của nhà cái</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Phân biệt Cung lưu thông vs Tổng cung. Cách xem lịch Vesting để tránh bị quỹ xả hàng.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">28 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="price-vs-marketcap.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="pr0.jpeg" alt="Price vs Market Cap" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Price vs Market Cap: Tại sao Coin giá 0.1$ chưa chắc đã "rẻ"?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Vạch trần ảo tưởng về những đồng coin "nhiều số 0" và cách định giá thực tế.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">25 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="spot-vs-future.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="sf1.png" alt="Spot vs Futures" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Spot và Futures: Sự khác biệt giữa Đầu tư và Đầu cơ</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Phân tích ưu nhược điểm, cơ chế Funding Fee và cách lựa chọn vị thế phù hợp.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">25 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="stablecoin.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="coin0.png" alt="Stablecoin" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Stablecoin là gì? Nơi trú ẩn an toàn hay "bom nổ chậm"?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tìm hiểu về USDT, USDC, DAI và cách phân bổ vốn để tránh rủi ro De-peg.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">25 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="vi-crypto.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="vi0.webp" alt="Ví Crypto" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Ví Crypto: Phân biệt Ví Nóng, Ví Lạnh và Bảo mật</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Kiến thức về Seed Phrase, Private Key và cách bảo vệ tài sản tuyệt đối.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">25 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="cex-vs-dex.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="cex0.webp" alt="CEX vs DEX" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Sàn CEX và DEX: Sự khác biệt cốt lõi</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Ưu nhược điểm của Binance, Uniswap và lời khuyên chọn sàn cho người mới.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">25 Nov 2025</span>
+                        </div>
+                    </a>
+                </article>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.filter-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-trade-yellow', 'text-trade-blue', 'border-trade-yellow');
+                    b.classList.add('border-gray-200', 'text-gray-500');
+                });
+                
+                // Add active class to clicked button
+                btn.classList.add('active', 'bg-trade-yellow', 'text-trade-blue', 'border-trade-yellow');
+                btn.classList.remove('border-gray-200', 'text-gray-500');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.classList.remove('hidden');
+                        // Add fade-in animation
+                        item.animate([
+                            { opacity: 0, transform: 'translateY(10px)' },
+                            { opacity: 1, transform: 'translateY(0)' }
+                        ], {
+                            duration: 300,
+                            easing: 'ease-out'
+                        });
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="fiat.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="fiat0.jpeg" alt="Lịch sử tiền tệ" class="w-full h-full object-cover">
