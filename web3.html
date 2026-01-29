@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 1.0 - Web 2.0 - Web 3.0: Cuộc chiến đòi lại "Sổ đỏ" trên không gian mạng</title>
+    <meta name="description" content="Phân biệt Web 1.0, Web 2.0 và Web 3.0. Tại sao nói trong Web 2.0 'Bạn là sản phẩm', còn trong Web 3.0 'Bạn là chủ sở hữu'? Vai trò của ví Crypto như tấm hộ chiếu vào thế giới mới.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Custom Table Styles */
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+        .custom-table th {
+            background-color: #00167c;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-family: 'Manrope', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        .custom-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .custom-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .custom-table tr:hover {
+            background-color: #f0f9ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-trade-blue">Hướng dẫn</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                WEB 1.0 - WEB 2.0 - WEB 3.0: <br>
+                <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">CUỘC CHIẾN ĐÒI LẠI "SỔ ĐỎ"</span> <br>
+                TRÊN KHÔNG GIAN MẠNG
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>17 Jan 2026 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="web3_0.png" alt="Web3 Evolution Banner" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg" onerror="this.src='https://placehold.co/1200x600?text=Web3+Evolution+Banner'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-xl font-medium text-gray-900 mb-8 border-l-4 border-trade-yellow pl-6 italic py-2 bg-yellow-50/50">
+                <p class="mb-2">Chào bạn, chúng ta chính thức bước sang Module 4: Web3, NFT & Metaverse.</p>
+                <p>Bạn có bao giờ cảm thấy rùng mình khi vừa nói chuyện với bạn bè về "giày chạy bộ", thì 5 phút sau Facebook đã hiện quảng cáo giày chạy bộ ngay trên tường nhà bạn?</p>
+            </div>
+
+            <p>
+                Đó là nỗi đau của Internet hiện tại (Web 2.0). Và <strong>Web 3.0</strong> sinh ra để chữa lành nỗi đau đó. Đây là cuộc cách mạng đòi lại quyền làm chủ cho người dùng.
+            </p>
+
+            <blockquote class="text-lg border-l-4 border-trade-blue pl-4 my-6 italic text-gray-600">
+                "Nếu bạn được dùng một sản phẩm miễn phí, thì chính BẠN là sản phẩm."
+            </blockquote>
+            
+            <p>Google, Facebook cho bạn dùng miễn phí, nhưng họ thu thập dữ liệu hành vi của bạn để bán cho các nhà quảng cáo. Bạn không sở hữu dữ liệu của mình. Bạn đang ở nhà thuê trên đất của họ.</p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Web 1.0: Kỷ nguyên "Đọc" (Read-Only) - (1990 - 2004)</h2>
+            <p>Đây là thời kỳ sơ khai của Internet.</p>
+            <ul class="list-disc pl-5 space-y-2 mb-4 text-gray-700">
+                <li><strong>Đặc điểm:</strong> Các trang web chỉ là những văn bản tĩnh (giống như trang báo giấy được đưa lên màn hình).</li>
+                <li><strong>Người dùng:</strong> Chỉ được Đọc. Không thể like, không thể comment, không thể đăng bài.</li>
+                <li><strong>Tư duy:</strong> Giống như một thư viện khổng lồ. Bạn vào đọc sách rồi đi ra, không được viết vẽ bậy lên sách.</li>
+            </ul>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Web 2.0: Kỷ nguyên "Đọc - Viết" (Read-Write) - (2004 - Nay)</h2>
+            <p>Sự ra đời của Mạng xã hội (Facebook, YouTube, Twitter) đã thay đổi tất cả.</p>
+            
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 my-6">
+                <h4 class="font-bold text-trade-blue mb-2">Vấn đề chí mạng: Sự tập trung quyền lực</h4>
+                <p class="text-sm mb-2">Bạn tạo ra nội dung, nhưng Facebook <strong>SỞ HỮU</strong> nội dung đó và kiếm tiền từ nó. Dữ liệu của bạn nằm trên máy chủ (Server) của họ. Họ có quyền xóa bài, khóa nick, bán dữ liệu của bạn bất cứ lúc nào.</p>
+                <p class="text-sm italic">-> Tư duy: Giống như bạn đi thuê nhà. Bạn có thể trang trí phòng đẹp đẽ, nhưng chủ nhà có thể đuổi bạn ra đường bất cứ lúc nào nếu họ không vui.</p>
+            </div>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Web 3.0: Kỷ nguyên "Đọc - Viết - Sở hữu" (Read-Write-Own)</h2>
+            <p>Đây là kỷ nguyên của Blockchain và Crypto.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                <div class="bg-green-50 p-6 rounded border border-green-200">
+                    <h4 class="font-bold text-green-800 mb-2"><i class="fa-solid fa-fingerprint mr-2"></i> Quyền sở hữu (Own)</h4>
+                    <p class="text-sm">Khi bạn đăng một bài viết hay video, nó thuộc về bạn (dưới dạng NFT). Không ai có thể xóa nó. Tiền kiếm được chảy trực tiếp về ví bạn, không bị cắt phế.</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded border border-blue-200">
+                    <h4 class="font-bold text-blue-800 mb-2"><i class="fa-solid fa-key mr-2"></i> Đăng nhập bằng Ví</h4>
+                    <p class="text-sm">Bạn không cần Gmail/Facebook. Bạn đăng nhập bằng Ví Crypto. Ví là danh tính duy nhất của bạn.</p>
+                </div>
+            </div>
+            
+            <p class="text-center font-bold text-trade-blue italic">"Tư duy: Giống như bạn mua đứt ngôi nhà. Bạn có Sổ đỏ (Private Key). Không ai có quyền đuổi bạn đi."</p>
+
+            <!-- Image 1 -->
+            <figure class="my-8">
+                <img src="web3_1.svg" alt="So sánh Web 1.0, 2.0 và 3.0" onerror="this.src='https://placehold.co/800x400?text=Web1+vs+Web2+vs+Web3'">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Sự tiến hóa từ Đọc -> Đọc/Viết -> Sở hữu</figcaption>
+            </figure>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Tại sao Big Tech sợ Web 3.0?</h2>
+            <p>Web 3.0 đe dọa trực tiếp đến "nồi cơm" của các ông lớn:</p>
+            <ul class="list-none space-y-3 mb-6">
+                <li class="flex items-start"><i class="fa-solid fa-database text-red-500 mt-1 mr-3 shrink-0"></i> <span><strong>Mất độc quyền dữ liệu:</strong> Dữ liệu đi theo người dùng. Bạn có thể mang danh sách bạn bè từ Mạng xã hội A sang B mà không bị chặn.</span></li>
+                <li class="flex items-start"><i class="fa-solid fa-rectangle-ad text-red-500 mt-1 mr-3 shrink-0"></i> <span><strong>Mất doanh thu quảng cáo:</strong> Người dùng Web3 có thể yêu cầu trả tiền nếu muốn họ xem quảng cáo.</span></li>
+            </ul>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Cánh cổng bước vào Web 3.0: Ví Crypto (Wallet)</h2>
+            <p>Trong Web 2.0, "Hộ chiếu" của bạn là Email + Mật khẩu. Trong Web 3.0, đó là <strong>Ví Crypto</strong> (như MetaMask, Trust Wallet, Binance Web3 Wallet).</p>
+            <p>Chỉ cần một cái Ví, bạn có thể đăng nhập vào GameFi, SocialFi, DeFi, NFT... Tất cả trong một, ẩn danh và bảo mật.</p>
+
+            <!-- SECTION 6 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">6. Trải nghiệm Web 3.0 dễ dàng nhất</h2>
+            <p>Rào cản lớn nhất của Web 3.0 hiện nay là khó sử dụng với người không rành công nghệ. Để phổ cập Web 3.0, Binance đã tạo ra chiếc cầu nối tuyệt vời: <strong>Binance Web3 Wallet</strong>.</p>
+
+            <!-- BINANCE PROMO BOX -->
+            <div class="mt-6 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Chuyển Đổi Sang Web 3.0 Trong 1 Giây</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã giới thiệu độc quyền:</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">NHATRADEHOC</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+
+                <div class="text-left max-w-sm mx-auto text-sm space-y-2 mb-6 text-gray-700">
+                    <p><i class="fa-solid fa-shield-halved text-green-500 mr-2"></i> <strong>An toàn:</strong> Công nghệ MPC bảo vệ ví, không cần nhớ chuỗi ký tự phức tạp.</p>
+                    <p><i class="fa-solid fa-arrow-right-arrow-left text-green-500 mr-2"></i> <strong>Tiện lợi:</strong> Chuyển tiền từ sàn sang ví Web3 chỉ với 1 cú click.</p>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Kích hoạt Ví Web3 ngay
+                </button>
+            </div>
+
+            <!-- Image 2 -->
+             <figure class="my-8">
+                <img src="web3_2.png" alt="Giao diện Binance Web3 Wallet" onerror="this.src='https://placehold.co/800x400?text=Binance+Web3+Wallet+UI'">
+                <figcaption class="text-center text-sm text-gray-500 italic mt-3">Trải nghiệm Web3 mượt mà ngay trên ứng dụng Binance</figcaption>
+            </figure>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <div class="flex justify-center gap-4 text-sm mb-6 flex-wrap">
+                    <span class="bg-gray-700 px-3 py-1 rounded">Web 1.0: Read</span>
+                    <span class="bg-gray-600 px-3 py-1 rounded">Web 2.0: Read-Write</span>
+                    <span class="bg-green-600 px-3 py-1 rounded font-bold">Web 3.0: Read-Write-Own</span>
+                </div>
+                
+                <p class="text-sm font-light mb-6">
+                    Trong thế giới Web 3.0, tài sản của bạn không chỉ là Coin, mà còn là những vật phẩm kỹ thuật số độc nhất vô nhị. Đó là lúc NFT xuất hiện.
+                </p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-gray-400 italic text-sm mb-4">Bài viết tiếp theo: Sổ đỏ kỹ thuật số</p>
+                    <a href="nft.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        NFT là gì? Tại sao một bức ảnh lại có giá triệu đô? <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- Social Share Section -->
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="border-t-2 border-gray-100 pt-8">
+            <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ bài viết</h3>
+            <div class="flex gap-4 flex-wrap">
+                <button onclick="shareFacebook()" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Facebook">
+                    <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on X">
+                    <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Threads">
+                    <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Telegram">
+                    <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                </button>
+                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link!')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Copy Link">
+                    <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Posts -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200">
+        <h3 class="text-2xl font-black text-trade-blue uppercase mb-8 flex items-center">
+            <span class="bg-trade-yellow w-2 h-8 mr-3 block"></span> Bài Viết Liên Quan
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="dao.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    DAO Là Gì? Mô Hình Công Ty Tương Lai
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+             <a href="defi.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+                <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
+                    DeFi Là Gì? Tự Làm Chủ Ngân Hàng
+                </h4>
+                <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
+                    Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BROKER INFO MODAL (Standardized) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Binance</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        document.querySelectorAll('.prose img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // --- MODAL LOGIC (Standardized) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Static data for Binance 
+        const binanceData = {
+            name: 'Binance',
+            code: 'NHATRADEHOC',
+            link: 'https://accounts.binance.com/register?ref=NHATRADEHOC'
+        };
+
+        function openModal() {
+            const data = binanceData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
