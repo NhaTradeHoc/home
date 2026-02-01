@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thư Viện Kiến Thức - Nhà Trade Học</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -50,10 +53,12 @@
         .badge-phuong-phap { background-color: #10b981; color: white; } /* Emerald */
         .badge-vi-mo { background-color: #f97316; color: white; } /* Orange */
         .badge-dia-chinh-tri { background-color: #dc2626; color: white; } /* Red */
+        .badge-bao-cao { background-color: #be185d; color: white; } /* Pink/Magenta for Reports */
     </style>
 </head>
 <body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
 
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
@@ -71,6 +76,7 @@
         </div>
     </nav>
 
+    <!-- Header -->
     <header class="pt-32 pb-16 bg-trade-blue text-white relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -81,13 +87,16 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
+        <!-- SECTION: FEATURED (Đọc nhiều nhất) -->
         <div class="mb-16">
             <h2 class="text-2xl font-black uppercase text-trade-blue mb-6 flex items-center">
                 <i class="fa-solid fa-fire text-red-500 mr-3"></i> Đọc Nhiều Nhất
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Pinned 1: Binance -->
                 <article class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <a href="huong-dan-mo-tai-khoan-binance.html" class="flex flex-col h-full">
                         <div class="relative h-64 overflow-hidden">
@@ -104,6 +113,7 @@
                     </a>
                 </article>
 
+                <!-- Pinned 2: Exness -->
                 <article class="group relative bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <a href="cai-dat-backcom-exness.html" class="flex flex-col h-full">
                         <div class="relative h-64 overflow-hidden">
@@ -122,10 +132,12 @@
             </div>
         </div>
 
+        <!-- SECTION: FILTER & GRID -->
         <div id="latest-posts">
             <div class="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-gray-200 pb-4">
                 <h2 class="text-2xl font-black uppercase text-trade-blue mb-4 md:mb-0">Mới Cập Nhật</h2>
                 
+                <!-- Filter Bar -->
                 <div class="flex flex-wrap gap-2" id="filter-container">
                     <button class="filter-btn active px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="all">Tất Cả</button>
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="huong-dan">Hướng Dẫn</button>
@@ -133,17 +145,51 @@
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="phuong-phap">Phương Pháp</button>
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="vi-mo">Vĩ Mô</button>
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="dia-chinh-tri">Địa Chính Trị</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="bao-cao">Báo Cáo</button>
                 </div>
             </div>
 
+            <!-- Articles Grid -->
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" id="articles-grid">
                 
+                <!-- 01 Feb 2026: REPORT (MỚI THÊM) -->
+                <article class="filter-item bao-cao bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="report0126.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="rp0126.webp" alt="Strategy Report Feb 2026" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-bao-cao px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Báo Cáo</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">BÁO CÁO CHIẾN LƯỢC: VÀNG & BITCOIN - Tháng 02/2026</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Review Tháng 01 & Triển vọng Tháng 02: "Ưu tiên Phòng thủ: Thoát vị thế rủi ro, Nắm giữ tài sản giá trị".</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">01 Feb 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 18 Jan 2026: NFT (MỚI THÊM) -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="nft.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="nft0.png" alt="NFT" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">NFT là gì? Đừng chỉ nhìn vào những bức tranh JPEG đắt tiền, hãy nhìn vào "Sổ đỏ kỹ thuật số"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao "Click chuột phải lưu ảnh" không có giá trị? Ứng dụng thực tế của NFT trong Game và Bất động sản.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">18 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 17 Jan 2026: Web3 -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="web3.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="web3_0.png" alt="Web3 Evolution" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Web 1.0 - 2.0 - 3.0: Cuộc chiến đòi lại "Sổ đỏ" trên không gian mạng</h3>
@@ -153,12 +199,12 @@
                     </a>
                 </article>
 
+                <!-- 16 Jan 2026: DAO -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="dao.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="dao0.png" alt="DAO" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">DAO là gì? Mô hình công ty tương lai nơi "Sếp" chính là cộng đồng</h3>
@@ -168,12 +214,12 @@
                     </a>
                 </article>
 
+                <!-- 16 Jan 2026: DeFi -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="defi.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="defi0.jpg" alt="DeFi" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">DeFi là gì? Khi bạn sa thải Giám đốc ngân hàng và tự làm chủ tiền của mình</h3>
@@ -183,6 +229,7 @@
                     </a>
                 </article>
 
+                <!-- 24 Jan 2026: Random Walk -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="buocchan.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -197,6 +244,7 @@
                     </a>
                 </article>
 
+                <!-- 16 Jan 2026: P2P Guide -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="huong-dan-nap-rut-p2p.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -211,6 +259,7 @@
                     </a>
                 </article>
 
+                <!-- 15 Jan 2026: Greenland -->
                 <article class="filter-item dia-chinh-tri vi-mo bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="sau-venezuela-la-greenland.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -225,7 +274,8 @@
                     </a>
                 </article>
 
-                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                 <!-- 14 Jan 2026: Lịch sử tiền tệ -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="fiat.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="fiat0.jpeg" alt="Lịch sử tiền tệ" class="w-full h-full object-cover">
@@ -239,7 +289,8 @@
                     </a>
                 </article>
 
-                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                 <!-- 13 Jan 2026: Smart Contract -->
+                <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="smct.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="smct0.png" alt="Smart Contract" class="w-full h-full object-cover">
@@ -253,6 +304,7 @@
                     </a>
                 </article>
 
+                <!-- 12 Jan 2026: PoW vs PoS -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="pow.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -267,6 +319,7 @@
                     </a>
                 </article>
 
+                <!-- 11 Jan 2026: Blockchain -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="blockchain.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -281,6 +334,7 @@
                     </a>
                 </article>
 
+                <!-- 10 Jan 2026: Lai Kep -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="laikep.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -295,6 +349,7 @@
                     </a>
                 </article>
 
+                <!-- 09 Jan 2026: Overtrading -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="otd.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -309,6 +364,7 @@
                     </a>
                 </article>
 
+                <!-- 08 Jan 2026: Probability Mindset -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="Probability-mindset.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -323,6 +379,7 @@
                     </a>
                 </article>
 
+                <!-- 07 Jan 2026: Trading Journal -->
                 <article class="filter-item phuong-phap bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="tradingjournal.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -337,6 +394,7 @@
                     </a>
                 </article>
                 
+                <!-- 07 Jan 2026: Venezuela Oil -->
                 <article class="filter-item dia-chinh-tri bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="canh-bac-dau-mo-venezuela.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -351,6 +409,7 @@
                     </a>
                 </article>
 
+                <!-- 06 Jan 2026: Trader vs Holder -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="tradevshold.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -365,6 +424,7 @@
                     </a>
                 </article>
 
+                <!-- 05 Jan 2026: Dunning Kruger -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="Dunning.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -379,6 +439,7 @@
                     </a>
                 </article>
                 
+                <!-- 05 Jan 2026: Trading Math -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="trading-la-toan-hoc.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -393,6 +454,7 @@
                     </a>
                 </article>
 
+                <!-- 04 Jan 2026: Risk Reward -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="rr.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -407,6 +469,7 @@
                     </a>
                 </article>
 
+                <!-- 03 Jan 2026: FUD & News -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="fudandnews.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -421,6 +484,7 @@
                     </a>
                 </article>
 
+                <!-- 02 Jan 2026: Stop Loss -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="sl.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -435,6 +499,7 @@
                     </a>
                 </article>
 
+                <!-- 29 Nov 2025: Fomo1 -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="fomo1.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -449,6 +514,7 @@
                     </a>
                 </article>
 
+                <!-- 29 Nov 2025: Chu Kỳ 4 Năm -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="chuky4nam.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -463,6 +529,7 @@
                     </a>
                 </article>
 
+                <!-- 29 Nov 2025: DCA -->
                 <article class="filter-item phuong-phap bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="dca.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -477,6 +544,7 @@
                     </a>
                 </article>
 
+                <!-- 29 Nov 2025: Scam -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="scam.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -491,6 +559,7 @@
                     </a>
                 </article>
 
+                <!-- 28 Nov 2025: Tokenomics -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="tokenomics.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -505,6 +574,7 @@
                     </a>
                 </article>
 
+                <!-- 25 Nov 2025: Price vs Market Cap -->
                 <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="price-vs-marketcap.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -519,6 +589,7 @@
                     </a>
                 </article>
 
+                <!-- 25 Nov 2025: Spot vs Futures -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="spot-vs-future.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -533,6 +604,7 @@
                     </a>
                 </article>
 
+                <!-- 25 Nov 2025: Stablecoin -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="stablecoin.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -547,6 +619,7 @@
                     </a>
                 </article>
 
+                <!-- 25 Nov 2025: Ví Crypto -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="vi-crypto.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -561,6 +634,7 @@
                     </a>
                 </article>
 
+                <!-- 25 Nov 2025: CEX vs DEX -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="cex-vs-dex.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
@@ -580,9 +654,11 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
                 <div class="lg:col-span-2 pr-8">
                     <div class="flex items-center gap-3 mb-8">
                         <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
@@ -603,6 +679,7 @@
                     </div>
                 </div>
 
+                <!-- Quick Links -->
                 <div>
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
@@ -613,6 +690,7 @@
                     </ul>
                 </div>
 
+                <!-- Contact -->
                 <div>
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
@@ -640,6 +718,7 @@
     </footer>
 
 
+    <!-- Filter Script -->
     <script>
         // Filter Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -680,3 +759,4 @@
 
 </body>
 </html>
+}
