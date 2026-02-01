@@ -132,6 +132,62 @@
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin: 1.5rem 0;
+            cursor: zoom-in; /* Change cursor to indicate zoomable */
+            transition: transform 0.2s;
+        }
+        .report-img:hover {
+            transform: scale(1.01);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -200,7 +256,7 @@
             
             <!-- Hero Image -->
             <div class="mb-8">
-                <img src="rp0126.webp" alt="Strategy Report Cover" class="w-full h-auto rounded-lg shadow-md border border-gray-200" onerror="this.src='https://placehold.co/1200x600?text=Strategy+Report+Feb+2026'">
+                <img src="rp0126.webp" alt="Strategy Report Cover" class="w-full h-auto rounded-lg shadow-md border border-gray-200 cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Strategy+Report+Feb+2026'">
             </div>
 
             <!-- 1. TÓM TẮT -->
@@ -442,7 +498,7 @@
                                 <li><strong>Khối lượng mua mới nhất:</strong> Trong tháng 12/2025, PBoC đã bổ sung thêm <strong>~30,000 ounces (tương đương 0.93 tấn)</strong> vào kho dự trữ. Con số này nâng tổng trữ lượng Vàng công bố chính thức của Trung Quốc lên mức kỷ lục <strong>2,306 tấn</strong>.</li>
                             </ul>
                             <!-- IMAGE 1 -->
-                            <img src="rp0126_1.png" alt="Biểu đồ trữ lượng vàng PBoC" class="report-img" onerror="this.src='https://placehold.co/800x400?text=PBoC+Gold+Reserves'">
+                            <img src="rp0126_1.png" alt="Biểu đồ trữ lượng vàng PBoC" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=PBoC+Gold+Reserves'">
                             
                             <p><strong>Con số "không chính thức”:</strong> Giới phân tích tài chính (bao gồm các ước tính từ Société Générale hay các chuyên gia thị trường kim loại quý) tin rằng con số thực tế nằm trong các quỹ đầu tư quốc gia (CIC) hoặc ngân hàng thương mại nhà nước có thể lên tới <strong>5,000 tấn</strong>, thậm chí cao hơn, nhằm chuẩn bị cho các kịch bản tách rời hoàn toàn khỏi hệ thống USD (Decoupling).</p>
                         </div>
@@ -485,7 +541,7 @@
                 <h4 class="font-bold mb-2">Báo cáo COT (Commitment of Traders) - Tín hiệu "Rũ bỏ" (Wash-out)</h4>
                 <p>Dữ liệu từ Sở giao dịch hàng hóa (COMEX) tính đến ngày 27/01/2026 cho thấy một đợt thanh lọc vị thế mạnh mẽ của dòng tiền đầu cơ:</p>
                 <!-- IMAGE 2 -->
-                <img src="rp0126_2.png" alt="Báo cáo COT" class="report-img" onerror="this.src='https://placehold.co/800x400?text=COT+Report'">
+                <img src="rp0126_2.png" alt="Báo cáo COT" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=COT+Report'">
                 
                 <ul class="list-disc pl-5 mb-6">
                     <li><strong>Hiện tượng Thanh lý vị thế mua (Long Liquidation):</strong>
@@ -506,7 +562,7 @@
                         <h4 class="font-bold">1. Hành động giá</h4>
                         <p>Trên khung ngày (1D), Vàng đã hình thành mô hình đảo chiều giảm sau khi chạm vào mốc kháng cự tâm lý 5.500 USD/oz. Động thái tương tự đã được xác nhận trên khung tuần (1W) với việc giá đóng cửa dưới mức 5.000 bằng cây nến rút râu trên tương đối dài.Điều này thể hiện hoặc (1) Có sự nhập cuộc đáng kể từ phía Seller ở các mốc kháng cự tâm lý mạnh như 5.000 và 5.500 hoặc (2) Động thái chốt lời của các tổ chức, quỹ đầu tư lớn (như đã phân tích tại mục 3.B)</p>
                         <!-- IMAGE 3 -->
-                        <img src="rp0126_3.png" alt="Biểu đồ Vàng 1D/1W" class="report-img" onerror="this.src='https://placehold.co/800x400?text=Gold+Chart+1D+1W'">
+                        <img src="rp0126_3.png" alt="Biểu đồ Vàng 1D/1W" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=Gold+Chart+1D+1W'">
                     </div>
                     <div>
                         <h4 class="font-bold">2. Chỉ báo động lượng</h4>
@@ -515,7 +571,7 @@
                             <li><strong>Phân kỳ (Divergence):</strong> Tín hiệu <strong>Phân kỳ Âm tam đoạn</strong> trên khung 1W báo hiệu lực mua đang suy yếu (Exhaustion).</li>
                         </ul>
                         <!-- IMAGE 4 -->
-                        <img src="rp0126_4.png" alt="Biểu đồ RSI Vàng" class="report-img" onerror="this.src='https://placehold.co/800x400?text=Gold+RSI+Divergence'">
+                        <img src="rp0126_4.png" alt="Biểu đồ RSI Vàng" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=Gold+RSI+Divergence'">
                     </div>
                     <div>
                         <h4 class="font-bold">3. Kết luận</h4>
@@ -576,19 +632,19 @@
                 <div class="space-y-4 mb-6">
                     <div>
                         <h4 class="font-bold mb-1">1. Hành động giá:</h4>
-                        <p><strong>Sự thất bại trong việc kiểm định mốc 2025 OPEN:</strong> Như đã đề cập trước đó (chèn link bài phân tích: https://t.me/nhatradehocspace/1779), việc bị từ chối khỏi mốc <strong>OPEN 2025</strong> tới tận 3 lần (2 lần cuối 2025 và 1 lần trong 1/2026) cho thấy BTC đang nhận mốc này như một Kháng cự mạnh. Kết hợp với hành vi đi ngang trong thời gian dài và động thái phá vỡ biên dưới của vùng đi ngang hợp lưu mốc 80K cho thấy tín hiệu phân phối rõ ràng trong trung hạn.</p>
+                        <p><strong>Sự thất bại trong việc kiểm định mốc 2025 OPEN:</strong> <a href="https://t.me/nhatradehocspace/1779" target="_blank" class="text-trade-blue hover:underline">Như đã đề cập trước đó</a>, việc bị từ chối khỏi mốc <strong>OPEN 2025</strong> tới tận 3 lần (2 lần cuối 2025 và 1 lần trong 1/2026) cho thấy BTC đang nhận mốc này như một Kháng cự mạnh. Kết hợp với hành vi đi ngang trong thời gian dài và động thái phá vỡ biên dưới của vùng đi ngang hợp lưu mốc 80K cho thấy tín hiệu phân phối rõ ràng trong trung hạn.</p>
                         <!-- IMAGE 5 -->
-                        <img src="rp0126_5.png" alt="Biểu đồ BTC Open 2025" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2025'">
+                        <img src="rp0126_5.png" alt="Biểu đồ BTC Open 2025" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2025'">
                         
                         <p><strong>Sự xác nhận từ chối giá từ 1W:</strong> Chúng tôi đánh giá việc BTC có hai cây nến tuần vào cuối tháng 1/2026 đóng cửa liên tiếp dưới mốc <strong>2026 OPEN</strong> là một tín hiệu tiêu cực trong trung hạn. Điều này thể hiện nỗ lực tạo một đà tăng tốt (bằng hành vi kiểm định lại 2025 OPEN như trước đó đã phân tích) trong 2026 trước đó của phe MUA hoàn toàn thất bại. Do đó, trong ngắn hạn, giá BTC sẽ chịu áp lực bán khi quay lại mốc 2026 OPEN này.</p>
                         <!-- IMAGE 6 -->
-                        <img src="rp0126_6.png" alt="Biểu đồ BTC Open 2026" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2026'">
+                        <img src="rp0126_6.png" alt="Biểu đồ BTC Open 2026" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2026'">
                     </div>
                     <div>
                         <h4 class="font-bold mb-1">2. Cấu trúc thị trường:</h4>
                         <p>Trên khung tuần (1W), BTC đã xác nhận cấu trúc giảm. Điều này cho thấy giá sẵn sàng tìm về những vùng hỗ trợ tốt hơn trước khi có bất kỳ động thái tích cực nào trong ít nhất là phần còn lại của Q1/2026.</p>
                         <!-- IMAGE 7 -->
-                        <img src="rp0126_7.png" alt="Biểu đồ Cấu trúc BTC" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Structure'">
+                        <img src="rp0126_7.png" alt="Biểu đồ Cấu trúc BTC" class="report-img" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=BTC+Structure'">
                         
                         <p><strong>Dự báo biên độ giảm (Downside Projection):</strong> Các mô hình định lượng của chúng tôi cảnh báo dư địa giảm giá vẫn còn mở rộng. Thị trường cần chiết khấu thêm khoảng <strong>15-20%</strong> từ mức giá hiện tại để kích hoạt thanh khoản từ những người mua dài hạn (Limit Bids).</p>
                         <p><strong>Vùng giá mục tiêu (Target Zone):</strong> Nếu áp dụng mức giảm 15% từ giá hiện tại ($78k), vùng hỗ trợ tiềm năng (Potential Bottom) sẽ nằm quanh khu vực <strong>$66,000 - $62,000</strong>. Đây là vùng cầu mạnh cuối cùng trong khung 1W trước khi BTC xác nhận đi vào downtrend.</p>
@@ -883,7 +939,45 @@
         </div>
     </footer>
 
+    <!-- Lightbox Structure -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-close">&times;</div>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Lightbox Script -->
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            // Add active class for animation if desired
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300); // Wait for transition
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape" && lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+        });
+    </script>
+
 </body>
 </html>
-
-
