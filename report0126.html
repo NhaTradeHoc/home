@@ -83,10 +83,10 @@
         }
 
         /* Status Badges */
-        .status-positive { background-color: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #166534; }
-        .status-negative { background-color: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #991b1b; }
-        .status-neutral { background-color: #f3f4f6; color: #374151; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #374151; }
-        .status-weak { background-color: #ffedd5; color: #9a3412; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #9a3412; }
+        .status-positive { background-color: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #166534; display: inline-block; text-align: center; white-space: nowrap; }
+        .status-negative { background-color: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #991b1b; display: inline-block; text-align: center; white-space: nowrap; }
+        .status-neutral { background-color: #f3f4f6; color: #374151; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #374151; display: inline-block; text-align: center; white-space: nowrap; }
+        .status-weak { background-color: #ffedd5; color: #9a3412; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #9a3412; display: inline-block; text-align: center; white-space: nowrap; }
 
         .section-title {
             display: flex;
@@ -196,7 +196,7 @@
     <!-- Main Content -->
     <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-10 relative z-20">
         
-        <div class="bg-white rounded-lg shadow-card p-8 md:p-12 mb-12">
+        <div class="bg-white rounded-lg shadow-card p-4 md:p-12 mb-12">
             
             <!-- Hero Image -->
             <div class="mb-8">
@@ -222,7 +222,10 @@
                 </p>
 
                 <h3 class="font-bold text-lg text-trade-blue uppercase mb-4 border-l-4 border-trade-blue pl-3">TỔNG QUAN HIỆU SUẤT THÁNG 1/2026</h3>
-                <div class="overflow-x-auto mb-8">
+                
+                <!-- RESPONSIVE TABLE: TỔNG QUAN HIỆU SUẤT -->
+                <!-- Desktop View: Table -->
+                <div class="hidden md:block overflow-x-auto mb-8">
                     <table class="w-full data-table border border-gray-200">
                         <thead>
                             <tr>
@@ -249,6 +252,34 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile View: Cards -->
+                <div class="md:hidden space-y-4 mb-8">
+                    <!-- Card 1: Vàng -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-trade-blue text-lg">Vàng (XAU/USD)</span>
+                            <span class="status-positive">TÍCH CỰC</span>
+                        </div>
+                        <p class="text-sm text-gray-700">"Đóng cửa quanh mức <strong>4,895.44 USD/oz</strong>, tăng <strong>+ 12.99 %</strong> so với đầu tháng. Dòng tiền trú ẩn tiếp tục tìm đến kim loại quý như một bến đỗ an toàn trước biến động địa chính trị."</p>
+                    </div>
+                    <!-- Card 2: BTC -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-trade-blue text-lg">Bitcoin (BTC/USD)</span>
+                            <span class="status-negative">TIÊU CỰC</span>
+                        </div>
+                        <p class="text-sm text-gray-700">"Giao dịch tại vùng giá <strong>78606 USD</strong>, sụt giảm <strong>- 10.17 %</strong>. Cấu trúc giá suy yếu đi kèm với áp lực bán tháo (Sell-off) từ các tổ chức đã xác nhận xu hướng giảm ngắn hạn."</p>
+                    </div>
+                    <!-- Card 3: BTC/XAU -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-trade-blue text-lg">Tỷ giá BTC/XAU</span>
+                            <span class="status-negative">SUY YẾU MẠNH</span>
+                        </div>
+                        <p class="text-sm text-gray-700">Việc tỷ lệ này giảm sâu xuống mức <strong>16</strong> so với mức <strong>20.2</strong> đầu tháng 1/2026 cho thấy chi phí cơ hội của việc nắm giữ Bitcoin so với Vàng đang tăng lên.</p>
+                    </div>
                 </div>
 
                 <!-- TRADINGVIEW CHART -->
@@ -534,7 +565,7 @@
                         <p><strong>ETF Outflows:</strong> Dữ liệu tháng 1 cho thấy áp lực bán tháo (Sell-off) từ các tổ chức. Khác với năm 2025, dòng vốn ETF hiện tại đang ghi nhận mức rút ròng (Net Outflow) hơn $800m từ đầu năm khi các quỹ tái cơ cấu danh mục để giảm thiểu rủi ro biến động.</p>
                         <!-- ETF CHART -->
                         <div class="my-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm w-full">
-                            <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/etfs/bitcoin-etf/spot-bitcoin-etf-total-net-flow/embed" title="Spot Bitcoin ETF Total Net Flows"></iframe>
+                            <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/etfs/bitcoin-etf/spot-bitcoin-etf-total-net-flow/embed" title="Spot Bitcoin ETF Total Net Flows" style="max-width: 100%;"></iframe>
                         </div>
                         <p><strong>Thanh khoản Stablecoin:</strong> Tốc độ in mới của USDT/USDC đã chững lại, cho thấy không có dòng tiền mới gia nhập thị trường để hấp thụ lực bán.</p>
                     </div>
@@ -545,7 +576,7 @@
                 <div class="space-y-4 mb-6">
                     <div>
                         <h4 class="font-bold mb-1">1. Hành động giá:</h4>
-                        <p><strong>Sự thất bại trong việc kiểm định mốc 2025 OPEN:</strong> Như đã đề cập trước đó, việc bị từ chối khỏi mốc <strong>OPEN 2025</strong> tới tận 3 lần (2 lần cuối 2025 và 1 lần trong 1/2026) cho thấy BTC đang nhận mốc này như một Kháng cự mạnh. Kết hợp với hành vi đi ngang trong thời gian dài và động thái phá vỡ biên dưới của vùng đi ngang hợp lưu mốc 80K cho thấy tín hiệu phân phối rõ ràng trong trung hạn.</p>
+                        <p><strong>Sự thất bại trong việc kiểm định mốc 2025 OPEN:</strong> Như đã đề cập trước đó (chèn link bài phân tích: https://t.me/nhatradehocspace/1779), việc bị từ chối khỏi mốc <strong>OPEN 2025</strong> tới tận 3 lần (2 lần cuối 2025 và 1 lần trong 1/2026) cho thấy BTC đang nhận mốc này như một Kháng cự mạnh. Kết hợp với hành vi đi ngang trong thời gian dài và động thái phá vỡ biên dưới của vùng đi ngang hợp lưu mốc 80K cho thấy tín hiệu phân phối rõ ràng trong trung hạn.</p>
                         <!-- IMAGE 5 -->
                         <img src="rp0126_5.png" alt="Biểu đồ BTC Open 2025" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2025'">
                         
@@ -607,7 +638,10 @@
 
                 <!-- A. MA TRẬN HÀNH ĐỘNG -->
                 <h3 class="font-bold text-lg text-trade-blue mb-4">A. MA TRẬN HÀNH ĐỘNG THÁNG 2/2026</h3>
-                <div class="overflow-x-auto mb-8">
+                
+                <!-- RESPONSIVE TABLE: MA TRẬN HÀNH ĐỘNG -->
+                <!-- Desktop View: Table -->
+                <div class="hidden md:block overflow-x-auto mb-8">
                     <table class="w-full data-table border border-gray-200">
                         <thead>
                             <tr>
@@ -655,6 +689,71 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <!-- Mobile View: Cards -->
+                <div class="md:hidden space-y-4 mb-8">
+                    <!-- Card 1: Vàng -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-start mb-2 border-b border-gray-200 pb-2">
+                            <div>
+                                <span class="block font-bold text-trade-blue text-lg">VÀNG (XAU)</span>
+                                <span class="text-xs text-gray-500">Xu hướng: Trung lập / Điều chỉnh</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="status-neutral mb-1">NẮM GIỮ (HOLD)</span>
+                                <span class="block text-xs italic text-gray-500">Không Mua mới</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Vùng Giá:</strong><br>
+                            - Cản: 5.400 - 5.500<br>
+                            - Hỗ trợ: 4590 – 4650<br>
+                            - Key: 4.329, 4210 – 4250</p>
+                            <p><strong>Hành động:</strong><br>
+                            - Holder: Giữ nguyên.<br>
+                            - Trader: Chờ giá chiết khấu về hỗ trợ. Tuyệt đối không Long đuổi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: BTC -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-start mb-2 border-b border-gray-200 pb-2">
+                            <div>
+                                <span class="block font-bold text-trade-blue text-lg">BITCOIN (BTC)</span>
+                                <span class="text-xs text-gray-500">Xu hướng: Giảm / Tiêu cực</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="status-negative mb-1">GIẢM TỶ TRỌNG</span>
+                                <span class="block text-xs italic text-gray-500">Underweight</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Vùng Giá:</strong><br>
+                            - Cản: 83k - 87.5k<br>
+                            - Hỗ trợ: 62k - 66k</p>
+                            <p><strong>Hành động:</strong><br>
+                            - Holder: Canh hồi bán giảm tỷ trọng.<br>
+                            - Cash: Đặt lệnh chờ mua rải vốn tại 62k - 66k.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Tiền mặt -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex justify-between items-start mb-2 border-b border-gray-200 pb-2">
+                            <div>
+                                <span class="block font-bold text-trade-blue text-lg">TIỀN MẶT</span>
+                                <span class="text-xs text-gray-500">Xu hướng: Tích cực</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="status-positive mb-1">TĂNG TỶ TRỌNG</span>
+                                <span class="block text-xs italic text-gray-500">Overweight</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p><strong>Hành động:</strong> Nâng tỷ trọng tiền mặt lên 30-50% để sẵn sàng "bắt đáy" khi thị trường hoảng loạn.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- B. KỊCH BẢN RỦI RO -->
@@ -786,3 +885,5 @@
 
 </body>
 </html>
+
+
