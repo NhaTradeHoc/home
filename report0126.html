@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Chiến Lược: Vàng & Bitcoin - Tháng 02/2026</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                        'report-bg': '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(0, 22, 124, 1)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Report Styles */
+        .report-header-gradient {
+            background: linear-gradient(135deg, #00167c 0%, #000d4a 100%);
+        }
+        
+        .placeholder-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            margin: 1.5rem 0;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+        .placeholder-box:hover {
+            border-color: #00167c;
+            background-color: #e2e8f0;
+            color: #00167c;
+        }
+
+        .data-table th {
+            background-color: #00167c;
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 0.75rem 1rem;
+            letter-spacing: 0.05em;
+        }
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Status Badges */
+        .status-positive { background-color: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #166534; }
+        .status-negative { background-color: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #991b1b; }
+        .status-neutral { background-color: #f3f4f6; color: #374151; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #374151; }
+        .status-weak { background-color: #ffedd5; color: #9a3412; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; border: 1px solid #9a3412; }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #00167c;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #ffdf2b;
+            text-transform: uppercase;
+        }
+        .section-number {
+            background-color: #00167c;
+            color: #ffdf2b;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+        }
+        
+        strong { color: #00167c; font-weight: 700; }
+        .highlight-quote {
+            border-left: 4px solid #ffdf2b;
+            background-color: #fffbeb;
+            padding: 1.5rem;
+            font-style: italic;
+            font-family: 'Merriweather', serif;
+            color: #00167c;
+            margin: 1.5rem 0;
+        }
+        
+        /* Image styling */
+        .report-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-report-bg text-gray-800 font-sans antialiased">
+
+    <!-- Navigation (Standardized) -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-trade-yellow border-b-2 border-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Report Header -->
+    <header class="report-header-gradient pt-32 pb-20 text-white relative overflow-hidden">
+        <!-- Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffdf2b 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end border-b border-white/20 pb-6 mb-6">
+                <div>
+                    <h2 class="text-trade-yellow font-bold uppercase tracking-widest text-sm mb-2">Monthly Strategy Report</h2>
+                    <h1 class="text-3xl md:text-5xl font-black uppercase leading-tight">BÁO CÁO CHIẾN LƯỢC:<br>VÀNG & BITCOIN</h1>
+                </div>
+                <div class="mt-4 md:mt-0 text-right">
+                    <p class="text-gray-300 text-sm">Kỳ báo cáo</p>
+                    <p class="font-bold text-lg">Review Tháng 01/2026 &<br>Triển vọng Tháng 02/2026</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Ngày phát hành</span>
+                    <span class="font-mono font-bold">01/02/2026</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Người thực hiện</span>
+                    <span class="font-bold">Nhà Trade Học</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">ID Báo cáo</span>
+                    <span class="font-mono text-white">STRAT-FEB2026</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Trọng tâm</span>
+                    <span class="font-bold text-trade-yellow">Risk-off / Phòng thủ / Bảo toàn vốn</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-10 relative z-20">
+        
+        <div class="bg-white rounded-lg shadow-card p-8 md:p-12 mb-12">
+            
+            <!-- Hero Image -->
+            <div class="mb-8">
+                <img src="rp0126.webp" alt="Strategy Report Cover" class="w-full h-auto rounded-lg shadow-md border border-gray-200" onerror="this.src='https://placehold.co/1200x600?text=Strategy+Report+Feb+2026'">
+            </div>
+
+            <!-- 1. TÓM TẮT -->
+            <section id="summary">
+                <div class="section-title">
+                    <span class="section-number">1</span>
+                    TÓM TẮT
+                </div>
+                
+                <div class="highlight-quote text-xl text-center font-bold">
+                    "Ưu tiên Phòng thủ: Thoát vị thế rủi ro, Nắm giữ tài sản giá trị"
+                </div>
+
+                <p class="mb-6 leading-relaxed">
+                    Tháng 1/2026 đã khép lại với sự xác nhận rõ ràng về xu hướng dòng tiền: <strong>Risk-off (Ngại rủi ro)</strong>. Sự sụt giảm của cặp tỷ giá <strong>BTC/XAU</strong> không chỉ phản ánh sự phân hóa hiệu suất đơn thuần, mà là tín hiệu cảnh báo về việc thanh khoản đang rút khỏi các lớp tài sản đầu cơ.
+                </p>
+                <p class="mb-8 leading-relaxed">
+                    Trong khi Vàng (XAU) hoàn thành xuất sắc vai trò trú ẩn, thì Bitcoin (BTC) đã đánh mất các mốc hỗ trợ kỹ thuật quan trọng, làm suy yếu nghiêm trọng cấu trúc tăng giá trung hạn. Bước sang tháng 2, chiến lược chủ đạo của chúng tôi là <strong>"Bảo vệ thành quả"</strong>, tập trung giảm thiểu rủi ro biến động (Volatility) trong danh mục.
+                </p>
+
+                <h3 class="font-bold text-lg text-trade-blue uppercase mb-4 border-l-4 border-trade-blue pl-3">TỔNG QUAN HIỆU SUẤT THÁNG 1/2026</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full data-table border border-gray-200">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4">Lớp tài sản</th>
+                                <th class="w-1/6">Trạng thái</th>
+                                <th>Dữ liệu thị trường</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Vàng (XAU/USD)</td>
+                                <td><span class="status-positive">TÍCH CỰC</span></td>
+                                <td>"Đóng cửa quanh mức <strong>4,895.44 USD/oz</strong>, tăng <strong>+ 12.99 %</strong> so với đầu tháng. Dòng tiền trú ẩn tiếp tục tìm đến kim loại quý như một bến đỗ an toàn trước biến động địa chính trị."</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Bitcoin (BTC/USD)</td>
+                                <td><span class="status-negative">TIÊU CỰC</span></td>
+                                <td>"Giao dịch tại vùng giá <strong>78606 USD</strong>, sụt giảm <strong>- 10.17 %</strong>. Cấu trúc giá suy yếu đi kèm với áp lực bán tháo (Sell-off) từ các tổ chức đã xác nhận xu hướng giảm ngắn hạn."</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Tỷ giá BTC/XAU</td>
+                                <td><span class="status-negative">SUY YẾU MẠNH</span></td>
+                                <td>Việc tỷ lệ này giảm sâu xuống mức <strong>16</strong> so với mức <strong>20.2</strong> đầu tháng 1/2026 cho thấy chi phí cơ hội của việc nắm giữ Bitcoin so với Vàng đang tăng lên. Nhà đầu tư đang chấp nhận bán BTC để chuyển sang các tài sản có tính ổn định cao hơn.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- TRADINGVIEW CHART -->
+                <div class="my-8 h-[500px] md:h-[600px] w-full rounded-lg overflow-hidden border border-gray-300 shadow-lg">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                      <div class="tradingview-widget-container__widget"></div>
+                      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener nofollow" target="_blank"><span class="blue-text">World markets</span></a> by TradingView</div>
+                      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                      {
+                      "lineWidth": 2,
+                      "lineType": 0,
+                      "chartType": "area",
+                      "fontColor": "rgb(106, 109, 120)",
+                      "gridLineColor": "rgba(242, 242, 242, 0.06)",
+                      "volumeUpColor": "rgba(34, 171, 148, 0.5)",
+                      "volumeDownColor": "rgba(247, 82, 95, 0.5)",
+                      "backgroundColor": "#0F0F0F",
+                      "widgetFontColor": "#DBDBDB",
+                      "upColor": "#22ab94",
+                      "downColor": "#f7525f",
+                      "borderUpColor": "#22ab94",
+                      "borderDownColor": "#f7525f",
+                      "wickUpColor": "#22ab94",
+                      "wickDownColor": "#f7525f",
+                      "colorTheme": "dark",
+                      "isTransparent": false,
+                      "locale": "en",
+                      "chartOnly": false,
+                      "scalePosition": "right",
+                      "scaleMode": "Normal",
+                      "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                      "valuesTracking": "1",
+                      "changeMode": "price-and-percent",
+                      "symbols": [
+                        [
+                          "OANDA:XAUUSD|1M"
+                        ],
+                        [
+                          "BINANCE:BTCUSDT|1M"
+                        ],
+                        [
+                          "TVC:BTCXAU|1M"
+                        ]
+                      ],
+                      "dateRanges": [
+                        "1m|30"
+                      ],
+                      "fontSize": "10",
+                      "headerFontSize": "medium",
+                      "autosize": true,
+                      "width": "100%",
+                      "height": "100%",
+                      "noTimeScale": false,
+                      "hideDateRanges": false,
+                      "hideMarketStatus": false,
+                      "hideSymbolLogo": false
+                    }
+                      </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+
+                <h3 class="font-bold text-lg text-trade-blue uppercase mt-8 mb-4 border-l-4 border-trade-blue pl-3">TRỌNG TÂM CHIẾN LƯỢC THÁNG 2/2026</h3>
+                <p class="mb-4">Chúng tôi điều chỉnh khuyến nghị đầu tư dựa trên nguyên tắc quản trị rủi ro chặt chẽ:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-6 rounded border-l-4 border-yellow-500">
+                        <h4 class="font-bold text-yellow-700 uppercase mb-2">ĐỐI VỚI VÀNG (GOLD)</h4>
+                        <span class="status-neutral mb-3 inline-block">[TRUNG LẬP - NEUTRAL]</span>
+                        <p class="text-sm mb-3"><strong>Luận điểm:</strong> Mặc dù xu hướng Tăng trong dài hạn vẫn chưa hoàn toàn bị phá vỡ, nhưng yếu tố kỹ thuật cho thấy Vàng đang ở trạng thái quá mua, có tín hiệu rõ ràng về động thái chốt lời trong ngắn hạn của dòng tiền lớn. Dư địa tăng ngay lập tức bị hạn chế đáng kể và rủi ro vì thế bị đẩy lên tương xứng.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> <strong>Nắm giữ (Hold)</strong> danh mục hiện có để hưởng lợi từ xu hướng dài hạn. Tuyệt đối <strong>không mở vị thế mua mới</strong> ở vùng giá hiện tại. Chờ đợi hành vi tái tích lũy (Re-accumulation) hoặc điều chỉnh lành mạnh về các vùng giá tốt hơn để trung bình giá (DCA).</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-700 uppercase mb-2">ĐỐI VỚI BITCOIN (BTC)</h4>
+                        <span class="status-negative mb-3 inline-block">[HẠ TỶ TRỌNG - UNDERWEIGHT]</span>
+                        <p class="text-sm mb-3"><strong>Luận điểm:</strong> Cấu trúc xu hướng ngắn hạn đã chuyển sang tiêu cực (Bearish) sau khi giá đánh mất các mốc hỗ trợ trọng yếu. Các mô hình định lượng của chúng tôi cảnh báo dư địa giảm giá vẫn còn mở rộng, dự kiến thị trường cần chiết khấu thêm khoảng <strong>10-15%</strong> từ mức giá hiện tại để tìm điểm cân bằng thanh khoản mới. Việc duy trì toàn bộ vị thế trong bối cảnh này sẽ chịu chi phí cơ hội lớn và rủi ro sụt giảm NAV.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> Ưu tiên chiến lược <strong>Phòng thủ chủ động</strong>. Khuyến nghị <strong>Bán giảm tỷ trọng</strong> các vị thế đang nắm giữ hoặc cắt lỗ dứt khoát các vị thế sử dụng đòn bẩy. Giữ tỷ trọng tiền mặt cao để sẵn sàng <strong>mua lại</strong> tại vùng giá chiết khấu sâu hơn. Mục tiêu là gia tăng số lượng BTC sở hữu (Increase Stack) với cùng một số vốn khi thị trường tạo đáy thành công.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. BỐI CẢNH VĨ MÔ -->
+            <section id="macro">
+                <div class="section-title">
+                    <span class="section-number">2</span>
+                    BỐI CẢNH VĨ MÔ
+                </div>
+                <div class="highlight-quote">
+                    "Hội tụ Rủi ro: Khi Bất ổn Địa chính trị lấn át Chính sách Tiền tệ"
+                </div>
+                <p class="mb-6">Động lực thị trường tháng 1/2026 không còn đơn thuần được dẫn dắt bởi các chỉ số kinh tế, mà đã bị chi phối mạnh mẽ bởi các sự kiện mang tính bước ngoặt về địa chính trị và rủi ro thể chế tại Hoa Kỳ. Chính môi trường này đã tạo ra sự phân cực dòng tiền: <strong>Tìm kiếm sự an toàn tuyệt đối (Vàng)</strong> và tháo chạy khỏi tài sản biến động (Bitcoin).</p>
+
+                <!-- A. ĐỊA CHÍNH TRỊ -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-xl text-trade-blue mb-3">A. ĐỊA CHÍNH TRỊ - YẾU TỐ DẪN DẮT CHÍNH</h3>
+                    <p class="italic text-gray-600 mb-4 bg-gray-100 p-2 rounded">Tác động: Bullish mạnh cho Vàng (Risk Premium tăng vọt) - Bearish cho BTC (Risk-off).</p>
+                    <p class="mb-3">Thế giới đang bước vào giai đoạn phân mảnh sâu sắc với hàng loạt các điểm nóng bùng phát cùng lúc, kích hoạt tâm lý "Flight to Safety" (Tháo chạy vào nơi trú ẩn) mạnh mẽ nhất trong 5 năm qua.</p>
+                    
+                    <ul class="list-disc pl-5 space-y-3 mb-4">
+                        <li><strong>Sự kiện Vùng Vịnh & Mỹ Latinh:</strong> Việc Mỹ bắt giữ Tổng thống Venezuela và các dấu hiệu manh nha can thiệp quân sự vào Iran trước làn sóng biểu tình đã đẩy rủi ro chiến tranh lên mức báo động đỏ. Đây không còn là rủi ro khu vực mà đe dọa trực tiếp đến chuỗi cung ứng năng lượng toàn cầu.</li>
+                        <li><strong>Biến động chính trị tại Châu Á:</strong>
+                            <ul class="list-none pl-4 mt-2 space-y-2 border-l-2 border-trade-yellow">
+                                <li><strong>Trung Quốc:</strong> <em>Cuộc "Thay máu" Thượng tầng và Mưu đồ Chiến lược</em> - Sự kiện thanh trừng hàng loạt các quan chức quân đội cấp cao (thuộc Quân ủy Trung ương và các vị trí liên quan đến Ủy ban Thường vụ Bộ Chính trị) không đơn thuần là một chiến dịch chống tham nhũng, mà mang hàm ý chiến lược sâu xa:
+                                    <br><em>Bất ổn nội bộ và rủi ro "Xuất khẩu khủng hoảng":</em> Việc loại bỏ các nhân vật chóp bu cho thấy những rạn nứt nghiêm trọng trong lòng giới tinh hoa của nền kinh tế lớn thứ hai thế giới. Giới quan sát lo ngại rằng Bắc Kinh có thể thực hiện các quyết sách đối ngoại cứng rắn, thậm chí là phiêu lưu quân sự (như một chiêu bài "Dương Đông kích Tây") nhằm khơi dậy chủ nghĩa dân tộc cực đoan, chuyển hướng sự chú ý của dư luận khỏi các vấn đề kinh tế và đấu đá nội bộ.
+                                    <br><em>Củng cố quyền lực cho kịch bản Đài Loan:</em> Sâu xa hơn, giới phân tích quân sự đánh giá đây là đợt "chỉnh đốn đội hình" (Rectification) quy mô lớn nhất trong thập kỷ qua. Việc loại bỏ những quan chức "bất tuân" hoặc tham nhũng là bước đi bắt buộc để <strong>tập trung tuyệt đối quyền lực</strong> về tay Chủ tịch Tập Cận Bình và Quân ủy Trung ương.
+                                    <br><em>Thông điệp cho PLA:</em> Động thái này gửi đi tín hiệu đanh thép về việc siết chặt kỷ luật quân đội, đảm bảo bộ máy Quân Giải phóng Nhân dân Trung Quốc (PLA) phải vận hành trơn tru và trung thành tuyệt đối khi có lệnh. Điều này làm gia tăng đáng kể xác suất của các chiến dịch quân sự thực tế quanh eo biển Đài Loan trong tương lai gần, khi bộ máy chỉ huy đã được "làm sạch" để phục vụ cho mục tiêu thống nhất.
+                                </li>
+                                <li><strong>Căng thẳng Nhật - Trung:</strong> <em>Sự va chạm giữa "Lằn ranh đỏ" và "Bóng ma quá khứ"</em> - Quan hệ giữa hai nền kinh tế lớn nhất Châu Á đang rơi vào trạng thái đóng băng tồi tệ nhất trong nhiều thập kỷ, bị kích hoạt bởi hai yếu tố nhạy cảm:
+                                    <br><em>Vấn đề Đài Loan:</em> Những phát ngôn cứng rắn gần đây từ phía Tokyo, ám chỉ việc "an ninh của Đài Loan liên quan mật thiết đến sự tồn vong của Nhật Bản," đã chạm trực tiếp vào "lằn ranh đỏ" chủ quyền của Bắc Kinh. Trung Quốc đã đáp trả bằng các cuộc tập trận bắn đạn thật quy mô lớn xung quanh eo biển, xem đây là hành động khiêu khích không thể chấp nhận.
+                                    <br><em>Vũ khí hóa ký ức lịch sử (Weaponization of History):</em> Nguy hiểm hơn, làn sóng tuyên truyền trong nước tại Trung Quốc đang khơi dậy mạnh mẽ những ký ức đau thương về Thế chiến II để kích động chủ nghĩa dân tộc. Các phương tiện truyền thông liên tục nhắc lại tội ác của quân đội Nhật Bản, đặc biệt là sự kiện <strong>Thảm sát Nam Kinh (1937)</strong>, như một lời cảnh báo về "sự trỗi dậy của chủ nghĩa quân phiệt Nhật Bản".
+                                    <br><em>Tác động đầu tư:</em> Khi hận thù lịch sử bị lôi vào bàn cờ chính trị, khả năng kiểm soát xung đột bằng ngoại giao giảm đi đáng kể. Rủi ro về một cuộc đụng độ vật lý (kinetic conflict) hoặc các lệnh trừng phạt trả đũa kinh tế đang thúc đẩy dòng vốn tháo chạy khỏi thị trường Đông Á để tìm về hầm trú ẩn là Vàng.
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Vũ khí hóa Thuế quan: Từ "Bảo hộ Thương mại" sang "Trừng phạt Chính trị"</strong> - Chính sách thuế quan của Mỹ trong tháng 1/2026 đã đánh dấu bước chuyển mình nguy hiểm: Không còn đơn thuần là bảo vệ việc làm trong nước, thuế quan đang được sử dụng như một đòn bẩy để ép buộc các đối thủ và cả đồng minh phải tuân thủ trật tự địa chính trị mới.
+                            <br><em>Nhắm vào các lĩnh vực chiến lược:</em> Thay vì áp thuế đại trà, Washington đang tập trung tấn công vào "yết hầu" công nghệ của đối phương. Các mức thuế trừng phạt mới áp lên các sản phẩm Xe điện (EV), pin năng lượng và bán dẫn thế hệ cũ (Legacy Chips) từ Trung Quốc không dựa trên cơ sở kinh tế (giá rẻ), mà dựa trên lập luận <strong>"An ninh Quốc gia" (National Security)</strong>. Mục tiêu là ngăn chặn sự thống trị của Bắc Kinh trong chuỗi cung ứng công nghệ tương lai.
+                            <br><em>Cơ chế "Quy tắc Xuất xứ" (Rule of Origin) bị siết chặt:</em> Mỹ đang mở rộng phạm vi trừng phạt sang cả các quốc gia trung gian (như Mexico hoặc một số nước Đông Nam Á, bao gồm cả Việt Nam) nếu phát hiện hàm lượng giá trị gia tăng từ Trung Quốc vượt ngưỡng cho phép. Động thái này nhằm bịt lỗ hổng "làm sạch xuất xứ" (transshipment), ép buộc các chuỗi cung ứng toàn cầu phải chọn phe: <strong>"Rời bỏ Trung Quốc hoặc chịu thuế trừng phạt."</strong>
+                            <br><em>Tác động kép lên thị trường:</em>
+                            <br>- <strong>Lạm phát chi phí đẩy (Cost-push Inflation):</strong> Thuế quan làm tăng chi phí nhập khẩu đầu vào, khiến lạm phát tại Mỹ khó giảm sâu. Điều này trói tay FED trong việc hạ lãi suất -> <strong>Tiêu cực cho Bitcoin.</strong>
+                            <br>- <strong>Sự phân mảnh thương mại:</strong> Rủi ro đứt gãy chuỗi cung ứng (Supply Chain Decoupling) khiến các dòng vốn quốc tế lo ngại về sự suy thoái kinh tế toàn cầu -> Thúc đẩy nhu cầu nắm giữ <strong>Vàng vật chất</strong> như bảo hiểm cuối cùng.
+                            <br><em>Hệ quả đầu tư:</em> Dòng tiền thông minh (Smart Money) đang định giá lại rủi ro toàn cầu. Vàng không chỉ tăng do lạm phát, mà tăng do <strong>"Nỗi sợ hãi địa chính trị"</strong>. Ngược lại, BTC - vốn nhạy cảm với sự ổn định vĩ mô - bị bán tháo khi nhà đầu tư ưu tiên bảo toàn vốn (Capital Preservation).
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- B. CHÍNH SÁCH TIỀN TỆ -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-xl text-trade-blue mb-3">B. CHÍNH SÁCH TIỀN TỆ & TÍNH ĐỘC LẬP CỦA FED</h3>
+                    <p class="italic text-gray-600 mb-4 bg-gray-100 p-2 rounded">Tác động: Gia tăng sự bất định (Uncertainty) - Tiêu cực cho tài sản rủi ro.</p>
+                    <p class="mb-3">Rủi ro lớn nhất hiện nay không chỉ nằm ở mức lãi suất, mà nằm ở <strong>tính toàn vẹn và độc lập của Cục Dự trữ Liên bang Mỹ (FED).</strong></p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Kết quả FOMC (29/01/2026):</strong> Đúng như dự báo, FED giữ nguyên lãi suất. Biểu đồ Dot-plot bảo lưu quan điểm diều hâu (Hawkish): Chỉ cắt giảm 2 lần trong năm 2026 và đợt cắt giảm đầu tiên nhiều khả năng phải đợi đến tháng 6/2026. Môi trường lãi suất cao kéo dài tiếp tục bào mòn sức hấp dẫn của các tài sản không sinh lãi suất (non-yielding assets) trong ngắn hạn.</li>
+                        <li><strong>Khủng hoảng thể chế (Institutional Risk):</strong>
+                            <br>- Việc Chủ tịch J. Powell bị Bộ Tư pháp điều tra hình sự (liên quan đến chi phí cải tạo trụ sở) dưới áp lực của phe thân cận chính quyền Trump là một tiền lệ nguy hiểm chưa từng có trong lịch sử và làm xói mòn niềm tin vào sự độc lập của chính sách tiền tệ.
+                            <br>- Tổng thống Trump liên tục gây sức ép hạ lãi suất và việc ông đề cử Kevin Warsh làm Chủ tịch FED mới trước khi nhiệm kỳ ông Powell kết thúc (tháng 5/2026) đã gây ra sự xáo trộn tâm lý nghiêm trọng.
+                        </li>
+                    </ul>
+                    <p class="mt-3"><strong>Nhận định:</strong> Sự can thiệp chính trị vào FED tạo ra rủi ro dài hạn cho đồng USD. Tuy nhiên, trong ngắn hạn, sự hỗn loạn này khiến các quỹ đầu tư e ngại giải ngân vào các tài sản rủi ro như BTC cho đến khi "bức tranh quyền lực" tại FED rõ ràng hơn.</p>
+                </div>
+
+                <!-- C. XU HƯỚNG DỰ TRỮ -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-xl text-trade-blue mb-3">C. XU HƯỚNG DỰ TRỮ CỦA CÁC NHTW</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">1. Chiến lược giảm phụ thuộc vào Đô la (De-dollarization)</h4>
+                            <p>Động thái này không còn là lý thuyết mà đã được lượng hóa rõ ràng qua sự thay đổi cấu trúc bảng cân đối kế toán của các NHTW toàn cầu:</p>
+                            <ul class="list-disc pl-5">
+                                <li><strong>Sự suy giảm của đồng bạc xanh:</strong> Dữ liệu từ IMF COFER cho thấy tỷ trọng USD trong dự trữ ngoại hối toàn cầu đã giảm liên tục từ mức <strong>~59%</strong> (2020) xuống còn khoảng <strong>~57.8%</strong> hiện nay. Mặc dù con số % giảm có vẻ nhỏ, nhưng xét trên quy mô hàng nghìn tỷ USD dự trữ toàn cầu, đây là một sự dịch chuyển dòng vốn khổng lồ.</li>
+                                <li><strong>Sự trỗi dậy của Vàng:</strong> Đối trọng lại, tỷ trọng Vàng trong dự trữ (loại trừ Mỹ) đã có bước nhảy vọt ấn tượng. Dữ liệu ước tính từ Hội đồng Vàng Thế giới (WGC) cho thấy tỷ trọng này đã tăng từ mức trung bình <strong>~10%</strong> (giai đoạn 2018-2020) lên tiệm cận mức <strong>~16-18%</strong> ở thời điểm hiện tại.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">2. Động thái của PBoC (Ngân hàng Nhân dân Trung Quốc)</h4>
+                            <p>PBoC tiếp tục khẳng định vị thế là "cá mập" lớn nhất trên thị trường vàng vật chất với chiến lược tích sản bền bỉ:</p>
+                            <ul class="list-disc pl-5">
+                                <li><strong>Chuỗi mua ròng:</strong> Sau đợt tạm dừng ngắn hạn vào giữa năm 2024, PBoC đã kích hoạt lại chiến dịch gom hàng. Tính đến hết tháng 12/2025, PBoC đã ghi nhận tháng thứ <strong>14 liên tiếp</strong> mua ròng.</li>
+                                <li><strong>Khối lượng mua mới nhất:</strong> Trong tháng 12/2025, PBoC đã bổ sung thêm <strong>~30,000 ounces (tương đương 0.93 tấn)</strong> vào kho dự trữ. Con số này nâng tổng trữ lượng Vàng công bố chính thức của Trung Quốc lên mức kỷ lục <strong>2,306 tấn</strong>.</li>
+                            </ul>
+                            <!-- IMAGE 1 -->
+                            <img src="rp0126_1.png" alt="Biểu đồ trữ lượng vàng PBoC" class="report-img" onerror="this.src='https://placehold.co/800x400?text=PBoC+Gold+Reserves'">
+                            
+                            <p><strong>Con số "không chính thức”:</strong> Giới phân tích tài chính (bao gồm các ước tính từ Société Générale hay các chuyên gia thị trường kim loại quý) tin rằng con số thực tế nằm trong các quỹ đầu tư quốc gia (CIC) hoặc ngân hàng thương mại nhà nước có thể lên tới <strong>5,000 tấn</strong>, thậm chí cao hơn, nhằm chuẩn bị cho các kịch bản tách rời hoàn toàn khỏi hệ thống USD (Decoupling).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PHÂN TÍCH VÀNG -->
+            <section id="gold-analysis">
+                <div class="section-title">
+                    <span class="section-number">3</span>
+                    PHÂN TÍCH CHI TIẾT LỚP TÀI SẢN: VÀNG (XAU/USD)
+                </div>
+                <div class="bg-yellow-50 p-4 border border-yellow-200 rounded mb-6 flex items-center">
+                    <span class="font-bold text-yellow-800 mr-2">Khuyến nghị:</span>
+                    <span class="status-neutral">TRUNG LẬP (NEUTRAL / HOLD)</span>
+                </div>
+
+                <!-- A. Cơ bản -->
+                <h3 class="font-bold text-lg text-trade-blue mb-2">A. PHÂN TÍCH CƠ BẢN</h3>
+                <p class="mb-4">Đà tăng ấn tượng trong tháng 1 không chỉ dựa trên sự sợ hãi nhất thời, mà được củng cố bởi nền tảng cung cầu vật chất vững chắc.</p>
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <h4 class="font-bold mb-1">1. Lực cầu Vật chất "Không nhạy cảm về giá" (Inelastic Physical Demand)</h4>
+                        <p>Khác với các quỹ ETF hay nhà đầu cơ cá nhân thường giao dịch qua các hợp đồng tương lai/quyền chọn (Paper Gold) và dễ dàng bán ra khi giá biến động, lực mua từ các Ngân hàng Trung ương (đại diện là PBoC) là <strong>nhu cầu thực tế về vàng thỏi (Physical Bullion).</strong></p>
+                        <p class="text-sm italic"><strong>Bản chất:</strong> Đây là hoạt động mua để nắm giữ vĩnh viễn (Buy-and-Hold) và yêu cầu giao nhận vật lý (Physical Delivery) về kho dự trữ quốc gia, nhằm loại bỏ hoàn toàn rủi ro đối tác (Counterparty Risk) – điều mà các hợp đồng phái sinh thanh toán bằng tiền mặt không thể làm được.</p>
+                        <p class="text-sm italic"><strong>Tác động:</strong> Lực cầu này rút bớt nguồn cung trôi nổi (Free-float) trên thị trường, tạo ra sự khan hiếm thực sự và thiết lập một mặt bằng giá sàn mới cao hơn.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1">2. Phí bảo hiểm "Rủi ro đuôi" (Tail Risk Hedging):</h4>
+                        <p>Tại sao các quỹ đầu tư lớn vẫn phải duy trì tỷ trọng Vàng dù giá đã cao? Câu trả lời nằm ở việc phòng vệ trước các <strong>Sự kiện Rủi ro Đuôi</strong>.</p>
+                        <p class="text-sm italic"><strong>Định nghĩa:</strong> Đây là các sự kiện có xác suất xảy ra thấp (nằm ở phần đuôi của biểu đồ phân phối xác suất) nhưng nếu xảy ra sẽ gây thiệt hại thảm khốc cho danh mục đầu tư (3-sigma events).</p>
+                        <p class="text-sm italic"><strong>Bối cảnh hiện tại:</strong> Trong tháng 2/2026, "Rủi ro đuôi" mà giới tài chính lo ngại nhất không phải là suy thoái, mà là: <strong>(1)</strong> Sự vỡ trận của thị trường trái phiếu Mỹ do mất niềm tin vào FED, hoặc <strong>(2)</strong> Xung đột quân sự trực diện (Kinetic War) giữa các cường quốc hạt nhân tại Đông Á.</p>
+                        <p class="text-sm italic"><strong>Vai trò của Vàng:</strong> Trong kịch bản đó, mối tương quan giữa Cổ phiếu và Trái phiếu sẽ cùng tiệm cận 1 (cùng giảm), chỉ có Vàng vật chất là tài sản duy nhất có khả năng bảo toàn giá trị. Do đó, họ buộc phải mua Vàng như một khoản "phí bảo hiểm" bắt buộc, bất chấp mức định giá hiện tại.</p>
+                    </div>
+                </div>
+
+                <!-- B. Sentiment -->
+                <h3 class="font-bold text-lg text-trade-blue mb-2">B. DỮ LIỆU TÂM LÝ & DÒNG TIỀN (SENTIMENT & POSITIONING)</h3>
+                <h4 class="font-bold mb-2">Báo cáo COT (Commitment of Traders) - Tín hiệu "Rũ bỏ" (Wash-out)</h4>
+                <p>Dữ liệu từ Sở giao dịch hàng hóa (COMEX) tính đến ngày 27/01/2026 cho thấy một đợt thanh lọc vị thế mạnh mẽ của dòng tiền đầu cơ:</p>
+                <!-- IMAGE 2 -->
+                <img src="rp0126_2.png" alt="Báo cáo COT" class="report-img" onerror="this.src='https://placehold.co/800x400?text=COT+Report'">
+                
+                <ul class="list-disc pl-5 mb-6">
+                    <li><strong>Hiện tượng Thanh lý vị thế mua (Long Liquidation):</strong>
+                        <br>Nhóm Non-Commercial (Các quỹ đầu cơ) đã đóng bớt <strong>43,672</strong> hợp đồng Mua (Long) chỉ trong một tuần.
+                        <br>Đồng thời, Khối lượng mở (Open Interest) toàn thị trường sụt giảm mạnh <strong>39,541</strong> hợp đồng.
+                        <br><em>Ý nghĩa:</em> Đây là dấu hiệu điển hình của hành động chốt lời (Profit Taking) sau đợt tăng nóng, dòng tiền đang tạm thời rút ra ngoài (Cash out) thay vì mở vị thế bán khống mới.
+                    </li>
+                    <li><strong>Vị thế ròng (Net Positioning):</strong>
+                        <br>Dù áp lực chốt lời mạnh, vị thế Mua ròng (Net Long) vẫn duy trì ở mức cao <strong>205,396</strong> hợp đồng.
+                        <br><em>Góc nhìn:</em> Con số này vẫn nằm trên ngưỡng tâm lý 200k, cho thấy xu hướng dài hạn vẫn được các quỹ ủng hộ. Tuy nhiên, việc mất đi động lượng mua mới xác nhận rằng Vàng cần một nhịp nghỉ trong tháng 2 để tái tích lũy lại lượng hàng vừa bị bán ra.
+                    </li>
+                </ul>
+
+                <!-- C. Kỹ thuật -->
+                <h3 class="font-bold text-lg text-trade-blue mb-2">C. PHÂN TÍCH KỸ THUẬT</h3>
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <h4 class="font-bold">1. Hành động giá</h4>
+                        <p>Trên khung ngày (1D), Vàng đã hình thành mô hình đảo chiều giảm sau khi chạm vào mốc kháng cự tâm lý 5.500 USD/oz. Động thái tương tự đã được xác nhận trên khung tuần (1W) với việc giá đóng cửa dưới mức 5.000 bằng cây nến rút râu trên tương đối dài.Điều này thể hiện hoặc (1) Có sự nhập cuộc đáng kể từ phía Seller ở các mốc kháng cự tâm lý mạnh như 5.000 và 5.500 hoặc (2) Động thái chốt lời của các tổ chức, quỹ đầu tư lớn (như đã phân tích tại mục 3.B)</p>
+                        <!-- IMAGE 3 -->
+                        <img src="rp0126_3.png" alt="Biểu đồ Vàng 1D/1W" class="report-img" onerror="this.src='https://placehold.co/800x400?text=Gold+Chart+1D+1W'">
+                    </div>
+                    <div>
+                        <h4 class="font-bold">2. Chỉ báo động lượng</h4>
+                        <ul class="list-disc pl-5">
+                            <li><strong>RSI 21 (1W):</strong> Đang dao động ở mốc 74.57, tiệm cận mức Quá mua cực đại.</li>
+                            <li><strong>Phân kỳ (Divergence):</strong> Tín hiệu <strong>Phân kỳ Âm tam đoạn</strong> trên khung 1W báo hiệu lực mua đang suy yếu (Exhaustion).</li>
+                        </ul>
+                        <!-- IMAGE 4 -->
+                        <img src="rp0126_4.png" alt="Biểu đồ RSI Vàng" class="report-img" onerror="this.src='https://placehold.co/800x400?text=Gold+RSI+Divergence'">
+                    </div>
+                    <div>
+                        <h4 class="font-bold">3. Kết luận</h4>
+                        <p>Dữ liệu kỹ thuật ủng hộ đà giảm trong ngắn hạn của giá về các vùng quan trọng như 4590 – 4650 (LONG GAP), 4329 (OPEN 2026) và 4210 – 4250 (Vùng nguyên nhân dẫn của cú tăng lên ~5600) tuy nhiên vẫn chưa hoàn toàn phá vỡ cấu trúc Tăng trên các khung thời gian lớn như ngày, tuần, tháng. Do đó, Vàng vẫn còn khả năng tăng trưởng hoặc ít nhất là kiểm định lại vùng 5.400 – 5.500, nơi có dấu hiệu chốt lời của dòng tiền lớn trong quá khứ.</p>
+                    </div>
+                </div>
+
+                <!-- D. Action Plan -->
+                <div class="bg-blue-50 p-6 rounded border-t-4 border-trade-blue">
+                    <h3 class="font-bold text-lg text-trade-blue mb-2">D. CHIẾN LƯỢC HÀNH ĐỘNG (ACTION PLAN)</h3>
+                    <p class="mb-4">Dựa trên sự đối lập giữa Nhu cầu vật chất (Tốt dài hạn) và Vị thế đầu cơ quá mức (Rủi ro ngắn hạn), chúng tôi khuyến nghị:</p>
+                    <p class="mb-2"><strong>Chiến lược:</strong> <span class="status-neutral">TRUNG LẬP / QUAN SÁT</span>.</p>
+                    <p class="mb-2"><strong>Hành động cụ thể:</strong></p>
+                    <ul class="list-disc pl-5">
+                        <li class="mb-1"><strong>Với Holder:</strong> Tiếp tục nắm giữ phần Vàng vật chất như bảo hiểm dài hạn.</li>
+                        <li><strong>Với Trader:</strong> Không mở vị thế Mua mới (Long) khi Net Long COT đang ở mức trên 200.000 hợp đồng. Kiên nhẫn chờ đợi nhịp "rũ bỏ" (Wash-out) đưa chỉ số RSI 21 (1W) về tiệm cận 50 hoặc giá kiểm định lại mốc 4329 (OPEN 2026) và có phản ứng giá phù hợp.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 4. PHÂN TÍCH BITCOIN -->
+            <section id="btc-analysis">
+                <div class="section-title">
+                    <span class="section-number">4</span>
+                    PHÂN TÍCH CHI TIẾT LỚP TÀI SẢN: BITCOIN (BTC/USD)
+                </div>
+                <div class="bg-red-50 p-4 border border-red-200 rounded mb-6 flex items-center">
+                    <span class="font-bold text-red-800 mr-2">Khuyến nghị:</span>
+                    <span class="status-negative">HẠ TỶ TRỌNG (UNDERWEIGHT)</span>
+                </div>
+
+                <!-- A. Cơ bản -->
+                <h3 class="font-bold text-lg text-trade-blue mb-2">A. PHÂN TÍCH CƠ BẢN</h3>
+                <p class="mb-4">Tháng 1 đã chứng kiến sự gãy đổ của luận điểm "Bitcoin là vàng kỹ thuật số" trong ngắn hạn. Thay vào đó, BTC đang hành xử đúng bản chất của một tài sản rủi ro (Risk Asset) có độ nhạy cao với thanh khoản.</p>
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <h4 class="font-bold mb-1">1. Cú sốc từ Chính sách Tiền tệ:</h4>
+                        <p>Việc FED giữ nguyên quan điểm diều hâu trong cuộc họp ngày 29/01 và trì hoãn kỳ vọng cắt giảm lãi suất sang tháng 6/2026 là đòn giáng mạnh vào định giá của các tài sản không sinh lãi như Bitcoin. Lạm phát chi phí đẩy do thuế quan đang trói tay FED, khiến môi trường lãi suất thực duy trì ở mức dương. Trong bối cảnh Trái phiếu Mỹ ngắn hạn mang lại lợi suất phi rủi ro hấp dẫn, dòng tiền tổ chức đang rút khỏi thị trường Crypto để trú ẩn vào Tiền mặt và Trái phiếu (Cash & Bonds).</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1">2. Bóng ma "Yen Carry Trade Unwind":</h4>
+                        <p>Đây là "thiên nga đen" về thanh khoản. Sự căng thẳng địa chính trị Nhật - Trung và các tín hiệu bình thường hóa chính sách (tăng lãi suất) sau nhiều thập kỷ từ Ngân hàng Trung ương Nhật Bản (BoJ) đã khiến đồng Yên biến động mạnh.</p>
+                        <p class="text-sm italic"><strong>Cơ chế tác động:</strong> Các quỹ đầu cơ trước đây vay đồng Yên lãi suất thấp để mua Bitcoin (Carry Trade) đang đối mặt với áp lực phải đóng vị thế (Unwind) để trả nợ khi chi phí vốn gia tăng hoặc do yêu cầu gọi ký quỹ. Hành động này tạo ra áp lực bán tháo cưỡng bức (Forced Selling) trên thị trường Crypto, bất chấp các yếu tố nội tại của Bitcoin có tốt hay không.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1">3. Sự quay lưng của dòng tiền Tổ chức:</h4>
+                        <p><strong>ETF Outflows:</strong> Dữ liệu tháng 1 cho thấy áp lực bán tháo (Sell-off) từ các tổ chức. Khác với năm 2025, dòng vốn ETF hiện tại đang ghi nhận mức rút ròng (Net Outflow) hơn $800m từ đầu năm khi các quỹ tái cơ cấu danh mục để giảm thiểu rủi ro biến động.</p>
+                        <!-- ETF CHART -->
+                        <div class="my-6 rounded-lg overflow-hidden border border-gray-200 shadow-sm w-full">
+                            <iframe width="100%" height="420" frameborder="0" src="https://www.theblock.co/data/etfs/bitcoin-etf/spot-bitcoin-etf-total-net-flow/embed" title="Spot Bitcoin ETF Total Net Flows"></iframe>
+                        </div>
+                        <p><strong>Thanh khoản Stablecoin:</strong> Tốc độ in mới của USDT/USDC đã chững lại, cho thấy không có dòng tiền mới gia nhập thị trường để hấp thụ lực bán.</p>
+                    </div>
+                </div>
+
+                <!-- B. Kỹ thuật -->
+                <h3 class="font-bold text-lg text-trade-blue mb-2">B. PHÂN TÍCH KỸ THUẬT</h3>
+                <div class="space-y-4 mb-6">
+                    <div>
+                        <h4 class="font-bold mb-1">1. Hành động giá:</h4>
+                        <p><strong>Sự thất bại trong việc kiểm định mốc 2025 OPEN:</strong> Như đã đề cập trước đó, việc bị từ chối khỏi mốc <strong>OPEN 2025</strong> tới tận 3 lần (2 lần cuối 2025 và 1 lần trong 1/2026) cho thấy BTC đang nhận mốc này như một Kháng cự mạnh. Kết hợp với hành vi đi ngang trong thời gian dài và động thái phá vỡ biên dưới của vùng đi ngang hợp lưu mốc 80K cho thấy tín hiệu phân phối rõ ràng trong trung hạn.</p>
+                        <!-- IMAGE 5 -->
+                        <img src="rp0126_5.png" alt="Biểu đồ BTC Open 2025" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2025'">
+                        
+                        <p><strong>Sự xác nhận từ chối giá từ 1W:</strong> Chúng tôi đánh giá việc BTC có hai cây nến tuần vào cuối tháng 1/2026 đóng cửa liên tiếp dưới mốc <strong>2026 OPEN</strong> là một tín hiệu tiêu cực trong trung hạn. Điều này thể hiện nỗ lực tạo một đà tăng tốt (bằng hành vi kiểm định lại 2025 OPEN như trước đó đã phân tích) trong 2026 trước đó của phe MUA hoàn toàn thất bại. Do đó, trong ngắn hạn, giá BTC sẽ chịu áp lực bán khi quay lại mốc 2026 OPEN này.</p>
+                        <!-- IMAGE 6 -->
+                        <img src="rp0126_6.png" alt="Biểu đồ BTC Open 2026" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Open+2026'">
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-1">2. Cấu trúc thị trường:</h4>
+                        <p>Trên khung tuần (1W), BTC đã xác nhận cấu trúc giảm. Điều này cho thấy giá sẵn sàng tìm về những vùng hỗ trợ tốt hơn trước khi có bất kỳ động thái tích cực nào trong ít nhất là phần còn lại của Q1/2026.</p>
+                        <!-- IMAGE 7 -->
+                        <img src="rp0126_7.png" alt="Biểu đồ Cấu trúc BTC" class="report-img" onerror="this.src='https://placehold.co/800x400?text=BTC+Structure'">
+                        
+                        <p><strong>Dự báo biên độ giảm (Downside Projection):</strong> Các mô hình định lượng của chúng tôi cảnh báo dư địa giảm giá vẫn còn mở rộng. Thị trường cần chiết khấu thêm khoảng <strong>15-20%</strong> từ mức giá hiện tại để kích hoạt thanh khoản từ những người mua dài hạn (Limit Bids).</p>
+                        <p><strong>Vùng giá mục tiêu (Target Zone):</strong> Nếu áp dụng mức giảm 15% từ giá hiện tại ($78k), vùng hỗ trợ tiềm năng (Potential Bottom) sẽ nằm quanh khu vực <strong>$66,000 - $62,000</strong>. Đây là vùng cầu mạnh cuối cùng trong khung 1W trước khi BTC xác nhận đi vào downtrend.</p>
+                    </div>
+                </div>
+
+                <!-- C. Action Plan -->
+                <div class="bg-gray-50 p-6 rounded border-t-4 border-red-500">
+                    <h3 class="font-bold text-lg text-trade-blue mb-2">C. CHIẾN LƯỢC HÀNH ĐỘNG (ACTION PLAN)</h3>
+                    <p class="mb-4">Dựa trên bối cảnh vĩ mô bất lợi và áp lực kỹ thuật tiêu cực, chúng tôi khuyến nghị chiến lược <strong>Phòng thủ chủ động (Defensive Strategy)</strong>.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-bold">1. Đối với Nhà đầu tư đang nắm giữ (Holders):</p>
+                            <p class="mb-1"><strong>Hành động:</strong> <span class="status-negative">HẠ TỶ TRỌNG (TRIM)</span>.</p>
+                            <ul class="list-disc pl-5">
+                                <li>Tận dụng các nhịp hồi phục kỹ thuật (Bull trap) trong phiên lên vùng <strong>$83,000 (CME GAP) và 2026 OPEN a.k.a $87,500</strong> để bán giảm bớt vị thế.</li>
+                                <li>Mục tiêu là đưa tỷ trọng BTC trong danh mục về mức thấp (Underweight) để bảo vệ giá trị tài sản ròng (NAV) trước rủi ro sụt giảm tiếp diễn.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-bold">2. Đối với Nhà đầu tư cầm tiền mặt (Cash positions):</p>
+                            <p class="mb-1"><strong>Hành động:</strong> <span class="status-neutral">KIÊN NHẪN (WAIT)</span>.</p>
+                            <ul class="list-disc pl-5">
+                                <li>Chưa vội bắt đáy (Catching a falling knife) tại mức giá $78,000.</li>
+                                <li>Đặt sẵn các lệnh chờ mua (Buy Limit) phân bổ vốn dần tại vùng chiết khấu sâu: <strong>$66,000 - $62,000</strong>. Đây là vùng giá mà tỷ lệ Rủi ro/Lợi nhuận (Risk/Reward) trở nên hấp dẫn cho mục tiêu nắm giữ đến cuối năm 2026.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-bold">3. Đối với Trader (Giao dịch ngắn hạn):</p>
+                            <ul class="list-disc pl-5">
+                                <li>Ưu tiên các vị thế <strong>BÁN KHỐNG (SHORT)</strong> khi giá hồi phục lên <strong>$83,000 (CME GAP) và 2026 OPEN a.k.a $87,500</strong>, hoặc đứng ngoài thị trường nếu biên độ biến động quá hẹp.</li>
+                                <li><strong>Tuyệt đối:</strong> Cắt lỗ dứt khoát các vị thế sử dụng đòn bẩy nếu đang gồng lỗ.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. TỔNG KẾT -->
+            <section id="conclusion">
+                <div class="section-title">
+                    <span class="section-number">5</span>
+                    TỔNG KẾT KHUYẾN NGHỊ & QUẢN TRỊ RỦI RO
+                </div>
+                <p class="mb-6">Dựa trên sự phân hóa sâu sắc giữa hai lớp tài sản trong tháng 1, chúng tôi khuyến nghị tái cấu trúc danh mục đầu tư tháng 2 theo hướng <strong>"Ưu tiên Bảo toàn vốn"</strong>. Dưới đây là bảng tổng hợp các điểm hành động trọng yếu.</p>
+
+                <!-- A. MA TRẬN HÀNH ĐỘNG -->
+                <h3 class="font-bold text-lg text-trade-blue mb-4">A. MA TRẬN HÀNH ĐỘNG THÁNG 2/2026</h3>
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full data-table border border-gray-200">
+                        <thead>
+                            <tr>
+                                <th>Lớp tài sản</th>
+                                <th>Xu hướng Tháng 2 (Dự báo)</th>
+                                <th>Vị thế Khuyến nghị</th>
+                                <th>Vùng Giá Quan Sát</th>
+                                <th>Hành động Cụ thể</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-trade-blue">VÀNG (XAU)</td>
+                                <td>Trung lập / Điều chỉnh<br>(Neutral)</td>
+                                <td><span class="status-neutral">NẮM GIỮ (HOLD)</span><br><span class="text-xs italic">Không Mua mới</span></td>
+                                <td>
+                                    <strong>Cản:</strong> 5.400 - 5.500<br>
+                                    <strong>Hỗ trợ:</strong> 4590 – 4650 (LONG GAP)<br>
+                                    <strong>Key Level:</strong> 4.329 (2026 OPEN), 4210 – 4250 (vùng nguyên nhân bull-run 5.500)
+                                </td>
+                                <td>
+                                    - <strong>Holder:</strong> Giữ nguyên vị thế vật chất.<br>
+                                    - <strong>Trader:</strong> Kiên nhẫn chờ giá chiết khấu về vùng 4590 - 4650 hoặc 4329 hoặc 4210 - 4250 để tìm setup Mua. Tuyệt đối không Long đuổi khi Net Long COT > 200k.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">BITCOIN (BTC)</td>
+                                <td>Giảm / Tiêu cực<br>(Bearish)</td>
+                                <td><span class="status-negative">GIẢM TỶ TRỌNG</span><br>(Underweight)</td>
+                                <td>
+                                    <strong>Cản:</strong> 83.000 (CME Gap) - 87.500 (Open 2026)<br>
+                                    <strong>Hỗ trợ:</strong> 62.000 - 66.000
+                                </td>
+                                <td>
+                                    - <strong>Holder:</strong> Canh nhịp hồi (Bull trap) lên 83k và 87.5k để bán giảm tỷ trọng .<br>
+                                    - <strong>Cash:</strong> Đặt lệnh chờ mua (Limit) rải vốn dần tại vùng 62k - 66k .
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">TIỀN MẶT (CASH)</td>
+                                <td>Tích cực</td>
+                                <td><span class="status-positive">TĂNG TỶ TRỌNG</span><br>(Overweight)</td>
+                                <td>N/A</td>
+                                <td>- Nâng tỷ trọng tiền mặt trong danh mục lên mức 30-50% để sẵn sàng "bắt đáy" khi thị trường hoảng loạn (Panic Selling).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- B. KỊCH BẢN RỦI RO -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-lg text-trade-blue mb-4">B. KỊCH BẢN RỦI RO & ĐIỀU KIỆN HỦY BỎ</h3>
+                    <p class="mb-4">Dù đã phân tích và chuẩn bị kỹ càng, chúng tôi luôn chuẩn bị cho kịch bản thị trường đi ngược lại dự báo:</p>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <h4 class="font-bold text-yellow-700">1. Kịch bản Vàng phá vỡ xu hướng tăng:</h4>
+                            <p class="text-sm"><strong>Điều kiện:</strong> Nếu Vàng đóng nến tuần dưới mốc <strong>4.210 USD/oz</strong> (Vùng nguyên nhân tăng giá).</p>
+                            <p class="text-sm"><strong>Hệ quả:</strong> Xác nhận mô hình đảo chiều trung hạn.</p>
+                            <p class="text-sm"><strong>Hành động:</strong> Chốt lời toàn bộ vị thế trading ngắn hạn, chỉ giữ vàng vật chất dài hạn.</p>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-bold text-green-700">2. Kịch bản Bitcoin phục hồi sớm (Early Reversal):</h4>
+                            <p class="text-sm"><strong>Điều kiện:</strong> Nếu Bitcoin có lực mua đột biến đẩy giá đóng cửa nến tuần <strong>vượt trên 87.500 USD</strong> (lấy lại mốc 2026 OPEN).</p>
+                            <p class="text-sm"><strong>Hệ quả:</strong> Phủ định tín hiệu giảm, thị trường tiếp tục chuyển sang giai đoạn đi ngang biên độ rộng.</p>
+                            <p class="text-sm"><strong>Hành động:</strong> Dừng các lệnh Bán khống (Short), chuyển sang chiến lược Mua thấp, bán cao tại hai đầu biên giao dịch.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. LỊCH SỰ KIỆN -->
+                <div>
+                    <h3 class="font-bold text-lg text-trade-blue mb-4">C. LỊCH SỰ KIỆN TRỌNG YẾU THÁNG 2 (KEY ECONOMIC CALENDAR)</h3>
+                    <p class="mb-3">Các mốc thời gian có khả năng gây biến động mạnh (High Volatility) cần lưu ý để hạn chế giao dịch đòn bẩy:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Dữ liệu Lạm phát Mỹ (CPI Tháng 1):</strong> Dự kiến công bố vào giữa tháng. Nếu CPI tiếp tục nóng do thuế quan, kỳ vọng cắt lãi suất của FED sẽ càng xa vời -> <strong>Tiêu cực cho BTC</strong>.</li>
+                        <li><strong>Động thái của BoJ (Bank of Japan):</strong> Theo dõi các phát biểu bất thường của Thống đốc BoJ về việc tăng lãi suất, có thể kích hoạt thêm một đợt "Yen Carry Trade Unwind".</li>
+                        <li><strong>Căng thẳng Mỹ - Iran:</strong> Bất kỳ hành động xung đột thực chất nào từ Mỹ vào Iran sẽ tiếp tục là động lực đẩy Vàng giữ giá cao bất chấp kỹ thuật xấu.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Share Section -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ báo cáo</h3>
+                <div class="flex gap-4 flex-wrap">
+                    <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Facebook">
+                        <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on X">
+                        <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Threads">
+                        <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Share on Telegram">
+                        <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Đã sao chép link!')" class="group w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white cursor-pointer active:bg-gray-50" title="Copy Link">
+                        <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="text-center text-gray-500 text-xs max-w-2xl mx-auto pb-12">
+            <p class="font-bold uppercase mb-2">TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM (DISCLAIMER):</p>
+            <p>Báo cáo này chỉ mang tính chất tham khảo và phân tích chiến lược, không phải là lời khuyên đầu tư tài chính trực tiếp. Nhà đầu tư chịu trách nhiệm hoàn toàn về các quyết định giao dịch của mình. Thị trường tài chính, đặc biệt là Tiền mã hóa (Crypto), chứa đựng rủi ro cao.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
