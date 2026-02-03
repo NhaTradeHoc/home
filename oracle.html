@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dòng tiền (Money Flow) & Altcoin Season: Quy luật "Nước chảy chỗ trũng" để tối ưu lợi nhuận</title>
-    <meta name="description" content="Hiểu về chu kỳ dòng tiền: Fiat -> Bitcoin -> Large Cap -> Altcoin. Cách sử dụng chỉ số Bitcoin Dominance (BTC.D) để nhận biết Mùa Altcoin (Altcoin Season) và tránh đu đỉnh.">
+    <title>Oracle (Hệ thống cung cấp dữ liệu): "Đôi mắt" của Blockchain và tại sao DeFi không thể sống thiếu Chainlink?</title>
+    <meta name="description" content="Oracle là gì? Tại sao Smart Contract không thể tự lấy dữ liệu ngoài đời thực? Vai trò sống còn của Chainlink (LINK) trong thị trường DeFi. Rủi ro thao túng Oracle mà nhà đầu tư cần biết.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,24 +103,6 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
-        /* Custom Table for Mobile */
-        .responsive-table th, .responsive-table td {
-            padding: 0.75rem;
-            text-align: left;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        .responsive-table th {
-            background-color: #f3f4f6;
-            font-weight: 700;
-            color: #00167c;
-        }
-        @media (max-width: 640px) {
-            .responsive-table thead { display: none; }
-            .responsive-table tr { display: block; margin-bottom: 1rem; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; }
-            .responsive-table td { display: flex; justify-content: space-between; border-bottom: none; padding: 0.5rem 0; }
-            .responsive-table td::before { content: attr(data-label); font-weight: bold; color: #6b7280; margin-right: 1rem; }
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
@@ -155,8 +137,8 @@
             </div>
 
             <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
-                DÒNG TIỀN (MONEY FLOW) & ALTCOIN SEASON:<br>
-                QUY LUẬT <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">"NƯỚC CHẢY CHỖ TRŨNG"</span> ĐỂ TỐI ƯU LỢI NHUẬN
+                ORACLE (HỆ THỐNG CUNG CẤP DỮ LIỆU):<br>
+                <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">"ĐÔI MẮT" CỦA BLOCKCHAIN</span> VÀ TẠI SAO DEFI KHÔNG THỂ SỐNG THIẾU CHAINLINK?
             </h1>
 
             <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
@@ -164,12 +146,12 @@
                     <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
                     <span class="font-bold text-trade-blue">Nhà Trade Học</span>
                 </div>
-                <div>22 Jan 2026 &bull; 9 phút đọc</div>
+                <div>23 Jan 2026 &bull; 7 phút đọc</div>
             </div>
             
             <div class="mb-8">
                 <!-- Hero Image -->
-                <img src="moneyflow0.jpg" alt="Money Flow Cycle" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Money+Flow+Cycle'">
+                <img src="oracle0.jpg" alt="Blockchain Oracle Concept" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Blockchain+Oracle+Eyes'">
             </div>
         </div>
     </header>
@@ -179,176 +161,152 @@
             
             <!-- Intro Block -->
             <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
-                <p class="mb-3">Khi Bitcoin tăng giá, bạn vui. Nhưng khi nhìn sang hàng xóm thấy đồng Coin chó mèo (Meme coin) của họ tăng gấp 10 lần, bạn bắt đầu sốt ruột: <em>"Tại sao Bitcoin của mình ì ạch thế? Có nên bán Bitcoin để đua theo con kia không?"</em></p>
-                <p class="mt-2 font-bold text-trade-blue text-xl">Khoan đã! Đó là lúc bạn cần hiểu về Dòng tiền (Money Flow).</p>
+                <p class="mb-3">Ở các bài trước, chúng ta đã khen ngợi Hợp đồng thông minh (Smart Contract) là "bộ não" thiên tài, có thể tự động thực hiện mọi giao dịch mà không cần con người.</p>
+                <p class="mb-3">Nhưng có một sự thật trớ trêu: Smart Contract chỉ biết những gì xảy ra bên trong Blockchain (ví A chuyển tiền cho ví B). Nó hoàn toàn mù tịt về thế giới thực bên ngoài.</p>
+                <p class="mt-2 italic">Nó không biết giá vàng hôm nay là bao nhiêu, không biết ai thắng trận World Cup, thậm chí không biết giá Bitcoin trên sàn Binance đang là 60k hay 70k.</p>
             </div>
 
-            <p>Thị trường Crypto giống như một bàn tiệc Champagne tháp ly. Rượu (Tiền) sẽ được rót đầy vào ly cao nhất (Bitcoin) trước, sau đó mới tràn xuống các ly bên dưới (Altcoin). Nếu bạn không hiểu quy luật này, bạn sẽ luôn là người đến rửa bát khi tiệc đã tàn.</p>
-            
-            <div class="bg-yellow-50 p-6 rounded-lg border border-yellow-200 my-6">
-                <p class="font-bold text-trade-blue mb-2 text-center text-lg">CHÂN LÝ ĐẦU TƯ</p>
-                <p class="text-center italic">"Bitcoin là Vua (King), nhưng Altcoin là Hoàng hậu giúp bạn nhân tài khoản nhanh nhất. Tuy nhiên, Hoàng hậu không bao giờ đi trước Vua."</p>
-            </div>
+            <p>Vậy làm sao các ứng dụng DeFi vận hành được? Ai là người thì thầm kết quả vào tai Smart Contract?</p>
+            <p class="font-bold text-xl text-trade-blue text-center my-6">Đó là vai trò của Oracle.</p>
 
-            <p>Dòng tiền thông minh (Smart Money) không bao giờ đổ vào tất cả các đồng coin cùng một lúc. Nó di chuyển có trật tự, có lớp lang, giống như nước chảy từ chỗ cao xuống chỗ trũng. Nhiệm vụ của bạn là đứng đợi sẵn ở chỗ trũng trước khi nước tràn về.</p>
+            <div class="bg-gray-100 p-6 rounded-lg border border-gray-200 mb-8">
+                <h4 class="font-bold text-gray-700 mb-4 uppercase text-sm tracking-wider">Ví dụ dễ hiểu:</h4>
+                <p class="mb-4">Hãy tưởng tượng Smart Contract giống như một <strong>Giáo sư thiên tài bị nhốt trong một căn phòng kín</strong>, không có cửa sổ, không có Internet.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-calculator text-green-600 mt-1 mr-3 shrink-0"></i>
+                        <span>Nếu bạn đưa bài toán: "2 + 2 bằng mấy?", ông ấy giải được ngay (Dữ liệu On-chain).</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa-solid fa-cloud-rain text-blue-600 mt-1 mr-3 shrink-0"></i>
+                        <span>Nhưng nếu bạn hỏi: "Trời bên ngoài đang mưa hay nắng?", ông ấy chịu chết (Dữ liệu Off-chain).</span>
+                    </li>
+                </ul>
+                <p class="mt-4 text-sm text-gray-600 border-t border-gray-300 pt-3">
+                    -> Để Smart Contract trở nên hữu dụng (ví dụ: Tự động trả tiền bảo hiểm khi trời mưa), nó cần một "người đưa tin" chạy ra ngoài xem thời tiết rồi chạy vào báo lại. Người đưa tin đó chính là <strong>Oracle</strong>.
+                </p>
+            </div>
 
             <!-- SECTION 1 -->
-            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Bốn giai đoạn của Dòng tiền (The Money Cycle)</h2>
-            <p>Hãy tưởng tượng một chu kỳ tăng giá điển hình diễn ra như sau:</p>
-
-            <div class="space-y-8 my-8 relative border-l-2 border-dashed border-gray-300 ml-4 md:ml-0 pl-8 md:pl-0">
-                <!-- Phase 1 -->
-                <div class="relative md:flex items-start">
-                    <div class="absolute -left-[41px] md:static md:w-24 md:mr-6 flex justify-center">
-                        <div class="bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ring-4 ring-white">1</div>
-                    </div>
-                    <div class="flex-1 bg-white border border-gray-200 p-5 rounded-lg shadow-sm">
-                        <h4 class="font-bold text-orange-600 uppercase mb-2">Giai đoạn 1: Bitcoin dẫn lối (Bitcoin Season)</h4>
-                        <p class="text-sm mb-2">Dòng tiền mới (Fiat) từ các tổ chức lớn, quỹ ETF đổ vào thị trường. Họ chỉ tin tưởng và mua Bitcoin.</p>
-                        <ul class="text-sm list-disc pl-4 text-gray-600">
-                            <li><strong>Hiện tượng:</strong> BTC tăng mạnh, phá đỉnh. Altcoin đứng im hoặc giảm (bị hút máu).</li>
-                            <li><strong>Hành động:</strong> <span class="bg-orange-100 px-2 py-0.5 rounded font-bold text-orange-800">Chỉ giữ Bitcoin và USDT. Đừng đụng vào Altcoin.</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="relative md:flex items-start">
-                    <div class="absolute -left-[41px] md:static md:w-24 md:mr-6 flex justify-center">
-                        <div class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ring-4 ring-white">2</div>
-                    </div>
-                    <div class="flex-1 bg-white border border-gray-200 p-5 rounded-lg shadow-sm">
-                        <h4 class="font-bold text-purple-700 uppercase mb-2">Giai đoạn 2: Ethereum tiếp sức</h4>
-                        <p class="text-sm mb-2">BTC đi ngang (Sideway). Cá mập chốt lời một phần BTC sang ETH để tìm lợi nhuận cao hơn nhưng vẫn an toàn.</p>
-                        <ul class="text-sm list-disc pl-4 text-gray-600">
-                            <li><strong>Hiện tượng:</strong> ETH tăng mạnh hơn BTC.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="relative md:flex items-start">
-                    <div class="absolute -left-[41px] md:static md:w-24 md:mr-6 flex justify-center">
-                        <div class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ring-4 ring-white">3</div>
-                    </div>
-                    <div class="flex-1 bg-white border border-gray-200 p-5 rounded-lg shadow-sm">
-                        <h4 class="font-bold text-blue-700 uppercase mb-2">Giai đoạn 3: Large Caps (Vốn hóa lớn)</h4>
-                        <p class="text-sm mb-2">Tiền từ ETH tràn sang các đồng coin Top đầu (Top 10-20) như BNB, SOL, ADA, XRP...</p>
-                        <ul class="text-sm list-disc pl-4 text-gray-600">
-                            <li><strong>Hiện tượng:</strong> Các nền tảng nền tảng tăng 20-50%.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Phase 4 -->
-                <div class="relative md:flex items-start">
-                    <div class="absolute -left-[41px] md:static md:w-24 md:mr-6 flex justify-center">
-                        <div class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold z-10 ring-4 ring-white">4</div>
-                    </div>
-                    <div class="flex-1 bg-white border border-green-200 p-5 rounded-lg shadow-md border-l-4 border-l-green-500">
-                        <h4 class="font-bold text-green-700 uppercase mb-2"><i class="fa-solid fa-rocket mr-2"></i> Giai đoạn 4: Mùa Altcoin (Altcoin Season)</h4>
-                        <p class="text-sm mb-2">Giai đoạn điên rồ nhất. Dòng tiền đầu cơ chảy vào Mid/Low Cap và Meme Coin.</p>
-                        <ul class="text-sm list-disc pl-4 text-gray-600 mb-2">
-                            <li><strong>Hiện tượng:</strong> Tài khoản x2, x3 sau một đêm. Coin "rác" cũng bay. Bà bán rau cũng khoe lãi.</li>
-                            <li><strong>Hành động:</strong> <span class="bg-red-100 px-2 py-0.5 rounded font-bold text-red-800">PHẢI BÁN DẦN RA.</span> Sau đây là vực thẳm.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 2 -->
-            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. La bàn dò đường: Bitcoin Dominance (BTC.D)</h2>
-            <p>Làm sao biết chúng ta đang ở giai đoạn nào? Hãy nhìn vào chỉ số <strong>BTC.D (Tỷ trọng vốn hóa Bitcoin)</strong>.</p>
-            <p>Đây là chỉ số quan trọng nhất mà mọi Trader chuyên nghiệp đều phải xem mỗi sáng. Nó cho biết: Trong tổng cái bánh thị trường Crypto, miếng bánh Bitcoin chiếm bao nhiêu phần trăm?</p>
-
-            <div class="overflow-x-auto my-6 shadow-lg rounded-lg border border-gray-200">
-                <table class="w-full responsive-table text-sm">
-                    <thead class="bg-trade-blue text-white">
-                        <tr>
-                            <th class="p-3 text-left">Trạng thái BTC</th>
-                            <th class="p-3 text-left">Trạng thái BTC.D</th>
-                            <th class="p-3 text-left">Điều gì đang xảy ra?</th>
-                            <th class="p-3 text-left">Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="p-3 font-bold text-green-600" data-label="Trạng thái BTC">Tăng mạnh</td>
-                            <td class="p-3 font-bold text-green-600" data-label="Trạng thái BTC.D">Tăng</td>
-                            <td class="p-3 text-gray-600" data-label="Diễn biến">Dòng tiền đổ dồn vào BTC. Altcoin bị hút máu.</td>
-                            <td class="p-3 font-bold text-orange-600" data-label="Hành động">Giữ BTC, tránh Altcoin.</td>
-                        </tr>
-                        <tr class="border-b hover:bg-gray-50">
-                            <td class="p-3 font-bold text-gray-600" data-label="Trạng thái BTC">Đi ngang</td>
-                            <td class="p-3 font-bold text-green-600" data-label="Trạng thái BTC.D">Tăng</td>
-                            <td class="p-3 text-gray-600" data-label="Diễn biến">Dòng tiền sợ hãi, rút từ Altcoin về trú ẩn ở BTC.</td>
-                            <td class="p-3 font-bold text-red-600" data-label="Hành động">Nguy hiểm.</td>
-                        </tr>
-                        <tr class="border-b bg-green-50 hover:bg-green-100 border-l-4 border-l-green-500">
-                            <td class="p-3 font-bold text-green-600" data-label="Trạng thái BTC">Đi ngang / Tăng nhẹ</td>
-                            <td class="p-3 font-bold text-red-600" data-label="Trạng thái BTC.D">GIẢM</td>
-                            <td class="p-3 text-gray-800 font-medium" data-label="Diễn biến">ALTCOIN SEASON. Dòng tiền chốt lời BTC chảy sang Altcoin.</td>
-                            <td class="p-3 font-black text-green-700 uppercase" data-label="Hành động">All-in Altcoin.</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="p-3 font-bold text-red-600" data-label="Trạng thái BTC">Giảm mạnh</td>
-                            <td class="p-3 font-bold text-green-600" data-label="Trạng thái BTC.D">Tăng</td>
-                            <td class="p-3 text-gray-600" data-label="Diễn biến">Thị trường sập (Panic Sell). Altcoin sập nhanh hơn BTC.</td>
-                            <td class="p-3 font-bold text-red-600 uppercase" data-label="Hành động">Bán hết ra USDT.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Oracle là gì?</h2>
+            <p>Oracle (tạm dịch: Hệ thống tiên tri/Cung cấp dữ liệu) là cây cầu nối giữa:</p>
             
-            <p class="font-bold text-center text-trade-blue bg-blue-50 p-3 rounded border border-blue-200">
-                <i class="fa-solid fa-star text-yellow-500 mr-2"></i> Quy tắc vàng: Mùa Altcoin đẹp nhất xảy ra khi Giá Bitcoin đi ngang (giữ giá ổn định) và BTC.D giảm mạnh.
+            <div class="flex flex-col md:flex-row gap-6 my-6 items-center">
+                <div class="flex-1 bg-white p-4 rounded-lg shadow-sm border border-gray-200 text-center w-full">
+                    <i class="fa-solid fa-globe text-3xl text-blue-500 mb-2"></i>
+                    <h4 class="font-bold text-trade-blue">Thế giới thực (Off-chain)</h4>
+                    <p class="text-xs text-gray-500 mt-1">Giá cổ phiếu, Tỷ giá, Kết quả thể thao, Nhiệt độ...</p>
+                </div>
+                
+                <i class="fa-solid fa-arrow-right-arrow-left text-trade-yellow text-2xl md:rotate-0 rotate-90"></i>
+                
+                <div class="flex-1 bg-white p-4 rounded-lg shadow-sm border border-gray-200 text-center w-full">
+                    <i class="fa-solid fa-link text-3xl text-trade-blue mb-2"></i>
+                    <h4 class="font-bold text-trade-blue">Blockchain (On-chain)</h4>
+                    <p class="text-xs text-gray-500 mt-1">Smart Contract</p>
+                </div>
+            </div>
+
+            <p class="italic text-center text-gray-600">
+                "Nếu không có Oracle, Blockchain chỉ là một cái máy tính bỏ túi cô đơn. Có Oracle, Blockchain trở thành một hệ thống kết nối vạn vật."
             </p>
 
-            <!-- SECTION 3 -->
-            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Cạm bẫy của Mùa Altcoin: "Người đến sau cùng"</h2>
-            <p>Sự hưng phấn của Altcoin Season là một cái bẫy ngọt ngào.</p>
-            <ul class="list-none space-y-3 mb-6 bg-red-50 p-5 rounded-lg border border-red-100">
-                <li><i class="fa-solid fa-face-sad-tear text-gray-400 mr-2"></i> Bạn thấy đồng Coin A tăng 50%, bạn tiếc.</li>
-                <li><i class="fa-solid fa-face-surprise text-orange-400 mr-2"></i> Hôm sau nó tăng 100%, bạn sợ lỡ tàu (FOMO) -> Bạn nhảy vào mua.</li>
-                <li><i class="fa-solid fa-skull text-red-600 mr-2"></i> <strong>Ngay lúc bạn mua, đó là lúc Cá mập chốt lời vào đầu bạn.</strong></li>
-            </ul>
-            <p>Hãy nhớ: Altcoin tăng nhanh thì giảm cũng sốc. Bitcoin có thể chia 2, nhưng Altcoin có thể chia 10, chia 20 là bình thường. Đừng bao giờ "yêu" một đồng Altcoin. Hãy coi nó là công cụ để gia tăng lượng USDT hoặc BTC của bạn.</p>
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Tại sao Oracle là "Trái tim" của DeFi?</h2>
+            <p>Hãy lấy ví dụ về hoạt động <strong>Vay thế chấp (Lending)</strong> trên các nền tảng như Aave hay Compound:</p>
 
-            <!-- SECTION 4 -->
-            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Chiến lược lướt sóng Altcoin trên Binance</h2>
-            <p>Để bắt sóng Altcoin hiệu quả, bạn cần một nơi có nhiều cặp giao dịch và thanh khoản tốt nhất.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-                <div class="bg-white p-4 rounded border shadow-sm text-center">
-                    <i class="fa-solid fa-chart-area text-3xl text-trade-blue mb-2"></i>
-                    <h4 class="font-bold text-sm mb-1">Theo dõi BTC.D</h4>
-                    <p class="text-xs text-gray-500">Xem biểu đồ BTC.D trên TradingView mỗi ngày.</p>
+            <div class="space-y-4 my-6">
+                <div class="p-4 bg-blue-50 rounded border-l-4 border-blue-500">
+                    <strong class="block text-blue-800 mb-1">Tình huống:</strong>
+                    Bạn thế chấp 1 ETH (giá hiện tại 2.000$) để vay 1.000 USDT.
                 </div>
-                <div class="bg-white p-4 rounded border shadow-sm text-center">
-                    <i class="fa-solid fa-filter text-3xl text-trade-blue mb-2"></i>
-                    <h4 class="font-bold text-sm mb-1">Lọc coin theo Zone</h4>
-                    <p class="text-xs text-gray-500">Trên App Binance, vào Markets -> Zone. Dòng tiền vào đâu, đánh ở đó (AI, Meme, Layer 1...).</p>
-                </div>
-                <div class="bg-white p-4 rounded border shadow-sm text-center">
-                    <i class="fa-solid fa-stopwatch text-3xl text-trade-blue mb-2"></i>
-                    <h4 class="font-bold text-sm mb-1">Vào nhanh ra nhanh</h4>
-                    <p class="text-xs text-gray-500">Luôn đặt Stop-Loss và Take-Profit. Không gồng lỗ Altcoin.</p>
+                <div class="p-4 bg-red-50 rounded border-l-4 border-red-500">
+                    <strong class="block text-red-800 mb-1">Quy tắc thanh lý:</strong>
+                    Nếu giá ETH giảm xuống dưới 1.100$, hệ thống phải tự động bán ETH của bạn để thu hồi nợ (Thanh lý/Liquidate).
                 </div>
             </div>
+
+            <p><strong>Vấn đề là:</strong> Làm sao Smart Contract của Aave biết giá ETH đang giảm xuống 1.100$? Nó không thể tự lên Google Search được.</p>
+            <p>Nó cần một Oracle liên tục cập nhật giá ETH từ các sàn giao dịch (như Binance, Coinbase...) và nạp vào Smart Contract.</p>
+            <p class="font-bold text-red-600 bg-red-100 inline-block px-2 py-1 rounded text-sm mt-2">-> Nếu Oracle chết hoặc báo giá sai, toàn bộ hệ thống DeFi sẽ sụp đổ (hoặc bạn bị thanh lý oan, hoặc sàn bị mất vốn).</p>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Chainlink (LINK) - Tiêu chuẩn vàng của ngành</h2>
+            <p>Trong thế giới Oracle, Chainlink là vua. Tại sao không để một server tập trung báo giá cho nhanh? Tại sao phải dùng Chainlink?</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                <!-- Vấn đề 1 nguồn -->
+                <div class="bg-red-50 p-5 rounded-lg border border-red-100">
+                    <h4 class="font-bold text-red-700 mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Vấn đề của "Một nguồn tin"</h4>
+                    <p class="text-sm">Nếu Aave chỉ lấy giá từ một nguồn duy nhất (ví dụ: sàn Binance). Lỡ sàn Binance bị lỗi kỹ thuật, hiển thị giá ETH = 0$.</p>
+                    <p class="text-sm font-bold mt-2 text-red-800">-> Smart Contract tưởng thật -> Tự động thanh lý tài sản của hàng triệu người dùng. Thảm họa!</p>
+                </div>
+
+                <!-- Giải pháp Chainlink -->
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-100">
+                    <h4 class="font-bold text-trade-blue mb-2"><i class="fa-solid fa-shield-halved mr-2"></i> Giải pháp của Chainlink</h4>
+                    <p class="text-sm">Chainlink không lấy giá từ 1 nơi. Nó có một mạng lưới hàng trăm Node độc lập.</p>
+                    <ul class="text-xs list-disc pl-4 mt-2 text-gray-600 space-y-1">
+                        <li>Node A lấy giá từ Binance.</li>
+                        <li>Node B lấy giá từ Coinbase.</li>
+                        <li>Node C lấy giá từ OKX.</li>
+                    </ul>
+                    <p class="text-sm font-bold mt-2 text-blue-800">-> Tính Trung bình cộng -> Đảm bảo dữ liệu không thể bị làm giả và không có điểm chết duy nhất.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Rủi ro: Tấn công thao túng Oracle</h2>
+            <p>Đây là một trong những chiêu thức hack phổ biến nhất trong DeFi.</p>
+            
+            <div class="bg-white border-2 border-gray-200 rounded-xl p-6 shadow-sm">
+                <ol class="relative border-l border-gray-200 ml-3 space-y-6">                  
+                    <li class="mb-10 ml-6">            
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-gray-100 rounded-full -left-4 ring-4 ring-white">
+                            <i class="fa-solid fa-user-secret text-gray-600"></i>
+                        </span>
+                        <h3 class="font-bold text-gray-900 mb-1">1. Kịch bản</h3>
+                        <p class="text-sm text-gray-500">Hacker tấn công vào một sàn giao dịch nhỏ (nơi có thanh khoản thấp) để đẩy giá Token X lên cực cao trong 1 giây.</p>
+                    </li>
+                    <li class="mb-10 ml-6">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-red-100 rounded-full -left-4 ring-4 ring-white">
+                            <i class="fa-solid fa-bug text-red-600"></i>
+                        </span>
+                        <h3 class="font-bold text-gray-900 mb-1">2. Hậu quả</h3>
+                        <p class="text-sm text-gray-500">Nếu ứng dụng DeFi nào dùng Oracle lấy giá từ sàn nhỏ đó, nó sẽ nghĩ giá Token X đã tăng thật.</p>
+                    </li>
+                    <li class="ml-6">
+                        <span class="absolute flex items-center justify-center w-8 h-8 bg-green-100 rounded-full -left-4 ring-4 ring-white">
+                            <i class="fa-solid fa-money-bill-wave text-green-600"></i>
+                        </span>
+                        <h3 class="font-bold text-gray-900 mb-1">3. Khai thác</h3>
+                        <p class="text-sm text-gray-500">Hacker dùng Token X (giá ảo cao vống) thế chấp vào DeFi để vay sạch tiền thật (USDT) của hệ thống rồi biến mất.</p>
+                    </li>
+                </ol>
+            </div>
+            
+            <p class="mt-6 font-bold text-trade-blue bg-blue-50 p-4 rounded">
+                <i class="fa-solid fa-lightbulb text-yellow-500 mr-2"></i> Bài học: Khi gửi tiền vào một dự án DeFi, hãy kiểm tra xem dự án đó dùng Oracle nào? Nếu dùng Chainlink -> An tâm. Nếu dùng Oracle tự chế -> Rủi ro cao.
+            </p>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Đầu tư vào Hạ tầng (Infrastructure)</h2>
+            <p>Trong cơn sốt vàng (DeFi, GameFi, NFT...), người bán cuốc xẻng (Hạ tầng) luôn là người kiếm tiền bền vững nhất. Oracle chính là "cuốc xẻng" không thể thiếu. Dù Trend là gì đi nữa, các dự án đều cần dữ liệu.</p>
+            <p>Các dự án Oracle nổi bật: <strong>Chainlink (LINK), Pyth Network (PYTH), Band Protocol (BAND).</strong></p>
 
             <!-- BINANCE PROMO BOX -->
             <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
-                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Tối Ưu Giao Dịch Altcoin Cùng Binance</p>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Đầu Tư Vào Hạ Tầng Web3 Cùng Binance</p>
                 
                 <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
-                    <p><i class="fa-solid fa-percent text-green-500 mr-2"></i> <strong>Tiết kiệm chi phí:</strong> Giảm 40% phí giao dịch. Với tần suất lướt sóng cao (Scalping) trong mùa Altcoin, đây là khoản lợi nhuận ròng khổng lồ.</p>
-                    <p><i class="fa-solid fa-fire text-orange-500 mr-2"></i> <strong>Cơ hội mới:</strong> Tiếp cận những đồng Altcoin mới nhất (Launchpool/Launchpad).</p>
+                    <p><i class="fa-solid fa-layer-group text-yellow-500 mr-2"></i> <strong>Thanh khoản tốt nhất:</strong> Mua bán LINK, PYTH dễ dàng.</p>
+                    <p><i class="fa-solid fa-rocket text-yellow-500 mr-2"></i> <strong>Cơ hội sớm:</strong> Binance thường xuyên hỗ trợ niêm yết các dự án Oracle mới tiềm năng.</p>
                 </div>
 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
                     <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
-                        <span class="text-xs text-gray-400 block text-left">Mã giới thiệu độc quyền:</span>
+                        <span class="text-xs text-gray-400 block text-left">Mã giới thiệu:</span>
                         <span class="text-xl font-mono font-black text-trade-blue tracking-wider">NHATRADEHOC</span>
                     </div>
                     <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
@@ -357,50 +315,27 @@
                 </div>
                 
                 <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
-                    Săn Altcoin Ngay
+                    Đăng Ký Binance Ngay
                 </button>
+                <p class="mt-4 text-xs text-gray-500 italic">Hành động: Phân bổ một phần danh mục vào nhóm "Cơ sở hạ tầng" là chiến lược phòng thủ thông minh.</p>
             </div>
 
             <!-- CONCLUSION -->
             <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
-            <div class="p-8 bg-trade-dark text-white font-sans border-t-4 border-trade-yellow shadow-xl">
-                <p class="mb-4 text-center font-bold uppercase tracking-widest text-trade-yellow text-sm">Quy Trình Làm Giàu Trong 1 Chu Kỳ</p>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="mb-6 font-light leading-relaxed">
+                    Oracle là cầu nối đưa thế giới thực vào Blockchain. Nhưng có một thứ ở thế giới thực mà Blockchain (đặc biệt là các chuỗi công khai như Bitcoin, Ethereum) rất sợ: <strong>Sự mất riêng tư.</strong>
+                </p>
                 
-                <div class="flex flex-col md:flex-row justify-between items-center text-center gap-4 mb-8 text-sm font-bold">
-                    <div class="flex-1 bg-white/10 p-3 rounded w-full">
-                        <span class="text-gray-400 text-xs block mb-1">Bước 1</span>
-                        Mua Bitcoin (Market Bottom)
-                    </div>
-                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
-                    <i class="fa-solid fa-arrow-down text-gray-500 md:hidden"></i>
-                    <div class="flex-1 bg-white/10 p-3 rounded w-full">
-                        <span class="text-gray-400 text-xs block mb-1">Bước 2</span>
-                        Chuyển sang ETH/Large Cap
-                    </div>
-                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
-                    <i class="fa-solid fa-arrow-down text-gray-500 md:hidden"></i>
-                    <div class="flex-1 bg-white/10 p-3 rounded w-full">
-                        <span class="text-gray-400 text-xs block mb-1">Bước 3</span>
-                        Chuyển sang Low Cap
-                    </div>
-                    <i class="fa-solid fa-arrow-right text-gray-500 hidden md:block"></i>
-                    <i class="fa-solid fa-arrow-down text-gray-500 md:hidden"></i>
-                    <div class="flex-1 bg-green-900/50 border border-green-500/50 p-3 rounded w-full text-green-400">
-                        <span class="text-green-600 text-xs block mb-1">Bước 4</span>
-                        Bán hết ra USDT & Đi chơi
-                    </div>
-                </div>
-                
-                <div class="text-center border-t border-white/10 pt-6">
-                    
-                    </p>
+                <p class="text-sm italic mb-6 text-gray-400">
+                    Mọi giao dịch của bạn, số dư của bạn đều bị phơi bày cho cả thế giới thấy. Liệu có cách nào để giao dịch ẩn danh hoàn toàn trên Blockchain không?
+                </p>
 
-                    <div class="mt-4">
-                        <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
-                        <a href="oracle.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
-                            Oracle: Người đưa tin của Chúa <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
+                    <a href="zk.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Privacy Coins & ZK-Proofs: Khi "tàng hình" trở thành vũ khí tối thượng <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
 
@@ -437,17 +372,17 @@
             <span class="bg-trade-yellow w-2 h-8 mr-3 block"></span> Bài Viết Liên Quan
         </h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <a href="token.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+            <a href="smct.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
                 <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
-                    Các Tiêu Chuẩn Token: Bảng Cửu Chương Để Tránh Mất Tiền
+                    Hợp đồng thông minh (Smart Contract): Khi Code thay thế Luật sư
                 </h4>
                 <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
                     Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                 </div>
             </a>
-             <a href="chuky4nam.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
+             <a href="defi.html" class="group block border-2 border-transparent border-l-4 border-l-trade-blue bg-gray-50 p-6 hover:bg-white hover:border-gray-100 hover:shadow-lg transition-all">
                 <h4 class="font-black text-lg text-trade-blue uppercase group-hover:text-trade-light-blue leading-tight tracking-tight">
-                    Chu kỳ thị trường & Bitcoin Halving: Tấm bản đồ kho báu
+                    DeFi là gì? Khi bạn sa thải Giám đốc ngân hàng
                 </h4>
                 <div class="mt-3 text-xs font-bold text-gray-400 group-hover:text-trade-yellow transition-colors uppercase tracking-widest flex items-center">
                     Xem ngay <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
