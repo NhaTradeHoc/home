@@ -54,6 +54,33 @@
         .badge-vi-mo { background-color: #f97316; color: white; } /* Orange */
         .badge-dia-chinh-tri { background-color: #dc2626; color: white; } /* Red */
         .badge-bao-cao { background-color: #be185d; color: white; } /* Pink/Magenta */
+        .badge-forex { background-color: #059669; color: white; } /* Emerald Green */
+        
+        /* Pagination Styles */
+        .pagination-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        .pagination-btn:hover:not(:disabled) {
+            background-color: #f3f4f6;
+        }
+        .pagination-btn.active {
+            background-color: #ffdf2b;
+            color: #00167c;
+            border-color: #ffdf2b;
+        }
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
@@ -146,12 +173,45 @@
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="vi-mo">Vĩ Mô</button>
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="dia-chinh-tri">Địa Chính Trị</button>
                     <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="bao-cao">Báo Cáo</button>
+                    <button class="filter-btn px-4 py-2 border border-gray-200 text-gray-500 rounded-lg font-bold text-xs uppercase hover:border-trade-blue hover:text-trade-blue transition-all" data-filter="forex">Forex</button>
                 </div>
             </div>
 
             <!-- Articles Grid -->
             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" id="articles-grid">
                 
+                <!-- 03 Feb 2026: News Trading -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fxnews.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fx_news_hero.jpg" alt="News Trading" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Lịch kinh tế & Cách trade tin tức (News Trading): Non-Farm, CPI và những con số biết nói</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Chiến lược trade tin tức an toàn: Straddle hay chờ đợi? Tối ưu phí khi Spread giãn mạnh.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">03 Feb 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 02 Feb 2026: Central Banks -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="centralbanks.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="central_banks_hero.jpg" alt="Central Banks" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Các "Ông trùm" Ngân hàng Trung ương (FED, ECB, BOJ): Những người thực sự điều khiển cuộc chơi</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Lãi suất ảnh hưởng đến tỷ giá như thế nào? Chiến lược giao dịch theo phân kỳ chính sách.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">02 Feb 2026</span>
+                        </div>
+                    </a>
+                </article>
+
                 <!-- 01 Feb 2026: REPORT -->
                 <article class="filter-item bao-cao bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="report0126.html" class="block h-full flex flex-col">
@@ -168,13 +228,132 @@
                     </a>
                 </article>
 
+                <!-- 01 Feb 2026: Long & Short -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="longshort.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="longshort0.png" alt="Long Short" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Long & Short (Buy/Sell) trong Forex: Bản chất của việc "Bán khống" tiền tệ</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao bạn có thể bán khống EUR/USD khi không có đồng Euro nào? Cơ chế vay mượn của sàn.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">01 Feb 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 01 Feb 2026: MT4 & MT5 -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="mt5.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="mt50.webp" alt="MT4 MT5" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Nền tảng MT4 & MT5 (MetaTrader): Hướng dẫn sử dụng phần mềm quyền lực nhất</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao Trader chuyên nghiệp không vào lệnh trên TradingView? Hướng dẫn kết nối Exness vào MT5.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">01 Feb 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 31 Jan 2026: Broker -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="broker.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="broker0.png" alt="Broker" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Broker (Sàn môi giới) là gì? Vén màn bí mật về ECN, Market Maker</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Phân biệt sàn đẩy lệnh và ôm lệnh. Cách chọn sàn uy tín và tối ưu phí với Exness.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">31 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 31 Jan 2026: Trading Sessions -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fxsession.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fx_session_hero.png" alt="Trading Sessions" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Các phiên giao dịch (Á - Âu - Mỹ): Tại sao "Giờ trùng" là thời điểm vàng?</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giờ mở cửa các phiên. Tại sao khung giờ 19h-23h là lúc dễ kiếm tiền nhất?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">31 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 30 Jan 2026: FX Pairs -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="fxpair.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fx_pairs_hero.webp" alt="Currency Pairs" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Các cặp tiền tệ (Currency Pairs): Majors, Crosses & Exotics</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Phân biệt 3 loại cặp tiền. Tại sao người mới nên tránh "Quái vật" GBP/JPY và Vàng?</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">30 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 30 Jan 2026: Leverage (forex2) -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="forex2.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="margin_hero.webp" alt="Leverage" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Đòn bẩy, Margin Call & Stop Out: Những "tử thần" giấu mặt</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Giải thích Margin Level. Khi nào thì bị Stop Out? Cách quản lý vốn để không bao giờ cháy.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">30 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 29 Jan 2026: Forex Terms -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="forex_terms.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="fx_fees.png" alt="Forex Terms" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Các thuật ngữ "sống còn": Pip, Lot & 3 Loại phí "ăn mòn" tài khoản</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Pip là gì? 1 Lot vàng giá trị bao nhiêu? Phân biệt Spread, Commission và Swap.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 29 Jan 2026: Forex vs Crypto (forex1) -->
+                <article class="filter-item forex bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="forex1.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="forex_hero.jpg" alt="Forex vs Crypto" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-forex px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Forex</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Forex vs. Crypto: Cuộc chiến giữa "Đại dương" 6.000 tỷ USD và "Miền Tây"</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao Forex có thanh khoản 6.000 tỷ USD/ngày? Sự khác biệt về đòn bẩy và giờ giấc.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">29 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
                 <!-- 28 Jan 2026: Impermanent Loss -->
                 <article class="filter-item huong-dan bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
                     <a href="imloss.html" class="block h-full flex flex-col">
                         <div class="relative aspect-video overflow-hidden">
                             <img src="im0.jpg" alt="Impermanent Loss" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Tổn thất vô thường (Impermanent Loss): "Sát thủ thầm lặng" của nông dân DeFi</h3>
@@ -190,7 +369,6 @@
                         <div class="relative aspect-video overflow-hidden">
                             <img src="scanonchain0.webp" alt="On-chain Analysis" class="w-full h-full object-cover">
                             <div class="absolute top-2 left-2 badge-huong-dan px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Hướng Dẫn</div>
-                            <div class="absolute top-2 right-2 bg-red-600 text-white px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">MỚI</div>
                         </div>
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Kỹ năng soi On-chain cơ bản: Dùng Etherscan để "lột trần" sự thật</h3>
@@ -240,21 +418,6 @@
                         <div class="p-3 md:p-5 flex-1 flex flex-col">
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Privacy Coins & ZK-Proofs: Khi "tàng hình" trở thành vũ khí tối thượng</h3>
                             <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Tại sao ZK là tương lai của Ethereum Layer 2? Công nghệ thay đổi cuộc chơi.</p>
-                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
-                        </div>
-                    </a>
-                </article>
-
-                <!-- 24 Jan 2026: Random Walk (Giữ bài cũ ngày 24) -->
-                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
-                    <a href="buocchan.html" class="block h-full flex flex-col">
-                        <div class="relative aspect-video overflow-hidden">
-                            <img src="A_conceptual_and_2k_202601232127.jpeg" alt="Random Walk" class="w-full h-full object-cover">
-                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
-                        </div>
-                        <div class="p-3 md:p-5 flex-1 flex flex-col">
-                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Thị trường bước những bước ngẫu nhiên… một cách có quy luật</h3>
-                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về bản chất hỗn loạn của cung cầu và quy luật tâm lý đám đông.</p>
                             <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
                         </div>
                     </a>
@@ -406,6 +569,21 @@
                             <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">DeFi là gì? Khi bạn sa thải Giám đốc ngân hàng và tự làm chủ tiền của mình</h3>
                             <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Ngân hàng phi tập trung hoạt động 24/7 và quyền kiểm soát nằm trọn trong tay bạn.</p>
                             <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">16 Jan 2026</span>
+                        </div>
+                    </a>
+                </article>
+
+                <!-- 24 Jan 2026: Random Walk -->
+                <article class="filter-item tu-duy bg-white rounded-lg border border-gray-200 overflow-hidden hover-lift shadow-sm flex flex-col h-full">
+                    <a href="buocchan.html" class="block h-full flex flex-col">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img src="A_conceptual_and_2k_202601232127.jpeg" alt="Random Walk" class="w-full h-full object-cover">
+                            <div class="absolute top-2 left-2 badge-tu-duy px-2 py-0.5 text-[10px] font-bold uppercase rounded shadow-sm">Tư Duy</div>
+                        </div>
+                        <div class="p-3 md:p-5 flex-1 flex flex-col">
+                            <h3 class="font-bold text-sm md:text-lg text-trade-blue mb-2 line-clamp-2 leading-tight">Thị trường bước những bước ngẫu nhiên… một cách có quy luật</h3>
+                            <p class="hidden md:block text-gray-500 text-xs mb-4 line-clamp-3">Hiểu về bản chất hỗn loạn của cung cầu và quy luật tâm lý đám đông.</p>
+                            <span class="text-[10px] md:text-xs text-gray-400 mt-auto block pt-2 md:pt-4 border-t border-gray-50">24 Jan 2026</span>
                         </div>
                     </a>
                 </article>
@@ -816,6 +994,11 @@
                 </article>
 
             </div>
+            
+            <!-- Pagination Controls -->
+            <div id="pagination" class="flex justify-center mt-12 gap-2">
+                <!-- Pagination buttons will be generated by JS -->
+            </div>
         </div>
 
     </main>
@@ -884,42 +1067,126 @@
     </footer>
 
 
-    <!-- Filter Script -->
+    <!-- Pagination & Filter Script -->
     <script>
+        const itemsPerPage = 25;
+        let currentPage = 1;
+        let currentFilter = 'all';
+        const articlesGrid = document.getElementById('articles-grid');
+        const allArticles = Array.from(document.querySelectorAll('.filter-item'));
+        const paginationContainer = document.getElementById('pagination');
+
+        function showPage(page) {
+            currentPage = page;
+            
+            // 1. Filter articles first
+            const visibleArticles = allArticles.filter(article => {
+                if (currentFilter === 'all') return true;
+                return article.classList.contains(currentFilter);
+            });
+
+            // 2. Hide all initially
+            allArticles.forEach(article => {
+                article.classList.add('hidden');
+                article.style.display = 'none'; // Force hide layout
+            });
+
+            // 3. Slice for current page
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const articlesToShow = visibleArticles.slice(startIndex, endIndex);
+
+            // 4. Show relevant articles
+            articlesToShow.forEach(article => {
+                article.classList.remove('hidden');
+                article.style.display = ''; // Reset display
+                
+                // Optional: Simple fade-in
+                article.animate([
+                    { opacity: 0, transform: 'translateY(10px)' },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                    duration: 300,
+                    easing: 'ease-out'
+                });
+            });
+
+            // 5. Render Pagination Controls
+            renderPagination(visibleArticles.length);
+        }
+
+        function renderPagination(totalItems) {
+            paginationContainer.innerHTML = '';
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            if (totalPages <= 1) return;
+
+            // Prev Button
+            const prevBtn = createPaginationBtn('<i class="fa-solid fa-chevron-left"></i>', () => {
+                if (currentPage > 1) {
+                    showPage(currentPage - 1);
+                    window.scrollTo({ top: document.getElementById('latest-posts').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            if (currentPage === 1) prevBtn.disabled = true;
+            paginationContainer.appendChild(prevBtn);
+
+            // Page Numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = createPaginationBtn(i, () => {
+                    showPage(i);
+                    window.scrollTo({ top: document.getElementById('latest-posts').offsetTop - 100, behavior: 'smooth' });
+                });
+                if (i === currentPage) {
+                    btn.classList.add('active');
+                }
+                paginationContainer.appendChild(btn);
+            }
+
+            // Next Button
+            const nextBtn = createPaginationBtn('<i class="fa-solid fa-chevron-right"></i>', () => {
+                if (currentPage < totalPages) {
+                    showPage(currentPage + 1);
+                    window.scrollTo({ top: document.getElementById('latest-posts').offsetTop - 100, behavior: 'smooth' });
+                }
+            });
+            if (currentPage === totalPages) nextBtn.disabled = true;
+            paginationContainer.appendChild(nextBtn);
+        }
+
+        function createPaginationBtn(content, onClick) {
+            const btn = document.createElement('button');
+            btn.innerHTML = content;
+            btn.className = 'pagination-btn bg-white text-gray-500 hover:bg-gray-100 hover:text-trade-blue';
+            if (typeof content === 'number' && content === currentPage) {
+                btn.className = 'pagination-btn active';
+            }
+            btn.addEventListener('click', onClick);
+            return btn;
+        }
+
         // Filter Logic
         const filterBtns = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.filter-item');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Remove active class from all buttons
+                // Update active state
                 filterBtns.forEach(b => {
                     b.classList.remove('active', 'bg-trade-yellow', 'text-trade-blue', 'border-trade-yellow');
                     b.classList.add('border-gray-200', 'text-gray-500');
                 });
-                
-                // Add active class to clicked button
                 btn.classList.add('active', 'bg-trade-yellow', 'text-trade-blue', 'border-trade-yellow');
                 btn.classList.remove('border-gray-200', 'text-gray-500');
 
-                const filterValue = btn.getAttribute('data-filter');
-
-                items.forEach(item => {
-                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
-                        item.classList.remove('hidden');
-                        // Add fade-in animation
-                        item.animate([
-                            { opacity: 0, transform: 'translateY(10px)' },
-                            { opacity: 1, transform: 'translateY(0)' }
-                        ], {
-                            duration: 300,
-                            easing: 'ease-out'
-                        });
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
+                // Update filter and reset to page 1
+                currentFilter = btn.getAttribute('data-filter');
+                showPage(1);
             });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage(1);
         });
     </script>
 
