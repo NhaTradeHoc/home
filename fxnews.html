@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch kinh tế & Cách trade tin tức (News Trading): Non-Farm, CPI và những con số biết nói</title>
+    <meta name="description" content="Cách đọc Lịch kinh tế trên ForexFactory. Giải mã bản tin Non-Farm Payrolls (NFP), CPI (Lạm phát). Chiến lược trade tin tức an toàn: Straddle (Bẫy giá) hay chờ đợi? Tối ưu phí khi Spread giãn mạnh với Exness.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-emerald-600">Forex</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                LỊCH KINH TẾ & TRADE TIN TỨC (NEWS TRADING):<br>
+                NON-FARM, CPI VÀ <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">NHỮNG CON SỐ BIẾT NÓI</span>
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>03 Feb 2026 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="fx_news_hero.jpg" alt="Forex News Trading" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Forex+News+Trading'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
+                <p class="mb-3">Trong Crypto, giá có thể sập 20% chỉ vì một dòng tweet ngẫu hứng của Elon Musk hay tin đồn sàn Binance bị bắt. Bạn không thể lường trước được.</p>
+                <p class="mb-3">Trong Forex, mọi thứ minh bạch hơn nhiều. Các "cá mập" (Chính phủ) đều chơi bài ngửa. Họ thông báo trước cả tháng: <em>"Đúng 19:30 tối thứ Sáu tuần sau, tôi sẽ công bố bảng lương. Các anh liệu mà trade."</em></p>
+                <p class="mt-4 font-bold text-trade-blue">Đó là lý do Forex có một công cụ tối thượng mà Crypto không có: Lịch Kinh Tế (Economic Calendar).</p>
+            </div>
+
+            <p>Nếu bạn thấy biểu đồ giá đang chạy yên bình, bỗng nhiên dựng ngược một cây nến xanh dài 100 Pips chỉ trong 1 giây, quét sạch Stop Loss của cả phe Buy lẫn phe Sell. Đừng hoảng sợ. Đó không phải là lỗi hệ thống. <strong>Đó là lúc Tin Ra (News Release).</strong></p>
+            <p class="italic text-center text-gray-600 mb-6">"Trong Forex, tin tức là xăng, còn giá là ngọn lửa. Biết cách tận dụng, bạn có thể kiếm lợi nhuận cả tháng chỉ trong 5 phút."</p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Lịch Kinh Tế: Cuốn "Kinh thánh" của Trader</h2>
+            <p>Mọi Trader chuyên nghiệp đều bắt đầu ngày mới bằng việc mở trang <strong>ForexFactory.com</strong> hoặc <strong>Investing.com</strong>. Tại đây, mọi sự kiện kinh tế được liệt kê chi tiết theo giờ.</p>
+            
+            <div class="bg-gray-100 p-6 rounded-lg my-6 border border-gray-300">
+                <h4 class="font-bold text-trade-blue mb-4 uppercase text-sm text-center">Cách đọc màu sắc (Mức độ quan trọng):</h4>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <span class="w-20 bg-yellow-400 text-white text-xs font-bold px-2 py-1 rounded text-center mr-4">Yellow</span>
+                        <span class="text-sm text-gray-700"><strong>Tin nhẹ:</strong> Ít ảnh hưởng, thị trường lờ đờ.</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-20 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded text-center mr-4">Orange</span>
+                        <span class="text-sm text-gray-700"><strong>Tin trung bình:</strong> Có thể gây biến động nhẹ.</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-20 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded text-center mr-4">Red</span>
+                        <span class="text-sm text-gray-700 font-bold">TIN MẠNH (High Impact): Đây là thứ bạn phải quan tâm. Khi tin đỏ xuất hiện, hãy thắt dây an toàn.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMAGE 2 -->
+            <img src="eco_calendar.jpeg" alt="Ví dụ Lịch kinh tế ForexFactory" class="w-full rounded-lg shadow-md my-6" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=Economic+Calendar+Example'">
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. "Big Three" - Ba con quái vật của thị trường</h2>
+            <p>Trong hàng trăm tin tức, chỉ có 3 loại tin sau đây đủ sức làm rung chuyển thị trường toàn cầu:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
+                <!-- NFP -->
+                <div class="bg-white border-2 border-red-100 rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
+                    <div class="text-center mb-4">
+                        <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">QUAN TRỌNG NHẤT</span>
+                    </div>
+                    <h4 class="font-bold text-trade-blue text-center mb-2">Non-Farm Payrolls (NFP)</h4>
+                    <p class="text-xs text-gray-500 text-center mb-3">Bảng lương Phi nông nghiệp Mỹ</p>
+                    <ul class="text-sm list-disc pl-4 text-gray-700 space-y-2">
+                        <li><strong>Thời gian:</strong> Thứ Sáu đầu tiên của tháng.</li>
+                        <li><strong>Biến động:</strong> 100-200 Pips.</li>
+                        <li><strong>Tác động:</strong> Việc làm tốt -> USD Tăng (Vàng giảm).</li>
+                    </ul>
+                </div>
+
+                <!-- CPI -->
+                <div class="bg-white border-2 border-orange-100 rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
+                    <h4 class="font-bold text-trade-blue text-center mb-2 mt-6">CPI (Inflation)</h4>
+                    <p class="text-xs text-gray-500 text-center mb-3">Chỉ số giá tiêu dùng</p>
+                    <ul class="text-sm list-disc pl-4 text-gray-700 space-y-2">
+                        <li><strong>Thời gian:</strong> Giữa tháng.</li>
+                        <li><strong>Ý nghĩa:</strong> Đo lường lạm phát.</li>
+                        <li><strong>Tác động:</strong> CPI cao -> FED tăng lãi suất -> USD Tăng.</li>
+                    </ul>
+                </div>
+
+                <!-- FOMC -->
+                <div class="bg-white border-2 border-blue-100 rounded-lg p-5 shadow-sm hover:shadow-md transition-all">
+                    <h4 class="font-bold text-trade-blue text-center mb-2 mt-6">FOMC</h4>
+                    <p class="text-xs text-gray-500 text-center mb-3">Họp lãi suất FED</p>
+                    <ul class="text-sm list-disc pl-4 text-gray-700 space-y-2">
+                        <li><strong>Thời gian:</strong> 1h - 2h sáng (Giờ VN).</li>
+                        <li><strong>Nội dung:</strong> Quyết định Tăng/Giảm lãi suất.</li>
+                        <li><strong>Biến động:</strong> Cực mạnh và khó lường.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Chiến lược Trade Tin: Cảm tử hay Khôn ngoan?</h2>
+            <p>Khi tin ra, giá chạy rất nhanh và hỗn loạn (giật 2 đầu). Có 2 trường phái:</p>
+
+            <div class="space-y-6 my-6">
+                <!-- Straddle -->
+                <div class="flex flex-col md:flex-row gap-4 border border-gray-200 rounded-lg overflow-hidden">
+                    <div class="bg-gray-100 p-4 w-full md:w-1/3 flex items-center justify-center">
+                        <strong class="text-gray-700 text-center">Cách 1: The Straddle<br>(Bẫy giá)</strong>
+                    </div>
+                    <div class="p-4 w-full md:w-2/3">
+                        <p class="text-sm italic mb-2 text-gray-500">"Tôi không biết tin tốt hay xấu, tôi chỉ biết giá sẽ chạy mạnh."</p>
+                        <ul class="list-disc pl-4 text-sm text-gray-700">
+                            <li><strong>Hành động:</strong> Trước tin 5 phút, đặt 2 lệnh chờ: Buy Stop (trên giá) và Sell Stop (dưới giá).</li>
+                            <li><strong>Rủi ro:</strong> Giá giật lên khớp Buy, rồi giật xuống khớp Sell, rồi đi ngang -> Lỗ cả 2 đầu (Quét SL).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Aftermath -->
+                <div class="flex flex-col md:flex-row gap-4 border border-green-200 rounded-lg overflow-hidden shadow-sm">
+                    <div class="bg-green-50 p-4 w-full md:w-1/3 flex items-center justify-center flex-col">
+                        <strong class="text-green-800 text-center">Cách 2: The Aftermath<br>(Chờ sóng yên)</strong>
+                        <span class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded mt-2 font-bold">KHUYÊN DÙNG</span>
+                    </div>
+                    <div class="p-4 w-full md:w-2/3">
+                        <p class="text-sm italic mb-2 text-gray-500">"Để cho đám đông chém giết nhau chán chê. Tôi sẽ vào sau."</p>
+                        <ul class="list-disc pl-4 text-sm text-gray-700">
+                            <li><strong>Hành động:</strong> Chờ tin ra 15-30 phút. Xác định phe thắng thế (nến đóng cửa). Vào lệnh đuổi theo xu hướng (Follow Trend).</li>
+                            <li><strong>Ưu điểm:</strong> An toàn hơn, Spread đã ổn định lại.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Rủi ro chết người: Trượt giá (Slippage) & Giãn Spread</h2>
+            <p>Trong lúc tin NFP ra, thanh khoản bốc hơi.</p>
+            
+            <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-600 my-4">
+                <strong class="text-red-700 block mb-2">Thực tế phũ phàng:</strong>
+                <p class="text-sm text-gray-700 mb-2">Spread cặp Vàng (XAU/USD) bình thường 20$, lúc tin ra có thể giãn lên <strong>100$ - 200$</strong>.</p>
+                <p class="text-sm text-gray-700"><strong>Hậu quả:</strong> Lệnh vừa khớp đã lỗ nặng. Hoặc Stop Loss đặt ở 2000 nhưng giá trượt xuống khớp ở 1990 (Lỗ thêm 10 giá).</p>
+            </div>
+            <p>Đây là lúc bạn cần một Broker xịn và một cơ chế bảo hiểm.</p>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Exness: Vũ khí hạng nặng cho News Trader</h2>
+            <p>Tại sao dân trade tin (News Trader) thích Exness?</p>
+            <ul class="list-check pl-5 space-y-2 mb-6 text-sm text-gray-700">
+                <li><i class="fa-solid fa-server text-blue-500 mr-2"></i> <strong>Tốc độ khớp lệnh:</strong> Server cực mạnh, hạn chế Requote (báo giá lại) khi bão tin ập đến.</li>
+                <li><i class="fa-solid fa-infinity text-blue-500 mr-2"></i> <strong>Đòn bẩy không giới hạn:</strong> Tận dụng biến động ngắn hạn với vốn nhỏ.</li>
+            </ul>
+
+            <!-- EXNESS PROMO BOX -->
+            <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Bảo Hiểm "Giãn Spread" Với Backcom</p>
+                
+                <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
+                    <p>Khi Spread giãn mạnh lúc tin ra, chi phí giao dịch tăng vọt. Mã đối tác <strong>12yyhitqq7</strong> phát huy tác dụng cứu sinh.</p>
+                    <div class="bg-white p-3 rounded border border-gray-200 text-xs">
+                        <p class="mb-1"><strong>Ví dụ:</strong> Vào 1 Lot Vàng lúc tin NFP. Spread giãn 50$ (Mất 50$).</p>
+                        <p class="mb-1"><strong>Có Backcom 40%:</strong> Được hoàn lại 20$.</p>
+                        <p class="font-bold text-green-600">-> Chi phí thực tế giảm còn 30$.</p>
+                    </div>
+                    <p class="text-xs italic">Số tiền hoàn lại này đôi khi chính là phần lợi nhuận bạn giữ được sau cơn bão.</p>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã đối tác:</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">12yyhitqq7</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Kích hoạt Bảo hiểm
+                </button>
+                <p class="mt-4 text-xs text-gray-500 italic">Hành động: Luôn kiểm tra Lịch kinh tế trước khi vào lệnh. Nếu là người mới: Tốt nhất là ĐỨNG NGOÀI.</p>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="mb-6 font-light leading-relaxed">
+                    Bạn đã nắm được những kiến thức nền tảng quan trọng nhất của Forex: Từ Cặp tiền, Phiên giao dịch, đến cách đọc Tin tức vĩ mô.
+                </p>
+                
+                <p class="text-lg font-bold text-trade-yellow mb-6">
+                    "Tin tức là vua, nhưng Giá là hoàng hậu."
+                </p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-gray-400 font-bold uppercase text-xs mb-3 tracking-widest">Khám phá thêm</p>
+                    <a href="kien-thuc.html" class="inline-block px-6 py-3 bg-white/10 text-white font-bold uppercase text-sm hover:bg-trade-yellow hover:text-trade-blue transition-all border border-white/20 hover:border-trade-yellow">
+                        <i class="fa-solid fa-book-open mr-2"></i> Quay về Thư viện Kiến thức
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- BROKER INFO MODAL (Customized for Exness) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-4">
+                         <a href="cai-dat-backcom-exness.html" target="_blank" class="text-xs text-trade-blue font-bold italic hover:text-trade-light-blue hover:underline">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // --- MODAL LOGIC (Customized for Exness) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Exness Data
+        const exnessData = {
+            name: 'Exness',
+            code: '12yyhitqq7',
+            link: 'https://one.exness-track.com/a/12yyhitqq7'
+        };
+
+        function openModal() {
+            const data = exnessData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                if (lightbox.style.display === 'flex') closeLightbox();
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

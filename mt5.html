@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nền tảng MT4 & MT5 (MetaTrader): Hướng dẫn sử dụng phần mềm "cổ lỗ sĩ" nhưng quyền lực nhất thế giới</title>
+    <meta name="description" content="MT4 và MT5 là gì? Tại sao Trader chuyên nghiệp không vào lệnh trên TradingView? Hướng dẫn đăng nhập tài khoản Exness vào MT4/MT5. Cách cài đặt biểu đồ nến và One-Click Trading.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-emerald-600">Forex</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                NỀN TẢNG MT4 & MT5 (METATRADER):<br>
+                HƯỚNG DẪN SỬ DỤNG PHẦN MỀM <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">"CỔ LỖ SĨ"</span> QUYỀN LỰC NHẤT
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>01 Feb 2026 &bull; 10 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="mt50.webp" alt="MetaTrader 4 and 5 Interface" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=MetaTrader+4+and+5'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
+                <p class="mb-3">Nếu bạn đến từ Crypto, bạn đã quen với giao diện mượt mà, hiện đại, dark-mode xịn xò của Binance, Bybit hay TradingView.</p>
+                <p class="mb-3">Nhưng khi bước chân vào Forex, bạn sẽ bị <strong>"sốc văn hóa" tập 2</strong>.</p>
+                <p class="italic mb-3">Bạn tải phần mềm giao dịch về và thốt lên: "Cái quái gì đây? Phần mềm từ thời Windows 98 à? Sao nó xấu và lạc hậu thế này?"</p>
+                <p class="mt-4 font-bold text-trade-blue text-xl">Chào mừng bạn đến với MetaTrader 4 (MT4) - Phần mềm "nồi đồng cối đá" nhưng quyền lực nhất thế giới tài chính.</p>
+            </div>
+
+            <p>Trong Crypto, Sàn và Nền tảng giao dịch là một (Bạn trade ngay trên web Binance). Trong Forex, Sàn (Broker) và Nền tảng (Platform) là hai thứ riêng biệt.</p>
+            <ul class="list-disc pl-5 mb-6 text-sm text-gray-700">
+                <li><strong>Exness</strong> là nơi giữ tiền của bạn.</li>
+                <li><strong>MT4/MT5</strong> là cái cổng để bạn đẩy lệnh vào thị trường.</li>
+            </ul>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. MT4 vs. MT5: Anh em song sinh khác trứng</h2>
+            <p>MetaQuotes (công ty mẹ) đẻ ra 2 đứa con:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                <!-- MT4 -->
+                <div class="bg-gray-100 p-5 rounded-lg border border-gray-300">
+                    <h4 class="font-bold text-gray-700 mb-2 text-lg">MetaTrader 4 (MT4)</h4>
+                    <span class="text-xs font-bold bg-gray-300 px-2 py-1 rounded text-gray-600 mb-2 inline-block">Huyền thoại bất tử (2005)</span>
+                    <ul class="text-sm list-disc pl-4 space-y-1 mt-2">
+                        <li><strong>Đặc điểm:</strong> Giao diện đơn giản, nhẹ, ít tốn Ram.</li>
+                        <li><strong>Điểm mạnh:</strong> 90% Robot (EA) hiện nay chạy trên MT4. Cộng đồng Code khổng lồ.</li>
+                        <li><strong>Dành cho:</strong> Trader chuyên Forex thuần túy.</li>
+                    </ul>
+                </div>
+                <!-- MT5 -->
+                <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
+                    <h4 class="font-bold text-blue-700 mb-2 text-lg">MetaTrader 5 (MT5)</h4>
+                    <span class="text-xs font-bold bg-blue-200 px-2 py-1 rounded text-blue-600 mb-2 inline-block">Kẻ kế thừa hiện đại (2010)</span>
+                    <ul class="text-sm list-disc pl-4 space-y-1 mt-2">
+                        <li><strong>Đặc điểm:</strong> Tốc độ nhanh hơn, hỗ trợ nhiều khung thời gian (M2, M8...), test Robot tốt hơn.</li>
+                        <li><strong>Điểm mạnh:</strong> Giao dịch được cả Cổ phiếu (Stocks) và Crypto.</li>
+                        <li><strong>Dành cho:</strong> Trader thích công nghệ mới, đa sản phẩm.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <p class="font-bold text-center text-blue-600 bg-blue-100 p-2 rounded">-> Lời khuyên: Nếu bạn là người mới hoàn toàn, hãy chọn MT5 trên Exness vì nó mượt hơn và không bị lỗi thời.</p>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Tại sao không trade trên TradingView?</h2>
+            <p>TradingView (TV) là công cụ vẽ biểu đồ đẹp nhất thế giới. Ai cũng công nhận. Nhưng tại sao dân chuyên nghiệp lại <strong>Phân tích trên TradingView -> Vào lệnh trên MT4/MT5?</strong></p>
+
+            <div class="space-y-4 my-6">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center shrink-0 text-yellow-600 font-bold mr-4"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <strong class="text-gray-800">Độ trễ (Latency):</strong>
+                        <p class="text-sm text-gray-600">TradingView là nền tảng web. MT4 là phần mềm cài trực tiếp. Tốc độ khớp lệnh của MT4 nhanh hơn tính bằng mili-giây (quan trọng khi đánh tin).</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center shrink-0 text-green-600 font-bold mr-4"><i class="fa-solid fa-dollar-sign"></i></div>
+                    <div>
+                        <strong class="text-gray-800">Phí:</strong>
+                        <p class="text-sm text-gray-600">Để kết nối Broker với TradingView, đôi khi bạn mất phí hoặc bị hạn chế tính năng. MT4/MT5 thì miễn phí 100%.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center shrink-0 text-blue-600 font-bold mr-4"><i class="fa-solid fa-user-group"></i></div>
+                    <div>
+                        <strong class="text-gray-800">Thói quen:</strong>
+                        <p class="text-sm text-gray-600">Trader cá nhân đã dùng MT4 suốt 20 năm qua. Nó ổn định đến mức "không thể chết".</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Hướng dẫn kết nối Exness vào MT4/MT5</h2>
+            <p>Đây là bước đầu tiên để bạn chạm tay vào thị trường 6.000 tỷ USD.</p>
+
+            <div class="bg-white border-2 border-dashed border-trade-blue p-6 rounded-lg my-6">
+                <h4 class="font-bold text-trade-blue mb-4 uppercase">Bước 1: Lấy thông tin đăng nhập trên Exness</h4>
+                <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700 mb-4">
+                    <li>Đăng nhập vào trang chủ Exness.</li>
+                    <li>Tạo một tài khoản giao dịch mới (Chọn MT5 Standard hoặc MT5 Pro/Raw tùy vốn).</li>
+                    <li class="bg-yellow-100 p-2 rounded border border-yellow-300 font-bold">Lưu ý quan trọng: Điền mã đối tác <code>12yyhitqq7</code> để kích hoạt chế độ Hoàn phí (Backcom). Nếu không, bạn sẽ trade với mức phí đắt đỏ mặc định.</li>
+                </ol>
+                <p class="text-sm">Sau khi tạo xong, bạn sẽ có:</p>
+                <ul class="list-disc pl-5 text-sm text-gray-600">
+                    <li><strong>ID Đăng nhập:</strong> Dãy số (VD: 8823456)</li>
+                    <li><strong>Máy chủ (Server):</strong> (VD: Exness-MT5Real9)</li>
+                    <li><strong>Mật khẩu:</strong> Cái bạn vừa tạo</li>
+                </ul>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-300 p-6 rounded-lg my-6">
+                <h4 class="font-bold text-gray-700 mb-4 uppercase">Bước 2: Đăng nhập vào phần mềm</h4>
+                <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-700">
+                    <li>Tải App <strong>MetaTrader 5</strong> trên AppStore/CH Play.</li>
+                    <li>Mở App -> Chọn Settings -> <strong>New Account</strong>.</li>
+                    <li>Gõ tìm kiếm: <code>Exness Technologies</code>.</li>
+                    <li>Chọn đúng Server -> Nhập ID và Mật khẩu.</li>
+                </ol>
+                <p class="mt-3 text-green-600 font-bold text-sm"><i class="fa-solid fa-check-circle mr-2"></i> Nếu thấy số dư hiện ra -> Thành công!</p>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Làm đẹp giao diện "xấu xí"</h2>
+            <p>Mặc định MT4/MT5 có màu xanh trên nền đen rất rối mắt và dùng biểu đồ thanh (Bar Chart). Hãy chỉnh lại ngay:</p>
+            
+            <!-- IMAGE 2 -->
+            <img src="mt5_settings.png" alt="Cài đặt giao diện MT5" class="w-full rounded-lg shadow-md my-6" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/800x400?text=MT5+Chart+Settings'">
+
+            <ul class="list-check pl-5 space-y-2 mb-6 text-sm text-gray-700">
+                <li><i class="fa-solid fa-chart-simple text-blue-500 mr-2"></i> <strong>Đổi sang nến Nhật:</strong> Bấm vào icon hình cây nến (Candlesticks).</li>
+                <li><i class="fa-solid fa-border-none text-blue-500 mr-2"></i> <strong>Bỏ lưới (Grid):</strong> Chuột phải vào biểu đồ -> Chọn Properties (F8) -> Bỏ tích chọn Show Grid.</li>
+                <li><i class="fa-solid fa-palette text-blue-500 mr-2"></i> <strong>Màu sắc:</strong> Chỉnh Bull Candle (Tăng) màu Xanh/Trắng, Bear Candle (Giảm) màu Đỏ/Đen.</li>
+                <li><i class="fa-solid fa-hand-pointer text-blue-500 mr-2"></i> <strong>One-Click Trading:</strong> Chuột phải -> Chọn One Click Trading để Buy/Sell ngay lập tức.</li>
+            </ul>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Các khu vực quan trọng trên màn hình</h2>
+            <p>Đừng để bị ngợp bởi các con số. Bạn chỉ cần quan tâm 3 khu vực:</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 text-sm">
+                <div class="border p-3 rounded bg-white shadow-sm">
+                    <strong class="text-trade-blue block mb-1">Market Watch (Trái)</strong>
+                    Bảng giá các cặp tiền. Muốn chơi cặp nào (Vàng/EU) thì kéo nó ném sang bên phải.
+                </div>
+                <div class="border p-3 rounded bg-white shadow-sm">
+                    <strong class="text-trade-blue block mb-1">Chart (Giữa)</strong>
+                    Nơi xem nến chạy và phân tích kỹ thuật.
+                </div>
+                <div class="border p-3 rounded bg-white shadow-sm">
+                    <strong class="text-trade-blue block mb-1">Toolbox (Dưới cùng)</strong>
+                    <span class="text-red-600 font-bold">Quan trọng nhất!</span> Xem số dư, lệnh đang chạy, Lời/Lỗ, Lịch sử.
+                </div>
+            </div>
+
+            <!-- SECTION 6 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">6. Sức mạnh ngầm: Robot (EA) & Backcom</h2>
+            <p>Một tính năng "thần thánh" của MT4/MT5 là <strong>Expert Advisors (EA)</strong> - Robot giao dịch tự động. Bạn có thể cài code để máy tự trade 24/24 trong khi bạn ngủ.</p>
+            <p class="text-sm italic text-gray-500 mb-6">Nhưng hãy nhớ: Robot càng trade nhiều, phí Spread càng lớn.</p>
+
+            <!-- EXNESS PROMO BOX -->
+            <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Tối Ưu Hóa Lợi Nhuận Trên MT4/MT5</p>
+                
+                <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
+                    <p>Dù phần mềm có cũ kỹ, nhưng dòng tiền chảy qua nó là thật. Khi bạn kết nối tài khoản Exness (đã nhập mã <code>12yyhitqq7</code>) vào MT4/MT5:</p>
+                    <div class="bg-white p-3 rounded border border-gray-200">
+                        <strong class="block text-green-600 mb-1">Hoàn phí tự động:</strong>
+                        Mỗi lệnh bạn bấm Buy/Sell sẽ được hệ thống ghi nhận. Sau mỗi ngày, Exness trả lại 40% phí vào tài khoản. Bạn thấy tiền về ngay trong mục Balance.
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã đối tác:</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">12yyhitqq7</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Tạo Tài Khoản MT5
+                </button>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="mb-6 font-light leading-relaxed">
+                    Đừng đánh giá cuốn sách qua bìa. MT4/MT5 tuy xấu nhưng nó là khẩu súng AK-47 của giới Trader: <strong>Bền bỉ, tin cậy, bắn là trúng.</strong>
+                </p>
+                <div class="flex justify-center gap-4 mb-6">
+                    <span class="bg-white/10 px-3 py-1 rounded text-sm">1. Tải MT5</span>
+                    <span class="bg-white/10 px-3 py-1 rounded text-sm">2. Đăng nhập Exness</span>
+                    <span class="bg-white/10 px-3 py-1 rounded text-sm">3. Chỉnh màu nến</span>
+                </div>
+                
+                <p class="text-sm italic mb-6 text-gray-400">
+                    Bây giờ, bạn đã có súng (MT5), có đạn (Tiền trong Exness). Đã đến lúc học cách bóp cò.
+                    Trong Forex, bạn không chỉ Mua (Buy) để kiếm lời khi giá lên, mà còn có thể Bán khống (Sell) để kiếm lời khi giá sập, ngay cả khi bạn chẳng có đồng Euro nào trong tay.
+                </p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
+                    <a href="longshort.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Long & Short (Buy/Sell) trong Forex: Bản chất của việc bán khống <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- BROKER INFO MODAL (Customized for Exness) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-4">
+                         <a href="cai-dat-backcom-exness.html" target="_blank" class="text-xs text-trade-blue font-bold italic hover:text-trade-light-blue hover:underline">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // --- MODAL LOGIC (Customized for Exness) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Exness Data
+        const exnessData = {
+            name: 'Exness',
+            code: '12yyhitqq7',
+            link: 'https://one.exness-track.com/a/12yyhitqq7'
+        };
+
+        function openModal() {
+            const data = exnessData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                if (lightbox.style.display === 'flex') closeLightbox();
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

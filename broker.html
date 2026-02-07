@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broker (Sàn môi giới) là gì? Vén màn bí mật về ECN, Market Maker và cách "chọn mặt gửi vàng"</title>
+    <meta name="description" content="Phân biệt sàn ECN và Market Maker. Tại sao sàn ôm lệnh lại muốn bạn thua lỗ? Tiêu chí chọn sàn Forex uy tín. Tại sao Exness là lựa chọn số 1 cho Trader Việt?">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-emerald-600">Forex</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                BROKER (SÀN MÔI GIỚI) LÀ GÌ?<br>
+                VÉN MÀN BÍ MẬT VỀ <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">ECN, MARKET MAKER</span> VÀ CÁCH CHỌN MẶT GỬI VÀNG
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>31 Jan 2026 &bull; 10 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="broker0.png" alt="Forex Broker Types" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Broker+ECN+vs+Market+Maker'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
+                <p class="mb-3">Trong Crypto, bạn có thể tự mình giao dịch trên sàn phi tập trung (DEX) như Uniswap mà không cần ai cho phép.</p>
+                <p class="mb-3">Nhưng trong Forex, bạn là <strong>"tép riu"</strong>. Bạn không thể cầm 1.000 USD đến gõ cửa ngân hàng JP Morgan hay Citibank để đòi mua bán tiền tệ được. Họ chỉ tiếp chuyện với những người cầm 10 triệu USD trở lên.</p>
+                <p class="mt-4 font-bold text-trade-blue">Đó là lý do bạn cần một Người môi giới (Broker).</p>
+            </div>
+
+            <p>Broker là cây cầu nối đưa lệnh của bạn ra thị trường quốc tế. Nhưng cây cầu này có 2 loại: <strong>Một loại giúp bạn qua sông, một loại chỉ muốn đẩy bạn xuống nước.</strong></p>
+            <p>Sàn Forex cung cấp cho bạn phần mềm (MT4/MT5), đòn bẩy và thanh khoản. Tuy nhiên, cách họ xử lý lệnh của bạn mới là điều quyết định vận mệnh tài khoản của bạn.</p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Market Maker (Nhà cái / Sàn ôm lệnh) - "Sân chơi trong nhà"</h2>
+            <p>Đây là mô hình phổ biến nhất. Sàn đóng vai trò là "Nhà cái".</p>
+            
+            <div class="bg-red-50 p-6 rounded-lg border border-red-200 my-6">
+                <p class="mb-3"><strong>Cơ chế:</strong> Khi bạn đặt lệnh BUY, sàn sẽ khớp lệnh đó bằng cách bán cho bạn (Sàn SELL). Sàn không đẩy lệnh của bạn ra ngoài thị trường liên ngân hàng.</p>
+                
+                <div class="bg-white p-4 rounded border border-red-100">
+                    <h4 class="font-bold text-red-700 mb-2 uppercase text-sm">Xung đột lợi ích (Conflict of Interest):</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex justify-between"><span>Bạn THẮNG:</span> <span class="font-bold text-red-600">Sàn phải bỏ tiền túi trả -> Sàn LỖ</span></li>
+                        <li class="flex justify-between border-t pt-2"><span>Bạn THUA:</span> <span class="font-bold text-green-600">Tiền của bạn chui vào túi sàn -> Sàn LÃI</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-100 p-4 rounded">
+                    <strong class="text-gray-700">Rủi ro:</strong>
+                    <p class="text-sm text-gray-600">Các sàn lừa đảo (Scam) thường dùng thủ thuật "chỉnh giá" (Spike/Hunt Stop Loss) để khiến bạn cháy tài khoản.</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded border border-green-200">
+                    <strong class="text-green-700">Lợi ích (Sàn uy tín):</strong>
+                    <p class="text-sm text-gray-600">Khớp lệnh cực nhanh, không trượt giá, miễn phí hoa hồng. (Exness tài khoản Standard hoạt động theo cơ chế này nhưng uy tín nhờ thanh khoản khổng lồ).</p>
+                </div>
+            </div>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. ECN / STP (Sàn đẩy lệnh) - "Người đưa đò trung thực"</h2>
+            <p>Đây là mô hình Broker đóng vai trò trung gian thuần túy.</p>
+            
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 my-6">
+                <p class="mb-3"><strong>Cơ chế:</strong> Khi bạn đặt lệnh BUY, sàn chuyển lệnh đó ngay lập tức lên thị trường quốc tế (Interbank) để khớp với một Ngân hàng hoặc Quỹ nào đó đang muốn SELL.</p>
+                
+                <h4 class="font-bold text-blue-800 mb-2 mt-4 uppercase text-sm">Lợi ích tuyệt đối:</h4>
+                <ul class="list-check space-y-2 text-sm text-gray-700">
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Không xung đột:</strong> Sàn không quan tâm bạn thắng hay thua. Bạn thắng, họ vui vì bạn sẽ giao dịch tiếp để họ thu phí.</li>
+                    <li><i class="fa-solid fa-check text-green-500 mr-2"></i> <strong>Giá chuẩn:</strong> Giá phản ánh đúng thị trường thật, không bị thao túng.</li>
+                </ul>
+            </div>
+            
+            <p class="text-sm italic text-gray-500"><strong>Phí:</strong> Vì không "ăn" tiền thua của khách, họ sống bằng cách thu Phí hoa hồng (Commission) trên mỗi lệnh. Phù hợp với Trader chuyên nghiệp, vốn lớn.</p>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Dấu hiệu nhận biết Sàn Lừa Đảo (Scam Broker)</h2>
+            <p>Forex là mỏ vàng của lừa đảo. Hãy tránh xa nếu thấy:</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div class="p-4 border-2 border-red-100 rounded-lg hover:border-red-300 transition-all">
+                    <i class="fa-solid fa-hand-holding-dollar text-red-500 text-xl mb-2"></i>
+                    <h4 class="font-bold text-sm">Cam kết lợi nhuận</h4>
+                    <p class="text-xs text-gray-500">"Bao lời 1%/ngày", "Robot tự trade bao thắng". Forex không bao giờ có chuyện bao lời.</p>
+                </div>
+                <div class="p-4 border-2 border-red-100 rounded-lg hover:border-red-300 transition-all">
+                    <i class="fa-solid fa-gift text-red-500 text-xl mb-2"></i>
+                    <h4 class="font-bold text-sm">Bonus nạp tiền khủng</h4>
+                    <p class="text-xs text-gray-500">"Nạp 1.000$ tặng 1.000$". Tiền này không rút được, chỉ để dụ bạn nạp thêm.</p>
+                </div>
+                <div class="p-4 border-2 border-red-100 rounded-lg hover:border-red-300 transition-all">
+                    <i class="fa-solid fa-file-contract text-red-500 text-xl mb-2"></i>
+                    <h4 class="font-bold text-sm">Giấy phép "đảo hoang"</h4>
+                    <p class="text-xs text-gray-500">Chỉ có giấy phép ở các đảo lạ hoắc (St. Vincent...) mà không có giấy phép uy tín (FCA, ASIC, CySEC).</p>
+                </div>
+                <div class="p-4 border-2 border-red-100 rounded-lg hover:border-red-300 transition-all">
+                    <i class="fa-solid fa-lock text-red-500 text-xl mb-2"></i>
+                    <h4 class="font-bold text-sm">Nạp dễ rút khó</h4>
+                    <p class="text-xs text-gray-500">Nạp vào 1 phút, rút ra bắt xác minh 7749 bước rồi khóa tài khoản.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Tại sao Exness là "Vua không ngai" tại Việt Nam?</h2>
+            <p>Giữa ma trận Broker, Exness nổi lên như một thế lực thống trị nhờ giải quyết được nỗi đau lớn nhất của Trader: <strong>RÚT TIỀN</strong>.</p>
+            
+            <div class="my-6">
+                <div class="flex items-start mb-4">
+                    <div class="bg-yellow-100 p-2 rounded mr-4"><i class="fa-solid fa-bolt text-yellow-600 text-xl"></i></div>
+                    <div>
+                        <strong class="text-trade-blue">Nạp rút tức thì (Instant Withdrawal):</strong>
+                        <p class="text-sm text-gray-600">Đây là "vũ khí hủy diệt". Bạn bấm rút tiền lúc 2 giờ sáng Chủ Nhật, tiền ting ting về tài khoản ngân hàng sau 3-5 phút. Không giam tiền.</p>
+                    </div>
+                </div>
+                <div class="flex items-start mb-4">
+                    <div class="bg-blue-100 p-2 rounded mr-4"><i class="fa-solid fa-eye text-blue-600 text-xl"></i></div>
+                    <div>
+                        <strong class="text-trade-blue">Minh bạch tài chính:</strong>
+                        <p class="text-sm text-gray-600">Công khai báo cáo kiểm toán bởi Deloitte. Khối lượng giao dịch hàng tháng lên tới 4.000 tỷ USD.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-green-100 p-2 rounded mr-4"><i class="fa-solid fa-layer-group text-green-600 text-xl"></i></div>
+                    <div>
+                        <strong class="text-trade-blue">Đa dạng tài khoản:</strong>
+                        <p class="text-sm text-gray-600">Standard (Cho người mới) & Raw Spread/Zero (Cho dân chuyên nghiệp).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Tối ưu chi phí giao dịch trên Exness (Quan trọng)</h2>
+            <p>Dù Exness uy tín, nhưng họ vẫn phải thu phí (Spread/Commission) để sống. Là một Trader thông minh, bạn có quyền đòi lại một phần chi phí này.</p>
+
+            <!-- EXNESS PROMO BOX -->
+            <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Chương Trình Hoàn Phí (Backcom) 40%</p>
+                
+                <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
+                    <p>Thay vì để Exness thu trọn 100% phí, hãy đăng ký qua mã đối tác để kích hoạt chia sẻ doanh thu.</p>
+                    <div class="bg-white p-3 rounded border border-gray-200 text-xs">
+                        <p class="mb-1"><strong>Ví dụ:</strong> Trade 1 Lot Vàng -> Sàn thu 10$.</p>
+                        <p class="font-bold text-green-600">-> Hệ thống tự động hoàn lại 4$ vào tài khoản.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã đối tác (Partner Code):</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">12yyhitqq7</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Kích hoạt Backcom Exness
+                </button>
+                <p class="mt-4 text-xs text-gray-500 italic">Hướng dẫn: Đăng ký mới hoặc mở ID giao dịch mới trong khu vực cá nhân và nhập mã trên.</p>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <p class="mb-6 font-light leading-relaxed">
+                    Chọn Broker giống như chọn vợ/chồng. Chọn sai là mất cả chì lẫn chài.
+                    <br><span class="text-green-400 font-bold">Người mới:</span> Nên chọn Exness (Standard) vì nạp rút nhanh, đòn bẩy vô cực.
+                    <br><span class="text-red-500 font-bold">Tránh xa:</span> Các sàn gọi điện mời chào "kèo bao lời", "chuyên gia đọc lệnh".
+                </p>
+                
+                <p class="text-sm italic mb-6 text-gray-400">
+                    Bây giờ bạn đã có tài khoản Broker. Nhưng bạn giao dịch ở đâu? Trên web hay app điện thoại?
+                    Công cụ huyền thoại mà mọi Trader trên thế giới đều dùng không phải TradingView, mà là một phần mềm giao diện như Windows 98 tên là MetaTrader 4 (MT4).
+                </p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
+                    <a href="mt5.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Nền tảng MT4 & MT5: Hướng dẫn sử dụng phần mềm quyền lực nhất <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- BROKER INFO MODAL (Customized for Exness) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-4">
+                         <a href="cai-dat-backcom-exness.html" target="_blank" class="text-xs text-trade-blue font-bold italic hover:text-trade-light-blue hover:underline">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // --- MODAL LOGIC (Customized for Exness) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Exness Data
+        const exnessData = {
+            name: 'Exness',
+            code: '12yyhitqq7',
+            link: 'https://one.exness-track.com/a/12yyhitqq7'
+        };
+
+        function openModal() {
+            const data = exnessData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                if (lightbox.style.display === 'flex') closeLightbox();
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

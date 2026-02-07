@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Long & Short (Buy/Sell) trong Forex: Bản chất của việc bán khống tiền tệ</title>
+    <meta name="description" content="Long (Buy) và Short (Sell) là gì? Tại sao bạn có thể bán khống EUR/USD khi không có đồng Euro nào? Cơ chế vay mượn của sàn. Phân biệt giá Bid và Ask.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-emerald-600">Forex</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                LONG & SHORT (BUY/SELL) TRONG FOREX:<br>
+                BẢN CHẤT CỦA VIỆC <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">"BÁN KHỐNG"</span> TIỀN TỆ
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>01 Feb 2026 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="longshort0.png" alt="Long and Short Position Concept" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Long+vs+Short+Positions'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
+                <p class="mb-3">Trong Crypto (Giao dịch Spot/Giao ngay), tư duy của bạn rất đơn giản:</p>
+                <ul class="list-disc pl-5 mb-3 text-sm">
+                    <li>Bạn có USDT.</li>
+                    <li>Bạn mua Bitcoin giá 20k.</li>
+                    <li>Chờ lên 60k bán -> Lãi.</li>
+                    <li>Nếu giá rớt về 10k -> Bạn "đu đỉnh", nhưng trong ví bạn vẫn còn nguyên 1 Bitcoin. Bạn chờ nó hồi phục (Hold to Die).</li>
+                </ul>
+                <p class="mb-3">Nhưng trong Forex, cuộc chơi thú vị hơn nhiều. Bạn có thể kiếm tiền ngay cả khi nền kinh tế sụp đổ, đồng tiền mất giá thảm hại. Thậm chí, bạn có thể Bán một thứ mà bạn không hề sở hữu.</p>
+                <p class="mt-4 font-bold text-trade-blue text-xl">Đó là ma thuật của Long (Mua) và Short (Bán khống).</p>
+            </div>
+
+            <p>Forex là thị trường hai chiều (Two-way Market).</p>
+            <ul class="list-none space-y-2 mb-6">
+                <li><i class="fa-solid fa-arrow-trend-up text-green-600 mr-2"></i> <strong>Giá lên:</strong> Bạn bấm BUY (Long) để kiếm lời.</li>
+                <li><i class="fa-solid fa-arrow-trend-down text-red-600 mr-2"></i> <strong>Giá xuống:</strong> Bạn bấm SELL (Short) để kiếm lời.</li>
+            </ul>
+            <p>Khác với chứng khoán cơ sở (chỉ được mua thấp bán cao), Forex cho phép bạn tấn công thị trường từ cả hai phía.</p>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Cơ chế của cặp tiền tệ (Currency Pairs)</h2>
+            <p>Để hiểu Buy/Sell, hãy nhớ lại cấu trúc cặp tiền: <strong>XXX/YYY</strong> (Ví dụ: EUR/USD).</p>
+            
+            <div class="flex flex-col md:flex-row gap-6 my-6 text-center">
+                <div class="flex-1 bg-gray-100 p-4 rounded border border-gray-300">
+                    <span class="block font-bold text-gray-700">Đồng đứng trước (EUR)</span>
+                    <span class="text-sm text-gray-500">Là hàng hóa</span>
+                </div>
+                <div class="flex-1 bg-gray-100 p-4 rounded border border-gray-300">
+                    <span class="block font-bold text-gray-700">Đồng đứng sau (USD)</span>
+                    <span class="text-sm text-gray-500">Là tiền để thanh toán</span>
+                </div>
+            </div>
+            
+            <p class="font-bold text-center italic text-trade-blue mb-6">Mọi hành động Mua hay Bán đều tác động lên Đồng đứng trước.</p>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Long (Buy) - Vị thế Mua: "Kỳ vọng tăng giá"</h2>
+            <p>Cái này dễ hiểu nhất.</p>
+            
+            <div class="bg-green-50 p-6 rounded-lg border border-green-200 mb-6">
+                <h4 class="font-bold text-green-700 mb-2 uppercase"><i class="fa-solid fa-cart-shopping mr-2"></i> Hành động: Bạn bấm nút BUY EUR/USD</h4>
+                <ul class="list-disc pl-5 text-sm space-y-2 text-gray-700">
+                    <li><strong>Ý nghĩa:</strong> Bạn dùng USD để mua Euro.</li>
+                    <li><strong>Kỳ vọng:</strong> Bạn tin rằng kinh tế Châu Âu tốt lên -> Đồng Euro sẽ tăng giá trị so với Đô la Mỹ.</li>
+                    <li><strong>Chốt lời:</strong> Khi tỷ giá tăng lên, bạn bấm "Close Order" (Đóng lệnh) -> Tức là bạn bán Euro ra để đổi lại nhiều USD hơn ban đầu.</li>
+                </ul>
+                
+                <div class="bg-white p-4 rounded border border-green-100 mt-4 text-sm">
+                    <strong class="block text-green-600 mb-1">Ví dụ:</strong>
+                    <p>Bạn có 1.100$. Tỷ giá EUR/USD = 1.1000.</p>
+                    <p>Bạn BUY 1.000 Euro (Giá 1.100$).</p>
+                    <p>Tỷ giá tăng lên 1.2000. Bạn bán 1.000 Euro ra -> Thu về 1.200$.</p>
+                    <p class="font-bold text-green-700 mt-2">Lãi: 100$.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Short (Sell) - Vị thế Bán khống: "Kỳ vọng giảm giá"</h2>
+            <p>Đây là chỗ người mới hay bị "lú". Bạn hỏi: <em>"Trong tài khoản tôi chỉ có 1.000 USD (tiền nạp vào). Tôi làm gì có đồng Euro nào đâu mà đòi Bán (Sell)?"</em></p>
+            
+            <div class="bg-red-50 p-6 rounded-lg border border-red-200 mb-6">
+                <h4 class="font-bold text-red-700 mb-4 uppercase text-sm">Giải thích cơ chế Bán khống (Short Selling):</h4>
+                <p class="text-sm mb-4">Khi bạn bấm nút SELL EUR/USD, thực chất quy trình ngầm sau đây diễn ra trong tích tắc (do Sàn Broker thực hiện):</p>
+                
+                <ol class="list-decimal pl-5 space-y-3 text-sm text-gray-700">
+                    <li><strong>Bước 1 (Vay mượn):</strong> Sàn (Broker) cho bạn "mượn" 1.000 Euro (Dựa trên số tiền ký quỹ Margin của bạn).</li>
+                    <li><strong>Bước 2 (Bán ngay):</strong> Sàn lập tức bán 1.000 Euro đó ra thị trường (tại giá hiện tại là 1.1000) -> Thu về 1.100 USD và giữ đó cho bạn.</li>
+                    <li><strong>Bước 3 (Chờ giá sập):</strong> Bạn ngồi chờ và đúng như dự đoán, giá Euro sập xuống còn 1.0000.</li>
+                    <li><strong>Bước 4 (Mua trả lại):</strong> Bạn bấm "Close Order". Sàn lấy số USD đang giữ, mua lại 1.000 Euro (lúc này giá rẻ, chỉ tốn 1.000 USD để mua).</li>
+                    <li><strong>Bước 5 (Trả nợ & Ăn chênh lệch):</strong> Sàn lấy lại 1.000 Euro gốc đã cho vay. Số tiền dư ra (1.100 - 1.000 = 100 USD) chính là lợi nhuận của bạn.</li>
+                </ol>
+            </div>
+            
+            <p class="font-bold text-center text-trade-blue bg-blue-50 p-3 rounded border border-blue-200">-> Kết luận: Bạn không cần sở hữu Euro để bán nó. Bạn chỉ cần có tiền ký quỹ (Margin) để đảm bảo khả năng trả nợ cho sàn. Mọi thứ diễn ra trong 1 mili-giây.</p>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. So sánh với Crypto (Để dễ hình dung)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                <div class="border p-4 rounded shadow-sm">
+                    <strong class="text-trade-blue block mb-2">Forex giống Crypto Futures:</strong>
+                    <ul class="text-sm list-disc pl-4 text-gray-600 space-y-1">
+                        <li>Bạn có thể Long/Short thoải mái.</li>
+                        <li>Bạn không thực sự sở hữu đồng tiền đó (Bạn không rút Euro về ví để đi siêu thị được).</li>
+                        <li>Bạn chỉ đang giao dịch dựa trên sự chênh lệch giá (CFD - Contract For Difference).</li>
+                    </ul>
+                </div>
+                <div class="border p-4 rounded shadow-sm bg-gray-50">
+                    <strong class="text-gray-700 block mb-2">Forex KHÁC Crypto Spot:</strong>
+                    <ul class="text-sm list-disc pl-4 text-gray-600 space-y-1">
+                        <li>Trong Crypto Spot, muốn bán Bitcoin, bạn PHẢI sở hữu Bitcoin trong ví.</li>
+                        <li>Trong Forex, muốn bán EUR, bạn chỉ cần có USD làm tin.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Giá Bid & Ask: Mua đắt, Bán rẻ</h2>
+            <p>Đây là thực tế phũ phàng khi bạn bấm Buy/Sell. Hãy nhìn vào bảng giá trên MT4/MT5:</p>
+            
+            <div class="flex justify-center gap-8 my-6 text-center">
+                <div>
+                    <strong class="block text-red-600 text-lg">Giá Ask</strong>
+                    <span class="text-xs text-gray-500">Giá chào bán (Luôn cao hơn)</span>
+                    <p class="text-sm font-bold mt-1">Khi bấm BUY -> Mua giá Ask</p>
+                </div>
+                <div class="border-l border-gray-300"></div>
+                <div>
+                    <strong class="block text-green-600 text-lg">Giá Bid</strong>
+                    <span class="text-xs text-gray-500">Giá chào mua (Luôn thấp hơn)</span>
+                    <p class="text-sm font-bold mt-1">Khi bấm SELL -> Bán giá Bid</p>
+                </div>
+            </div>
+            
+            <p class="text-center font-mono bg-gray-100 p-2 rounded mb-4">Khoảng chênh lệch (Spread) = Ask - Bid</p>
+            <p class="italic text-sm text-gray-600 text-center">Chính vì quy luật này, ngay khi vừa vào lệnh (dù Buy hay Sell), bạn đều bị Lỗ ngay lập tức khoản phí Spread.</p>
+
+            <!-- SECTION 6 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">6. Chiến lược giao dịch 2 chiều & Tối ưu phí Exness</h2>
+            <p>Lợi thế lớn nhất của Forex là thị trường 2 chiều.</p>
+            <ul class="list-disc pl-5 mb-4 text-sm text-gray-700">
+                <li>Thị trường đi lên (Uptrend): Bạn Buy.</li>
+                <li>Thị trường đi xuống (Downtrend): Bạn Sell.</li>
+                <li>Thị trường đi ngang (Sideway): Bạn Buy ở đáy, Sell ở đỉnh.</li>
+            </ul>
+            <p>Bạn giao dịch liên tục, xoay vòng vốn liên tục. Nhưng điều này đồng nghĩa bạn trả phí Spread cho sàn gấp đôi, gấp ba lần so với việc "Hold" một chiều.</p>
+
+            <!-- EXNESS PROMO BOX -->
+            <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Đừng Để Phí Ăn Mòn Lợi Nhuận: Kích Hoạt Backcom 40%</p>
+                
+                <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
+                    <p>Bất kể bạn Buy hay Sell, sàn Exness đều thu phí Spread. Nhưng với tư cách là một Trader thông minh, bạn có thể lấy lại phần lớn số tiền đó.</p>
+                    <div class="bg-white p-3 rounded border border-gray-200">
+                        <strong class="block text-green-600 mb-1">Cơ chế hoàn tiền:</strong>
+                        <ul class="list-disc pl-4 text-xs">
+                            <li>Bạn mở lệnh BUY 1 Lot -> Mất 10$ Spread -> Được hoàn lại 4$.</li>
+                            <li>Bạn mở lệnh SELL 1 Lot -> Mất 10$ Spread -> Được hoàn lại 4$.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã đối tác:</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">12yyhitqq7</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Đăng Ký Nhận Hoàn Phí
+                </button>
+                <p class="mt-4 text-xs text-gray-500 italic">Hướng dẫn: Đăng ký tài khoản mới hoặc mở ID giao dịch mới trong khu vực cá nhân và nhập mã trên.</p>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mb-6">
+                    <div class="p-3 border border-white/20 rounded">
+                        <strong class="block text-trade-yellow mb-1">Long (Buy)</strong>
+                        Kỳ vọng đồng tiền đứng trước tăng giá.
+                    </div>
+                    <div class="p-3 border border-white/20 rounded">
+                        <strong class="block text-trade-yellow mb-1">Short (Sell)</strong>
+                        Kỳ vọng đồng tiền đứng trước giảm giá.
+                    </div>
+                    <div class="p-3 border border-white/20 rounded">
+                        <strong class="block text-trade-yellow mb-1">Bid/Ask</strong>
+                        Mua giá cao, Bán giá thấp (Do Spread).
+                    </div>
+                </div>
+                
+                <p class="mb-6 font-light leading-relaxed text-sm">
+                    Bây giờ bạn đã biết cách bấm nút Buy/Sell. Nhưng câu hỏi triệu đô là: Khi nào thì nên Buy? Khi nào thì nên Sell?
+                    <br>Ai là người quyết định giá Euro tăng hay giảm? Không phải các đường kẻ trên biểu đồ, mà là những ông già mặc vest ngồi trong các tòa nhà Ngân hàng Trung ương.
+                </p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
+                    <a href="centralbanks.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Các "Ông trùm" Ngân hàng Trung ương (FED, ECB, BOJ): Những người thực sự điều khiển cuộc chơi <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- BROKER INFO MODAL (Customized for Exness) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-4">
+                         <a href="cai-dat-backcom-exness.html" target="_blank" class="text-xs text-trade-blue font-bold italic hover:text-trade-light-blue hover:underline">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // --- MODAL LOGIC (Customized for Exness) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Exness Data
+        const exnessData = {
+            name: 'Exness',
+            code: '12yyhitqq7',
+            link: 'https://one.exness-track.com/a/12yyhitqq7'
+        };
+
+        function openModal() {
+            const data = exnessData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                if (lightbox.style.display === 'flex') closeLightbox();
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
