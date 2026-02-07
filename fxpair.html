@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các cặp tiền tệ (Currency Pairs): Majors, Crosses & Exotics - Chọn chiến trường phù hợp</title>
+    <meta name="description" content="Phân biệt 3 loại cặp tiền: Cặp chính (Majors), Cặp chéo (Crosses) và Cặp lạ (Exotics). Tại sao người mới nên tránh GBP/JPY và Vàng (XAU/USD)? Cách tối ưu phí Spread cho từng loại cặp tiền với Exness Backcom.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Style cho ảnh trong bài viết */
+        .prose img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border-radius: 8px;
+        }
+        .prose img:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            color: #ffdf2b;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-12 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center text-xs uppercase tracking-widest text-gray-400 mb-6 font-bold">
+                <a href="index.html" class="hover:text-trade-blue transition-colors">Home</a>
+                <span class="mx-2">/</span>
+                <a href="kien-thuc.html" class="hover:text-trade-blue transition-colors">Kiến Thức</a>
+                <span class="mx-2">/</span>
+                <span class="text-emerald-600">Forex</span>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-black text-trade-blue mb-8 leading-snug md:leading-tight">
+                CÁC CẶP TIỀN TỆ (CURRENCY PAIRS):<br>
+                MAJORS, CROSSES & EXOTICS - <span class="bg-trade-yellow px-2 inline-block mt-2 text-trade-blue">CHỌN CHIẾN TRƯỜNG PHÙ HỢP</span>
+            </h1>
+
+            <div class="flex items-center justify-between border-y border-gray-100 py-4 mb-8 text-sm text-gray-500">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-trade-blue text-white flex items-center justify-center font-bold rounded-full">N</div>
+                    <span class="font-bold text-trade-blue">Nhà Trade Học</span>
+                </div>
+                <div>30 Jan 2026 &bull; 8 phút đọc</div>
+            </div>
+            
+            <div class="mb-8">
+                <!-- Hero Image -->
+                <img src="fx_pairs_hero.webp" alt="Currency Pairs Overview" class="w-full h-auto border-2 border-trade-blue shadow-lg rounded-lg cursor-pointer" onclick="openLightbox(this)" onerror="this.src='https://placehold.co/1200x600?text=Majors+Crosses+Exotics'">
+            </div>
+        </div>
+    </header>
+
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div class="prose prose-lg prose-blue mx-auto font-serif text-gray-700 leading-loose">
+            
+            <!-- Intro Block -->
+            <div class="font-sans text-lg text-gray-700 mb-8 border-l-4 border-trade-blue pl-6 bg-blue-50/50 py-4">
+                <p class="mb-3">Trong Crypto, bạn mua Bitcoin, bạn chỉ cần quan tâm giá Bitcoin.</p>
+                <p class="mb-3">Trong Forex, bạn không bao giờ mua "USD" hay "EUR" đứng một mình. <strong>Bạn luôn giao dịch theo Cặp (Pairs)</strong>.</p>
+                <p class="italic">Giống như chơi kéo co, tỷ giá đi lên hay xuống phụ thuộc vào sức mạnh tương quan giữa hai đồng tiền. Nếu USD mạnh lên mà EUR cũng mạnh lên, tỷ giá EUR/USD có thể đứng im.</p>
+                <p class="mt-4 font-bold text-trade-blue">Có hàng trăm cặp tiền. Có cặp hiền lành như "nước lọc", có cặp hung dữ như "thú hoang". Người mới nên bắt đầu từ đâu?</p>
+            </div>
+
+            <div class="bg-gray-100 p-6 rounded-lg mb-6 border border-gray-300 text-center">
+                <p class="text-sm font-bold text-gray-500 uppercase mb-2">Cấu trúc một cặp tiền</p>
+                <div class="text-2xl font-black text-trade-blue mb-2">EUR / USD = 1.1000</div>
+                <p class="text-sm text-gray-600">Đồng tiền cơ sở (Base) / Đồng tiền định giá (Quote)</p>
+                <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
+                    <div class="bg-green-50 p-2 rounded text-green-700 font-bold border border-green-200">Buy EUR/USD<br><span class="font-normal text-xs text-gray-500">Kỳ vọng Euro tăng giá so với USD</span></div>
+                    <div class="bg-red-50 p-2 rounded text-red-700 font-bold border border-red-200">Sell EUR/USD<br><span class="font-normal text-xs text-gray-500">Kỳ vọng Euro giảm giá so với USD</span></div>
+                </div>
+            </div>
+
+            <!-- SECTION 1 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">1. Majors (Các cặp tiền chính) - "Hàng hiệu" quốc dân</h2>
+            <p>Đây là nhóm các cặp tiền chứa đồng USD và một đồng tiền của các nền kinh tế phát triển mạnh nhất (G7).</p>
+            
+            <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 my-6">
+                <h4 class="font-bold text-blue-800 mb-4 uppercase text-sm">Danh sách "The Big 7":</h4>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-700">
+                    <li><strong class="text-trade-blue">EUR/USD:</strong> "Vua" thanh khoản (30% vol toàn cầu).</li>
+                    <li><strong class="text-trade-blue">GBP/USD:</strong> Biệt danh "Cable". Biến động mạnh.</li>
+                    <li><strong class="text-trade-blue">USD/JPY:</strong> Biệt danh "Ninja". Phiên Á sôi động.</li>
+                    <li><strong class="text-trade-blue">USD/CHF:</strong> "Hầm trú ẩn" an toàn.</li>
+                    <li><strong class="text-trade-blue">AUD/USD, NZD/USD, USD/CAD:</strong> Nhóm tiền tệ hàng hóa.</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-center">
+                <div class="p-3 bg-white border rounded shadow-sm">
+                    <i class="fa-solid fa-water text-blue-500 mb-2"></i>
+                    <p class="text-xs font-bold uppercase text-gray-500">Thanh khoản</p>
+                    <p class="font-bold text-trade-blue">Cực Cao</p>
+                </div>
+                <div class="p-3 bg-white border rounded shadow-sm">
+                    <i class="fa-solid fa-tags text-green-500 mb-2"></i>
+                    <p class="text-xs font-bold uppercase text-gray-500">Phí Spread</p>
+                    <p class="font-bold text-trade-blue">Thấp Nhất (0.6 - 1.0 Pip)</p>
+                </div>
+                <div class="p-3 bg-white border rounded shadow-sm">
+                    <i class="fa-solid fa-chart-line text-purple-500 mb-2"></i>
+                    <p class="text-xs font-bold uppercase text-gray-500">Biến động</p>
+                    <p class="font-bold text-trade-blue">Ổn định</p>
+                </div>
+            </div>
+            
+            <p class="font-bold text-center bg-green-100 text-green-800 p-2 rounded">Lời khuyên: Dành cho NEWBIE. Hãy bắt đầu sự nghiệp với EUR/USD.</p>
+
+            <!-- SECTION 2 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">2. Crosses (Các cặp tiền chéo) - "Sân chơi tốc độ"</h2>
+            <p>Đây là các cặp tiền của các nước lớn nhưng <strong>KHÔNG chứa USD</strong>.</p>
+            <p class="text-sm bg-gray-100 p-2 rounded inline-block mb-4"><strong>Ví dụ:</strong> EUR/JPY, GBP/JPY, EUR/GBP, AUD/CAD...</p>
+
+            <div class="flex flex-col md:flex-row gap-6 my-6">
+                <div class="flex-1">
+                    <h4 class="font-bold text-trade-blue mb-2">Đặc điểm:</h4>
+                    <ul class="list-disc pl-5 text-sm space-y-2 text-gray-700">
+                        <li><strong>Biến động:</strong> Mạnh hơn Majors rất nhiều. Một ngày có thể chạy 100-200 Pips.</li>
+                        <li><strong>Spread:</strong> Cao hơn Majors (Khoảng 1.5 - 3.0 Pips).</li>
+                    </ul>
+                </div>
+                <div class="flex-1 bg-yellow-50 p-4 border-l-4 border-yellow-500 rounded text-sm">
+                    <strong class="text-red-600 uppercase block mb-1"><i class="fa-solid fa-dragon mr-2"></i> Lưu ý: Cặp GBP/JPY (Gu)</strong>
+                    <p class="mb-2">Biệt danh "Rồng" hay "Quái vật". Cực kỳ được yêu thích tại VN vì biên độ khủng khiếp.</p>
+                    <p class="italic">-> Nó có thể khiến bạn x2 tài khoản trong 1 ngày, hoặc cháy tài khoản trong 1 giờ.</p>
+                </div>
+            </div>
+            <p class="font-bold text-center text-yellow-700">Lời khuyên: Chỉ dành cho người có kinh nghiệm (Intermediate). Người mới tuyệt đối tránh xa "Con quái vật" này.</p>
+
+            <!-- SECTION 3 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">3. Exotics (Các cặp tiền lạ/ngoại lai) - "Vùng đất cấm"</h2>
+            <p>Sự kết hợp giữa một đồng tiền chính và một đồng tiền của nền kinh tế mới nổi (Emerging Market).</p>
+            <p class="text-xs text-gray-500 mb-4">Ví dụ: USD/TRY (Thổ Nhĩ Kỳ), USD/MXN (Mexico), USD/ZAR (Nam Phi)...</p>
+
+            <div class="bg-red-50 p-6 rounded-lg border border-red-200 text-center">
+                <div class="text-4xl text-red-600 mb-2"><i class="fa-solid fa-ban"></i></div>
+                <h4 class="font-bold text-red-700 text-lg uppercase mb-2">Cảnh Báo Nguy Hiểm</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-red-800 mt-4">
+                    <div><strong>Thanh khoản:</strong> Rất thấp</div>
+                    <div><strong>Spread:</strong> Cực cao (50-100 Pips)</div>
+                    <div><strong>Biến động:</strong> Điên rồ</div>
+                </div>
+                <p class="mt-4 text-sm text-gray-700"><strong>Lời khuyên:</strong> TRÁNH XA. Trừ khi bạn là chuyên gia kinh tế vĩ mô, còn không bạn sẽ lỗ phí Spread ngay khi vừa mở lệnh.</p>
+            </div>
+
+            <!-- SECTION 4 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">4. Vàng (XAU/USD) - "Ông trùm" cuối cùng</h2>
+            <p>Mặc dù Vàng là hàng hóa (Commodity), nhưng trong Forex nó được giao dịch y hệt một cặp tiền tệ. Tại Việt Nam, <strong>90% Trader giao dịch Vàng</strong>.</p>
+
+            <div class="bg-gradient-to-r from-yellow-100 to-yellow-50 p-6 rounded-lg border border-yellow-300 my-6 shadow-sm">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-coins text-yellow-600 text-3xl mr-4"></i>
+                    <h4 class="font-bold text-trade-blue text-xl">Đặc điểm của Vàng (Gold)</h4>
+                </div>
+                <ul class="list-check space-y-2 text-sm text-gray-800">
+                    <li><i class="fa-solid fa-bolt text-yellow-600 mr-2"></i> <strong>Vua biến động:</strong> Chạy 20-30 giá (200-300 Pips) một ngày là bình thường.</li>
+                    <li><i class="fa-solid fa-tag text-yellow-600 mr-2"></i> <strong>Spread:</strong> Trung bình (1.5 - 2.5 Pips).</li>
+                    <li><i class="fa-solid fa-bed text-yellow-600 mr-2"></i> <strong>Swap:</strong> Thường âm cả 2 chiều (Trừ khi dùng Exness miễn phí).</li>
+                </ul>
+                <p class="mt-4 pt-4 border-t border-yellow-200 font-bold italic text-center">"Vàng là mỏ vàng, nhưng cũng là mồ chôn tài khoản nhanh nhất. Cần kỹ năng quản lý vốn cực tốt."</p>
+            </div>
+
+            <!-- SECTION 5 -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">5. Chiến lược chọn cặp & Tối ưu chi phí với Exness</h2>
+            <p>Tùy vào khẩu vị rủi ro và vốn, bạn nên chọn chiến trường phù hợp:</p>
+
+            <div class="space-y-4 my-6">
+                <div class="flex items-center justify-between bg-white p-3 border rounded shadow-sm">
+                    <span class="text-sm font-bold text-gray-700">Vốn nhỏ (< 500$)</span>
+                    <span class="text-sm font-bold text-green-600">Majors (EUR/USD)</span>
+                </div>
+                <div class="flex items-center justify-between bg-white p-3 border rounded shadow-sm">
+                    <span class="text-sm font-bold text-gray-700">Thích cảm giác mạnh</span>
+                    <span class="text-sm font-bold text-yellow-600">Vàng (XAU), GBP/JPY</span>
+                </div>
+                <div class="flex items-center justify-between bg-white p-3 border rounded shadow-sm">
+                    <span class="text-sm font-bold text-gray-700">Gambler (Cờ bạc)</span>
+                    <span class="text-sm font-bold text-red-600">Exotics (USD/TRY)</span>
+                </div>
+            </div>
+
+            <!-- EXNESS PROMO BOX -->
+            <div class="mt-8 p-6 bg-gradient-to-br from-yellow-50 to-white border-2 border-trade-yellow rounded-lg shadow-sm text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-trade-yellow"></div>
+                <p class="font-black text-trade-blue text-2xl mb-2 uppercase">Giảm Tải Gánh Nặng Phí Với Backcom</p>
+                
+                <div class="text-left max-w-lg mx-auto text-sm space-y-3 mb-6 text-gray-700">
+                    <p>Khi giao dịch các cặp Spread cao như GBP/JPY hay Vàng, việc nhận lại Hoàn phí (Backcom) là cực kỳ quan trọng.</p>
+                    <div class="bg-white p-3 rounded border border-gray-200 text-xs">
+                        <p class="mb-1"><strong>Ví dụ:</strong> Trade 1 Lot GBP/JPY mất 20$ phí.</p>
+                        <p class="mb-1"><strong>Có Backcom 40%:</strong> Được hoàn lại 8$.</p>
+                        <p class="font-bold text-green-600">-> Phí thực tế chỉ còn 12$.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+                    <div class="bg-white px-4 py-2 border border-gray-300 rounded shadow-inner">
+                        <span class="text-xs text-gray-400 block text-left">Mã đối tác (Partner Code):</span>
+                        <span class="text-xl font-mono font-black text-trade-blue tracking-wider">12yyhitqq7</span>
+                    </div>
+                    <button onclick="copyCode()" class="bg-trade-blue text-white px-4 py-2 rounded font-bold text-sm hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                        <i class="fa-regular fa-copy mr-1"></i> Copy
+                    </button>
+                </div>
+                
+                <button onclick="openModal()" class="px-8 py-3 bg-trade-blue text-white font-bold text-sm uppercase rounded shadow-brutal-blue hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                    Kích hoạt hoàn tiền ngay
+                </button>
+            </div>
+
+            <!-- CONCLUSION -->
+            <h2 class="font-sans text-2xl font-bold text-trade-blue mt-12 mb-6 uppercase border-b-2 border-gray-100 pb-2">Tổng kết</h2>
+            <div class="p-8 bg-trade-dark text-white font-sans text-center border-t-4 border-trade-yellow shadow-xl">
+                <div class="grid grid-cols-3 gap-4 text-xs mb-8 uppercase font-bold text-gray-400">
+                    <div>Newbie<br><span class="text-white text-sm">EUR/USD</span></div>
+                    <div>Pro<br><span class="text-white text-sm">XAU/USD</span></div>
+                    <div>Gambler<br><span class="text-red-500 text-sm">USD/TRY</span></div>
+                </div>
+                
+                <p class="mb-6 font-light leading-relaxed text-sm">
+                    Bây giờ bạn đã chọn được "Vũ khí" (Cặp tiền). Nhưng "Chiến trường" (Thị trường) không mở cửa suốt ngày đêm theo một cách giống nhau.
+                    <br>Sáng sớm thị trường chạy lờ đờ, nhưng đến chiều tối lại chạy như ngựa vía. Tại sao?
+                </p>
+                <p class="font-bold text-lg mb-6">Đó là do các Phiên giao dịch (Trading Sessions).</p>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                    <p class="text-trade-yellow font-bold uppercase text-xs mb-3 tracking-widest">Bài Tiếp Theo</p>
+                    <a href="fxsession.html" class="inline-block px-6 py-3 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-white hover:text-trade-blue transition-all shadow-lg hover:shadow-none hover:translate-x-1 hover:translate-y-1">
+                        Các phiên giao dịch (Á - Âu - Mỹ): Tại sao "Giờ trùng" là thời điểm vàng? <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <!-- BROKER INFO MODAL (Customized for Exness) -->
+    <div id="brokerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 relative shadow-2xl transform scale-95 transition-transform duration-300 border-2 border-trade-yellow" id="modalContent">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute -top-4 -right-4 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold shadow-lg hover:bg-white transition-colors">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8 text-center">
+                <h3 id="modalTitle" class="text-2xl font-bold uppercase text-trade-blue mb-2">Mở Tài Khoản Exness</h3>
+                <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-100 p-4 inline-block border border-gray-200 mb-6">
+                    <img id="modalQR" src="" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-1">Mã Đối Tác (Partner Code)</p>
+                        <div class="flex">
+                            <input type="text" id="modalCode" class="w-full bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-trade-yellow hover:text-trade-blue transition-colors font-bold text-xs uppercase whitespace-nowrap flex items-center">
+                                <i class="fa-regular fa-copy mr-2"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right mb-4">
+                         <a href="cai-dat-backcom-exness.html" target="_blank" class="text-xs text-trade-blue font-bold italic hover:text-trade-light-blue hover:underline">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a id="modalLink" href="#" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-brutal-blue hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký <i class="fa-solid fa-external-link-alt ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="">
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Share Logic Script
+        function shareFacebook() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                }).catch(console.error);
+            } else {
+                window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank');
+            }
+        }
+
+        // Lightbox Logic for real images
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = element.src;
+            setTimeout(() => lightbox.classList.add('active'), 10);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+            }, 300);
+        }
+
+        // --- MODAL LOGIC (Customized for Exness) ---
+        const modal = document.getElementById('brokerModal');
+        const modalContent = document.getElementById('modalContent');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalQR = document.getElementById('modalQR');
+        const modalCode = document.getElementById('modalCode');
+        const modalLink = document.getElementById('modalLink');
+
+        // Exness Data
+        const exnessData = {
+            name: 'Exness',
+            code: '12yyhitqq7',
+            link: 'https://one.exness-track.com/a/12yyhitqq7'
+        };
+
+        function openModal() {
+            const data = exnessData;
+
+            modalTitle.innerText = `Mở Tài Khoản ${data.name}`;
+            modalCode.value = data.code;
+            modalLink.href = data.link;
+
+            if (data.link !== '#') {
+                modalQR.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.link)}`;
+                modalLink.classList.remove('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Truy cập liên kết đăng ký';
+            } else {
+                modalQR.src = 'https://placehold.co/200x200?text=Updating...'; 
+                modalLink.classList.add('pointer-events-none', 'opacity-50');
+                modalLink.innerText = 'Đang cập nhật link';
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600');
+            }, 2000);
+        }
+
+        // Close on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Add keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                if (lightbox.style.display === 'flex') closeLightbox();
+                if (!modal.classList.contains('hidden')) closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
