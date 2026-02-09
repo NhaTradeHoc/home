@@ -244,13 +244,13 @@
                         Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-10 h-10 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
                             <i class="fa-brands fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-10 h-10 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
                             <i class="fa-brands fa-tiktok text-lg"></i>
                         </a>
-                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-10 h-10 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
                             <i class="fa-brands fa-youtube text-lg"></i>
                         </a>
                     </div>
@@ -314,8 +314,8 @@
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- CẤU HÌNH ---
-        // ĐIỀN LINK ẢNH NỀN MẶC ĐỊNH CHO VIDEO TẠI ĐÂY
-        const defaultVideoPoster = "vid_background.jpeg"; 
+        // ĐIỀN LINK ẢNH NỀN MẶC ĐỊNH CHO VIDEO TẠI ĐÂY (Để trống nếu muốn tự động tạo placeholder)
+        const defaultVideoPoster = ""; 
 
         // --- DỮ LIỆU BÀI HỌC (18 Phần) ---
         const lessonData = [
@@ -388,28 +388,28 @@
         let currentLessonId = 1;
         let maxUnlockedLesson = 1;
 
-        // --- DOM Elements ---
-        const lessonListEl = document.getElementById('lessonList');
-        const materialListEl = document.getElementById('materialList');
-        const mainContentArea = document.getElementById('lessonContent');
-        const lessonTitleEl = document.getElementById('lessonTitle');
-        const currentPartNumEl = document.getElementById('currentPartNum');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const progressBar = document.getElementById('progressBar');
-        const progressText = document.getElementById('progressText');
-        const videoContainer = document.getElementById('videoContainer');
-
         // --- INIT ---
         function init() {
+            // Khôi phục trạng thái từ Local Storage
+            const savedCurrent = localStorage.getItem('tradehoc_bai1_current');
+            const savedMax = localStorage.getItem('tradehoc_bai1_max');
+
+            if (savedCurrent) currentLessonId = parseInt(savedCurrent);
+            if (savedMax) maxUnlockedLesson = parseInt(savedMax);
+
             renderSidebar();
-            loadLesson(1);
+            loadLesson(currentLessonId);
             // Mở accordion nội dung bài học mặc định
             toggleAccordion('lessons');
         }
 
         // --- RENDER SIDEBAR ---
         function renderSidebar() {
+            const lessonListEl = document.getElementById('lessonList');
+            const materialListEl = document.getElementById('materialList');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+
             lessonListEl.innerHTML = '';
             materialListEl.innerHTML = '';
 
@@ -467,19 +467,18 @@
         // --- LOAD LESSON ---
         function loadLesson(id) {
             currentLessonId = id;
+            // LƯU TRẠNG THÁI HIỆN TẠI
+            localStorage.setItem('tradehoc_bai1_current', currentLessonId);
+
             const lesson = lessonData.find(l => l.id === id);
 
             // Update UI
-            lessonTitleEl.innerText = lesson.title;
-            currentPartNumEl.innerText = lesson.id;
+            document.getElementById('lessonTitle').innerText = lesson.title;
+            document.getElementById('currentPartNum').innerText = lesson.id;
             
-            // Update Video Player with Poster Logic
-            // Prioritize `lesson.videoSrc` specific poster if needed, otherwise use global default
-            // Here we assume videoSrc is the MP4 file. 
-            // If lesson has video, we show the video tag with default poster
-            // If no video, show placeholder with default poster as background
-            
-            const posterToUse = defaultVideoPoster || "https://placehold.co/1200x675?text=Video+Phan+" + lesson.id; // Fallback if user leaves default empty
+            // Video & Poster Logic
+            const videoContainer = document.getElementById('videoContainer');
+            const posterToUse = defaultVideoPoster || `https://placehold.co/1200x675?text=Video+Phan+${lesson.id}`; 
 
             if (lesson.videoSrc) {
                 videoContainer.innerHTML = `
@@ -488,7 +487,10 @@
                         Trình duyệt của bạn không hỗ trợ thẻ video.
                     </video>
                 `;
+                // Nếu có videoSrc, xóa background của wrapper để thẻ video tự xử lý poster
+                videoContainer.style.backgroundImage = 'none';
             } else {
+                // Nếu chưa có video, dùng div placeholder và set background cho wrapper
                 videoContainer.style.backgroundImage = `url('${posterToUse}')`;
                 videoContainer.innerHTML = `
                     <div class="placeholder flex flex-col items-center justify-center absolute inset-0 w-full h-full bg-black/50 text-white">
@@ -499,9 +501,12 @@
                 `;
             }
 
-            mainContentArea.innerHTML = lesson.content;
+            document.getElementById('lessonContent').innerHTML = lesson.content;
 
             // Update Buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
             prevBtn.disabled = id === 1;
             prevBtn.onclick = () => loadLesson(id - 1);
 
@@ -513,6 +518,8 @@
                 nextBtn.onclick = () => {
                     if (id === maxUnlockedLesson) {
                         maxUnlockedLesson++;
+                        // LƯU TRẠNG THÁI MỞ KHÓA
+                        localStorage.setItem('tradehoc_bai1_max', maxUnlockedLesson);
                     }
                     loadLesson(id + 1);
                     renderSidebar();
@@ -521,7 +528,7 @@
 
             renderSidebar();
             
-            // Auto scroll to top on mobile
+            // Auto scroll on mobile
             if(window.innerWidth < 768) {
                 window.scrollTo({top: 0, behavior: 'smooth'});
             }
@@ -599,6 +606,8 @@
 
             if (percent >= 50) {
                 alert(`Chúc mừng! Bạn đạt ${score}/${quizData.length} câu (${Math.round(percent)}%).\nBạn đã mở khóa Bài 2!`);
+                // LƯU TRẠNG THÁI HOÀN THÀNH KHÓA HỌC (OPTIONAL)
+                localStorage.setItem('tradehoc_bai1_completed', 'true');
             } else {
                 alert(`Rất tiếc, bạn chỉ đạt ${score}/${quizData.length} câu (${Math.round(percent)}%).\nVui lòng ôn lại bài và thử lại!`);
             }
