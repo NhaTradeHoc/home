@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1: Phân biệt Đầu tư và Giao dịch - Khóa học Sơ cấp</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Sidebar Scrollbar */
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+        /* Accordion Transitions */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 2000px; /* Đủ lớn để chứa nội dung */
+            transition: max-height 0.5s ease-in;
+        }
+        
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .open .rotate-icon {
+            transform: rotate(90deg);
+        }
+
+        /* Lesson Item States */
+        .lesson-item { 
+            cursor: pointer; 
+            padding: 12px 16px; 
+            border-left: 3px solid transparent; 
+            transition: all 0.2s; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.875rem;
+        }
+        .lesson-item:hover:not(.locked) { background-color: #f8fafc; }
+        .lesson-item.active { 
+            background-color: #eff6ff; 
+            border-left-color: #00167c; 
+            color: #00167c; 
+            font-weight: 700; 
+        }
+        .lesson-item.locked { 
+            color: #9ca3af; 
+            cursor: not-allowed; 
+            background-color: #f9fafb;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .video-wrapper iframe, .video-wrapper video, .video-wrapper .placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .video-wrapper .placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-trade-blue font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="pt-24 flex-grow flex flex-col md:flex-row max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 gap-6 pb-12">
+        
+        <!-- SIDEBAR (LEFT) - Accordion Menu -->
+        <aside class="w-full md:w-80 flex-shrink-0">
+            <div class="bg-white rounded-lg shadow-card border border-gray-200 overflow-hidden sticky top-24">
+                
+                <div class="p-4 border-b border-gray-100 bg-gray-50">
+                    <h2 class="text-lg font-black uppercase text-trade-blue">Khóa Học Sơ Cấp</h2>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="bg-green-500 h-2 rounded-full transition-all duration-300" id="progressBar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1 text-right" id="progressText">0% Hoàn thành</p>
+                </div>
+
+                <div class="overflow-y-auto max-h-[calc(100vh-200px)] sidebar-scroll">
+                    
+                    <!-- 1. TỔNG QUAN -->
+                    <div class="accordion-item border-b border-gray-100">
+                        <button class="w-full px-4 py-3 flex justify-between items-center bg-white hover:bg-gray-50 font-bold text-sm text-trade-blue" onclick="toggleAccordion('overview')">
+                            <span><i class="fa-solid fa-circle-info mr-2 text-trade-blue"></i> TỔNG QUAN</span>
+                            <i class="fa-solid fa-chevron-right text-gray-400 rotate-icon"></i>
+                        </button>
+                        <div id="overview" class="accordion-content px-4 bg-gray-50 text-sm text-gray-600">
+                            <div class="py-3">
+                                <p class="mb-2"><strong>Mục tiêu:</strong> Phân biệt rõ tư duy Đầu tư (Investing) và Giao dịch (Trading).</p>
+                                <p><strong>Nội dung:</strong> 18 phần học chi tiết từ khái niệm, công cụ, tâm lý đến lộ trình thực chiến.</p>
+                                <p class="mt-2 text-xs italic text-gray-500">*Hoàn thành bài kiểm tra cuối khóa để mở bài tiếp theo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. NỘI DUNG BÀI HỌC (Mặc định mở) -->
+                    <div class="accordion-item border-b border-gray-100 open">
+                        <button class="w-full px-4 py-3 flex justify-between items-center bg-white hover:bg-gray-50 font-bold text-sm text-trade-blue" onclick="toggleAccordion('lessons')">
+                            <span><i class="fa-solid fa-list-ul mr-2 text-trade-blue"></i> NỘI DUNG BÀI HỌC</span>
+                            <i class="fa-solid fa-chevron-right text-gray-400 rotate-icon"></i>
+                        </button>
+                        <div id="lessons" class="accordion-content">
+                            <!-- JS sẽ render danh sách bài học vào đây -->
+                            <div id="lessonList" class="py-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. HỌC LIỆU -->
+                    <div class="accordion-item">
+                        <button class="w-full px-4 py-3 flex justify-between items-center bg-white hover:bg-gray-50 font-bold text-sm text-trade-blue" onclick="toggleAccordion('materials')">
+                            <span><i class="fa-solid fa-folder-open mr-2 text-trade-blue"></i> HỌC LIỆU</span>
+                            <i class="fa-solid fa-chevron-right text-gray-400 rotate-icon"></i>
+                        </button>
+                        <div id="materials" class="accordion-content px-4 bg-gray-50">
+                            <div class="py-3 space-y-2" id="materialList">
+                                <!-- JS sẽ render danh sách tài liệu vào đây -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (RIGHT) -->
+        <main class="flex-1 min-w-0">
+            
+            <div class="bg-white rounded-xl shadow-card border border-gray-200 p-6 md:p-8 min-h-[600px]">
+                
+                <!-- Lesson Header -->
+                <div class="mb-6 border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wide">Bài 1 / Phần <span id="currentPartNum">1</span></span>
+                    <h1 class="text-2xl md:text-3xl font-black text-trade-blue mt-1" id="lessonTitle">Lời mở đầu</h1>
+                </div>
+
+                <!-- Video Player -->
+                <div class="video-wrapper shadow-md" id="videoContainer">
+                    <!-- Video sẽ được load vào đây -->
+                </div>
+
+                <!-- Text Content -->
+                <div id="lessonContent" class="prose max-w-none text-gray-700 text-sm md:text-base leading-relaxed mb-8">
+                    <!-- Nội dung bài học sẽ load vào đây -->
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-between pt-6 border-t border-gray-100">
+                    <button id="prevBtn" class="px-5 py-2.5 rounded-lg border border-gray-300 text-gray-600 font-bold hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-left mr-2"></i> Quay lại
+                    </button>
+                    
+                    <button id="nextBtn" class="px-6 py-2.5 rounded-lg bg-trade-blue text-white font-bold hover:bg-trade-light-blue shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                        Hoàn thành & Tiếp tục <i class="fa-solid fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-lg"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="https://t.me/nhatradehocspace" target="_blank" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-gray-600 text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- QUIZ MODAL -->
+    <div id="quizModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-2xl mx-4 rounded-xl shadow-2xl relative max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="p-6 bg-trade-blue text-white flex justify-between items-center">
+                <h3 class="text-xl font-bold uppercase"><i class="fa-solid fa-graduation-cap mr-2"></i> Kiểm Tra Kiến Thức Bài 1</h3>
+                <button onclick="closeQuiz()" class="text-white hover:text-trade-yellow transition-colors"><i class="fa-solid fa-times text-2xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 bg-gray-50" id="quizContent">
+                <!-- Questions injected here -->
+            </div>
+            <div class="p-6 border-t border-gray-200 bg-white flex justify-between items-center">
+                <span class="text-sm font-bold text-gray-500" id="quizStatus">Cần đúng > 50% để qua bài</span>
+                <button onclick="submitQuiz()" class="px-8 py-3 bg-trade-blue text-white font-bold rounded-lg hover:bg-trade-light-blue shadow-lg transition-all">Nộp Bài</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DỮ LIỆU BÀI HỌC (18 Phần) ---
+        const lessonData = [
+            {
+                id: 1,
+                title: "Lời mở đầu: Cuộc chiến giữa 'Giá trị' và 'Giá cả'",
+                videoSrc: "Bài 1.1.mp4",
+                slideSrc: "Phần 1.1.pdf",
+                content: `<p class='mb-4 italic'>\"Tại sao phần lớn mọi người bước chân vào thị trường tài chính với hy vọng kiếm tiền, nhưng kết quả nhận về lại là sự thua lỗ?\"</p>
+                <p class='mb-4'>Câu trả lời không nằm ở việc họ thiếu công cụ, mà ở việc họ <strong>nhầm lẫn ngay từ khái niệm cơ bản nhất</strong>. Họ mang tâm thế của một người đi mua sắm (tiêu tiền) vào một nơi lẽ ra phải là nơi vận hành tiền.</p>
+                <ul class='list-disc pl-5 space-y-2 bg-blue-50 p-4 rounded border border-blue-100'>
+                    <li><strong>Giá trị (Value):</strong> Là thứ bạn nhận được (Nội lực doanh nghiệp, công nghệ...). Mục tiêu của <em>Nhà đầu tư (Investor)</em>.</li>
+                    <li><strong>Giá cả (Price):</strong> Là số tiền bạn phải trả trên bảng điện tử. Mục tiêu của <em>Người giao dịch (Trader)</em>.</li>
+                </ul>`
+            },
+            {
+                id: 2,
+                title: "Investing là gì? Góc nhìn của một chủ doanh nghiệp",
+                videoSrc: "",
+                slideSrc: "",
+                content: `<p class='mb-4'>Đầu tư, về bản chất, là việc bạn dùng nguồn vốn hiện tại để đổi lấy một tài sản với kỳ vọng tài sản đó sẽ tạo ra thêm tiền trong tương lai. Bạn trở thành 'cổ đông' – một người chủ thực thụ.</p>
+                <p>Hai nguồn lợi nhuận chính:</p>
+                <ul class='list-disc pl-5 mt-2'><li><strong>Capital Gains:</strong> Lãi vốn (Mua thấp bán cao).</li><li><strong>Cashflow:</strong> Dòng tiền (Cổ tức, lãi suất).</li></ul>`
+            },
+            {
+                id: 3,
+                title: "Trading là gì? Góc nhìn của một thương nhân",
+                videoSrc: "",
+                slideSrc: "",
+                content: `<p>Trader coi tài sản là "mặt hàng". Mua sáng, bán chiều. Quan trọng là chênh lệch giá, không phải "sức khỏe" của hàng hóa.</p>
+                <p class='mt-2'>Họ khai thác <strong>Sự biến động (Volatility)</strong> và sử dụng đòn bẩy để tối ưu hóa lợi nhuận ngắn hạn.</p>`
+            },
+            { id: 4, title: "Sự khác biệt về khung thời gian (Timeframe)", videoSrc: "", slideSrc: "", content: `<p><strong>Investor:</strong> Nhìn theo Năm, Thập kỷ. Thời gian là bạn.</p><p><strong>Trader:</strong> Nhìn theo Phút, Giờ, Ngày. Thời gian là kẻ thù (chi phí cơ hội).</p>` },
+            { id: 5, title: "Nguồn lợi nhuận đến từ đâu?", videoSrc: "", slideSrc: "", content: `<p>Investor: Nuôi bò lấy sữa (Dòng tiền). Trader: Buôn bán thịt bò (Chênh lệch giá).</p>` },
+            { id: 6, title: "Công cụ phân tích: Cái gương và Cái kính hiển vi", videoSrc: "", slideSrc: "", content: `<p><strong>Kính hiển vi (FA):</strong> Soi vào nội tại doanh nghiệp. Dành cho Investor.</p><p><strong>Cái gương (TA):</strong> Phản chiếu tâm lý đám đông qua biểu đồ. Dành cho Trader.</p>` },
+            { id: 7, title: "Tâm lý học: Kiên nhẫn hay Quyết đoán?", videoSrc: "", slideSrc: "", content: `<p class='italic bg-yellow-50 p-2'>\"Nhà đầu tư ngủ ngon khi thị trường giảm, Trader ngủ ngon khi đã đóng hết lệnh.\"</p><p>Investor cần sự Lì lợm. Trader cần Kỷ luật cắt lỗ.</p>` },
+            { id: 8, title: "Rủi ro lớn nhất của Nhà đầu tư", videoSrc: "", slideSrc: "", content: `<p>1. Mất vốn vĩnh viễn (Công ty phá sản).</p><p>2. Bẫy giá trị (Rẻ mà ôi).</p><p>3. Sai chu kỳ (Đu đỉnh bong bóng).</p>` },
+            { id: 9, title: "Rủi ro lớn nhất của Nhà giao dịch", videoSrc: "", slideSrc: "", content: `<p>1. Đòn bẩy (Margin): Dao hai lưỡi.</p><p>2. Overtrading: Nghiện giao dịch.</p><p>3. Revenge Trading: Trả thù thị trường.</p>` },
+            { id: 10, title: "Giao điểm: Khi nào một Trader nên trở thành Investor?", videoSrc: "", slideSrc: "", content: `<p>Dùng Phân tích kỹ thuật để tìm điểm mua tốt cho một tài sản có Phân tích cơ bản tốt. Lấy ngắn nuôi dài.</p>` },
+            { id: 11, title: "Vốn bao nhiêu thì đủ để bắt đầu mỗi loại?", videoSrc: "", slideSrc: "", content: `<p><strong>Vốn nhỏ:</strong> Nên Investing (Tích sản) để tận dụng lãi kép.</p><p><strong>Vốn lớn:</strong> Có thể phân bổ sang Trading nhưng cần kỹ năng cao.</p>` },
+            { id: 12, title: "Ví dụ thực tế từ thị trường Chứng khoán", videoSrc: "", slideSrc: "", content: `<p>Ví dụ cổ phiếu FPT: Investor nhìn vào hợp đồng mới, doanh thu. Trader nhìn vào nến Breakout, hỗ trợ/kháng cự.</p>` },
+            { id: 13, title: "Ví dụ thực tế từ thị trường Crypto/Vàng", videoSrc: "", slideSrc: "", content: `<p>Tài sản "Vô sinh" (không dòng tiền). Investor chơi game khan hiếm. Trader chơi game biến động.</p>` },
+            { id: 14, title: "Những lầm tưởng chết người (Phần 1)", videoSrc: "", slideSrc: "", content: `<p><em>\"Đầu tư là an toàn, Giao dịch là đánh bạc\"</em> -> Sai. Đầu tư vào công ty rác thì rủi ro hơn cả đánh bạc có kiến thức.</p>` },
+            { id: 15, title: "Những lầm tưởng chết người (Phần 2)", videoSrc: "", slideSrc: "", content: `<p><em>\"Giao dịch giúp giàu nhanh\"</em> -> Sai. Trading là làm công ăn lương. Investing (Lãi kép) mới tạo ra sự giàu có thực sự.</p>` },
+            { id: 16, title: "Công thức kết hợp: Danh mục 70/30", videoSrc: "", slideSrc: "", content: `<p class='text-center font-bold text-xl'>70% Investing (An toàn) + 30% Trading (Rủi ro)</p><p>Lãi từ 30% chuyển sang 70%. Không làm ngược lại.</p>` },
+            { id: 17, title: "Lộ trình phát triển kỹ năng cho người mới", videoSrc: "", slideSrc: "", content: `<ol class='list-decimal pl-5'><li>Tháng 1-2: Học (0đ).</li><li>Tháng 3-4: Demo Trading.</li><li>Tháng 5-6: Tài khoản Cent/Mini.</li></ol>` },
+            { id: 18, title: "Tổng kết và Giải đáp thắc mắc", videoSrc: "", slideSrc: "", content: `<p>Hãy làm bài kiểm tra giấc ngủ: Nếu ngủ ngon -> Bạn đang đi đúng hướng. Hãy chuẩn bị cho bài kiểm tra trắc nghiệm!</p>` }
+        ];
+
+        // --- DỮ LIỆU TRẮC NGHIỆM (15 CÂU) ---
+        const quizData = [
+            { q: "Mục tiêu chính của Investor là gì?", a: ["Ăn chênh lệch giá", "Giá trị & Dòng tiền", "Đoán giá ngày mai", "Dùng đòn bẩy"], c: 1 },
+            { q: "Vũ khí chính của Trader là gì?", a: ["Báo cáo tài chính", "Phân tích kỹ thuật", "Họp cổ đông", "Tin nội bộ"], c: 1 },
+            { q: "Khung thời gian của Investor?", a: ["Phút", "Giờ", "Ngày", "Năm/Thập kỷ"], c: 3 },
+            { q: "Nguồn lợi nhuận của Trader?", a: ["Cổ tức", "Lãi suất", "Chênh lệch giá", "Tăng trưởng nội tại"], c: 2 },
+            { q: "Tâm lý quan trọng nhất của Investor?", a: ["Kiên nhẫn", "Nóng vội", "Sợ hãi", "Tham lam"], c: 0 },
+            { q: "Rủi ro lớn nhất của Investor?", a: ["Mất vốn vĩnh viễn (Phá sản)", "Giá giảm 5%", "Sàn lag", "Mất internet"], c: 0 },
+            { q: "Rủi ro lớn nhất của Trader?", a: ["Công ty phá sản", "Lạm phát", "Cháy tài khoản do Margin", "Không có cổ tức"], c: 2 },
+            { q: "Quy tắc 2 chiếc ví là gì?", a: ["Gộp chung tiền", "Tách biệt vốn Trade và Invest", "Vay tiền để trade", "Dùng lãi trade để tiêu xài"], c: 1 },
+            { q: "Vốn nhỏ (<100tr) nên làm gì?", a: ["All-in Futures", "Vay thêm", "Tích sản (Investing)", "Mua xổ số"], c: 2 },
+            { q: "Khi giá thủng hỗ trợ, Trader làm gì?", a: ["Mua trung bình giá", "Cắt lỗ", "Giữ 10 năm", "Tắt app"], c: 1 },
+            { q: "Vàng là loại tài sản nào?", a: ["Tạo dòng tiền", "Vô sinh (Store of Value)", "Cổ phiếu", "Trái phiếu"], c: 1 },
+            { q: "Tại sao Trading là kinh doanh xác suất?", a: ["Vì giống đánh bạc", "Vì có thắng có thua", "Vì cần quản lý rủi ro", "Tất cả ý trên"], c: 3 },
+            { q: "Công thức 70/30?", a: ["70% Trade, 30% Invest", "70% Invest, 30% Trade", "50/50", "100% Invest"], c: 1 },
+            { q: "Người mới (Tháng 1-2) nên làm gì?", a: ["Nạp tiền ngay", "Học & Đọc sách", "Vay nợ", "Copy trade"], c: 1 },
+            { q: "Nếu ngủ không ngon khi giữ lệnh, nghĩa là?", a: ["Bạn đang sai vị thế/khối lượng", "Thị trường xấu", "Bạn bị bệnh", "Giường không êm"], c: 0 }
+        ];
+
+        // --- STATE ---
+        let currentLessonId = 1;
+        let maxUnlockedLesson = 1; // Mặc định bài 1 được mở
+
+        // --- DOM Elements ---
+        const lessonListEl = document.getElementById('lessonList');
+        const materialListEl = document.getElementById('materialList');
+        const mainContentArea = document.getElementById('lessonContent');
+        const lessonTitleEl = document.getElementById('lessonTitle');
+        const currentPartNumEl = document.getElementById('currentPartNum');
+        // Removed videoPartNumEl
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const videoContainer = document.getElementById('videoContainer');
+
+        // --- INIT ---
+        function init() {
+            renderSidebar();
+            loadLesson(1);
+            // Mở accordion nội dung bài học mặc định
+            toggleAccordion('lessons');
+        }
+
+        // --- RENDER SIDEBAR ---
+        function renderSidebar() {
+            lessonListEl.innerHTML = '';
+            materialListEl.innerHTML = '';
+
+            lessonData.forEach(lesson => {
+                // 1. Render Lesson List Item
+                const isLocked = lesson.id > maxUnlockedLesson;
+                const isActive = lesson.id === currentLessonId;
+                const isCompleted = lesson.id < maxUnlockedLesson;
+                
+                const div = document.createElement('div');
+                div.className = `lesson-item ${isActive ? 'active' : ''} ${isLocked ? 'locked' : ''}`;
+                
+                let iconHTML = '';
+                if (isLocked) iconHTML = '<i class="fa-solid fa-lock text-gray-400"></i>';
+                else if (isCompleted) iconHTML = '<i class="fa-solid fa-circle-check text-green-500"></i>';
+                else iconHTML = '<i class="fa-regular fa-circle text-gray-400"></i>';
+                
+                if (isActive && !isCompleted) iconHTML = '<i class="fa-solid fa-circle-play text-trade-blue"></i>';
+
+                div.innerHTML = `
+                    <span class="truncate pr-2">${lesson.id}. ${lesson.title}</span>
+                    <span>${iconHTML}</span>
+                `;
+                
+                if (!isLocked) {
+                    div.onclick = () => loadLesson(lesson.id);
+                }
+                
+                lessonListEl.appendChild(div);
+
+                // 2. Render Material Item
+                const slideLink = lesson.slideSrc ? lesson.slideSrc : '#';
+                const downloadAttr = lesson.slideSrc ? 'download' : '';
+                const cursorClass = lesson.slideSrc ? 'hover:text-trade-blue cursor-pointer' : 'text-gray-300 cursor-not-allowed';
+                const iconColor = lesson.slideSrc ? 'text-red-500' : 'text-gray-300';
+                
+                const matDiv = document.createElement('div');
+                matDiv.className = "flex items-center justify-between p-3 bg-white border border-gray-200 rounded hover:border-trade-blue transition-colors";
+                matDiv.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <i class="fa-solid fa-file-pdf ${iconColor} text-lg"></i>
+                        <span class="text-xs font-bold text-gray-700 truncate">Slide Phần ${lesson.id}</span>
+                    </div>
+                    <a href="${slideLink}" ${downloadAttr} class="text-gray-400 ${cursorClass} text-sm"><i class="fa-solid fa-download"></i></a>
+                `;
+                materialListEl.appendChild(matDiv);
+            });
+
+            // Update Progress Bar
+            const percent = ((maxUnlockedLesson - 1) / lessonData.length) * 100;
+            progressBar.style.width = `${percent}%`;
+            progressText.innerText = `${Math.round(percent)}% Hoàn thành`;
+        }
+
+        // --- LOAD LESSON ---
+        function loadLesson(id) {
+            currentLessonId = id;
+            const lesson = lessonData.find(l => l.id === id);
+
+            // Update UI
+            lessonTitleEl.innerText = lesson.title;
+            currentPartNumEl.innerText = lesson.id;
+            
+            // Update Video Player
+            if (lesson.videoSrc) {
+                videoContainer.innerHTML = `
+                    <video width="100%" height="100%" controls class="absolute inset-0 w-full h-full object-cover rounded-lg" poster="https://placehold.co/1200x675?text=Video+Phan+${lesson.id}">
+                        <source src="${lesson.videoSrc}" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ thẻ video.
+                    </video>
+                `;
+            } else {
+                videoContainer.innerHTML = `
+                    <div class="placeholder flex flex-col items-center justify-center absolute inset-0 w-full h-full">
+                        <i class="fa-regular fa-circle-play text-6xl text-white opacity-80 mb-4"></i>
+                        <span class="bg-trade-blue/80 px-3 py-1 rounded text-sm font-bold border border-white/20">VIDEO PHẦN ${lesson.id}</span>
+                        <p class="mt-2 text-xs text-gray-300 italic">(Đang cập nhật video)</p>
+                    </div>
+                `;
+            }
+
+            mainContentArea.innerHTML = lesson.content;
+
+            // Update Buttons
+            prevBtn.disabled = id === 1;
+            prevBtn.onclick = () => loadLesson(id - 1);
+
+            if (id === lessonData.length) {
+                nextBtn.innerHTML = 'Làm bài kiểm tra <i class="fa-solid fa-pen-to-square ml-2"></i>';
+                nextBtn.onclick = openQuiz;
+            } else {
+                nextBtn.innerHTML = 'Hoàn thành & Tiếp tục <i class="fa-solid fa-chevron-right ml-2"></i>';
+                nextBtn.onclick = () => {
+                    if (id === maxUnlockedLesson) {
+                        maxUnlockedLesson++;
+                    }
+                    loadLesson(id + 1);
+                    renderSidebar();
+                };
+            }
+
+            renderSidebar();
+            
+            // Auto scroll to top on mobile
+            if(window.innerWidth < 768) {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        // --- ACCORDION LOGIC ---
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const parent = content.parentElement;
+            
+            if (parent.classList.contains('open')) {
+                parent.classList.remove('open');
+                content.style.maxHeight = null;
+            } else {
+                parent.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // --- QUIZ LOGIC ---
+        function openQuiz() {
+            const modal = document.getElementById('quizModal');
+            const content = document.getElementById('quizContent');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            
+            content.innerHTML = '';
+            quizData.forEach((item, index) => {
+                let optionsHTML = '';
+                item.a.forEach((ans, i) => {
+                    optionsHTML += `
+                        <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors bg-white">
+                            <input type="radio" name="q${index}" value="${i}" class="w-4 h-4 text-trade-blue focus:ring-trade-blue">
+                            <span class="text-sm text-gray-700">${ans}</span>
+                        </label>
+                    `;
+                });
+
+                const div = document.createElement('div');
+                div.className = 'mb-6';
+                div.innerHTML = `
+                    <p class="font-bold text-trade-blue mb-3 text-sm border-l-4 border-trade-yellow pl-3">Câu ${index + 1}: ${item.q}</p>
+                    <div class="space-y-2">${optionsHTML}</div>
+                `;
+                content.appendChild(div);
+            });
+        }
+
+        function closeQuiz() {
+            const modal = document.getElementById('quizModal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let answered = 0;
+
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected) {
+                    answered++;
+                    if (parseInt(selected.value) === item.c) score++;
+                }
+            });
+
+            if (answered < quizData.length) {
+                alert("Vui lòng trả lời hết 15 câu hỏi!");
+                return;
+            }
+
+            const percent = (score / quizData.length) * 100;
+            closeQuiz();
+
+            if (percent >= 50) {
+                alert(`Chúc mừng! Bạn đạt ${score}/${quizData.length} câu (${Math.round(percent)}%).\nBạn đã mở khóa Bài 2!`);
+                // Ở đây có thể thêm logic chuyển hướng sang bài 2
+            } else {
+                alert(`Rất tiếc, bạn chỉ đạt ${score}/${quizData.length} câu (${Math.round(percent)}%).\nVui lòng ôn lại bài và thử lại!`);
+            }
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            // Set max height for open accordions initially
+            document.querySelectorAll('.accordion-item.open .accordion-content').forEach(el => {
+                el.style.maxHeight = el.scrollHeight + "px";
+            });
+        });
+
+    </script>
+</body>
+</html>
