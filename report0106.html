@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Chiến Lược Thị Trường Chứng Khoán Việt Nam - Tháng 6/2026</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af', 
+                        'trade-dark': '#020617', 
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                        'report-bg': '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(0, 22, 124, 1)',
+                        'card': '0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+                        'elegant': '0 20px 40px -15px rgba(0, 22, 124, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .report-header-gradient {
+            background: linear-gradient(135deg, #00167c 0%, #000d4a 100%);
+        }
+        
+        .data-table th {
+            background-color: rgba(0, 22, 124, 0.05);
+            color: #00167c;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            padding: 1rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid rgba(0, 22, 124, 0.2);
+        }
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .data-table tr:hover td { background-color: #f8fafc; }
+
+        /* Status Badges */
+        .status-positive { background-color: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; display: inline-block; white-space: nowrap; }
+        .status-negative { background-color: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; display: inline-block; white-space: nowrap; }
+        .status-neutral { background-color: #f3f4f6; color: #374151; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.75rem; display: inline-block; white-space: nowrap; }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 900;
+            color: #00167c;
+            margin-top: 4.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 4px solid #ffdf2b;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .chart-container {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,0.04);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Modal Styles */
+        #registerModal { transition: opacity 0.3s ease-out; }
+        #modalContent { transition: transform 0.3s ease-out; }
+        
+        /* CTA Button Floating */
+        .cta-floating {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- MOBILE RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            /* 1. Giảm kích thước chữ toàn cục */
+            p.text-\[1\.05rem\] { font-size: 0.95rem !important; line-height: 1.6; }
+            .section-title { font-size: 1.25rem !important; margin-top: 3rem !important; padding-bottom: 0.25rem; }
+            
+            /* 2. Fix Bảng: Chuyển bảng thành dạng Card xếp dọc, loại bỏ lướt ngang */
+            .overflow-x-auto { overflow-x: hidden !important; }
+            .data-table thead, table[min-w*="700"] thead { display: none; }
+            .data-table, .data-table tbody, .data-table tr, .data-table td,
+            table[min-w*="700"], table[min-w*="700"] tbody, table[min-w*="700"] tr, table[min-w*="700"] td { 
+                display: block; width: 100%; 
+            }
+            
+            /* Sửa lỗi tràn bảng Hot picks */
+            table[min-w*="700"] { min-width: 100% !important; }
+            
+            .data-table tr, table[min-w*="700"] tr { 
+                margin-bottom: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+            .data-table td, table[min-w*="700"] td { 
+                padding: 0.75rem 1rem !important; border-bottom: 1px solid #f1f5f9; border-right: none !important; text-align: left !important;
+                white-space: normal !important; word-wrap: break-word; overflow-wrap: break-word;
+            }
+            .data-table td:first-child { 
+                background-color: #f8fafc; color: #00167c; border-bottom: 2px solid #e2e8f0; font-size: 1rem; text-align: center !important; font-weight: 900;
+            }
+
+            /* CSS dành riêng cho Bảng Danh Mục (Hot Picks) hiển thị tên cột */
+            .hot-picks-table td {
+                display: flex !important; flex-direction: column; align-items: flex-start;
+            }
+            .hot-picks-table td::before {
+                content: attr(data-label); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; color: #64748b; margin-bottom: 0.25rem;
+            }
+            .hot-picks-table td:nth-child(2) { 
+                background-color: #f8fafc; border-bottom: 2px solid #e2e8f0; align-items: center;
+            }
+            .hot-picks-table td:nth-child(2)::before { display: none; } /* Ẩn label cho Mã CP để hiển thị to */
+            
+            .hot-picks-container {
+                padding-top: 3.5rem !important; /* Tránh nhãn HOT PICKS đè vào tiêu đề */
+            }
+
+            /* 3. Fix Chart: Sắp xếp lại title và giới hạn chiều cao biểu đồ */
+            .chart-container { padding: 1rem; }
+            .chart-container h4.absolute { position: relative; top: 0; left: 0; margin-bottom: 0.75rem; text-align: center; font-size: 0.75rem; line-height: 1.4; }
+            .pt-10, .pt-12 { padding-top: 0 !important; }
+            .chart-wrapper { height: 280px !important; width: 100%; position: relative; }
+        }
+
+        /* Chart container desktop height */
+        @media (min-width: 769px) {
+            .chart-wrapper { height: 350px !important; width: 100%; position: relative; }
+        }
+    </style>
+</head>
+<body class="bg-report-bg text-gray-800 font-sans antialiased text-base leading-relaxed relative">
+
+    <!-- Navigation Header -->
+    <nav class="fixed w-full z-40 bg-trade-blue/95 backdrop-blur-md border-b border-white/10 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="https://nhatradehoc.github.io/home/" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="https://nhatradehoc.github.io/home/#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors font-bold">Hoàn Phí</a>
+                    <a href="https://nhatradehoc.github.io/home/#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors font-bold">Dịch Vụ</a>
+                    <a href="https://nhatradehoc.github.io/home/kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors font-bold">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-black text-sm uppercase rounded-sm">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LEFT SIDEBAR MENU (Tối ưu cho Mobile) -->
+    <div class="fixed top-1/4 left-0 z-50 group">
+        <div class="bg-white/95 backdrop-blur-xl border border-gray-200 rounded-r-xl md:rounded-r-2xl shadow-elegant flex flex-col w-10 md:w-12 group-hover:w-56 md:group-hover:w-80 transition-all duration-300 overflow-hidden overflow-y-auto max-h-[75vh]">
+            <div class="p-2 md:p-4 text-trade-blue flex items-center border-b border-gray-200 bg-gray-50">
+                <i class="fa-solid fa-bars w-4 md:w-5 text-center text-sm md:text-lg"></i>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 font-extrabold tracking-widest text-[10px] md:text-xs uppercase whitespace-nowrap">Nội dung báo cáo</span>
+            </div>
+            <a href="#tom-tat" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors group/item border-b border-gray-100">
+                <i class="fa-solid fa-bolt w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60 group-hover/item:opacity-100 group-hover/item:text-trade-yellow"></i>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">Tóm tắt điều hành</span>
+            </a>
+            <a href="#luan-diem" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">1</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">1. Luận điểm đầu tư</span>
+            </a>
+            <a href="#vi-mo-the-gioi" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">2</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">2. Vĩ mô thế giới & tác động</span>
+            </a>
+            <a href="#vi-mo-vn" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">3</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">3. Vĩ mô VN & Chất lượng TT</span>
+            </a>
+            <a href="#dong-tien-nganh" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">4</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">4. Dòng tiền & Ưu tiên ngành</span>
+            </a>
+            <a href="#ky-thuat-phai-sinh" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">5</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">5. Kỹ thuật & Phái sinh</span>
+            </a>
+            <a href="#chien-luoc" class="flex items-center p-2 md:p-3 hover:bg-blue-50/80 text-gray-700 hover:text-trade-blue transition-colors border-b border-gray-100">
+                <span class="font-black w-4 md:w-5 text-center text-[10px] md:text-xs opacity-60">6</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-bold whitespace-nowrap">6. Chiến lược & Danh mục</span>
+            </a>
+            <a href="#tong-ket" class="flex items-center p-2 md:p-3 bg-trade-blue text-trade-yellow hover:bg-[#000d4a] transition-all">
+                <i class="fa-solid fa-flag-checkered w-4 md:w-5 text-center text-[10px] md:text-xs"></i>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2 md:ml-3 text-xs md:text-sm font-black whitespace-nowrap uppercase">Kết luận chung</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Floating CTA Button -->
+    <button onclick="openModal()" class="cta-floating bg-trade-yellow text-trade-blue border-2 border-trade-blue px-6 py-3 font-black uppercase tracking-wider text-sm shadow-brutal hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,22,124,1)] transition-all flex items-center gap-2">
+        <i class="fa-solid fa-user-plus"></i> Mở Tài Khoản SSI
+    </button>
+
+    <!-- Report Header -->
+    <header class="report-header-gradient pt-32 pb-24 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-trade-light-blue rounded-full mix-blend-multiply filter blur-[100px] opacity-40 translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end border-b border-white/20 pb-8 mb-8">
+                <div class="max-w-3xl">
+                    <div class="inline-block px-4 py-1.5 bg-trade-yellow text-trade-blue text-xs font-black tracking-widest uppercase mb-4 rounded-sm shadow-md">
+                        Báo Cáo Chiến Lược Đầu Tư
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-black uppercase leading-tight tracking-tight drop-shadow-lg">THỊ TRƯỜNG CHỨNG KHOÁN<br>VIỆT NAM THÁNG 6/2026</h1>
+                </div>
+                <div class="mt-6 md:mt-0 text-left md:text-right">
+                    <p class="text-trade-yellow text-sm font-bold uppercase tracking-widest mb-1">Kỳ báo cáo</p>
+                    <p class="font-black text-xl leading-snug">Review Tháng 05/2026<br>& Triển vọng Tháng 06/2026</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+                <div>
+                    <span class="block text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">Ngày phát hành</span>
+                    <span class="font-mono font-bold text-white text-base">03/06/2026</span>
+                </div>
+                <div>
+                    <span class="block text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">Người thực hiện</span>
+                    <span class="font-black text-white text-base">Nhà Trade Học</span>
+                </div>
+                <div>
+                    <span class="block text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">ID Báo cáo</span>
+                    <span class="font-mono font-bold text-white text-base opacity-90">STRAT-JUN2026</span>
+                </div>
+                <div>
+                    <span class="block text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">Chiến lược trọng tâm</span>
+                    <span class="font-black text-trade-yellow text-base">Nắm giữ có chọn lọc</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-16 relative z-20">
+        <div class="bg-white rounded-2xl shadow-card p-6 md:p-14 mb-12 border border-gray-200">
+            
+            <!-- TÓM TẮT ĐIỀU HÀNH -->
+            <section id="tom-tat">
+                <div class="inline-flex items-center font-black text-trade-blue text-sm uppercase tracking-[0.2em] mb-6 px-4 py-2 bg-trade-yellow/20 rounded-md border-l-4 border-trade-yellow">
+                    Tóm tắt điều hành
+                </div>
+                
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Tháng 6/2026 mở ra sau một tháng 5 đi ngang và phân hóa rõ hơn của thị trường chứng khoán Việt Nam. VN-Index không còn là thước đo đủ để đánh giá sức khỏe toàn thị trường, bởi nhóm cổ phiếu họ Vin (VIC, VHM, VRE, VPL) đóng góp vượt trội vào mức tăng của chỉ số từ đầu năm. Báo cáo vì vậy không đặt trọng tâm vào dự báo một điểm số tuyệt đối, mà xây dựng khung hành động dựa trên ba câu hỏi: dòng tiền đang tìm về đâu, định giá còn đủ hấp dẫn hay không, và danh mục nên chấp nhận rủi ro ở mức nào.
+                </p>
+
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Luận điểm chính là <strong>nắm giữ có chọn lọc</strong>. Việt Nam vẫn có nền tảng tăng trưởng tốt: IIP 5 tháng đầu năm 2026 tăng 9,1% so với cùng kỳ; FDI đăng ký đạt 24,81 tỷ USD, tăng 34,9%; FDI thực hiện đạt 9,75 tỷ USD, tăng 9,6%; tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng đạt 3.185,0 nghìn tỷ đồng, tăng 11,2%. Tuy nhiên, CPI tháng 5 tăng 5,60% so với cùng kỳ, CPI bình quân 5 tháng tăng 4,31%, nhập siêu 5 tháng 13,80 tỷ USD và khối ngoại bán ròng mạnh khiến chiến lược mua đuổi chỉ số không phù hợp.
+                </p>
+
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Về bối cảnh thế giới, thị trường Mỹ vẫn thể hiện trạng thái risk-on nhờ nhóm công nghệ và AI, với S&P 500 tăng 11,0% và Nasdaq tăng 16,5% từ đầu năm đến 01/06/2026. Song, dầu Brent ở 95,58 USD/thùng, tăng 57,1% từ đầu năm, cùng lợi suất US 10Y 4,46% khiến rủi ro lạm phát, tỷ giá và dòng vốn ngoại chưa thể xem nhẹ.
+                </p>
+
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Về thị trường trong nước, VN-Index chỉ tăng nhẹ khoảng 0,51% trong tháng 5, trong khi thanh khoản bình quân tuần cuối tháng 5 suy giảm và khối ngoại bán ròng 19,6 nghìn tỷ đồng trong tháng. Quan trọng hơn, từ đầu năm đến 29/05/2026, VN-Index tăng 4,4%, nhưng VN-Index không gồm VIC/VHM/VRE/VPL giảm 1,1%. Đây là dấu hiệu thị trường mang tính “index-led” nhiều hơn “market-wide”.
+                </p>
+
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Dữ liệu phái sinh tháng 5 mới được bổ sung cho thấy thị trường không rơi vào trạng thái phòng thủ cực đoan. Chuỗi VN30F1M giao dịch basis bình quân +1,53 điểm so với VN30, có 13/20 phiên basis dương, và basis cuối tháng đạt +7,94 điểm. Tuy nhiên, khối ngoại trên hợp đồng phái sinh bán ròng khoảng 10.297 hợp đồng, tương ứng giá trị ròng khoảng 2,10 nghìn tỷ đồng, nên tín hiệu phái sinh chỉ ủng hộ quan điểm thận trọng có chọn lọc, không phải tín hiệu mua đuổi.
+                </p>
+
+                <p class="mb-10 text-[1.05rem] text-gray-800">
+                    Chiến lược cơ sở là duy trì tỷ trọng cổ phiếu 60%-75%, tập trung vào các cổ phiếu mạnh trong nhóm ngành được hỗ trợ bởi vĩ mô và có dữ liệu lợi nhuận kiểm chứng; tiền mặt 25%-40% để xử lý rủi ro nếu thị trường mất hỗ trợ. Chỉ nâng tỷ trọng lên vùng cao hơn khi VN-Index vượt lại vùng kháng cự, thanh khoản vượt bình quân 20 phiên, độ rộng cải thiện, chỉ số không gồm họ Vin xác nhận phục hồi và khối ngoại giảm bán.
+                </p>
+
+                <!-- HÌNH 1 Chart -->
+                <div class="chart-container relative">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 1: VN-Index vs S&P 500 YTD (Khung tuần)</h4>
+                    <div class="pt-10 chart-wrapper">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 1. LUẬN ĐIỂM ĐẦU TƯ -->
+            <section id="luan-diem">
+                <h2 class="section-title">
+                    1. LUẬN ĐIỂM ĐẦU TƯ THÁNG 6/2026
+                </h2>
+                
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Báo cáo đặt trọng tâm vào chất lượng xu hướng thay vì chỉ nhìn điểm số. Tháng 6 không phải giai đoạn phù hợp để mua đuổi toàn thị trường theo chỉ số chính thức, bởi dữ liệu cho thấy VN-Index được hỗ trợ đáng kể bởi một nhóm cổ phiếu vốn hóa lớn. Khi chỉ số tăng nhưng phần còn lại của thị trường yếu hơn, rủi ro của nhà đầu tư là mua nhầm cổ phiếu không có dòng tiền và lợi nhuận xác nhận.
+                </p>
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Luận điểm chiến lược gồm bốn lớp. Thứ nhất, bối cảnh toàn cầu còn hỗ trợ tâm lý nhờ nhóm công nghệ Mỹ, nhưng dầu và lãi suất USD khiến dòng vốn vào Việt Nam chưa chắc đảo chiều nhanh. Thứ hai, vĩ mô Việt Nam vẫn tích cực, nhưng số liệu tháng 5 cho thấy lạm phát cao hơn và nhập siêu tăng, qua đó thu hẹp dư địa chính sách. Thứ ba, VN-Index cần được đọc song song với chỉ số không gồm họ Vin, độ rộng thị trường và thanh khoản. Thứ tư, định giá không còn quá rẻ nếu xét P/B và mức độ tập trung của chỉ số.
+                </p>
+                <p class="mb-10 text-[1.05rem] text-gray-800">
+                    Do đó, chiến lược phù hợp là tập trung vào một số ít cổ phiếu có động lượng tốt nhất trong các ngành được hỗ trợ bởi điều kiện vĩ mô hiện tại, đồng thời kiểm soát đòn bẩy. Tỷ trọng cơ sở 60%-75% cổ phiếu cho phép nhà đầu tư giữ vị thế trong nhóm cổ phiếu mạnh, nhưng vẫn còn dư địa xử lý khi VN-Index kiểm định vùng hỗ trợ.
+                </p>
+
+                <div class="overflow-x-auto mb-10 rounded-xl border border-gray-200 shadow-sm">
+                    <table class="w-full data-table">
+                        <thead>
+                            <tr>
+                                <th class="w-1/4 text-left font-black text-trade-blue">Lớp phân tích</th>
+                                <th class="w-1/3 text-left font-black text-trade-blue">Dữ liệu kiểm chứng thực tế</th>
+                                <th class="text-left font-black text-trade-blue">Ý nghĩa chiến lược áp dụng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Vĩ mô quốc tế</td>
+                                <td class="text-gray-700">S&P 500 +11.0%, Nasdaq +16.5% YTD; dầu Brent đạt 95.58 USD/thùng (+57.1% YTD); US10Y 4.46%.</td>
+                                <td class="text-gray-800"><span class="status-neutral">Hỗ trợ tâm lý</span> ngắn hạn từ thị trường Mỹ, reduction rủi ro chi phí đẩy đang tích lũy do giá dầu cao.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Vĩ mô Việt Nam</td>
+                                <td class="text-gray-700">IIP 5 tháng tăng +9.1% YoY; FDI đăng ký lũy kế đạt 24.81 tỷ USD (+34.9% YoY); CPI tháng 5 tăng +5.60% YoY.</td>
+                                <td class="text-gray-800">Động lực tăng trưởng cốt lõi vẫn khỏe, nhưng áp lực lạm phát làm tăng rủi ro tăng lãi suất huy động của NHTM.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Độ rộng xu hướng</td>
+                                <td class="text-gray-700">VN-Index YTD tăng 4.4% nhưng chỉ số loại trừ nhóm Vin giảm 1.1%. Khối ngoại bán ròng kỷ lục 65.1 nghìn tỷ YTD.</td>
+                                <td class="text-gray-800">Hiện tượng kéo trụ phân hóa rõ rệt; đa số cổ phiếu Midcap/Smallcap đang trong pha tích lũy hoặc điều chỉnh nhẹ.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-trade-blue">Định giá</td>
+                                <td class="text-gray-700">P/E thị trường đạt 13.76 lần (ở phân vị 19.2% trong 1 năm); P/B đạt 2.12 lần (phân vị 89.6% trong 3 năm qua).</td>
+                                <td class="text-gray-800">Định giá theo thu nhập (P/E) chưa đắt nhưng định giá theo tài sản (P/B) đang ở vùng giá cao, khuyến nghị tích lũy chọn lọc.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 2. VĨ MÔ THẾ GIỚI -->
+            <section id="vi-mo-the-gioi">
+                <h2 class="section-title">
+                    2. BỐI CẢNH VĨ MÔ THẾ GIỚI VÀ TÁC ĐỘNG ĐẾN VIỆT NAM
+                </h2>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4">2.1. Thị trường toàn cầu: risk-on còn hiện hữu nhưng không còn “dễ xơi”</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Đầu tháng 6/2026, thị trường toàn cầu vẫn chưa chuyển sang trạng thái risk-off, tuy nhiên rủi ro từ “bong bóng AI” ngày càng hiện hữu. Các chỉ số Mỹ tiếp tục lập đỉnh mới nhờ nhóm công nghệ và AI. Theo SSI Research, đến 01/06/2026, Dow Jones đạt 51.078,88 điểm, tăng 6,3% từ đầu năm; S&P 500 đạt 7.599,96 điểm, tăng 11,0%; Nasdaq đạt 27.086,81 điểm, tăng 16,5%.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Tuy nhiên, mức độ hỗ trợ từ bên ngoài với Việt Nam không còn một chiều. DXY ở 99,18, tăng 0,9% từ đầu năm; lợi suất US 10Y ở 4,46%, tăng 7,4%; dầu Brent đạt 95,58 USD/thùng, tăng 57,1%; WTI đạt 92,16 USD/thùng, tăng 60,5%. Những biến số này có thể ảnh hưởng đồng thời tới tỷ giá, lạm phát, dòng vốn ngoại và định giá cổ phiếu.
+                </p>
+
+                <!-- HÌNH 2 Chart -->
+                <div class="chart-container relative min-h-[300px]">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 2: Hiệu suất tăng trưởng YTD của tài sản toàn cầu (%)</h4>
+                    <div class="pt-10 h-full w-full chart-wrapper">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">2.2. Dầu và địa chính trị: biến số có sức lan tỏa lớn nhất trong tháng 6</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Giá dầu là rủi ro ngoại sinh quan trọng nhất đối với chiến lược tháng 6. Brent ở 95,58 USD/thùng ngày 01/06/2026 và tăng 57,1% từ đầu năm. PSI đánh giá thị trường dầu đầu năm 2026 chịu tác động mạnh bởi rủi ro Mỹ-Iran và Trung Đông; Eo biển Hormuz giữ vai trò then chốt khi khoảng 20% lượng dầu tiêu thụ mỗi ngày trên thế giới được vận chuyển qua khu vực này.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Điều này tác động hai mặt đến Việt Nam: hỗ trợ trực tiếp biên lợi nhuận của các doanh nghiệp khai thác, dịch vụ dầu khí trong nước (PVS, PVD, BSR) nhưng lại làm tăng đáng kể chi phí logistics và giá nguyên vật liệu đầu vào của các ngành sản xuất hạ nguồn.
+                </p>
+
+                <!-- HÌNH 3: BRENT & OIL STOCKS CHART -->
+                <div class="chart-container relative">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 3: Tương quan Giá dầu Brent và Top 3 Cổ phiếu Dầu khí YTD 2026</h4>
+                    <div class="pt-12 chart-wrapper">
+                        <canvas id="chart_oil_stocks"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-4 italic">* Trỏ chuột vào biểu đồ tại các tuần 16/02 và 13/04 để xem chi tiết sự kiện đánh dấu.</p>
+                </div>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">2.3. Fed, lợi suất USD và dòng vốn ngoại</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Biên bản FOMC tháng 4 ghi nhận Fed duy trì vùng lãi suất 3,50%-3,75%. Dữ liệu ngày 01/06/2026 cho thấy thị trường kỳ vọng Fed giữ nguyên lãi suất tại kỳ họp tới với xác suất 99,3%, chỉ 0,7% dự báo giảm 0,25 điểm phần trăm.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Dữ liệu Dot-plot mới nhất cho thấy median federal funds rate cuối năm 2026 là 3,4%, cuối năm 2027 là 3,1%; PCE inflation và core PCE inflation năm 2026 cùng ở mức median 2,7%. Với vùng mục tiêu hiện tại 3,50%-3,75%, median 3,4% hàm ý kịch bản trung vị chỉ có thêm khoảng một lần cắt giảm 25 điểm cơ bản trong năm 2026, trong khi central tendency 2026 ở 3,1%-3,6% cho thấy mức phân hóa quan điểm vẫn lớn giữa các thành viên của FED.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Hệ quả với Việt Nam là dòng vốn ngoại khó đảo chiều mạnh nếu kỳ vọng cắt giảm lãi suất bị lùi lại. Khi lợi suất USD còn hấp dẫn, nhà đầu tư quốc tế có ít động lực tăng tỷ trọng vào các thị trường rủi ro cao hơn, đặc biệt nếu tỷ giá USD/VND còn chịu áp lực.
+                </p>
+
+                <!-- HÌNH 4: FED DOT PLOT CHART -->
+                <div class="chart-container relative">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 4: Fed Dot Plot - Dự báo lãi suất mục tiêu của FOMC</h4>
+                    <div class="pt-12 chart-wrapper">
+                        <canvas id="chart_dotplot"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. VĨ MÔ VIỆT NAM -->
+            <section id="vi-mo-vn">
+                <h2 class="section-title">
+                    3. VĨ MÔ VIỆT NAM VÀ CHẤT LƯỢNG THỊ TRƯỜNG THÁNG 5
+                </h2>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4">3.1. Số liệu tháng 5 xác nhận tăng trưởng, nhưng lạm phát cao hơn</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Số liệu Cục Thống kê công bố ngày 03/06/2026 cho thấy nền kinh tế Việt Nam tiếp tục duy trì đà tăng trưởng trong 5 tháng đầu năm. Sản xuất công nghiệp tháng 5 tăng 3,3% so với tháng trước và tăng 8,8% so với cùng kỳ; tính chung 5 tháng, IIP tăng 9,1%, mức tăng cao nhất của 5 tháng đầu năm trong 4 năm gần đây. Trong đó, công nghiệp chế biến, chế tạo tăng 9,5% và đóng góp 7,4 điểm phần trăm vào mức tăng chung.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Đầu tư và FDI tiếp tục là điểm tựa. Vốn đầu tư thực hiện từ nguồn ngân sách Nhà nước 5 tháng ước đạt 254,1 nghìn tỷ đồng, bằng 24,0% kế hoạch năm và tăng 11,2% so với cùng kỳ. Tổng vốn đầu tư nước ngoài đăng ký đến 31/05/2026 đạt 24,81 tỷ USD, tăng 34,9%; vốn FDI thực hiện đạt 9,75 tỷ USD, tăng 9,6% và là mức cao nhất của 5 tháng đầu năm trong 5 năm qua.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Tiêu dùng danh nghĩa vẫn tăng nhưng tiêu dùng thực yếu hơn do giá tăng. Tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng 5 tháng đạt 3.185,0 nghìn tỷ đồng, tăng 11,2% so với cùng kỳ; nếu loại trừ yếu tố giá, mức tăng còn 6,1%, thấp hơn mức 7,2% của cùng kỳ 2025. Điều này hàm ý nhóm tiêu dùng cần được chọn lọc theo khả năng giữ biên lợi nhuận và sức mạnh thương hiệu.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Thương mại hàng hóa tăng mạnh ở cả hai chiều nhưng nhập khẩu tăng nhanh hơn xuất khẩu. Tổng kim ngạch xuất nhập khẩu 5 tháng đạt 445,12 tỷ USD, tăng 25,0%; xuất khẩu đạt 215,66 tỷ USD, tăng 19,5%; nhập khẩu đạt 229,46 tỷ USD, tăng 30,8%; cán cân thương mại nhập siêu 13,80 tỷ USD. Nhập khẩu máy móc, nguyên vật liệu cao có thể hỗ trợ công suất sản xuất sau này, nhưng ngắn hạn tạo áp lực lên tỷ giá và cán cân thương mại.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Lạm phát là điểm cần theo dõi sát. CPI tháng 5 tăng 0,29% so với tháng trước, tăng 3,61% so với tháng 12/2025 và tăng 5,60% so với cùng kỳ. Bình quân 5 tháng, CPI tăng 4,31% và lạm phát cơ bản tăng 4,04%. Riêng lạm phát cơ bản tháng 5 tăng 0,34% so với tháng trước và 4,67% so với cùng kỳ. Đây là căn cứ quan trọng để giữ quan điểm thận trọng với margin và các nhóm cổ phiếu nhạy lãi suất.
+                </p>
+
+                <!-- HÌNH 5 Chart -->
+                <div class="chart-container relative">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 5: So sánh tăng trưởng Vĩ mô (Tháng 4 vs Tháng 5/2026, % YoY)</h4>
+                    <div class="pt-10 chart-wrapper">
+                        <canvas id="chart3"></canvas>
+                    </div>
+                </div>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">3.2. Áp lực rút vốn của khối ngoại chưa hạ nhiệt</h3>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Khối ngoại tiếp tục duy trì trạng thái bán ròng mạnh mẽ với giá trị bán ròng kỷ lục 19.6 nghìn tỷ đồng trong tháng 5. Đây là mức bán ròng cao nhất trong vòng 7 tháng qua kể từ tháng 10/2025, đồng thời thiết lập chuỗi bán ròng liên tục tháng thứ 10. Lũy kế từ đầu năm 2026 đến ngày 29/05/2026, khối ngoại đã rút ròng khoảng 65.1 nghìn tỷ đồng khỏi thị trường chứng khoán Việt Nam. Áp lực bán ròng dồn dập tập trung chủ yếu tại các mã có tỷ trọng vốn hóa lớn như MSB (-1.76 nghìn tỷ đồng), HPG (-549 tỷ đồng), VHM (-423 tỷ đồng), VIC (-208 tỷ đồng) và FPT (-200 tỷ đồng). Điều này vô hình trung tạo ra rào cản rất lớn ngăn chỉ số mở rộng vùng định giá trong ngắn hạn.
+                </p>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">3.3. Ảnh hưởng của “họ Vin” và rủi ro index-led market</h3>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Điểm then chốt của báo cáo chiến lược tháng này nằm ở sự ảnh hưởng cực đoan của nhóm cổ phiếu họ Vin (VIC, VHM, VRE, VPL) lên diễn biến điểm số kỹ thuật chung của VN-Index. Thống kê của SSI Research cho thấy, từ đầu năm đến ngày 29/05/2026, chỉ số VN-Index chính thức ghi nhận mức tăng +79.00 điểm (tương đương +4.4%). Tuy nhiên, riêng bốn cổ phiếu họ Vin đã đóng góp tới <strong>+94.58 điểm</strong> tăng vào chỉ số. Nếu loại bỏ hoàn toàn tác động của nhóm này, <strong>chỉ số VN-Index thực chất đã sụt giảm 15.58 điểm (tương đương -1.1%)</strong>. Hiện tượng "Index-led Market" (thị trường được dẫn dắt cơ học bởi một vài mã trụ đơn lẻ) phản ánh sức khỏe yếu của độ rộng thị trường chung, cảnh báo nhà đầu tư không nên hưng phấn mua đuổi chỉ số kỹ thuật.
+                </p>
+
+                <!-- HÌNH 6 Charts -->
+                <div class="chart-container relative">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 6: Ảnh hưởng của cổ phiếu họ Vin lên điểm số VN-Index (YTD & THÁNG 5)</h4>
+                    <div class="pt-10 chart-wrapper">
+                        <canvas id="chart4"></canvas>
+                    </div>
+                </div>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">3.4. Định giá thị trường</h3>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Về mặt định giá, hệ số P/E của VN-Index hiện đạt 13.76 lần, nằm ở phân vị thấp 19.2% trong vòng một năm qua, cho thấy định giá theo dòng thu nhập vẫn tương đối an toàn nhờ lợi nhuận Q1/2026 của toàn thị trường tăng trưởng khả quan. Tuy nhiên, hệ số định giá theo giá trị sổ sách P/B của thị trường đang neo ở mức cao 2.12 lần, thuộc phân vị 89.6% trong 3 năm qua. Điều này hàm ý giá cổ phiếu đã phản ánh phần lớn kỳ vọng hồi phục tài sản, và việc mua đuổi ở các vùng giá cao không còn mang lại tỷ lệ lợi nhuận/rủi ro hấp dẫn cho các vị thế trung và dài hạn.
+                </p>
+                
+                <!-- NEW: COMBINED VNI, PE, PB DAILY CHART -->
+                <div class="chart-container relative mt-8">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 7: Diễn biến VN-Index, P/E và P/B trong tháng 5/2026 (Khung ngày)</h4>
+                    <div class="pt-10 chart-wrapper">
+                        <canvas id="chart_vni_pe_pb"></canvas>
+                    </div>
+                </div>
+
+                <!-- HÌNH 7 Chart (Gauge) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-10">
+                    <div class="chart-container flex flex-col items-center justify-center relative shadow-sm border border-gray-200">
+                        <div class="w-3/4"><canvas id="chart5_pe"></canvas></div>
+                        <div class="absolute bottom-6 text-center w-full">
+                            <p class="font-black text-trade-blue text-2xl">19.2%</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">Phân vị P/E 1 Năm</p>
+                        </div>
+                    </div>
+                    <div class="chart-container flex flex-col items-center justify-center relative shadow-sm border border-gray-200">
+                        <div class="w-3/4"><canvas id="chart5_pb"></canvas></div>
+                        <div class="absolute bottom-6 text-center w-full">
+                            <p class="font-black text-trade-blue text-2xl">89.6%</p>
+                            <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mt-1">Phân vị P/B 3 Năm</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. DÒNG TIỀN & NGÀNH -->
+            <section id="dong-tien-nganh">
+                <h2 class="section-title">
+                    4. DÒNG TIỀN, LỢI NHUẬN VÀ ƯU TIÊN NGÀNH
+                </h2>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4">4.1. KQKD Q1/2026: nền lợi nhuận tích cực</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Kết quả kinh doanh Q1/2026 là điểm tựa quan trọng cho thị trường. Theo SSI, tổng doanh thu trên cả ba sàn tăng 21,2% so với cùng kỳ; lợi nhuận sau thuế thuộc về cổ đông công ty mẹ (NPATMI) toàn thị trường tăng 35,2%; riêng HOSE tăng 49,8%. Nếu loại các cổ phiếu liên quan đến Vingroup, tăng trưởng NPATMI của HOSE đạt 31,8%, vẫn cao hơn mức 28,5% của năm 2025.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Tăng trưởng lợi nhuận không biến mất khi loại Vingroup, nhưng mức tăng của chỉ số chính thức và mức tăng lợi nhuận vẫn cần tách bạch. Hai ngành ngân hàng và bất động sản đóng góp lớn cho tăng trưởng lợi nhuận tuyệt đối, song đây cũng là hai ngành chịu nhiều rủi ro riêng: ngân hàng chịu áp lực NIM, nợ xấu và thanh khoản; bất động sản chịu rủi ro pháp lý, lãi suất và dòng tiền bán hàng.
+                </p>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">4.2. Dòng tiền ngành và ưu tiên ngành tháng 6</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Dòng tiền tuần cuối tháng 5 tập trung vào ngân hàng, bất động sản và chứng khoán, lần lượt chiếm 30%, 19% và 12% giá trị giao dịch toàn thị trường. Đây là cấu trúc dòng tiền phù hợp với thị trường beta và cổ phiếu trụ, nhưng chưa đủ để kết luận có sự lan tỏa mạnh sang toàn bộ thị trường.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Số liệu GSO tháng 5 cho thấy sản xuất công nghiệp, FDI, đầu tư công và xuất nhập khẩu tiếp tục tốt, nhưng lạm phát và nhập siêu cao hơn khiến nhóm tiêu dùng, vận tải và doanh nghiệp nhạy lãi suất cần thận trọng hơn. Ưu tiên ngành tháng 6 vì vậy được xây dựng theo nguyên tắc: có dữ liệu lợi nhuận hoặc catalyst định lượng, định giá không quá căng, thanh khoản đủ tốt và rủi ro vĩ mô không trực tiếp phá vỡ biên lợi nhuận.
+                </p>
+
+                <div class="overflow-x-auto mb-10 rounded-xl border border-gray-200 shadow-sm">
+                    <table class="w-full data-table">
+                        <thead>
+                            <tr>
+                                <th class="text-left font-black text-trade-blue w-[15%]">Nhóm ngành</th>
+                                <th class="text-left font-black text-trade-blue w-[15%]">Quan điểm tháng 6</th>
+                                <th class="text-left font-black text-trade-blue w-[35%]">Dữ liệu hỗ trợ</th>
+                                <th class="text-left font-black text-trade-blue w-[35%]">Điều kiện thay đổi quan điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-gray-900">Đầu tư công/hạ tầng/vật liệu</td>
+                                <td><span class="status-positive">OVERWEIGHT CÓ ĐIỀU KIỆN</span></td>
+                                <td class="text-gray-800">Vốn đầu tư NSNN 5 tháng đạt 254,1 nghìn tỷ đồng, +11,2% YoY; IIP vật liệu/khoáng phi kim loại +16,2%, thép cán +21,5%.</td>
+                                <td class="text-gray-800">Ưu tiên doanh nghiệp có hợp đồng, backlog, biên lợi nhuận và dòng tiền rõ.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">KCN/logistics/xuất khẩu</td>
+                                <td><span class="status-positive">OVERWEIGHT CÓ ĐIỀU KIỆN</span></td>
+                                <td class="text-gray-800">FDI đăng ký 24,81 tỷ USD; FDI thực hiện 9,75 tỷ USD; xuất khẩu +19,5%, nhập khẩu +30,8%.</td>
+                                <td class="text-gray-800">Chọn doanh nghiệp có tỷ lệ lấp đầy, giá thuê, khách thuê và biên lợi nhuận tốt.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Dầu khí</td>
+                                <td><span class="status-neutral">NEUTRAL - TRADING</span></td>
+                                <td class="text-gray-800">Brent +57,1% YTD; PSI dự báo Brent cơ sở 80-85 USD/thùng, rủi ro lên 100-120 nếu xung đột kéo dài.</td>
+                                <td class="text-gray-800">Ưu tiên doanh nghiệp có backlog/dịch vụ thực; giảm trading nếu dầu hạ nhiệt nhanh.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Ngân hàng</td>
+                                <td><span class="status-positive">OVERWEIGHT CÓ ĐIỀU KIỆN</span></td>
+                                <td class="text-gray-800">Ngân hàng vẫn là nhóm thanh khoản lớn nhưng chịu áp lực NIM/lãi suất.</td>
+                                <td class="text-gray-800">Chỉ nâng tỷ trọng khi NIM ổn định, nợ xấu kiểm soát, tín dụng tăng không gây áp lực thanh khoản.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Chứng khoán</td>
+                                <td><span class="status-positive">OVERWEIGHT CÓ ĐIỀU KIỆN</span></td>
+                                <td class="text-gray-800">Hưởng lợi nếu thanh khoản tăng, nhưng tháng 5 thanh khoản chưa bùng nổ và khối ngoại bán ròng mạnh.</td>
+                                <td class="text-gray-800">Tăng tỷ trọng khi GTGD vượt bình quân 20 phiên và khối ngoại giảm bán.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">BĐS nhà ở</td>
+                                <td><span class="status-negative">UNDERWEIGHT</span></td>
+                                <td class="text-gray-800">Quy hoạch/hạ tầng là catalyst dài hạn; nhưng lãi suất, sức mua và pháp lý là rủi ro.</td>
+                                <td class="text-gray-800">Chỉ mua doanh nghiệp có dự án pháp lý rõ, bán hàng và dòng tiền tốt.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">IT/công nghệ</td>
+                                <td><span class="status-positive">OVERWEIGHT CÓ ĐIỀU KIỆN</span></td>
+                                <td class="text-gray-800">Nasdaq +16,5% YTD hỗ trợ tâm lý; nhóm IT giữ sắc xanh trong tuần cuối tháng 5.</td>
+                                <td class="text-gray-800">Cần định giá và KQKD/backlog; tránh mua khi P/E quá cao.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Tiêu dùng/bán lẻ</td>
+                                <td><span class="status-neutral">NEUTRAL</span></td>
+                                <td class="text-gray-800">Bán lẻ danh nghĩa 5T +11,2% nhưng sau loại trừ giá chỉ +6,1%; CPI 5T +4,31%.</td>
+                                <td class="text-gray-800">Nâng tỷ trọng nếu CPI hạ nhiệt và doanh nghiệp giữ biên lợi nhuận.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Vận tải/hàng không</td>
+                                <td><span class="status-negative">UNDERWEIGHT</span></td>
+                                <td class="text-gray-800">Dầu Brent 95,58 USD/thùng; CPI giao thông tháng 5 tăng 0,83% MoM.</td>
+                                <td class="text-gray-800">Chỉ nâng lại khi dầu hạ nhiệt hoặc doanh nghiệp có cơ chế chuyển giá tốt.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. KỸ THUẬT & PHÁI SINH -->
+            <section id="ky-thuat-phai-sinh">
+                <h2 class="section-title">
+                    5. KỸ THUẬT, PHÁI SINH, TÂM LÝ VÀ KỊCH BẢN THÁNG 6
+                </h2>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4">5.1. Kỹ thuật và tâm lý thị trường</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    VN-Index đóng cửa tháng 5 tại 1.863,49 điểm, sau khi giảm 0,73% trong tuần cuối tháng. Mốc 1.850 có thể xem là vùng hỗ trợ gần cần theo dõi đầu tháng 6; vùng 1.880-1.910 là vùng cần vượt qua để xác nhận khả năng mở rộng xu hướng tăng. Nếu chỉ số mất vùng 1.800, kịch bản tiêu cực cần được kích hoạt.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Tâm lý thị trường tháng 5 nghiêng về thận trọng có chọn lọc. Các yếu tố thận trọng gồm: VN-Index tháng 5 tăng yếu, thanh khoản suy giảm, khối ngoại bán ròng mạnh, chỉ số bị nhiễu bởi họ Vin, dầu và tỷ giá là biến số lớn. Tuy nhiên, chưa phải trạng thái hoảng loạn vì dòng tiền vẫn còn luân chuyển ở một số nhóm có sức mạnh tương đối.
+                </p>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">5.2. Phái sinh tháng 5: basis không xấu, nhưng khối ngoại vẫn thiên về bán ròng</h3>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Dữ liệu phái sinh mới được bổ sung cho phép thay thế phần “Tôi không biết” ở bản trước. Bộ dữ liệu gồm hai lớp: (i) chuỗi hợp đồng phái sinh từng ngày từ 04/05 đến 29/05, trong đó có sự chuyển hợp đồng từ 41I1G5000 sang 41I1G6000; và (ii) chuỗi VN30F1M so với VN30 để đọc basis front-month liên tục. Vì có yếu tố đáo hạn/roll hợp đồng, phân tích basis ưu tiên chuỗi VN30F1M - VN30.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Trong 20 phiên tháng 5, VN30F1M giảm từ 2.017,9 điểm xuống 2.005,0 điểm, tương đương -0,64%; VN30 giảm từ 2.014,62 điểm xuống 1.997,06 điểm, tương đương -0,87%. Basis bình quân đạt 1,53 điểm, trung vị 1,74 điểm; 13/20 phiên có basis dương. Basis cuối tháng 5 là 7,94 điểm, tương đương 0,40% so với VN30.
+                </p>
+                <p class="mb-5 text-gray-800 text-[1.05rem]">
+                    Về thanh khoản hợp đồng phái sinh, tổng khối lượng trong 20 phiên đạt 4.359.758 hợp đồng, bình quân 217.988 hợp đồng/phiên. Tổng giá trị giao dịch đạt khoảng 887,85 nghìn tỷ đồng, bình quân 44,39 nghìn tỷ đồng/phiên. OI bình quân đạt 33.515 hợp đồng; OI cuối tháng là 35.165 hợp đồng, gần như đi ngang so với 35.421 hợp đồng đầu tháng. Khối ngoại phái sinh bán ròng 10.297 hợp đồng, tương ứng khoảng 2,10 nghìn tỷ đồng, và bán ròng trong 12/20 phiên.
+                </p>
+                <p class="mb-6 text-gray-800 text-[1.05rem]">
+                    Diễn giải chiến lược: basis bình quân dương và basis cuối tháng dương cho thấy phái sinh không phản ánh trạng thái phòng thủ cực đoan hoặc bán tháo kỳ vọng. Tuy nhiên, basis biến động mạnh, có phiên âm sâu ngày 28/05, trong khi khối ngoại trên phái sinh vẫn bán ròng. Vì vậy, tín hiệu phái sinh phù hợp với quan điểm “thận trọng có chọn lọc”: chưa bi quan cực đoan, nhưng cũng chưa đủ xác nhận để tăng đòn bẩy mạnh.
+                </p>
+
+                <!-- HÌNH 8 Chart (Basis Phái sinh) -->
+                <div class="chart-container relative mb-10">
+                    <h4 class="absolute top-4 left-6 font-bold text-sm text-trade-blue uppercase tracking-wide">Hình 8: Biến động Basis VN30F1M - VN30 (Tháng 5/2026)</h4>
+                    <div class="pt-10 chart-wrapper">
+                        <canvas id="chart6"></canvas>
+                    </div>
+                </div>
+
+                <h3 class="font-black text-xl text-trade-blue mb-4 mt-10">5.3. Rủi ro trọng yếu</h3>
+                <div class="overflow-x-auto mb-10 rounded-xl border border-gray-200 shadow-sm">
+                    <table class="w-full data-table">
+                        <thead>
+                            <tr>
+                                <th class="text-left font-black text-trade-blue w-1/4">Rủi ro</th>
+                                <th class="text-left font-black text-trade-blue w-1/3">Dữ liệu/hiện trạng</th>
+                                <th class="text-left font-black text-trade-blue">Tác động danh mục</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold text-gray-900">Rủi ro chỉ số bị nhiễu bởi họ Vin</td>
+                                <td class="text-gray-800">YTD VN-Index +4,4% nhưng ex-Vin -1,1%; họ Vin đóng góp 94,58 điểm.</td>
+                                <td class="text-gray-800">Không mua đuổi theo chỉ số; cần kiểm tra độ rộng và ex-Vin.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Khối ngoại bán ròng</td>
+                                <td class="text-gray-800">Tháng 5 bán ròng 19,6 nghìn tỷ; YTD bán ròng 65,1 nghìn tỷ.</td>
+                                <td class="text-gray-800">Áp lực lên trụ và định giá, đặc biệt khi DXY/US10Y cao.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Dầu/lạm phát</td>
+                                <td class="text-gray-800">Brent 95,58 USD/thùng, +57,1% YTD; CPI tháng 5 +5,60% YoY; CPI bình quân 5T +4,31%.</td>
+                                <td class="text-gray-800">Giảm dư địa nới lỏng, ảnh hưởng tiêu dùng và ngành nhạy nhiên liệu.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Nhập siêu/tỷ giá</td>
+                                <td class="text-gray-800">5 tháng nhập siêu 13,80 tỷ USD; chỉ số USD tháng 5 +0,02% MoM.</td>
+                                <td class="text-gray-800">Tăng rủi ro tỷ giá và chi phí nhập khẩu.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Fed cao lâu hơn</td>
+                                <td class="text-gray-800">99,3% kỳ vọng Fed giữ nguyên lãi suất kỳ tới theo SSI; SEP tháng 3 chỉ hàm ý cắt giảm hạn chế.</td>
+                                <td class="text-gray-800">Dòng vốn ngoại vào Việt Nam có thể chậm đảo chiều.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Phái sinh</td>
+                                <td class="text-gray-800">Basis dương nhưng khối ngoại phái sinh bán ròng 10.297 hợp đồng trong tháng 5.</td>
+                                <td class="text-gray-800">Tín hiệu không xấu cực đoan nhưng chưa đủ để tăng đòn bẩy cao.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold text-gray-900">Margin</td>
+                                <td class="text-gray-800">SSI ước margin cuối Q1 khoảng 424 nghìn tỷ, +50% YoY; margin/free-float HOSE 13,4%.</td>
+                                <td class="text-gray-800">Nếu thị trường mất hỗ trợ, rủi ro tâm lý tăng.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 6. CHIẾN LƯỢC & DANH MỤC -->
+            <section id="chien-luoc">
+                <h2 class="section-title">
+                    6. CHIẾN LƯỢC DANH MỤC VÀ QUẢN TRỊ RỦI RO
+                </h2>
+                
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Chiến lược danh mục tháng 6 cần ưu tiên khả năng đi cùng nhóm cổ phiếu mạnh thay vì bám sát VN-Index. Khi chỉ số bị kéo bởi nhóm trụ, danh mục không nắm trụ có thể không tương ứng với chỉ số. Do đó, tỷ trọng cổ phiếu 60%-75% trong kịch bản cơ sở chỉ nên triển khai vào nhóm cổ phiếu có động lượng và dữ liệu cơ bản xác nhận, không phải mua rộng toàn thị trường.
+                </p>
+                <p class="mb-5 text-[1.05rem] text-gray-800">
+                    Cổ phiếu lõi nên chiếm 60%-70% danh mục, tập trung vào doanh nghiệp có KQKD Q1 tích cực, triển vọng Q2 rõ, bảng cân đối lành mạnh, thanh khoản tốt và định giá kiểm chứng được. Cổ phiếu trading chiếm 15%-20%, dành cho nhóm chứng khoán, dầu khí, BĐS chọn lọc hoặc cổ phiếu có sức mạnh tương đối, nhưng phải có điểm dừng lỗ tuyệt đối. Tiền mặt 10%-25% giúp xử lý rủi ro nếu VN-Index mất hỗ trợ hoặc dầu/tỷ giá xấu đi.
+                </p>
+                <p class="mb-8 text-[1.05rem] text-gray-800">
+                    Margin không nên dùng cao trong kịch bản cơ sở. Chỉ xem xét nâng đòn bẩy khi VN-Index vượt vùng xác nhận, VN-Index ex-Vin cùng cải thiện, thanh khoản vượt bình quân, khối ngoại giảm bán, phái sinh không chiết khấu sâu và dầu không vượt ngưỡng rủi ro.
+                </p>
+
+                <!-- HIGHLIGHT BOX FOR PORTFOLIO (Thu gọn khung giá, bố cục 3 dòng) -->
+                <div class="bg-white border-[3px] border-trade-blue shadow-brutal p-1 rounded-2xl mb-12 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-trade-yellow text-trade-blue font-black px-6 py-2 rounded-bl-xl z-10 text-sm tracking-widest shadow-sm">HOT PICKS</div>
+                    
+                    <div class="bg-blue-50/20 rounded-xl p-4 md:p-8 relative z-0 hot-picks-container">
+                        <h3 class="text-xl md:text-2xl font-black text-trade-blue uppercase mb-6 md:mb-8 flex items-center tracking-tight border-b-2 border-trade-yellow pb-4 flex-wrap leading-snug">
+                            <i class="fa-solid fa-crosshairs text-trade-yellow drop-shadow-sm mr-3"></i> 
+                            Danh mục cổ phiếu khuyến nghị
+                        </h3>
+
+                        <div class="overflow-x-auto rounded-xl border border-blue-200 shadow-sm bg-white">
+                            <table class="w-full text-left border-collapse min-w-[700px] hot-picks-table">
+                                <thead>
+                                    <tr class="bg-trade-blue text-white text-xs uppercase tracking-wider">
+                                        <th class="p-4 font-bold border-b border-trade-blue w-1/4">Ngành</th>
+                                        <th class="p-4 text-center font-bold border-b border-trade-blue w-[15%]">Mã CP</th>
+                                        <th class="p-4 font-bold border-b border-trade-blue w-[35%]">Vùng giá giao dịch khuyến nghị (VND)</th>
+                                        <th class="p-4 font-bold border-b border-trade-blue w-[25%]">Lưu ý / Quản trị</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-[0.9rem]">
+                                    <!-- HPG -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Đầu tư công / Vật liệu</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">HPG</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">23.4</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">25.6 (+7.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 22.2 (-5.0%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">Ưu tiên trading ngắn hạn (One-shot) khi thanh khoản bùng nổ.</td>
+                                    </tr>
+                                    
+                                    <!-- DPM -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Phân bón / Hóa chất</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">DPM</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">22.5 - 24.0</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">27.1 (+20.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 21.5 (-4.1%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">Mua gom tích lũy, kiên nhẫn nắm giữ chờ sóng phục hồi.</td>
+                                    </tr>
+
+                                    <!-- BCM -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Khu Công Nghiệp</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">BCM</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">50.0 - 53.0</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">68.5 (+37.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 48.8 (Đóng cửa 2 phiên)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">Cổ phiếu cơ bản mạnh, phù hợp mục tiêu trung hạn.</td>
+                                    </tr>
+                                    <!-- KBC -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50 border-t border-gray-100 md:border-t-0">Khu Công Nghiệp</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle border-t border-gray-100 md:border-t-0">KBC</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle border-t border-gray-100 md:border-t-0">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">26.5 - 28.0</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">33.7 (+27.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 26.5 (Đóng cửa 2 phiên)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic border-t border-gray-100 md:border-t-0">Mua gom nhịp điều chỉnh tích lũy tại hỗ trợ cứng.</td>
+                                    </tr>
+
+                                    <!-- ACB -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Ngân hàng</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">ACB</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">23.9</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">28.3 (+17.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 22.4 (-6.2%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">-</td>
+                                    </tr>
+                                    <!-- VIB -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50 border-t border-gray-100 md:border-t-0">Ngân hàng</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle border-t border-gray-100 md:border-t-0">VIB</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle border-t border-gray-100 md:border-t-0">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">15.1 - 16.1</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">19.0 (+33.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 14.7 (-2.3%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic border-t border-gray-100 md:border-t-0">-</td>
+                                    </tr>
+                                    <!-- TPB -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50 border-t border-gray-100 md:border-t-0">Ngân hàng</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle border-t border-gray-100 md:border-t-0">TPB</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle border-t border-gray-100 md:border-t-0">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">15.1 - 15.9</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">18.3 (+21.5%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 14.55 (-3.5%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic border-t border-gray-100 md:border-t-0">-</td>
+                                    </tr>
+                                    
+                                    <!-- MBS -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Chứng khoán</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">MBS</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">18.5 - 20.0</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">23.3 (+25.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 17.0 (-7.8%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">-</td>
+                                    </tr>
+                                    <!-- SHS -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50 border-t border-gray-100 md:border-t-0">Chứng khoán</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle border-t border-gray-100 md:border-t-0">SHS</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle border-t border-gray-100 md:border-t-0">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">16.7 - 17.7</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">23.8 (+42.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 15.7 (-5.2%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic border-t border-gray-100 md:border-t-0">-</td>
+                                    </tr>
+                                    <!-- VIX -->
+                                    <tr class="border-b border-gray-100 hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50 border-t border-gray-100 md:border-t-0">Chứng khoán</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle border-t border-gray-100 md:border-t-0">VIX</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle border-t border-gray-100 md:border-t-0">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">16.5 - 17.5</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">20.8 (+26.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 15.85 (-4.0%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic border-t border-gray-100 md:border-t-0">-</td>
+                                    </tr>
+
+                                    <!-- FPT -->
+                                    <tr class="hover:bg-blue-50/50 transition-colors">
+                                        <td data-label="Ngành" class="p-4 font-black text-gray-800 align-top border-r border-gray-100 bg-gray-50/50">Công nghệ</td>
+                                        <td data-label="Mã CP" class="p-4 text-center font-black text-trade-blue text-2xl align-middle">FPT</td>
+                                        <td data-label="Vùng giá khuyến nghị" class="p-4 space-y-2 align-middle">
+                                            <div class="flex items-center">
+                                                <span class="badge-entry px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-gray-200">Entry</span> 
+                                                <strong class="text-gray-900 font-mono text-[14px]">72.6 - 74.0</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-tp px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-green-100 text-green-800">Target</span> 
+                                                <strong class="text-green-700 font-mono text-[14px]">91.0 (+25.0%)</strong>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <span class="badge-sl px-2 py-1 rounded uppercase tracking-wide shadow-sm w-14 text-center text-[10px] mr-3 bg-red-100 text-red-800">Stop</span> 
+                                                <strong class="text-red-700 font-mono text-[14px]">&lt; 68.7 (-5.0%)</strong>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lưu ý / Quản trị" class="p-4 align-middle text-gray-600 font-medium italic">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TỔNG KẾT CHUNG -->
+            <section id="tong-ket" class="bg-gray-50 rounded-2xl p-6 md:p-10 border border-gray-200 text-center mt-16 shadow-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-trade-yellow via-trade-blue to-trade-yellow"></div>
+                <div class="inline-block mb-6">
+                    <i class="fa-solid fa-flag-checkered text-5xl text-trade-blue opacity-20"></i>
+                </div>
+                <h2 class="font-black text-trade-blue uppercase tracking-[0.2em] mb-6 text-xl md:text-2xl">
+                    KẾT LUẬN CHUNG
+                </h2>
+                <p class="leading-relaxed text-gray-800 max-w-3xl mx-auto text-sm md:text-[1.1rem] text-justify mb-4">
+                    Tháng 6/2026 là tháng kiểm định chất lượng xu hướng. Nền kinh tế Việt Nam vẫn tích cực nhờ sản xuất công nghiệp, FDI, bán lẻ danh nghĩa, xuất nhập khẩu và đầu tư công; nhưng CPI tháng 5 tăng 5,60% so với cùng kỳ, CPI bình quân 5 tháng tăng 4,31%, nhập siêu 13,80 tỷ USD, dầu cao và bán ròng khối ngoại khiến chiến lược không nên quá hưng phấn.
+                </p>
+                <p class="leading-relaxed text-gray-800 max-w-3xl mx-auto text-sm md:text-[1.1rem] text-justify mb-4">
+                    Đáng chú ý nhất, từ đầu năm đến 29/05/2026, VN-Index tăng 4,4% nhưng VN-Index ex-Vin giảm 1,1%. Vì vậy, tăng điểm của chỉ số không đồng nghĩa phần lớn cổ phiếu đã vào xu hướng tăng. Dữ liệu phái sinh tháng 5 bổ sung thêm một lớp xác nhận: basis không xấu nhưng khối ngoại phái sinh vẫn bán ròng, phù hợp với chiến lược thận trọng có chọn lọc.
+                </p>
+                <p class="leading-relaxed text-gray-800 max-w-3xl mx-auto text-sm md:text-[1.1rem] text-justify font-bold border-l-4 border-trade-yellow pl-4">
+                    Chiến lược hợp lý là nắm giữ có chọn lọc, ưu tiên cổ phiếu có dữ liệu lợi nhuận kiểm chứng, định giá hợp lý, thanh khoản cao và catalyst có khả năng lượng hóa.
+                </p>
+            </section>
+            
+            <!-- Share Section -->
+            <div class="mt-16 pt-8 border-t border-gray-200 text-center">
+                <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ báo cáo</h3>
+                <div class="flex justify-center gap-4 flex-wrap">
+                    <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-[3px] border-trade-blue bg-white shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer" title="Share on Facebook">
+                        <i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-[3px] border-trade-blue bg-white shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer" title="Share on X">
+                        <i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-[3px] border-trade-blue bg-white shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer" title="Share on Threads">
+                        <i class="fa-brands fa-threads text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="group w-12 h-12 flex items-center justify-center border-[3px] border-trade-blue bg-white shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer" title="Share on Telegram">
+                        <i class="fa-brands fa-telegram text-xl text-trade-blue"></i>
+                    </button>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); const el=this.querySelector('i'); el.classList.remove('fa-link'); el.classList.add('fa-check'); setTimeout(() => {el.classList.remove('fa-check'); el.classList.add('fa-link');}, 2000);" class="group w-12 h-12 flex items-center justify-center border-[3px] border-trade-blue bg-white shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer" title="Copy Link">
+                        <i class="fa-solid fa-link text-xl text-trade-blue"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="text-center text-gray-500 text-xs max-w-3xl mx-auto pb-12 px-4 mt-8">
+            <p class="font-bold text-[13px] uppercase mb-2">Tuyên bố miễn trừ trách nhiệm (Disclaimer):</p>
+            <p class="leading-relaxed">Báo cáo này chỉ mang tính chất tham khảo và phân tích chiến lược, không phải là lời khuyên đầu tư tài chính trực tiếp. Nhà đầu tư chịu trách nhiệm hoàn toàn về các quyết định giao dịch của mình. Thị trường tài chính chứa đựng rủi ro cao.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white relative z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Liên kết</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li><a href="https://nhatradehoc.github.io/home/" class="hover:text-trade-yellow transition-all hover:pl-2">Trang chủ</a></li>
+                        <li><a href="https://t.me/nhatradehocspace" target="_blank" class="hover:text-trade-yellow transition-all hover:pl-2">Cộng đồng Telegram</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 text-sm">Liên hệ</h4>
+                    <ul class="space-y-3 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow opacity-70"></i>
+                            contact.nhatradehoc@gmail.com
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow opacity-70"></i>
+                            Hà Nội, Việt Nam
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-xs mb-4 md:mb-0 uppercase tracking-widest">
+                    © 2026 Nhà Trade Học. All rights reserved.
+                </p>
+                <p class="text-xs italic">
+                    Giao dịch tài chính tiềm ẩn rủi ro.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL ĐĂNG KÝ TÀI KHOẢN SSI (Đồng bộ thiết kế mới, Fix lỗi trùng lặp) -->
+    <div id="registerModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 p-4">
+        <div class="bg-white w-full max-w-sm relative transform scale-95 transition-transform duration-300 border-[4px] border-trade-yellow shadow-2xl" id="modalContent">
+            <!-- Nút Đóng -->
+            <button onclick="closeModal()" class="absolute -top-5 -right-5 w-10 h-10 bg-trade-yellow text-trade-blue flex items-center justify-center font-bold hover:bg-white transition-colors z-50 shadow-md">
+                <i class="fa-solid fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-6 md:p-8 text-center flex flex-col items-center">
+                <h3 class="text-[1.35rem] font-bold uppercase text-trade-blue mb-1">Mở Tài Khoản SSI</h3>
+                <p class="text-[10px] text-gray-500 mb-6 font-bold uppercase tracking-widest">Partner Info</p>
+                
+                <div class="bg-gray-50 p-2 inline-block border border-gray-200 mb-6 rounded-sm">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fwww.ssi.com.vn%2Fkhach-hang-ca-nhan%2Fmo-tai-khoan%3Fmg%3D3186" alt="QR Code" class="w-40 h-40 object-contain">
+                </div>
+                
+                <div class="w-full text-left">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase mb-2">Mã đối tác (Partner Code)</p>
+                    <div class="flex border border-gray-300 w-full mb-3 shadow-sm">
+                        <input type="text" id="modalCode" value="3186 - BÙI THÀNH CÔNG" class="w-full bg-white p-3 text-trade-blue font-bold text-[13px] md:text-sm focus:outline-none" readonly>
+                        <button onclick="copyCode()" class="bg-trade-blue text-white px-4 hover:bg-[#000d4a] transition-colors font-bold text-xs uppercase flex items-center whitespace-nowrap">
+                            <i class="fa-regular fa-copy mr-2"></i> Copy
+                        </button>
+                    </div>
+                    
+                    <div class="text-right mb-6">
+                        <a href="huong-dan-mo-tai-khoan-ssi.html" target="_blank" class="text-[13px] font-bold text-trade-blue hover:text-trade-yellow transition-colors italic underline underline-offset-4 decoration-1">
+                            Hướng dẫn chi tiết từng bước tại đây <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="https://www.ssi.com.vn/khach-hang-ca-nhan/mo-tai-khoan?mg=3186" target="_blank" class="block w-full py-4 bg-trade-yellow text-trade-blue font-bold uppercase text-sm hover:bg-trade-blue hover:text-white transition-colors text-center shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        Truy cập liên kết đăng ký
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js and Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Scripts (Charts & Modal) -->
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('registerModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        function copyCode() {
+            const copyText = document.getElementById("modalCode");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); 
+            document.execCommand("copy"); 
+            
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Copied';
+            btn.classList.add('bg-green-600', 'text-white');
+            btn.classList.remove('text-trade-yellow');
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-600', 'text-white');
+                btn.classList.add('text-trade-yellow');
+            }, 2000);
+        }
+
+        // Close modal on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Chart.js Initialization
+        const initCharts = () => {
+            Chart.defaults.font.family = "'Manrope', sans-serif";
+            Chart.defaults.color = '#1e293b';
+            Chart.defaults.maintainAspectRatio = false; // FIX MOBILE HEIGHT
+            Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(2, 6, 23, 0.9)';
+            Chart.defaults.plugins.tooltip.padding = 12;
+            Chart.defaults.plugins.tooltip.cornerRadius = 8;
+            Chart.defaults.plugins.tooltip.titleFont = { size: 13, weight: 'bold' };
+            Chart.defaults.plugins.tooltip.bodyFont = { size: 13 };
+
+            function renderChart(id, config) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                try { new Chart(el, config); } 
+                catch (e) { console.error(`Error rendering chart ${id}:`, e); }
+            }
+
+            const verticalHoverLinePlugin = {
+                id: 'verticalHoverLine',
+                afterDraw: (chart) => {
+                    if (chart.config.options?.plugins?.verticalHoverLine && chart.tooltip?._active?.length) {
+                        const activePoint = chart.tooltip._active[0];
+                        const datasetIndex = activePoint.datasetIndex;
+                        
+                        if (chart.data && chart.data.datasets && chart.data.datasets[datasetIndex]) {
+                            const dataset = chart.data.datasets[datasetIndex];
+                            if (dataset.label === 'Sự kiện Địa chính trị' && chart.scales.y1) {
+                                const x = activePoint.element.x;
+                                const topY = chart.scales.y1.top;
+                                const bottomY = chart.scales.y1.bottom;
+                                
+                                const ctx = chart.ctx;
+                                ctx.save();
+                                ctx.beginPath();
+                                ctx.moveTo(x, topY);
+                                ctx.lineTo(x, bottomY);
+                                ctx.lineWidth = 2;
+                                ctx.strokeStyle = 'rgba(220, 38, 38, 0.8)';
+                                ctx.setLineDash([5, 5]);
+                                ctx.stroke();
+                                ctx.restore();
+                            }
+                        }
+                    }
+                }
+            };
+            Chart.register(verticalHoverLinePlugin);
+
+            // Chart 1: VN-Index vs S&P 500
+            renderChart('chart1', {
+                type: 'line',
+                data: {
+                    labels: ['02/01', '09/01', '16/01', '23/01', '30/01', '06/02', '13/02', '20/02', '27/02', '06/03', '13/03', '20/03', '27/03', '03/04', '10/04', '17/04', '24/04', '01/05', '08/05', '15/05', '22/05', '29/05'],
+                    datasets: [
+                        { label: 'VN-Index (YTD %)', data: [0.0, 0.5, 1.2, 1.8, 2.0, 3.2, 3.5, 4.0, 4.2, 3.8, 4.5, 5.0, 5.8, 5.1, 4.2, 3.9, 3.5, 3.8, 4.0, 4.1, 4.2, 4.4], borderColor: 'rgba(234, 179, 8, 1)', backgroundColor: 'rgba(234, 179, 8, 0.08)', tension: 0.3, fill: true, pointRadius: 3, borderWidth: 2.5 },
+                        { label: 'S&P 500 (YTD %)', data: [0.0, 0.4, 0.8, -0.3, 1.2, 1.8, 2.5, 3.1, 4.0, 4.8, 5.5, 6.2, 7.0, 7.8, 8.2, 8.5, 7.8, 7.5, 8.2, 9.5, 10.2, 11.0], borderColor: 'rgba(0, 22, 124, 0.9)', backgroundColor: 'transparent', tension: 0.3, pointRadius: 3, borderWidth: 2.5 }
+                    ]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: {weight: 'bold'} } } }, scales: { y: { border: { display: false } }, x: { grid: { display: false }, border: { display: false } } } }
+            });
+
+            // Chart 2: YTD Assets
+            renderChart('chart2', {
+                type: 'bar',
+                data: {
+                    labels: ['Dầu Brent', 'Nasdaq', 'S&P 500', 'Lợi suất US 10Y', 'Dow Jones', 'DXY'],
+                    datasets: [{
+                        label: 'Hiệu suất YTD (%)',
+                        data: [57.1, 16.5, 11.0, 7.4, 6.3, 0.9],
+                        backgroundColor: ['rgba(220, 38, 38, 0.9)', 'rgba(79, 70, 229, 0.9)', 'rgba(16, 185, 129, 0.9)', 'rgba(245, 158, 11, 0.9)', 'rgba(59, 130, 246, 0.9)', 'rgba(148, 163, 184, 0.9)'],
+                        borderRadius: 6, maxBarThickness: 24 // FIX OVERLAP TRÊN MOBILE
+                    }]
+                },
+                options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { display: true, grid: { display: false } }, y: { border: { display: false }, grid: { display: false }, ticks: {font: {weight: 'bold'}} } } }
+            });
+
+            // Chart 3: Oil
+            renderChart('chart_oil_stocks', {
+                type: 'line',
+                data: {
+                    labels: ['29/12', '05/01', '12/01', '19/01', '26/01', '02/02', '09/02', '16/02', '23/02', '02/03', '09/03', '16/03', '23/03', '30/03', '06/04', '13/04', '20/04', '27/04', '04/05', '11/05', '18/05', '25/05'],
+                    datasets: [
+                        { label: 'Dầu Brent (Đỏ, USD)', data: [60.74, 62.99, 64.03, 66.17, 69.83, 67.93, 72.50, 75.30, 78.90, 81.20, 83.50, 87.00, 89.40, 91.50, 88.00, 92.50, 95.58, 94.20, 95.00, 93.50, 91.12, 95.58], borderColor: 'rgba(220, 38, 38, 1)', backgroundColor: 'transparent', yAxisID: 'y1', tension: 0.2, borderWidth: 2.5, pointRadius: 0, pointHoverRadius: 6 },
+                        { label: 'PLX (Vàng)', data: [34.3, 36.7, 38.5, 38.7, 45.4, 44.4, 46.2, 45.0, 48.2, 49.5, 52.0, 54.5, 53.0, 56.2, 54.0, 57.5, 59.8, 58.0, 60.1, 59.5, 60.2, 60.5], borderColor: 'rgba(234, 179, 8, 1)', backgroundColor: 'transparent', yAxisID: 'y', tension: 0.2, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5 },
+                        { label: 'PVS (Lục)', data: [16.7, 19.7, 20.1, 20.6, 22.4, 24.5, 23.0, 26.5, 28.0, 29.5, 32.1, 35.8, 34.2, 38.0, 36.5, 39.2, 42.4, 41.5, 42.1, 41.8, 42.4, 42.4], borderColor: 'rgba(16, 185, 129, 1)', backgroundColor: 'transparent', yAxisID: 'y', tension: 0.2, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5 },
+                        { label: 'BSR (Lam)', data: [16.1, 16.7, 16.5, 20.1, 22.0, 21.0, 23.5, 22.8, 25.4, 26.0, 28.5, 31.0, 30.5, 33.1, 32.0, 34.0, 36.0, 35.2, 35.8, 35.0, 35.8, 35.8], borderColor: 'rgba(59, 130, 246, 1)', backgroundColor: 'transparent', yAxisID: 'y', tension: 0.2, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5 },
+                        { type: 'line', showLine: false, label: 'Sự kiện Địa chính trị', data: [{ x: '16/02', y: 75.30, description: 'Căng thẳng Biển Đỏ bùng phát' }, { x: '13/04', y: 92.50, description: 'Nguy cơ gián đoạn eo biển Hormuz' }], yAxisID: 'y1', backgroundColor: 'rgba(239, 68, 68, 1)', pointStyle: 'triangle', pointRadius: 8, pointHoverRadius: 12 }
+                    ]
+                },
+                options: { responsive: true, interaction: { mode: 'nearest', axis: 'x', intersect: false }, plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 6, font: {weight: 'bold'}, filter: function(item) { return !item.text.includes('Sự kiện'); } } }, verticalHoverLine: true, tooltip: { callbacks: { label: function(context) { if (context.dataset.label === 'Sự kiện Địa chính trị') return ' ⚠️ Sự kiện: ' + context.raw.description; return context.dataset.label + ': ' + context.parsed.y; } } } }, scales: { y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Giá cổ phiếu (Nghìn VNĐ)', font: {weight: 'bold'} } }, y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Giá Dầu Brent (USD/thùng)', font: {weight: 'bold'} } }, x: { grid: { display: false } } } }
+            });
+
+            // Chart 4: Fed Dot Plot
+            renderChart('chart_dotplot', {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Kỳ vọng lãi suất các thành viên FOMC',
+                        data: [
+                            {x: 2026, y: 3.0}, {x: 2025.88, y: 3.25}, {x: 2026.12, y: 3.25}, {x: 2025.76, y: 3.5}, {x: 2025.92, y: 3.5}, {x: 2026.08, y: 3.5}, {x: 2026.24, y: 3.5}, {x: 2025.88, y: 3.75}, {x: 2026.12, y: 3.75}, {x: 2026, y: 4.0},
+                            {x: 2027, y: 2.75}, {x: 2026.88, y: 3.0}, {x: 2027, y: 3.0}, {x: 2027.12, y: 3.0}, {x: 2026.76, y: 3.25}, {x: 2026.92, y: 3.25}, {x: 2027.08, y: 3.25}, {x: 2027.24, y: 3.25}, {x: 2026.88, y: 3.5}, {x: 2027.12, y: 3.5},
+                            {x: 2028, y: 2.5}, {x: 2027.88, y: 2.75}, {x: 2028.12, y: 2.75}, {x: 2027.76, y: 3.0}, {x: 2027.92, y: 3.0}, {x: 2028.08, y: 3.0}, {x: 2028.24, y: 3.0}, {x: 2027.88, y: 3.25}, {x: 2028.12, y: 3.25},
+                            {x: 2029, y: 2.25}, {x: 2028.88, y: 2.5}, {x: 2029, y: 2.5}, {x: 2029.12, y: 2.5}, {x: 2028.76, y: 2.75}, {x: 2028.92, y: 2.75}, {x: 2029.08, y: 2.75}, {x: 2029.24, y: 2.75}
+                        ],
+                        backgroundColor: 'rgba(0, 22, 124, 0.95)', pointRadius: 4, hoverRadius: 6
+                    },
+                    {
+                        label: 'Lãi suất hàm ý thị trường (Implied rate)',
+                        data: [{x: 2026, y: 4.8}, {x: 2027, y: 4.1}, {x: 2028, y: 3.9}],
+                        backgroundColor: 'rgba(239, 68, 68, 0.95)', pointRadius: 4, hoverRadius: 6
+                    },
+                    {
+                        label: 'Mức trung vị (Median)',
+                        type: 'line',
+                        data: [{x: 2026, y: 3.4}, {x: 2027, y: 3.1}, {x: 2028, y: 2.8}, {x: 2029, y: 2.5}],
+                        borderColor: 'rgba(234, 179, 8, 1)', borderWidth: 2, backgroundColor: 'transparent', pointStyle: 'rectRot', pointRadius: 6, pointBackgroundColor: 'rgba(234, 179, 8, 1)'
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'bottom', labels: {usePointStyle: true, boxWidth: 6, font: {weight: 'bold'}} }, tooltip: { callbacks: { title: function() { return ''; }, label: function(context) { let year = context.parsed.x; if(year >= 2028.5) year = 'Longer Run'; else year = Math.round(year); return context.dataset.label + ': ' + context.parsed.y + '% (' + year + ')'; } } } }, scales: { x: { type: 'linear', position: 'bottom', min: 2025.4, max: 2029.6, ticks: { font: {weight: 'bold'}, callback: function(value) { if (value === 2026) return '2026'; if (value === 2027) return '2027'; if (value === 2028) return '2028'; if (value === 2029) return 'Longer Run'; return ''; } }, grid: { display: false } }, y: { min: 1.5, max: 5.5, title: { display: true, text: 'Kỳ vọng lãi suất (%)', font: {weight: 'bold'} }, ticks: {font: {weight: 'bold'}} } } }
+            });
+
+            // Chart 5: Vĩ mô GSO T4 vs T5
+            renderChart('chart3', {
+                type: 'bar',
+                data: {
+                    labels: ['IIP', 'Xuất khẩu', 'Bán lẻ (thực)', 'CPI', 'FDI Đăng ký (Lũy kế)'],
+                    datasets: [
+                        { label: 'Tháng 4/2026 (%)', data: [9.2, 19.7, 11.1, 4.0, 31.0], backgroundColor: 'rgba(148, 163, 184, 0.4)', borderRadius: 4 },
+                        { label: 'Tháng 5/2026 (%)', data: [9.1, 19.5, 6.1, 5.6, 34.9], backgroundColor: 'rgba(0, 22, 124, 0.9)', borderRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: {weight: 'bold'} } } }, scales: { y: { border: { display: false } }, x: { grid: { display: false }, border: { display: false }, ticks: {font: {weight: 'bold'}} } } }
+            });
+
+            // Chart 6: Breakdown Họ Vin
+            renderChart('chart4', {
+                type: 'bar',
+                data: {
+                    labels: ['VN-Index (Trừ Vin)', 'VIC', 'VHM', 'VRE', 'VPL', 'Tổng VN-Index'],
+                    datasets: [
+                        { label: 'Từ đầu năm (YTD)', data: [-15.58, 67.84, 27.75, -0.70, -0.31, 79.00], backgroundColor: 'rgba(16, 185, 129, 0.85)', borderRadius: 4 },
+                        { label: '20 phiên (Đầu tháng 5 - Hết tháng 5)', data: [2.12, -4.40, 8.72, -0.02, 2.97, 9.39], backgroundColor: 'rgba(234, 179, 8, 0.9)', borderRadius: 4 }
+                    ]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'top', labels: { usePointStyle: true, boxWidth: 8, font: {weight: 'bold'} } } }, scales: { y: { border: { display: false } }, x: { grid: { display: false }, border: { display: false }, ticks: {font: {weight: 'bold'}} } } }
+            });
+
+            // Chart 7: VN-Index, P/E, P/B
+            renderChart('chart_vni_pe_pb', {
+                type: 'line',
+                data: {
+                    labels: ['04/05', '05/05', '06/05', '07/05', '08/05', '11/05', '12/05', '13/05', '14/05', '15/05', '18/05', '19/05', '20/05', '21/05', '22/05', '25/05', '26/05', '27/05', '28/05', '29/05'],
+                    datasets: [
+                        { label: 'VN-Index (Trục trái)', data: [1854.1, 1874.8, 1891.2, 1888.5, 1882.0, 1878.5, 1875.0, 1881.2, 1870.5, 1875.5, 1865.4, 1860.0, 1856.2, 1851.5, 1850.2, 1855.8, 1862.0, 1868.9, 1866.5, 1863.5], borderColor: 'rgba(0, 22, 124, 0.8)', backgroundColor: 'rgba(0, 22, 124, 0.08)', yAxisID: 'y', fill: true, tension: 0.3, borderWidth: 2.5, pointRadius: 0, pointHoverRadius: 5 },
+                        { label: 'P/E (Trục phải)', data: [13.66, 13.82, 13.94, 13.92, 13.87, 13.84, 13.81, 13.86, 13.78, 13.88, 13.80, 13.75, 13.72, 13.68, 13.71, 13.75, 13.79, 13.84, 13.82, 13.76], borderColor: 'rgba(16, 185, 129, 1)', backgroundColor: 'transparent', yAxisID: 'y1', tension: 0.3, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5 },
+                        { label: 'P/B (Trục phải 2)', data: [2.11, 2.13, 2.14, 2.14, 2.13, 2.13, 2.12, 2.13, 2.12, 2.13, 2.12, 2.11, 2.11, 2.10, 2.11, 2.11, 2.12, 2.13, 2.13, 2.12], borderColor: 'rgba(239, 68, 68, 1)', backgroundColor: 'transparent', yAxisID: 'y2', tension: 0.3, borderWidth: 2, pointRadius: 0, pointHoverRadius: 5 }
+                    ]
+                },
+                options: { responsive: true, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'top', labels: {usePointStyle: true, boxWidth: 6, font: {weight: 'bold'}} } }, scales: { y: { type: 'linear', position: 'left', min: 1800, max: 1950, title: { display: true, text: 'Điểm VN-Index', font: {weight: 'bold'} }, border: { display: false } }, y1: { type: 'linear', position: 'right', min: 13.5, max: 14.1, grid: { drawOnChartArea: false }, title: { display: true, text: 'P/E (lần)', font: {weight: 'bold'} }, border: { display: false } }, y2: { type: 'linear', position: 'right', min: 2.05, max: 2.15, grid: { drawOnChartArea: false }, title: { display: true, text: 'P/B (lần)', font: {weight: 'bold'} }, border: { display: false } }, x: { grid: { display: false }, ticks: {font: {weight: 'bold'}, maxTicksLimit: 10} } } }
+            });
+
+            // Gauges
+            const gaugeOptions = { responsive: true, rotation: -90, circumference: 180, cutout: '80%', plugins: { legend: { display: false }, tooltip: { enabled: false } }, animation: { animateRotate: true, animateScale: false } };
+            renderChart('chart5_pe', { type: 'doughnut', data: { labels: ['Percentile', 'Remaining'], datasets: [{ data: [19.2, 80.8], backgroundColor: ['rgba(16, 185, 129, 0.9)', 'rgba(241, 245, 249, 1)'], borderWidth: 0, borderRadius: [10, 0] }] }, options: gaugeOptions });
+            renderChart('chart5_pb', { type: 'doughnut', data: { labels: ['Percentile', 'Remaining'], datasets: [{ data: [89.6, 10.4], backgroundColor: ['rgba(239, 68, 68, 0.9)', 'rgba(241, 245, 249, 1)'], borderWidth: 0, borderRadius: [10, 0] }] }, options: gaugeOptions });
+
+            // Chart 8: Basis Phái sinh
+            renderChart('chart6', {
+                type: 'line',
+                data: {
+                    labels: ['04/05', '05/05', '06/05', '07/05', '08/05', '11/05', '12/05', '13/05', '14/05', '15/05', '18/05', '19/05', '20/05', '21/05', '22/05', '25/05', '26/05', '27/05', '28/05', '29/05'],
+                    datasets: [{ label: 'Basis VN30F1M - VN30', data: [-2.1, -1.5, -0.8, -1.2, 0.5, 0.8, -0.2, 1.0, 1.2, 0.5, 1.8, 2.5, 2.0, 3.1, 4.2, 3.8, 5.0, 6.2, 5.8, 7.94], borderColor: 'rgba(0, 22, 124, 0.8)', backgroundColor: 'rgba(0, 22, 124, 0.08)', borderWidth: 2, fill: true, tension: 0.3, pointRadius: 3 }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { border: { display: false } }, x: { grid: { display: false }, ticks: {font: {weight: 'bold'}} } } }
+            });
+        };
+
+        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initCharts); } else { initCharts(); }
+    </script>
+</body>
+</html>
