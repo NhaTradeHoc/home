@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Chiến Lược: Vàng & Bitcoin - Tháng 11/2026</title>
+    <meta name="description" content="Monthly Strategy Report 11/2026 của Nhà Trade Học: Review tháng 10/2026 và kịch bản tháng 11/2026 cho Vàng (XAU/USD) và Bitcoin (BTC). Xu hướng giảm, ưu tiên bán thuận xu hướng, phân bổ vốn theo 2 kịch bản.">
+    <meta property="og:title" content="Báo Cáo Chiến Lược Vàng & Bitcoin - Tháng 11/2026 | Nhà Trade Học">
+    <meta property="og:description" content="Vàng và BTC cùng mất ~7% trong tháng 10. Kịch bản tháng 11: xu hướng giảm chưa dừng, ưu tiên short thuận xu hướng.">
+    <meta property="og:image" content="rp1126.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af',
+                        'trade-dark': '#020617',
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                        'report-bg': '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(0, 22, 124, 1)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+        body { overflow-x: hidden; }
+        strong { color: #00167c; font-weight: 700; }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #00167c 0%, #000d4a 55%, #020617 100%);
+        }
+        .orb { position: absolute; border-radius: 9999px; pointer-events: none; }
+        .orb-gold { background: radial-gradient(circle, rgba(255,223,43,.28) 0%, rgba(255,223,43,0) 70%); }
+        .orb-btc { background: radial-gradient(circle, rgba(247,147,26,.28) 0%, rgba(247,147,26,0) 70%); }
+        .hero-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.6s .4s cubic-bezier(.6,.1,.2,1) forwards; }
+        .hero-line-glow { filter: drop-shadow(0 0 6px rgba(239,68,68,.7)); }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        .fade-up { opacity: 0; transform: translateY(18px); animation: fadeUp .8s cubic-bezier(.2,.7,.2,1) forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: none; } }
+        .d1 { animation-delay: .1s } .d2 { animation-delay: .25s } .d3 { animation-delay: .4s } .d4 { animation-delay: .55s } .d5 { animation-delay: .7s }
+        .live-dot { width: 8px; height: 8px; border-radius: 9999px; background: #ef4444; box-shadow: 0 0 0 0 rgba(239,68,68,.7); animation: pulse 1.8s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239,68,68,.7) } 70% { box-shadow: 0 0 0 10px rgba(239,68,68,0) } 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0) } }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+        .reveal.in { opacity: 1; transform: none; }
+        .reveal-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal-stagger.in > * { opacity: 1; transform: none; }
+        .reveal-stagger.in > *:nth-child(2) { transition-delay: .1s } .reveal-stagger.in > *:nth-child(3) { transition-delay: .2s }
+        .reveal-stagger.in > *:nth-child(4) { transition-delay: .3s } .reveal-stagger.in > *:nth-child(5) { transition-delay: .4s } .reveal-stagger.in > *:nth-child(6) { transition-delay: .5s }
+
+        /* Bars that grow when revealed */
+        .bar { width: 0; transition: width 1.2s cubic-bezier(.2,.7,.2,1); }
+        .in .bar { width: var(--w); }
+        .vbar { height: 0; transition: height 1.1s cubic-bezier(.2,.7,.2,1); }
+        .in .vbar { height: var(--h); }
+        /* ===== PROGRESS + SECTION NAV ===== */
+        #progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, #ffdf2b, #f97316, #ef4444); z-index: 60; }
+        .chip-nav a.active { background: #00167c; color: #ffdf2b; border-color: #00167c; }
+        .chip-nav::-webkit-scrollbar { display: none; }
+
+        /* ===== CONTENT ===== */
+        .section-title { display: flex; align-items: center; font-size: 1.4rem; font-weight: 800; color: #00167c; margin-top: 3.5rem; margin-bottom: 1.5rem; padding-bottom: .6rem; border-bottom: 3px solid #ffdf2b; text-transform: uppercase; line-height: 1.25; }
+        .section-number { background: #00167c; color: #ffdf2b; min-width: 2.1rem; height: 2.1rem; display: flex; align-items: center; justify-content: center; border-radius: 4px; margin-right: .75rem; font-size: 1.05rem; }
+        .sub-title { font-weight: 800; font-size: 1.05rem; color: #00167c; text-transform: uppercase; border-left: 4px solid #00167c; padding-left: .75rem; margin: 2rem 0 1rem; }
+        .highlight-quote { border-left: 4px solid #ffdf2b; background: #fffbeb; padding: 1.25rem 1.5rem; font-style: italic; font-family: 'Merriweather', serif; color: #00167c; margin: 1.5rem 0; }
+        .status { padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: .72rem; border: 1px solid; display: inline-block; white-space: nowrap; letter-spacing: .02em; }
+        .status-negative { background: #fee2e2; color: #991b1b; border-color: #991b1b; }
+        .status-positive { background: #dcfce7; color: #166534; border-color: #166534; }
+        .status-neutral { background: #f3f4f6; color: #374151; border-color: #374151; }
+        .status-weak { background: #ffedd5; color: #9a3412; border-color: #9a3412; }
+        .tag { font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; vertical-align: middle; }
+        .tag-fact { background: #e0e7ff; color: #00167c; }
+        .tag-view { background: #fef3c7; color: #92400e; }
+        .ref { font-size: .7em; vertical-align: super; color: #1e40af; font-weight: 700; text-decoration: none; margin-left: 1px; }
+        .ref:hover { text-decoration: underline; }
+        .data-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: .5rem; padding: 1rem 1.1rem; }
+        .kpi { position: relative; overflow: hidden; border-radius: .75rem; padding: 1.1rem 1.1rem 1rem; background: #fff; border: 1px solid #e2e8f0; box-shadow: 0 4px 14px -6px rgba(0,22,124,.18); transition: transform .3s, box-shadow .3s; }
+        .kpi:hover { transform: translateY(-4px); box-shadow: 0 14px 28px -12px rgba(0,22,124,.35); }
+        .kpi::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent, #00167c); }
+        .report-img { width: 100%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,.1); margin: 1rem 0 .5rem; cursor: zoom-in; transition: transform .25s; }
+        .report-img:hover { transform: scale(1.01); }
+        .caption { font-size: .78rem; color: #64748b; text-align: center; margin-bottom: 1.25rem; }
+        .plan-card { border-radius: .75rem; border: 1px solid #e2e8f0; background: #fff; overflow: hidden; transition: transform .3s, box-shadow .3s; }
+        .plan-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px -14px rgba(0,22,124,.35); }
+        .lv { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+        ul.dash { list-style: none; padding-left: 0; }
+        ul.dash li { position: relative; padding-left: 1.1rem; margin-bottom: .55rem; }
+        ul.dash li::before { content: ""; position: absolute; left: 0; top: .62em; width: .5rem; height: 2px; background: #ffdf2b; }
+        .src-list li { margin-bottom: .35rem; word-break: break-word; }
+        .src-list li:target { background: #fef9c3; }
+
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 9999; inset: 0; background: rgba(0,0,0,.95); justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px); }
+        .lightbox.active { display: flex; animation: lbIn .3s ease; }
+        .lightbox-content { max-width: 95%; max-height: 95%; object-fit: contain; border-radius: 4px; }
+        .lightbox-close { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; cursor: pointer; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.1); }
+        .lightbox-close:hover { background: rgba(255,255,255,.2); color: #ffdf2b; }
+        @keyframes lbIn { from { opacity: 0 } to { opacity: 1 } }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal, .reveal-stagger > *, .fade-up { opacity: 1 !important; transform: none !important; }
+            .bar { width: var(--w) !important; } .vbar { height: var(--h) !important; }
+            .hero-line { stroke-dashoffset: 0 !important; }
+        }
+    </style>
+</head>
+<body class="bg-report-bg text-gray-800 font-sans antialiased">
+    <div id="progress"></div>
+
+    <!-- Navigation (Standardized) -->
+    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="kien-thuc.html" class="flex-shrink-0 flex items-center group">
+                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-extrabold text-xl sm:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-trade-yellow border-b-2 border-trade-yellow transition-colors">Kiến Thức</a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero pt-32 pb-24 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffdf2b 1px, transparent 1px); background-size: 22px 22px;"></div>
+        <div class="orb orb-gold w-96 h-96 -left-32 top-10"></div>
+        <div class="orb orb-btc w-[28rem] h-[28rem] -right-24 -bottom-40"></div>
+
+        <!-- Animated downtrend line -->
+        <svg class="absolute inset-x-0 bottom-0 w-full h-48 md:h-64 opacity-60 pointer-events-none" viewBox="0 0 1200 260" preserveAspectRatio="none" aria-hidden="true">
+            <path class="hero-line hero-line-glow" pathLength="1" fill="none" stroke="#ef4444" stroke-width="3"
+                d="M0,40 L80,70 L130,55 L190,95 L240,80 L300,120 L350,105 L420,150 L470,130 L540,165 L600,150 L660,185 L720,170 L790,200 L850,188 L920,215 L980,205 L1060,232 L1120,224 L1200,248"/>
+        </svg>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-center gap-2 mb-4 fade-up d1">
+                <span class="live-dot"></span>
+                <span class="text-trade-yellow font-bold uppercase tracking-[0.25em] text-xs">Monthly Strategy Report · 11/2026</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase leading-[1.08] fade-up d2">
+                Vàng & Bitcoin:<br><span class="text-trade-yellow">Xu hướng giảm</span> chưa dừng
+            </h1>
+            <p class="mt-5 text-base md:text-lg text-gray-300 max-w-2xl font-light leading-relaxed fade-up d3">
+                Tháng 10 không có nơi trú ẩn: cả Vàng và BTC cùng mất khoảng 7%, khi Fed bước vào chu kỳ tăng lãi suất và lãi suất thực neo ở vùng cao nhất nhiều năm. Kịch bản tháng 11: <strong class="text-trade-yellow">ưu tiên bán thuận xu hướng</strong>, nhịp hồi (nếu có) là cơ hội vào lệnh tốt hơn.
+            </p>
+
+            <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm border-t border-white/20 pt-6 fade-up d4">
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Ngày phát hành</span>
+                    <span class="font-mono font-bold">02/11/2026</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Kỳ báo cáo</span>
+                    <span class="font-bold">Review T10 · Triển vọng T11</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">ID Báo cáo</span>
+                    <span class="font-mono">STRAT-NOV2026</span>
+                </div>
+                <div>
+                    <span class="block text-gray-400 text-xs uppercase">Trọng tâm</span>
+                    <span class="font-bold text-trade-yellow">Short thuận xu hướng · Quản trị rủi ro</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section chip nav -->
+    <div class="sticky top-20 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="chip-nav relative flex gap-2 overflow-x-auto py-3 text-xs font-bold uppercase tracking-wider" style="scrollbar-width:none">
+                <a href="#summary" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">1 · Tóm tắt</a>
+                <a href="#macro" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">2 · Bối cảnh</a>
+                <a href="#gold-analysis" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">3 · Vàng</a>
+                <a href="#btc-analysis" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">4 · Bitcoin</a>
+                <a href="#plan" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">5 · Kế hoạch & Rủi ro</a>
+                <a href="#sources" class="shrink-0 px-3 py-1.5 border border-gray-200 rounded-full text-gray-500 hover:text-trade-blue transition-colors">Nguồn</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative z-20">
+        <div class="bg-white rounded-lg shadow-card p-4 sm:p-6 md:p-12 mb-12">
+
+            <p class="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded p-3 mb-2">
+                <i class="fa-solid fa-circle-info text-trade-blue mr-1"></i>
+                Quy ước: <span class="tag tag-fact">Dữ kiện</span> là số liệu có nguồn, đánh số <a class="ref" href="#sources">[n]</a> và liệt kê ở cuối bài; <span class="tag tag-view">Nhận định</span> là quan điểm và kịch bản của Nhà Trade Học. Số liệu chốt đến ngày 01/11/2026.
+            </p>
+
+            <!-- ===================== 1. TÓM TẮT ===================== -->
+            <section id="summary">
+                <div class="section-title reveal"><span class="section-number">1</span>Tóm tắt</div>
+
+                <h3 class="sub-title reveal">Tổng quan hiệu suất tháng 10/2026</h3>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-6 reveal-stagger" data-reveal>
+                    <div class="kpi" style="--accent:#eab308">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-gray-500">Vàng · XAU/USD</div>
+                        <div class="text-2xl md:text-3xl font-black text-red-600 mt-1"><span class="countup" data-to="-7.19" data-dec="2">-7.19</span>%</div>
+                        <div class="text-xs text-gray-500 mt-1 font-mono">4,175.81 → 3,875.52</div>
+                    </div>
+                    <div class="kpi" style="--accent:#f7931a">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-gray-500">Bitcoin · BTC/USD</div>
+                        <div class="text-2xl md:text-3xl font-black text-red-600 mt-1"><span class="countup" data-to="-7.33" data-dec="2">-7.33</span>%</div>
+                        <div class="text-xs text-gray-500 mt-1 font-mono">83,556 → 77,435</div>
+                    </div>
+                    <div class="kpi" style="--accent:#64748b">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-gray-500">Tỷ lệ BTC/XAU</div>
+                        <div class="text-2xl md:text-3xl font-black text-trade-blue mt-1"><span class="countup" data-to="19.98" data-dec="2">19.98</span></div>
+                        <div class="text-xs text-gray-500 mt-1 font-mono">20.01 → 19.98 (đi ngang)</div>
+                    </div>
+                    <div class="kpi" style="--accent:#00167c">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-gray-500">Lãi suất Fed</div>
+                        <div class="text-2xl md:text-3xl font-black text-trade-blue mt-1">3.75–4.00%</div>
+                        <div class="text-xs text-gray-500 mt-1">Giữ nguyên 28/10 · 2 phiếu muốn tăng</div>
+                    </div>
+                </div>
+                <p class="text-[11px] text-gray-400 -mt-3 mb-6">Giá đóng cửa 30/09 và 30/10 (Vàng) <a class="ref" href="#s23">[23]</a><a class="ref" href="#s24">[24]</a>; 30/09 và 31/10 (BTC) <a class="ref" href="#s36">[36]</a><a class="ref" href="#s37">[37]</a>; Fed <a class="ref" href="#s1">[1]</a>. Tỷ lệ BTC/XAU do Nhà Trade Học tự tính.</p>
+
+                <div class="highlight-quote text-lg md:text-xl text-center font-bold reveal">
+                    "Khi Vàng và Bitcoin cùng giảm một nhịp, thị trường đang thiếu thanh khoản. Đó không còn là chuyện xoay vòng dòng tiền."
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6 reveal-stagger" data-reveal>
+                    <div class="data-card">
+                        <div class="flex justify-between items-center mb-2"><span class="font-bold text-trade-blue">Vàng (XAU/USD)</span><span class="status status-negative">TIÊU CỰC</span></div>
+                        <p class="text-sm text-gray-700">Mất <strong>−7.19%</strong>, đóng tháng tại <strong>3,875.52</strong>, thấp nhất kể từ tháng 10/2025 <a class="ref" href="#s27">[27]</a>. Đây là tháng giảm thứ hai liên tiếp sau −8.5% của tháng 9 <a class="ref" href="#s34">[34]</a>. Từ đầu năm: <strong>≈ −10.1%</strong> <a class="ref" href="#s25">[25]</a>. Giá cách đỉnh lịch sử (~5,600, 29/01/2026) khoảng −31% <a class="ref" href="#s26">[26]</a>.</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="flex justify-between items-center mb-2"><span class="font-bold text-trade-blue">Bitcoin (BTC/USD)</span><span class="status status-negative">TIÊU CỰC</span></div>
+                        <p class="text-sm text-gray-700">Mất <strong>−7.33%</strong>, đóng tháng tại <strong>77,435</strong>. Đây là năm thứ hai liên tiếp tháng 10 đóng đỏ, lần đầu sau hơn 10 năm <a class="ref" href="#s39">[39]</a>. Đỉnh tháng ~87,177 (02/10), đáy 76,190 (30/10) <a class="ref" href="#s37">[37]</a>. Từ đầu năm: <strong>≈ −11.5%</strong> <a class="ref" href="#s38">[38]</a>.</p>
+                    </div>
+                    <div class="data-card">
+                        <div class="flex justify-between items-center mb-2"><span class="font-bold text-trade-blue">Tỷ lệ BTC/XAU</span><span class="status status-neutral">ĐI NGANG</span></div>
+                        <p class="text-sm text-gray-700">Tỷ lệ gần như không đổi quanh <strong>~20</strong>. Hai tài sản giảm với cùng tốc độ, nên tháng 10 không có dòng tiền chuyển từ BTC sang Vàng như hồi đầu năm. Cả hai cùng bị bán vì một lý do chung: <strong>chi phí vốn tăng</strong>.</p>
+                    </div>
+                </div>
+                <!-- Cross-asset October performance -->
+                <div class="data-card my-8 reveal" data-reveal>
+                    <div class="flex flex-wrap justify-between items-baseline gap-2 mb-4">
+                        <h4 class="font-black text-trade-blue uppercase text-sm">Tháng 10: Dầu tăng, Vàng &amp; BTC cùng giảm</h4>
+                        <span class="text-[11px] text-gray-500">% thay đổi trong tháng 10/2026</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-xs"><span class="w-24 md:w-32 font-bold text-trade-blue">Dầu Brent</span><div class="flex-1 flex"><div class="w-1/2"></div><div class="w-1/2"><div class="bar h-5 bg-amber-500 rounded-r" style="--w:100%"></div></div></div><span class="w-16 text-right font-mono font-bold text-gray-700">+10.9%</span></div>
+                        <div class="flex items-center gap-2 text-xs"><span class="w-24 md:w-32 font-bold text-trade-blue">USD Index (DXY)</span><div class="flex-1 flex"><div class="w-1/2"></div><div class="w-1/2"><div class="bar h-5 bg-gray-400 rounded-r" style="--w:3%"></div></div></div><span class="w-16 text-right font-mono font-bold text-gray-700">≈ 0%</span></div>
+                        <div class="flex items-center gap-2 text-xs"><span class="w-24 md:w-32 font-bold text-trade-blue">Vàng (XAU)</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-5 bg-yellow-500 rounded-l" style="--w:66%"></div></div><div class="w-1/2"></div></div><span class="w-16 text-right font-mono font-bold text-red-600">−7.19%</span></div>
+                        <div class="flex items-center gap-2 text-xs"><span class="w-24 md:w-32 font-bold text-trade-blue">Bitcoin (BTC)</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-5 bg-orange-500 rounded-l" style="--w:67.2%"></div></div><div class="w-1/2"></div></div><span class="w-16 text-right font-mono font-bold text-red-600">−7.33%</span></div>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-3 border-t border-gray-200 pt-3">Cùng kỳ, lợi suất thực 10 năm của Mỹ giảm từ 2.93% xuống 2.63% <a class="ref" href="#s13">[13]</a>. Dầu tăng do rủi ro eo Hormuz <a class="ref" href="#s15">[15]</a>, DXY đi ngang <a class="ref" href="#s14">[14]</a>. Vàng giảm dù lợi suất thực hạ, một tín hiệu yếu được phân tích ở mục 2B.</p>
+                </div>
+
+                <h3 class="sub-title reveal">Trọng tâm chiến lược tháng 11/2026</h3>
+                <p class="mb-5 reveal"><span class="tag tag-view">Nhận định</span> Cấu trúc giảm trên khung tuần của cả hai tài sản vẫn còn nguyên. Chiến lược chủ đạo là <strong>bán thuận xu hướng</strong>. Vốn được chia theo hai kịch bản: <strong>(A) giảm thẳng</strong> và <strong>(B) hồi lên vùng cung rồi giảm tiếp</strong>. Nhịp hồi chỉ là <em>khả năng</em>, không phải điều kiện bắt buộc để vào lệnh.</p>
+
+                <div class="grid md:grid-cols-2 gap-5 reveal-stagger" data-reveal>
+                    <div class="rounded-lg p-6 border-l-4 border-yellow-500 bg-gradient-to-br from-yellow-50 to-white border border-yellow-100">
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-black text-yellow-700 uppercase">Vàng (XAU/USD)</h4>
+                            <span class="status status-negative">BÁN THEO XU HƯỚNG</span>
+                        </div>
+                        <p class="text-sm mb-3"><strong>Luận điểm:</strong> Nến tuần đóng cửa dưới biên dưới vùng Demand 1W <span class="lv">3,886–4,004</span>, tức vùng này đã bị phá. Fed đang thắt chặt, quỹ ETF bị rút ròng và quỹ đầu cơ tiếp tục giảm vị thế mua. Mục tiêu kế tiếp là vùng Demand 1W <span class="lv">3,332–3,500</span>.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> Bán khi giá hồi về <span class="lv">3,950–4,000</span> (kịch bản A) hoặc bán tại vùng Supply 1D <span class="lv">4,195–4,339</span> (kịch bản B). Không bắt đáy.</p>
+                    </div>
+                    <div class="rounded-lg p-6 border-l-4 border-orange-500 bg-gradient-to-br from-orange-50 to-white border border-orange-100">
+                        <div class="flex justify-between items-start mb-3">
+                            <h4 class="font-black text-orange-700 uppercase">Bitcoin (BTC/USD)</h4>
+                            <span class="status status-negative">BÁN THEO XU HƯỚNG</span>
+                        </div>
+                        <p class="text-sm mb-3"><strong>Luận điểm:</strong> Giá bị từ chối dưới vùng Supply 1W <span class="lv">82,000–84,800</span>. Người nắm ETF đang lỗ (giá vốn ~81.5K), vụ hack Binance làm mất niềm tin, còn stablecoin và dòng tiền ETF cùng co lại. Mục tiêu là quét thanh khoản <span class="lv">~75K</span>, sau đó về vùng Demand 1W <span class="lv">64,800–66,900</span>.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> Bán khi giá hồi về <span class="lv">78,500–80,000</span> (kịch bản A) hoặc bán tại <span class="lv">82,000–84,500</span> (kịch bản B). Giữ tỷ trọng stablecoin cao.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== 2. BỐI CẢNH ===================== -->
+            <section id="macro">
+                <div class="section-title reveal"><span class="section-number">2</span>Bối cảnh thị trường</div>
+                <div class="highlight-quote reveal">"Fed đã quay lại chu kỳ tăng lãi suất: chi phí cơ hội của tài sản không sinh lãi tăng lên."</div>
+
+                <!-- A. Fed -->
+                <div class="mb-8 reveal">
+                    <h3 class="font-bold text-xl text-trade-blue mb-2">A. Chính sách tiền tệ: Fed của Kevin Warsh</h3>
+                    <p class="italic text-gray-600 mb-4 bg-gray-100 p-2 rounded text-sm">Tác động: Tiêu cực cho cả Vàng và BTC (lãi suất thực cao, USD giữ giá).</p>
+                    <ul class="dash text-[15px]">
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Tháng 9 tăng, tháng 10 giữ:</strong> Ngày 16/09/2026, Fed tăng 25bp lên <strong>3.75–4.00%</strong> với tỷ lệ phiếu 12–0 <a class="ref" href="#s2">[2]</a>. Ngày 28/10, Fed giữ nguyên lãi suất với tỷ lệ phiếu 10–2; hai thành viên <strong>Lisa Cook và Beth Hammack</strong> bỏ phiếu muốn tăng thêm 25bp. Tuyên bố nhận định kinh tế "đang mở rộng với tốc độ mạnh" và lạm phát "vẫn ở mức cao" <a class="ref" href="#s1">[1]</a>.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Dot-plot tháng 9:</strong> trung vị cuối 2026 là <strong>4.1%</strong>, hàm ý còn một lần tăng nữa; trung vị 2027 vẫn ở 4.1% <a class="ref" href="#s3">[3]</a>. Chủ tịch Kevin Warsh được Thượng viện phê chuẩn ngày 13/05/2026 (54–45) <a class="ref" href="#s4">[4]</a>. Ông không đưa định hướng chính sách trước (forward guidance) và coi lạm phát là rủi ro lớn hơn việc làm <a class="ref" href="#s5">[5]</a>.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Kỳ vọng tháng 12:</strong> Theo CME FedWatch (qua Trading Economics), xác suất Fed tăng lãi suất tại cuộc họp <strong>08–09/12</strong> dao động khoảng <strong>72–83%</strong> trong hai ngày 29–30/10 <a class="ref" href="#s6">[6]</a><a class="ref" href="#s7">[7]</a>.</li>
+                        <li><span class="tag tag-view">Nhận định</span> Kịch bản tăng lãi suất tháng 12 đã được thị trường phản ánh phần lớn. Vì vậy rủi ro lớn với vị thế bán nằm ở <strong>bất ngờ ôn hòa</strong>: Fed giữ nguyên lãi suất tháng 12 có thể kích hoạt nhịp hồi mạnh ở cả hai tài sản.</li>
+                    </ul>
+                </div>
+
+                <!-- B. Data -->
+                <div class="mb-8 reveal">
+                    <h3 class="font-bold text-xl text-trade-blue mb-3">B. Lạm phát, tăng trưởng & thị trường lãi suất</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 reveal-stagger" data-reveal>
+                        <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">CPI T9 (YoY)</div><div class="text-2xl font-black text-red-600">3.7%</div><div class="text-[11px] text-gray-500">Lõi 2.6% · Năng lượng +20.4% <a class="ref" href="#s8">[8]</a></div></div>
+                        <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">PCE T9 (YoY)</div><div class="text-2xl font-black text-red-600">3.6%</div><div class="text-[11px] text-gray-500">Lõi 3.1% <a class="ref" href="#s9">[9]</a></div></div>
+                        <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">GDP Q3 (sơ bộ)</div><div class="text-2xl font-black text-trade-blue">+3.4%</div><div class="text-[11px] text-gray-500">Năm hóa, Q2: 2.2% <a class="ref" href="#s11">[11]</a></div></div>
+                        <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">NFP T9</div><div class="text-2xl font-black text-trade-blue">+29K</div><div class="text-[11px] text-gray-500">Thất nghiệp 4.2% <a class="ref" href="#s10">[10]</a></div></div>
+                    </div>
+                    <ul class="dash text-[15px]">
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Lạm phát do năng lượng:</strong> Lạm phát chung (3.7%) cao hơn hẳn lạm phát lõi (2.6%) vì giá xăng tăng <strong>+34.2%</strong> so với cùng kỳ <a class="ref" href="#s8">[8]</a>. Đây là dạng lạm phát chi phí đẩy mà Fed của Warsh chọn xử lý bằng lãi suất.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Lợi suất:</strong> Lợi suất 10 năm của Mỹ lên đỉnh năm <strong>5.31%</strong> ngày 05/10 rồi lùi về 4.98% ngày 29/10 <a class="ref" href="#s12">[12]</a>. Lợi suất thực 10 năm (TIPS) lên <strong>2.95%</strong> ngày 05/10, cao nhất năm 2026 và cao hơn nhiều so với 1.94% đầu năm, rồi lùi về 2.63% <a class="ref" href="#s13">[13]</a>. DXY ở quanh <strong>101.9</strong> và gần như đi ngang trong tháng <a class="ref" href="#s14">[14]</a>.</li>
+                        <li><span class="tag tag-view">Nhận định</span> <strong>Tín hiệu đáng chú ý nhất tháng:</strong> lợi suất thực giảm ~30bp, lẽ ra hỗ trợ Vàng, nhưng Vàng vẫn mất 7%. Khi giá không phản ứng với một yếu tố hỗ trợ, đó thường là dấu hiệu bên bán đang chiếm ưu thế về vị thế và dòng tiền (xem mục 3B).</li>
+                    </ul>
+                </div>
+
+                <!-- C. Geopolitics -->
+                <div class="mb-8 reveal">
+                    <h3 class="font-bold text-xl text-trade-blue mb-2">C. Địa chính trị & Năng lượng</h3>
+                    <p class="italic text-gray-600 mb-4 bg-gray-100 p-2 rounded text-sm">Tác động: Hai chiều. Rủi ro tăng giá cho Vàng (trú ẩn), nhưng giá dầu cao nuôi lạm phát, khiến Fed thêm lý do tăng lãi suất.</p>
+                    <ul class="dash text-[15px]">
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Iran – Vùng Vịnh:</strong> Lệnh ngừng bắn tháng 6 đã sụp đổ từ 08/07 <a class="ref" href="#s17">[17]</a>. Tháng 10 ghi nhận số vụ tấn công tàu qua eo Hormuz cao nhất kể từ khi bắt đầu theo dõi năm 2017; Houthi tuyên bố đánh trúng nhà máy lọc dầu Ras Tanura (Ả Rập Xê Út) <a class="ref" href="#s16">[16]</a>. Giá dầu Brent lên <strong>116.72 USD</strong> ngày 23/10, cao nhất 4 năm, và tăng ~10.9% trong tháng <a class="ref" href="#s15">[15]</a>. Ông Trump cảnh báo có thể tái không kích sau bầu cử giữa kỳ <a class="ref" href="#s15">[15]</a>.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Nga – Ukraine:</strong> Sau cuộc gặp với đặc phái viên Witkoff ngày 21/10, ông Putin đồng ý nối lại đàm phán kỹ thuật ba bên, có thể tại Abu Dhabi từ ngày 10/11 trở đi <a class="ref" href="#s18">[18]</a>. Căng thẳng hạ nhiệt nhẹ.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Đông Á:</strong> Mỹ và Nhật tập trận Keen Sword 27 với khoảng 56,000 quân, quy mô lớn nhất từ trước đến nay (kết thúc 29/10). Trung Quốc điều drone và tàu chiến bám theo <a class="ref" href="#s19">[19]</a>.</li>
+                        <li><span class="tag tag-view">Nhận định</span> Địa chính trị là <strong>rủi ro lớn nhất với vị thế bán Vàng</strong>. Leo thang quân sự với Iran sau ngày 03/11 có thể đẩy Vàng hồi mạnh về vùng Supply 1D. Kịch bản B được thiết kế để tận dụng đúng tình huống đó, thay vì bị nó quét lệnh.</li>
+                    </ul>
+                </div>
+
+                <!-- D. US politics & trade -->
+                <div class="mb-4 reveal">
+                    <h3 class="font-bold text-xl text-trade-blue mb-3">D. Chính trị Mỹ & Thương mại</h3>
+                    <ul class="dash text-[15px]">
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Bầu cử giữa kỳ (03/11):</strong> Thị trường dự đoán Kalshi (28/10) cho phe Dân chủ <strong>91%</strong> khả năng giành Hạ viện và <strong>65%</strong> khả năng giành Thượng viện <a class="ref" href="#s20">[20]</a>.</li>
+                        <li><span class="tag tag-fact">Dữ kiện</span> <strong>Thuế quan:</strong> Thuế Section 301 khoảng 10–12.5% (mức 12.5% áp với Trung Quốc, Việt Nam, Nhật Bản, Hàn Quốc) đã thay thuế Section 122 từ 24/07/2026 và chưa có ngày hết hạn <a class="ref" href="#s21">[21]</a>. Ngân sách tạm thời của Chính phủ Mỹ kéo dài đến <strong>11/12/2026</strong> <a class="ref" href="#s22">[22]</a>.</li>
+                        <li><span class="tag tag-view">Nhận định</span> Một Quốc hội chia rẽ sẽ hạn chế mở rộng tài khóa, có lợi cho trái phiếu dài hạn. Với crypto, khả năng Đạo luật CLARITY được thông qua trong năm 2026 thấp đi (xem mục 4A).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===================== 3. VÀNG ===================== -->
+            <section id="gold-analysis">
+                <div class="section-title reveal"><span class="section-number">3</span>Phân tích chi tiết: Vàng (XAU/USD)</div>
+                <div class="bg-yellow-50 p-4 border border-yellow-200 rounded mb-6 flex flex-wrap items-center gap-2 reveal">
+                    <span class="font-bold text-yellow-800">Quan điểm tháng 11:</span>
+                    <span class="status status-negative">TIÊU CỰC · BÁN THEO XU HƯỚNG</span>
+                    <span class="text-xs text-yellow-800">Vùng mục tiêu: <span class="lv">3,332–3,500</span></span>
+                </div>
+
+                <!-- A -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">A. Phân tích cơ bản</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6 reveal-stagger" data-reveal>
+                    <div class="data-card border-l-4 border-l-red-500">
+                        <h4 class="font-bold text-red-700 mb-2"><i class="fa-solid fa-arrow-trend-down mr-1"></i> Lực cản</h4>
+                        <ul class="dash text-sm">
+                            <li><strong>Chi phí cơ hội cao:</strong> Lãi suất thực 10 năm vẫn quanh 2.6–2.9%, cao hơn khoảng 70–100bp so với đầu năm <a class="ref" href="#s13">[13]</a>. Vàng không sinh lãi nên chịu thiệt trực tiếp.</li>
+                            <li><strong>Fed tăng lãi suất:</strong> Vàng giảm mạnh nhất tuần kể từ tháng 6 (≈ −3.5%, tuần đến 23/10) khi số liệu PCE nóng, GDP mạnh và giá dầu tăng cùng củng cố kỳ vọng tăng lãi suất <a class="ref" href="#s27">[27]</a>.</li>
+                            <li><strong>Cầu vật chất châu Á yếu:</strong> Nhập khẩu vàng của Ấn Độ tháng 9 giảm −81% so với cùng kỳ. Lượng rút vàng tại Sàn Vàng Thượng Hải (SGE) quý 3 giảm −21% <a class="ref" href="#s34">[34]</a><a class="ref" href="#s33">[33]</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="data-card border-l-4 border-l-green-600">
+                        <h4 class="font-bold text-green-700 mb-2"><i class="fa-solid fa-shield-halved mr-1"></i> Lực đỡ (rủi ro cho vị thế bán)</h4>
+                        <ul class="dash text-sm">
+                            <li><strong>Ngân hàng trung ương vẫn mua:</strong> Các NHTW mua ròng 39 tấn trong tháng 8, cộng dồn 170 tấn từ đầu năm <a class="ref" href="#s32">[32]</a>. Riêng PBoC đã mua <strong>23 tháng liên tiếp</strong>; tháng 9 mua 23 tấn, nhiều nhất kể từ 10/2023, đưa tổng dự trữ lên 2,410 tấn <a class="ref" href="#s33">[33]</a>.</li>
+                            <li><strong>Mục tiêu của các ngân hàng lớn vẫn cao hơn giá hiện tại:</strong> Goldman Sachs hạ dự báo cuối 2026 xuống 4,650 USD nhưng giữ mức 5,400 USD cho 2027 <a class="ref" href="#s35">[35]</a>.</li>
+                            <li><strong>Địa chính trị:</strong> Rủi ro Iran và eo Hormuz (mục 2C).</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="mb-8 text-[15px] reveal"><span class="tag tag-view">Nhận định</span> Cầu vật chất từ các ngân hàng trung ương là lực đỡ dài hạn, giúp đặt <em>đáy</em> cho giá. Nó không đủ để đảo ngược <em>xu hướng</em> ngắn hạn khi dòng tiền đầu cơ và ETF đang rút ra. Lực đỡ này nhiều khả năng xuất hiện rõ ở vùng Demand 1W 3,332–3,500, không phải ở giá hiện tại.</p>
+
+                <!-- B -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">B. Dữ liệu tâm lý & dòng tiền (Sentiment & Positioning)</h3>
+                <h4 class="font-bold mb-2 reveal">Báo cáo COT: Quỹ đầu cơ liên tục giảm vị thế mua</h4>
+                <p class="text-[15px] mb-4 reveal"><span class="tag tag-fact">Dữ kiện</span> Theo báo cáo COT dạng phân tách (Disaggregated) của CFTC cho Vàng COMEX, chốt ngày <strong>27/10/2026</strong> (công bố 30/10), vị thế mua ròng của nhóm Managed Money như sau <a class="ref" href="#s28">[28]</a><a class="ref" href="#s29">[29]</a>:</p>
+
+                <div class="data-card mb-4 reveal" data-reveal>
+                    <div class="flex items-end justify-between gap-2 md:gap-4 h-48 px-1 pt-6">
+                        <div class="flex-1 flex flex-col items-center justify-end h-full">
+                            <div class="vbar relative w-full max-w-[56px] rounded-t bg-trade-blue" style="--h:100%"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono font-bold text-trade-blue whitespace-nowrap">120,318</span></div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-end h-full">
+                            <div class="vbar relative w-full max-w-[56px] rounded-t bg-trade-light-blue" style="--h:92%"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono font-bold text-trade-blue whitespace-nowrap">110,987</span></div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-end h-full">
+                            <div class="vbar relative w-full max-w-[56px] rounded-t bg-trade-light-blue" style="--h:89%"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono font-bold text-trade-blue whitespace-nowrap">107,089</span></div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-end h-full">
+                            <div class="vbar relative w-full max-w-[56px] rounded-t bg-red-500" style="--h:86.6%"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono font-bold text-trade-blue whitespace-nowrap">104,206</span></div>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center justify-end h-full">
+                            <div class="vbar relative w-full max-w-[56px] rounded-t bg-red-400" style="--h:87.7%"><span class="absolute -top-5 left-1/2 -translate-x-1/2 text-[10px] md:text-xs font-mono font-bold text-trade-blue whitespace-nowrap">105,562</span></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between gap-2 md:gap-4 px-1 mt-2 text-[10px] md:text-xs text-gray-500 font-mono text-center">
+                        <span class="flex-1">29/09</span><span class="flex-1">06/10</span><span class="flex-1">13/10</span><span class="flex-1">20/10</span><span class="flex-1">27/10</span>
+                    </div>
+                    <p class="text-[11px] text-gray-400 mt-3 text-center">Managed Money net long (hợp đồng), Vàng COMEX. Trục cột bắt đầu từ 0 và tỷ lệ theo mức 29/09.</p>
+                </div>
+
+                <ul class="dash text-[15px] mb-6 reveal">
+                    <li><span class="tag tag-fact">Dữ kiện</span> Vị thế mua ròng giảm <strong>−14,756 hợp đồng (−12%)</strong> trong tháng 10, từ 120,318 xuống 105,562 <a class="ref" href="#s28">[28]</a><a class="ref" href="#s29">[29]</a>. Tuần cuối có tăng nhẹ (+1,356), nhưng cùng lúc tổng khối lượng mở (OI) giảm <strong>−5,469</strong>, còn 396,810 hợp đồng <a class="ref" href="#s28">[28]</a>.</li>
+                    <li><span class="tag tag-fact">Dữ kiện</span> Nhóm Swap Dealer giảm <strong>12,256</strong> hợp đồng bán trong tuần <a class="ref" href="#s28">[28]</a>, cho thấy các nhà tạo lập thị trường đang thu hẹp vị thế phòng hộ cùng lúc với đà giảm.</li>
+                    <li><span class="tag tag-fact">Dữ kiện</span> <strong>Dòng tiền ETF:</strong> Tháng 9, ETF vàng toàn cầu vẫn hút ròng 10 tỷ USD, nâng lượng nắm giữ lên kỷ lục 4,256 tấn <a class="ref" href="#s30">[30]</a>. Sang tháng 10 dòng tiền đổi chiều: quỹ SPDR GLD giảm từ ~1,060 tấn (07/10) xuống 1,041 tấn (29/10) <a class="ref" href="#s31">[31]</a><a class="ref" href="#s26">[26]</a>, trong đó riêng ngày 22/10 bị rút 11.98 tấn. Số liệu ETF tháng 10 của WGC chưa được công bố tại thời điểm viết.</li>
+                    <li><span class="tag tag-view">Nhận định</span> Vị thế mua ròng ~105K đang nằm ở 1/3 dưới của biên độ 3 năm. Dư địa thanh lý vị thế mua không còn lớn như hồi tháng 1, nên đà giảm tháng 11 nhiều khả năng <strong>chậm hơn và có nhịp hồi xen kẽ</strong> thay vì một cú sập. Điều này ủng hộ việc chia vốn cho kịch bản B.</li>
+                </ul>
+
+                <!-- C -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">C. Phân tích kỹ thuật</h3>
+                <div class="space-y-4 mb-4">
+                    <div class="reveal">
+                        <h4 class="font-bold">1. Phá vỡ vùng Demand 1W 3,886–4,004</h4>
+                        <p class="text-[15px]">Nến tuần kết thúc 30/10 (O 3,998.0 · H 4,082.8 · L 3,870.3 · C 3,875.6, −3.01%) đóng cửa dưới biên dưới của vùng Demand 1W <span class="lv">3,886.465–4,004.355</span>. Vùng này đã đỡ giá trong các nhịp chỉnh tháng 6–7/2026. Nến đóng cửa sát mức thấp nhất tuần, cho thấy bên bán kiểm soát đến tận phiên cuối.</p>
+                        <img src="rp1126_xau_breakdown.webp" alt="XAU/USD 1W phá vỡ vùng Demand 3886-4004" class="report-img" onclick="openLightbox(this)" loading="lazy">
+                        <p class="caption">XAU/USD · 1W · OANDA. Nến tuần đóng cửa dưới vùng Demand 1W (Nhà Trade Học, 02/11/2026)</p>
+                    </div>
+                    <div class="reveal">
+                        <h4 class="font-bold">2. Lưu ý: biên độ phá vỡ còn mỏng</h4>
+                        <p class="text-[15px]">Giá đóng cửa chỉ thấp hơn biên dưới vùng khoảng <strong>11 USD</strong>. Một tín hiệu phá vỡ mỏng như vậy có thể bị kéo ngược lên kiểm định lại (retest). Vì thế báo cáo không đặt cược toàn bộ vào kịch bản giảm thẳng.</p>
+                    </div>
+                </div>
+                <img src="rp1126_xau_plan.webp" alt="XAU/USD 1W kịch bản tháng 11" class="report-img" onclick="openLightbox(this)" loading="lazy">
+                <p class="caption">XAU/USD · 1W. Kịch bản A (đỏ) và B (xanh) với các vùng cung/cầu (Nhà Trade Học, 02/11/2026)</p>
+
+                <!-- D -->
+                <div class="bg-blue-50 p-5 md:p-6 rounded border-t-4 border-trade-blue mt-6 reveal">
+                    <h3 class="font-bold text-lg text-trade-blue mb-3">D. Kết luận Vàng</h3>
+                    <div class="space-y-3 text-[15px]">
+                        <p><strong class="text-red-700">Kịch bản A: Giảm thẳng (ưu tiên).</strong> Giá không quay lại được trên 4,004, chỉ hồi kỹ thuật lên 3,950–4,000 rồi tiếp tục giảm về vùng Demand 1W <span class="lv">3,332–3,500</span>.</p>
+                        <p><strong class="text-green-700">Kịch bản B: Hồi rồi giảm.</strong> Có thể bị kích hoạt bởi địa chính trị hoặc số liệu yếu. Giá hồi lên vùng Supply 1D <span class="lv">4,195–4,339</span>, bị từ chối, rồi quay đầu giảm về cùng vùng mục tiêu.</p>
+                        <p><strong class="text-amber-700">Hủy kịch bản giảm:</strong> nến tuần đóng cửa trên <span class="lv">4,339</span>.</p>
+                    </div>
+                    <div class="mt-4 space-y-2" data-reveal>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-red-700">A · 50%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-red-500 rounded" style="--w:50%"></div></div></div>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-green-700">B · 35%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-green-500 rounded" style="--w:35%"></div></div></div>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-amber-700">Hủy · 15%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-amber-500 rounded" style="--w:15%"></div></div></div>
+                        <p class="text-[11px] text-gray-500 italic">Xác suất là ước lượng chủ quan của Nhà Trade Học, không phải kết quả mô hình định lượng.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== 4. BITCOIN ===================== -->
+            <section id="btc-analysis">
+                <div class="section-title reveal"><span class="section-number">4</span>Phân tích chi tiết: Bitcoin (BTC/USD)</div>
+                <div class="bg-red-50 p-4 border border-red-200 rounded mb-6 flex flex-wrap items-center gap-2 reveal">
+                    <span class="font-bold text-red-800">Quan điểm tháng 11:</span>
+                    <span class="status status-negative">TIÊU CỰC · BÁN THEO XU HƯỚNG</span>
+                    <span class="text-xs text-red-800">Vùng mục tiêu: <span class="lv">64,800–66,900</span></span>
+                </div>
+
+                <!-- A -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">A. Phân tích cơ bản</h3>
+                <div class="space-y-4 mb-6">
+                    <div class="data-card border-l-4 border-l-red-500 reveal">
+                        <h4 class="font-bold mb-1">1. Cú sốc niềm tin: vụ hack Binance (29–30/10)</h4>
+                        <p class="text-[15px]"><span class="tag tag-fact">Dữ kiện</span> Binance ước tính tổng tài sản bị ảnh hưởng khoảng <strong>6.3 tỷ USD</strong>, trong đó khoảng 3 tỷ USD đã được phong tỏa. Riêng Tether đóng băng ~1.56 tỷ USD và Circle ~0.8 tỷ USD <a class="ref" href="#s45">[45]</a><a class="ref" href="#s46">[46]</a>. TRM Labs quy vụ việc cho nhóm TraderTraitor (Triều Tiên) với "độ tin cậy cao". Binance cam kết bù toàn bộ thiệt hại bằng quỹ SAFU và tiền của công ty <a class="ref" href="#s45">[45]</a>. Ngày 30/10, BTC lập đáy tháng <strong>76,190</strong> <a class="ref" href="#s37">[37]</a>, và tổng thanh lý toàn thị trường lên ~1.67 tỷ USD, 86% là vị thế mua <a class="ref" href="#s43">[43]</a>.</p>
+                    </div>
+                    <div class="data-card reveal" data-reveal>
+                        <h4 class="font-bold mb-2">2. Dòng tiền tổ chức: ETF rút ròng −515 triệu USD trong tháng 10</h4>
+                        <div class="space-y-2 my-3">
+                            <div class="flex items-center gap-2 text-xs"><span class="w-14 font-mono font-bold">IBIT</span><div class="flex-1 flex"><div class="w-1/2"></div><div class="w-1/2"><div class="bar h-4 bg-green-500 rounded-r" style="--w:100%"></div></div></div><span class="w-20 text-right font-mono text-green-700">+931.8M</span></div>
+                            <div class="flex items-center gap-2 text-xs"><span class="w-14 font-mono font-bold">FBTC</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-4 bg-red-500 rounded-l" style="--w:81%"></div></div><div class="w-1/2"></div></div><span class="w-20 text-right font-mono text-red-600">−754.6M</span></div>
+                            <div class="flex items-center gap-2 text-xs"><span class="w-14 font-mono font-bold">ARKB</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-4 bg-red-500 rounded-l" style="--w:47.7%"></div></div><div class="w-1/2"></div></div><span class="w-20 text-right font-mono text-red-600">−444.1M</span></div>
+                            <div class="flex items-center gap-2 text-xs"><span class="w-14 font-mono font-bold">GBTC</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-4 bg-red-400 rounded-l" style="--w:19.8%"></div></div><div class="w-1/2"></div></div><span class="w-20 text-right font-mono text-red-600">−184.1M</span></div>
+                            <div class="flex items-center gap-2 text-xs border-t border-gray-200 pt-2"><span class="w-14 font-mono font-black">TỔNG</span><div class="flex-1 flex"><div class="w-1/2 flex justify-end"><div class="bar h-4 bg-trade-blue rounded-l" style="--w:55.3%"></div></div><div class="w-1/2"></div></div><span class="w-20 text-right font-mono font-bold text-red-700">−515.0M</span></div>
+                        </div>
+                        <p class="text-[15px]"><span class="tag tag-fact">Dữ kiện</span> Tháng 10 có 13 phiên vào ròng và 9 phiên rút ròng; hai phiên rút lớn nhất là 30/10 (−643.3M) và 22/10 (−635.5M) <a class="ref" href="#s40">[40]</a>. Giá vốn trung bình của người nắm ETF ở khoảng <strong>81.5K</strong>, tức giá hiện tại đã nằm dưới mức này <a class="ref" href="#s41">[41]</a>. Riêng IBIT vẫn hút tiền, cho thấy dòng tiền đang dồn về quỹ phí thấp chứ chưa có nhu cầu mới thực sự.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 reveal-stagger" data-reveal>
+                        <div class="data-card">
+                            <h4 class="font-bold mb-1">3. Bên mua lớn nhất đang chững lại</h4>
+                            <p class="text-sm"><span class="tag tag-fact">Dữ kiện</span> Strategy (MSTR) nắm 848,517 BTC với giá vốn trung bình <strong>75,446 USD</strong> (25/10). Công ty đã <strong>bán 5,552 BTC trong quý 3</strong> để trả cổ tức cổ phiếu ưu đãi và mua lại STRC; từ 01–23/10 chỉ huy động được 58.7 triệu USD từ phát hành cổ phiếu <a class="ref" href="#s47">[47]</a>.</p>
+                        </div>
+                        <div class="data-card">
+                            <h4 class="font-bold mb-1">4. Thanh khoản và pháp lý cùng co hẹp</h4>
+                            <p class="text-sm"><span class="tag tag-fact">Dữ kiện</span> Tổng vốn hóa stablecoin USD giảm từ 306.3 tỷ xuống 299.0 tỷ USD trong tháng 10 (−7.3 tỷ) <a class="ref" href="#s48">[48]</a>. Thủ tục đưa Đạo luật CLARITY ra thảo luận tại Thượng viện thất bại (49–50) ngày 15/09, và Hạ viện nghỉ họp đến sau bầu cử <a class="ref" href="#s50">[50]</a>. Điểm sáng duy nhất: Mt. Gox lùi hạn trả nợ đến 31/10/2027, nên khoảng 34,387 BTC còn trong ví quỹ chưa tạo áp lực bán ngắn hạn <a class="ref" href="#s51">[51]</a>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">B. Dữ liệu tâm lý & dòng tiền (Sentiment & Positioning)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 reveal-stagger" data-reveal>
+                    <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">Thanh lý T10</div><div class="text-2xl font-black text-red-600">$12.5B</div><div class="text-[11px] text-gray-500">74% là vị thế mua <a class="ref" href="#s43">[43]</a></div></div>
+                    <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">Fear & Greed</div><div class="text-2xl font-black text-orange-600">74 → 30</div><div class="text-[11px] text-gray-500">01/10 → 31/10 <a class="ref" href="#s49">[49]</a></div></div>
+                    <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">Skew 25-delta</div><div class="text-2xl font-black text-trade-blue">10.4%</div><div class="text-[11px] text-gray-500">Từ 8.9%, nhu cầu put tăng <a class="ref" href="#s42">[42]</a></div></div>
+                    <div class="data-card text-center"><div class="text-[11px] uppercase text-gray-500 font-bold">Futures OI</div><div class="text-2xl font-black text-trade-blue">$37.5B</div><div class="text-[11px] text-gray-500">Từ $36.5B, tuần đến 25/10 <a class="ref" href="#s42">[42]</a></div></div>
+                </div>
+                <ul class="dash text-[15px] mb-6 reveal">
+                    <li><span class="tag tag-fact">Dữ kiện</span> <strong>Đòn bẩy phía mua vẫn đông:</strong> Funding rate dương suốt từ 03/10. Trong tuần đến 25/10, phí funding mà bên mua phải trả tăng 13%, cùng lúc OI tăng thêm 1 tỷ USD trong khi giá đi xuống <a class="ref" href="#s42">[42]</a>. Đây là cấu trúc dễ bị thanh lý dây chuyền nếu giá thủng hỗ trợ.</li>
+                    <li><span class="tag tag-fact">Dữ kiện</span> <strong>CME (COT, 27/10):</strong> Nhóm Leveraged Funds bán ròng 3,979 hợp đồng (~19.9K BTC) nhưng đã giảm 963 hợp đồng trong tuần; nhóm Asset Managers mua ròng 2,754 hợp đồng (~13.8K BTC) và giảm 245 <a class="ref" href="#s44">[44]</a>. Các tổ chức đang giảm cả hai phía, chưa có nhu cầu mua mới.</li>
+                    <li><span class="tag tag-fact">Dữ kiện</span> <strong>On-chain:</strong> Giá vốn của nhóm nắm giữ ngắn hạn (STH cost basis) ở <strong>75.8K</strong>; True Market Mean ở <strong>77.9K</strong>. Nhóm STH còn một cụm giá vốn lớn quanh <strong>64K</strong> từ đáy năm 2026. Khoảng 4 triệu BTC của nhóm nắm giữ dài hạn có giá vốn 85–118K, tạo nguồn cung chờ bán phía trên <a class="ref" href="#s41">[41]</a>.</li>
+                    <li><span class="tag tag-view">Nhận định</span> Vùng <strong>75–76K</strong> là nơi nhiều mốc giá vốn hội tụ: STH (75.8K), Strategy (75.4K) và đường thanh khoản trên biểu đồ. Nếu vùng này thủng, khoảng trống giá vốn kéo dài đến cụm 64K, trùng với vùng Demand 1W 64.8–66.9K.</li>
+                </ul>
+
+                <!-- C -->
+                <h3 class="font-bold text-lg text-trade-blue mb-3 reveal">C. Phân tích kỹ thuật</h3>
+                <div class="reveal">
+                    <p class="text-[15px] mb-2"><strong>Bị từ chối tại vùng Supply 1W:</strong> Sau cú bật tháng 8, BTC lên tới vùng 87K nhưng không giữ được. Ba nến tuần gần nhất đóng cửa dưới vùng Supply 1W <span class="lv">82,000–84,800</span>, khớp với vùng kháng cự 84–85K mà Glassnode ghi nhận đã đẩy giá xuống nhiều lần trong năm <a class="ref" href="#s41">[41]</a>. Đáy tháng 9 tạo ra một vùng <strong>thanh khoản (Liquidity) quanh ~75K</strong>, nơi tập trung lệnh dừng lỗ của các vị thế mua.</p>
+                    <img src="rp1126_btc.webp" alt="BTCUSDT.P 1W kịch bản tháng 11" class="report-img" onclick="openLightbox(this)" loading="lazy">
+                    <p class="caption">BTCUSDT.P · 1W · Binance. Supply 82K–84.8K, Liquidity ~75K, Demand 64.8K–66.9K (Nhà Trade Học, 02/11/2026)</p>
+                </div>
+
+                <!-- D -->
+                <div class="bg-blue-50 p-5 md:p-6 rounded border-t-4 border-trade-blue mt-6 reveal">
+                    <h3 class="font-bold text-lg text-trade-blue mb-3">D. Kết luận Bitcoin</h3>
+                    <div class="space-y-3 text-[15px]">
+                        <p><strong class="text-red-700">Kịch bản A: Giảm thẳng (ưu tiên).</strong> Giá hồi yếu lên 78.5–80K, sau đó quét vùng thanh khoản ~75K. Khi STH cost basis 75.8K bị phá, các vị thế mua bị thanh lý dây chuyền và giá về vùng Demand 1W <span class="lv">64,800–66,900</span>.</p>
+                        <p><strong class="text-green-700">Kịch bản B: Hồi rồi giảm.</strong> Có thể bị kích hoạt bởi việc Binance khắc phục xong sự cố, đợt ép bán khống (short squeeze) trên CME, hoặc Fed bất ngờ ôn hòa. Giá hồi lên vùng Supply 1W <span class="lv">82,000–84,800</span>, bị từ chối dưới giá vốn của nhóm nắm giữ dài hạn, rồi quay đầu giảm.</p>
+                        <p><strong class="text-amber-700">Hủy kịch bản giảm:</strong> nến tuần đóng cửa trên <span class="lv">84,800</span>. Glassnode coi các phiên đóng cửa ngày trên 85K là dấu hiệu đầu tiên của lực cầu phục hồi <a class="ref" href="#s41">[41]</a>.</p>
+                    </div>
+                    <div class="mt-4 space-y-2" data-reveal>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-red-700">A · 45%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-red-500 rounded" style="--w:45%"></div></div></div>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-green-700">B · 40%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-green-500 rounded" style="--w:40%"></div></div></div>
+                        <div class="flex items-center gap-3 text-xs"><span class="w-20 font-bold text-amber-700">Hủy · 15%</span><div class="flex-1 bg-gray-200 rounded h-2.5 overflow-hidden"><div class="bar h-full bg-amber-500 rounded" style="--w:15%"></div></div></div>
+                        <p class="text-[11px] text-gray-500 italic">Xác suất là ước lượng chủ quan của Nhà Trade Học. BTC chưa thủng mốc 75.8K nên kịch bản B được đánh giá cao hơn so với Vàng.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===================== 5. TỔNG KẾT ===================== -->
+            <section id="plan">
+                <div class="section-title reveal"><span class="section-number">5</span>Tổng kết kế hoạch & quản trị rủi ro</div>
+                <div class="highlight-quote reveal">"Thuận xu hướng, chia vốn theo xác suất, và luôn biết trước mình sai ở đâu."</div>
+
+                <h3 class="sub-title reveal">A. Ma trận kế hoạch tháng 11</h3>
+                <p class="text-[15px] mb-4 reveal">Vốn dành cho mỗi tài sản được chia theo xác suất của từng kịch bản. Phần <strong>dự phòng 15%</strong> không dùng đến, để dành cho tình huống hủy kịch bản hoặc vào lại lệnh. Mức rủi ro của mỗi lệnh <strong>không vượt quá 1% tài khoản</strong>.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4 reveal-stagger" data-reveal>
+                    <!-- Gold A -->
+                    <div class="plan-card">
+                        <div class="px-4 py-2 bg-red-600 text-white flex justify-between items-center"><span class="font-black text-sm uppercase">Vàng · Kịch bản A</span><span class="text-xs font-bold bg-white/20 px-2 rounded">Vốn 50%</span></div>
+                        <div class="p-4 text-sm grid grid-cols-2 gap-y-2">
+                            <span class="text-gray-500">Vào lệnh Sell</span><span class="lv text-right">3,950 – 4,000</span>
+                            <span class="text-gray-500">Dừng lỗ (SL)</span><span class="lv text-right text-red-600">4,090</span>
+                            <span class="text-gray-500">Chốt lời 1 / 2</span><span class="lv text-right text-green-700">3,730 / 3,500</span>
+                            <span class="text-gray-500">R:R (đến TP2)</span><span class="lv text-right">≈ 1 : 4.1</span>
+                            <p class="col-span-2 text-xs text-gray-500 mt-1">SL đặt trên đỉnh tuần 4,082.8. Nếu giá thủng 3,850 mà không hồi lên vùng vào lệnh, <strong>không đuổi giá</strong>; chờ nhịp hồi trên khung H4.</p>
+                        </div>
+                    </div>
+                    <!-- Gold B -->
+                    <div class="plan-card">
+                        <div class="px-4 py-2 bg-green-600 text-white flex justify-between items-center"><span class="font-black text-sm uppercase">Vàng · Kịch bản B</span><span class="text-xs font-bold bg-white/20 px-2 rounded">Vốn 35%</span></div>
+                        <div class="p-4 text-sm grid grid-cols-2 gap-y-2">
+                            <span class="text-gray-500">Vào lệnh Sell Limit</span><span class="lv text-right">4,195 – 4,260</span>
+                            <span class="text-gray-500">Dừng lỗ (SL)</span><span class="lv text-right text-red-600">4,350</span>
+                            <span class="text-gray-500">Chốt lời 1 / 2</span><span class="lv text-right text-green-700">4,000 / 3,500</span>
+                            <span class="text-gray-500">R:R (đến TP2)</span><span class="lv text-right">≈ 1 : 5.9</span>
+                            <p class="col-span-2 text-xs text-gray-500 mt-1">SL đặt trên biên trên vùng Supply 1D (4,338.8). Nên chờ tín hiệu từ chối trên khung H4/D1, ví dụ nến rút râu trên hoặc nến nhấn chìm giảm.</p>
+                        </div>
+                    </div>
+                    <!-- BTC A -->
+                    <div class="plan-card">
+                        <div class="px-4 py-2 bg-red-600 text-white flex justify-between items-center"><span class="font-black text-sm uppercase">BTC · Kịch bản A</span><span class="text-xs font-bold bg-white/20 px-2 rounded">Vốn 45%</span></div>
+                        <div class="p-4 text-sm grid grid-cols-2 gap-y-2">
+                            <span class="text-gray-500">Vào lệnh Sell</span><span class="lv text-right">78,500 – 80,000</span>
+                            <span class="text-gray-500">Dừng lỗ (SL)</span><span class="lv text-right text-red-600">82,300</span>
+                            <span class="text-gray-500">Chốt lời 1 / 2</span><span class="lv text-right text-green-700">75,500 / 67,000</span>
+                            <span class="text-gray-500">R:R (đến TP2)</span><span class="lv text-right">≈ 1 : 4.0</span>
+                            <p class="col-span-2 text-xs text-gray-500 mt-1">Nếu nến D1 đóng cửa dưới 75.8K (STH cost basis), có thể gia tăng vị thế khi giá hồi kiểm định lại vùng 76–77K, với SL riêng trên 78.5K.</p>
+                        </div>
+                    </div>
+                    <!-- BTC B -->
+                    <div class="plan-card">
+                        <div class="px-4 py-2 bg-green-600 text-white flex justify-between items-center"><span class="font-black text-sm uppercase">BTC · Kịch bản B</span><span class="text-xs font-bold bg-white/20 px-2 rounded">Vốn 40%</span></div>
+                        <div class="p-4 text-sm grid grid-cols-2 gap-y-2">
+                            <span class="text-gray-500">Vào lệnh Sell Limit</span><span class="lv text-right">82,000 – 84,500</span>
+                            <span class="text-gray-500">Dừng lỗ (SL)</span><span class="lv text-right text-red-600">87,500</span>
+                            <span class="text-gray-500">Chốt lời 1 / 2</span><span class="lv text-right text-green-700">75,500 / 67,000</span>
+                            <span class="text-gray-500">R:R (đến TP2)</span><span class="lv text-right">≈ 1 : 3.8</span>
+                            <p class="col-span-2 text-xs text-gray-500 mt-1">SL đặt trên đỉnh tháng 10 (~87.2K). Có thể chia lệnh thành 2–3 phần trong vùng thay vì đặt một lệnh duy nhất.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-[11px] text-gray-500 mb-8 reveal">R:R tính theo giá vào lệnh trung bình của vùng. Vàng: tham chiếu giá XAU/USD spot (OANDA). BTC: tham chiếu BTCUSDT Perpetual (Binance). Chênh lệch giá giữa các sàn có thể làm mức khớp lệnh thực tế khác đi.</p>
+
+                <h3 class="sub-title reveal">B. Phân bổ vốn & quy tắc quản trị rủi ro</h3>
+                <div class="grid md:grid-cols-5 gap-5 mb-8">
+                    <div class="md:col-span-2 data-card reveal" data-reveal>
+                        <div class="text-xs font-bold uppercase text-gray-500 mb-3">Ngân sách rủi ro tháng 11 (tối đa 4% tài khoản)</div>
+                        <div class="space-y-3 text-xs">
+                            <div><div class="flex justify-between mb-1"><span>Vàng: A 1% + B 1%</span><span class="font-mono font-bold">2%</span></div><div class="bg-gray-200 rounded h-3 overflow-hidden"><div class="bar h-full bg-yellow-500" style="--w:50%"></div></div></div>
+                            <div><div class="flex justify-between mb-1"><span>BTC: A 1% + B 1%</span><span class="font-mono font-bold">2%</span></div><div class="bg-gray-200 rounded h-3 overflow-hidden"><div class="bar h-full bg-orange-500" style="--w:50%"></div></div></div>
+                            <div><div class="flex justify-between mb-1"><span>Tiền mặt / Stablecoin (không giao dịch)</span><span class="font-mono font-bold">≥ 50% vốn</span></div><div class="bg-gray-200 rounded h-3 overflow-hidden"><div class="bar h-full bg-trade-blue" style="--w:100%"></div></div></div>
+                        </div>
+                        <p class="text-[11px] text-gray-500 mt-3">Nếu cả hai kịch bản đều chạm SL, tổng lỗ tối đa là 4% tài khoản.</p>
+                    </div>
+                    <div class="md:col-span-3 reveal">
+                        <ul class="dash text-[15px]">
+                            <li><strong>Công thức khối lượng:</strong> Khối lượng = (Vốn × % rủi ro) ÷ |Giá vào − SL|. Ví dụ: tài khoản 10,000 USD, rủi ro 1% = 100 USD. BTC kịch bản A vào 79,250, SL 82,300 (cách 3,050 USD), suy ra khối lượng ≈ <strong>0.033 BTC</strong> (~2,600 USD giá trị danh nghĩa).</li>
+                            <li><strong>Đòn bẩy thực tế ≤ 3x.</strong> Mức lỗ đã được khống chế bằng SL, không phải bằng đòn bẩy cao.</li>
+                            <li><strong>Chốt 50% tại TP1</strong> và dời SL về điểm hòa vốn. Phần còn lại giữ đến TP2 hoặc đến khi xuất hiện tín hiệu đảo chiều.</li>
+                            <li><strong>Không bắt đáy</strong> trước khi giá chạm vùng Demand 1W và có xác nhận đảo chiều (nến tuần rút chân dài hoặc đóng cửa lấy lại vùng).</li>
+                            <li><strong>Người nắm giữ dài hạn:</strong> không cần bán tháo phần vàng vật chất hoặc BTC giữ dài hạn. Có thể dùng chính các vùng vào lệnh ở trên để phòng hộ một phần.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="sub-title reveal">C. Điều kiện hủy bỏ & tình huống ngược dự báo</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-8 reveal-stagger" data-reveal>
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <h4 class="font-bold text-yellow-700">Vàng đóng nến tuần trên 4,339</h4>
+                        <p class="text-sm"><strong>Hệ quả:</strong> vùng Supply 1D bị phá, tín hiệu breakdown tuần trước trở thành bẫy giảm giá.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> đóng toàn bộ vị thế bán và chuyển sang trung lập. Theo dõi khả năng giá quay lại vùng 4,600–4,700.</p>
+                    </div>
+                    <div class="border-l-4 border-orange-500 pl-4">
+                        <h4 class="font-bold text-orange-700">BTC đóng nến tuần trên 84,800</h4>
+                        <p class="text-sm"><strong>Hệ quả:</strong> cầu ETF và nhóm nắm giữ dài hạn quay lại, cấu trúc chuyển sang đi ngang biên độ rộng.</p>
+                        <p class="text-sm"><strong>Hành động:</strong> dừng bán khống. Chỉ cân nhắc mua khi giá kiểm định lại 82–84.8K thành công.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title reveal">D. Lịch sự kiện trọng yếu tháng 11</h3>
+                <div class="relative pl-6 border-l-2 border-trade-yellow space-y-4 reveal-stagger mb-4" data-reveal>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-red-500 mt-1.5"></span><span class="lv text-trade-blue">03/11</span> · <strong>Bầu cử giữa kỳ Mỹ.</strong> Biến động mạnh qua đêm; rủi ro không kích Iran sau bầu cử <a class="ref" href="#s20">[20]</a><a class="ref" href="#s15">[15]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-red-500 mt-1.5"></span><span class="lv text-trade-blue">06/11</span> · <strong>Báo cáo việc làm (NFP) tháng 10</strong> <a class="ref" href="#s52">[52]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-red-500 mt-1.5"></span><span class="lv text-trade-blue">10/11</span> · <strong>CPI tháng 10.</strong> Nếu CPI tiếp tục nóng, kỳ vọng Fed tăng lãi suất tháng 12 được củng cố <a class="ref" href="#s52">[52]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-gray-400 mt-1.5"></span><span class="lv text-trade-blue">≥10/11</span> · Đàm phán Nga – Ukraine (dự kiến tại Abu Dhabi) <a class="ref" href="#s18">[18]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-gray-400 mt-1.5"></span><span class="lv text-trade-blue">16/11 &amp; 30/11</span> · CFTC công bố COT vào <em>thứ Hai</em> do trùng ngày lễ <a class="ref" href="#s54">[54]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-gray-400 mt-1.5"></span><span class="lv text-trade-blue">18–19/11</span> · Hội nghị APEC tại Thâm Quyến; khả năng có cuộc gặp Trump – Tập <a class="ref" href="#s55">[55]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-red-500 mt-1.5"></span><span class="lv text-trade-blue">25/11</span> · <strong>PCE tháng 10 & GDP Q3 (lần 2)</strong> <a class="ref" href="#s53">[53]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-orange-500 mt-1.5"></span><span class="lv text-trade-blue">27/11</span> · Đáo hạn quyền chọn BTC tháng 11 trên Deribit (thứ Sáu cuối tháng). Kỳ đáo hạn 30/10 có max pain ở 79K <a class="ref" href="#s56">[56]</a>.</div>
+                    <div><span class="absolute -left-[7px] w-3 h-3 rounded-full bg-trade-blue mt-1.5"></span><span class="lv text-trade-blue">08–09/12</span> · <strong>FOMC.</strong> Thị trường đang định giá phần lớn khả năng tăng 25bp <a class="ref" href="#s6">[6]</a><a class="ref" href="#s7">[7]</a>. Hạn ngân sách tạm thời của Chính phủ Mỹ là 11/12 <a class="ref" href="#s22">[22]</a>.</div>
+                </div>
+                <p class="text-sm text-gray-600 mb-2 reveal"><i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i> Không mở lệnh mới trong khoảng ±30 phút quanh giờ công bố NFP và CPI, và trong đêm kiểm phiếu 03–04/11.</p>
+            </section>
+
+            <!-- ===================== NGUỒN ===================== -->
+            <section id="sources" class="mt-14 pt-8 border-t border-gray-200">
+                <details class="group" open>
+                    <summary class="cursor-pointer text-sm font-bold text-trade-blue uppercase tracking-widest mb-4 list-none flex items-center gap-2">
+                        <i class="fa-solid fa-book-open"></i> Nguồn tham khảo <span class="text-gray-400 normal-case font-normal tracking-normal">(truy cập 01–02/11/2026)</span>
+                        <i class="fa-solid fa-chevron-down text-xs ml-auto group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <ol class="src-list list-decimal pl-6 text-xs text-gray-600 md:columns-2 md:gap-8">
+                        <li id="s1"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm">Federal Reserve – FOMC statement, 28/10/2026</a></li>
+                        <li id="s2"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm">Federal Reserve – FOMC statement, 16/09/2026</a></li>
+                        <li id="s3"><a class="hover:underline" target="_blank" rel="noopener" href="https://federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve – Summary of Economic Projections, 16/09/2026</a></li>
+                        <li id="s4"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.scotsmanguide.com/news/senate-confirms-warsh-to-replace-powell-as-fed-chair/">Scotsman Guide – Senate confirms Warsh to replace Powell as Fed chair</a></li>
+                        <li id="s5"><a class="hover:underline" target="_blank" rel="noopener" href="https://investinglive.com/central-banks/warsh-speaks-in-bangkok-after-hot-cpi-is-a-second-fed-hike-coming-in-october/">investingLive – Warsh speaks in Bangkok after hot CPI, 15/10/2026</a></li>
+                        <li id="s6"><a class="hover:underline" target="_blank" rel="noopener" href="https://tradingeconomics.com/united-states/government-bond-yield/news/592783">Trading Economics – US 10Y yield / FedWatch December odds, 29–30/10/2026</a></li>
+                        <li id="s7"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.federalreserve.gov/newsevents/2026-december.htm">Federal Reserve – Calendar, December 2026</a></li>
+                        <li id="s8"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bls.gov/news.release/cpi.nr0.htm">BLS – Consumer Price Index, September 2026 (14/10/2026)</a></li>
+                        <li id="s9"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bea.gov/news/2026/personal-income-and-outlays-september-2026">BEA – Personal Income and Outlays, September 2026 (29/10/2026)</a></li>
+                        <li id="s10"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bls.gov/news.release/archives/empsit_10022026.htm">BLS – Employment Situation, September 2026 (02/10/2026)</a></li>
+                        <li id="s11"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bea.gov/taxonomy/term/451?page=0">BEA – GDP Q3 2026 advance estimate (29/10/2026)</a></li>
+                        <li id="s12"><a class="hover:underline" target="_blank" rel="noopener" href="https://fred.stlouisfed.org/series/DGS10">FRED – 10-Year Treasury Constant Maturity (DGS10)</a></li>
+                        <li id="s13"><a class="hover:underline" target="_blank" rel="noopener" href="https://fred.stlouisfed.org/series/DFII10">FRED – 10-Year TIPS real yield (DFII10)</a></li>
+                        <li id="s14"><a class="hover:underline" target="_blank" rel="noopener" href="https://tradingeconomics.com/united-states/currency">Trading Economics – US Dollar Index</a></li>
+                        <li id="s15"><a class="hover:underline" target="_blank" rel="noopener" href="https://tradingeconomics.com/commodity/brent-crude-oil">Trading Economics – Brent crude oil</a></li>
+                        <li id="s16"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.nationthailand.com/news/world/40072812">Nation Thailand – Iran war update, 28/10/2026</a></li>
+                        <li id="s17"><a class="hover:underline" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire">Wikipedia – 2026 Iran war ceasefire</a></li>
+                        <li id="s18"><a class="hover:underline" target="_blank" rel="noopener" href="https://bdnews24.com/world/europe/mxlv299i5p">bdnews24 (Reuters) – Putin agrees to resume trilateral technical talks</a></li>
+                        <li id="s19"><a class="hover:underline" target="_blank" rel="noopener" href="https://ddindia.co.in/2026/10/keen-sword-27-china-shadows-biggest-japan-us-military-drills-near-taiwan/">DD India – Keen Sword 27</a></li>
+                        <li id="s20"><a class="hover:underline" target="_blank" rel="noopener" href="https://news.kalshi.com/p/2026-midterm-predictions">Kalshi – 2026 midterm predictions, 28/10/2026</a></li>
+                        <li id="s21"><a class="hover:underline" target="_blank" rel="noopener" href="https://borderbuddy.com/trade-tariff-news/section-122-is-out-section-301-is-in">BorderBuddy – Section 122 is out, Section 301 is in</a></li>
+                        <li id="s22"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.aacom.org/news-reports/news/2026/09/08/president-trump-signs-continuing-resolution-to-fund-government-through-december-11">AACOM – Continuing resolution through 11/12/2026</a></li>
+                        <li id="s23"><a class="hover:underline" target="_blank" rel="noopener" href="https://pricegold.net/2026/september/">PriceGold.net – Gold price, September 2026</a></li>
+                        <li id="s24"><a class="hover:underline" target="_blank" rel="noopener" href="https://pricegold.net/2026/october/">PriceGold.net – Gold price, October 2026</a></li>
+                        <li id="s25"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bullionvault.com/gold-news/gold-price-news/gold-silver-2025-record-price-123120251">BullionVault – Gold ends 2025, 31/12/2025</a></li>
+                        <li id="s26"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.fxempire.com/forecasts/article/premium-gold-stalls-near-4012-unless-the-spdr-trust-drops-below-999-tonnes-1640350">FXEmpire – Gold stalls near 4,012 / SPDR holdings, 26/10/2026</a></li>
+                        <li id="s27"><a class="hover:underline" target="_blank" rel="noopener" href="https://tradingeconomics.com/commodity/gold/news/594240">Trading Economics – Gold news, 30/10/2026</a></li>
+                        <li id="s28"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.cftc.gov/files/dea/cotarchives/2026/futures/other_lf102726.htm">CFTC – Disaggregated COT, 27/10/2026</a></li>
+                        <li id="s29"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.cftc.gov/files/dea/cotarchives/2026/futures/other_lf092926.htm">CFTC – Disaggregated COT, 29/09/2026</a></li>
+                        <li id="s30"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.gold.org/goldhub/research/gold-etfs-holdings-and-flows/2026/10">World Gold Council – Gold ETF flows, September 2026</a></li>
+                        <li id="s31"><a class="hover:underline" target="_blank" rel="noopener" href="https://cbonds.com.tr/indexes/84435/">Cbonds – SPDR Gold Trust holdings</a></li>
+                        <li id="s32"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.gold.org/goldhub/gold-focus/2026/10/central-bank-gold-statistics-central-banks-continue-summer-spree-august">World Gold Council – Central bank statistics, August 2026</a></li>
+                        <li id="s33"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.gold.org/goldhub/gold-focus/2026/10/china-gold-market-update-q3-ends-strong-official-gold-buying">World Gold Council – China gold market update, 15/10/2026</a></li>
+                        <li id="s34"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.gold.org/goldhub/gold-focus/2026/10/india-gold-market-update-seasonal-demand-shows-early-strength">World Gold Council – India gold market update, 20/10/2026</a></li>
+                        <li id="s35"><a class="hover:underline" target="_blank" rel="noopener" href="https://investinglive.com/commodities/icymi-goldman-trims-end-2026-gold-forecast-to-4-650-but-holds-5-400-target-for-2027/">investingLive – Goldman trims end-2026 gold forecast, 23/09/2026</a></li>
+                        <li id="s36"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.statmuse.com/money/ask/bitcoin-price-september-30-2026">StatMuse – Bitcoin price, 30/09/2026</a></li>
+                        <li id="s37"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.statmuse.com/money/ask/bitcoin-price-october-2026">StatMuse – Bitcoin price, October 2026</a></li>
+                        <li id="s38"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.mitrade.com/insights/news/live-news/article-3-2131515-20261001">Mitrade (BeInCrypto) – Bitcoin Q3 recap, 01/10/2026</a></li>
+                        <li id="s39"><a class="hover:underline" target="_blank" rel="noopener" href="https://stocktwits.com/news-articles/markets/cryptocurrency/bitcoin-on-track-for-first-back-to-back-losing-octobers-in-over-a-decade-as-downtober-continues/cZxkfoRRBtS">Stocktwits – Back-to-back losing Octobers, 17/10/2026</a></li>
+                        <li id="s40"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.tftc.io/bitcoin-etf-flows/october-2026">TFTC – Bitcoin ETF flows, October 2026</a></li>
+                        <li id="s41"><a class="hover:underline" target="_blank" rel="noopener" href="https://research.glassnode.com/the-week-onchain-week-43-2026/">Glassnode – The Week On-chain, Week 43/2026</a></li>
+                        <li id="s42"><a class="hover:underline" target="_blank" rel="noopener" href="https://research.glassnode.com/btc-market-pulse-week-44-2026/">Glassnode – BTC Market Pulse, Week 44/2026</a></li>
+                        <li id="s43"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.tokenpost.com/news/investing/45918">TokenPost – October liquidations, 01/11/2026</a></li>
+                        <li id="s44"><a class="hover:underline" target="_blank" rel="noopener" href="https://tradingster.com/cot/futures/fin/133741">Tradingster – CFTC TFF, CME Bitcoin, 27/10/2026</a></li>
+                        <li id="s45"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.forbes.com/sites/antoniopequenoiv/2026/10/30/binance-says-63-billion-impacted-in-record-crypto-hack-suspends-withdrawals/">Forbes – Binance says $6.3 billion impacted in record crypto hack, 30/10/2026</a></li>
+                        <li id="s46"><a class="hover:underline" target="_blank" rel="noopener" href="https://techcrunch.com/2026/10/29/binance-pauses-withdrawals-as-hackers-suspected-of-stealing-billions-in-crypto/">TechCrunch – Binance pauses withdrawals, 29/10/2026</a></li>
+                        <li id="s47"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.sec.gov/Archives/edgar/data/0001050446/000105044626000047/mstr-20261029x8kxex9912.htm">SEC EDGAR – Strategy Inc. 8-K exhibit, 29/10/2026</a></li>
+                        <li id="s48"><a class="hover:underline" target="_blank" rel="noopener" href="https://defillama.com/stablecoins">DefiLlama – Stablecoins market cap</a></li>
+                        <li id="s49"><a class="hover:underline" target="_blank" rel="noopener" href="https://alternative.me/crypto/fear-and-greed-index/">Alternative.me – Crypto Fear &amp; Greed Index</a></li>
+                        <li id="s50"><a class="hover:underline" target="_blank" rel="noopener" href="https://decrypt.co/378283/clarity-act-fails-senate-hurdle">Decrypt – CLARITY Act fails Senate hurdle, 15/09/2026</a></li>
+                        <li id="s51"><a class="hover:underline" target="_blank" rel="noopener" href="https://blockhead.co/2026/10/20/mt-gox-pushes-its-repayment-deadline-to-october-2027-in-fourth-extension">Blockhead – Mt. Gox extends repayment deadline to 10/2027</a></li>
+                        <li id="s52"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bls.gov/schedule/news_release/cpi.htm">BLS – Release schedules (CPI, Employment Situation)</a></li>
+                        <li id="s53"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.bea.gov/news/schedule">BEA – Release schedule</a></li>
+                        <li id="s54"><a class="hover:underline" target="_blank" rel="noopener" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm">CFTC – COT release schedule</a></li>
+                        <li id="s55"><a class="hover:underline" target="_blank" rel="noopener" href="https://en.fnnews.com/news/202609100646439749">FN News – APEC Shenzhen</a></li>
+                        <li id="s56"><a class="hover:underline" target="_blank" rel="noopener" href="https://cryptoticker.io/en/bitcoin-options-expiry-october-30-2026-max-pain/">CryptoTicker – Bitcoin options expiry 30/10/2026</a></li>
+                    </ol>
+                    <p class="text-[11px] text-gray-400 mt-4">Biểu đồ kỹ thuật: Nhà Trade Học trên TradingView (OANDA XAU/USD, Binance BTCUSDT.P), 02/11/2026. Các con số tỷ lệ BTC/XAU, % thay đổi YTD, R:R do Nhà Trade Học tính từ nguồn trên.</p>
+                </details>
+            </section>
+
+            <!-- Share Section -->
+            <div class="mt-12 pt-8 border-t border-gray-200">
+                <h3 class="text-sm font-bold text-trade-blue uppercase tracking-widest mb-6">Chia sẻ báo cáo</h3>
+                <div class="flex gap-4 flex-wrap">
+                    <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')" class="w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white" title="Share on Facebook"><i class="fa-brands fa-facebook-f text-xl text-trade-blue"></i></button>
+                    <button onclick="window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href), '_blank')" class="w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white" title="Share on X"><i class="fa-brands fa-x-twitter text-xl text-trade-blue"></i></button>
+                    <button onclick="window.open('https://www.threads.net/intent/post?text='+encodeURIComponent(window.location.href), '_blank')" class="w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white" title="Share on Threads"><i class="fa-brands fa-threads text-xl text-trade-blue"></i></button>
+                    <button onclick="window.open('https://t.me/share/url?url='+encodeURIComponent(window.location.href), '_blank')" class="w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white" title="Share on Telegram"><i class="fa-brands fa-telegram text-xl text-trade-blue"></i></button>
+                    <button id="copy-link" class="w-12 h-12 flex items-center justify-center border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all bg-white" title="Copy Link"><i class="fa-solid fa-link text-xl text-trade-blue"></i></button>
+                </div>
+                <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href="report0126.html" class="flex-1 border border-gray-200 rounded-lg p-4 hover:border-trade-blue transition-colors group">
+                        <span class="text-[11px] uppercase text-gray-400 font-bold"><i class="fa-solid fa-arrow-left mr-1 group-hover:-translate-x-1 transition-transform"></i> Báo cáo trước</span>
+                        <span class="block font-bold text-trade-blue">Báo cáo chiến lược Vàng & Bitcoin, tháng 02/2026</span>
+                    </a>
+                    <a href="kien-thuc.html#latest-posts" class="flex-1 border border-gray-200 rounded-lg p-4 hover:border-trade-blue transition-colors">
+                        <span class="text-[11px] uppercase text-gray-400 font-bold">Thư viện</span>
+                        <span class="block font-bold text-trade-blue">Xem tất cả bài viết & báo cáo <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="text-center text-gray-500 text-xs max-w-2xl mx-auto pb-12">
+            <p class="font-bold uppercase mb-2">Tuyên bố miễn trừ trách nhiệm (Disclaimer)</p>
+            <p>Báo cáo này chỉ có mục đích tham khảo và giáo dục. Đây không phải lời khuyên hay khuyến nghị đầu tư. Các kịch bản, xác suất và vùng giá là quan điểm phân tích của Nhà Trade Học tại thời điểm phát hành và có thể thay đổi. Giao dịch có đòn bẩy (CFD, hợp đồng tương lai, crypto) có rủi ro mất vốn cao; nhà đầu tư tự chịu trách nhiệm về quyết định giao dịch của mình.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8"><span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span></div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-youtube text-lg"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Cộng đồng Telegram</a></li>
+                        <li><a href="kien-thuc.html" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Thư viện kiến thức</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>contact.nhatradehoc@gmail.com</li>
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>Hà Nội, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">© 2026 Nhà Trade Học. All rights reserved.</p>
+                <p class="text-gray-600 text-xs italic">Giao dịch tài chính tiềm ẩn rủi ro.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-close">&times;</div>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="">
+    </div>
+
+    <script>
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        function openLightbox(el) { lightbox.style.display = 'flex'; lightboxImg.src = el.src; setTimeout(() => lightbox.classList.add('active'), 10); }
+        function closeLightbox() { lightbox.classList.remove('active'); setTimeout(() => { lightbox.style.display = 'none'; }, 300); }
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox(); });
+
+        // ---- Copy link (no blocking alert) ----
+        document.getElementById('copy-link').addEventListener('click', function () {
+            const btn = this;
+            const done = () => { btn.innerHTML = '<i class="fa-solid fa-check text-xl text-green-600"></i>'; setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-link text-xl text-trade-blue"></i>', 1500); };
+            try { navigator.clipboard.writeText(window.location.href).then(done, done); } catch (e) { done(); }
+        });
+
+        // ---- Reading progress ----
+        const progress = document.getElementById('progress');
+        const onScroll = () => {
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            progress.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        };
+        document.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+        // ---- Count-up numbers ----
+        function countUp(el) {
+            const to = parseFloat(el.dataset.to), dec = parseInt(el.dataset.dec || '0', 10);
+            const dur = 1300, t0 = performance.now();
+            const step = now => {
+                const p = Math.min((now - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = (to * eased).toFixed(dec);
+                if (p < 1) requestAnimationFrame(step); else el.textContent = to.toFixed(dec);
+            };
+            requestAnimationFrame(step);
+        }
+
+        // ---- Scroll reveal ----
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const targets = document.querySelectorAll('.reveal, .reveal-stagger, [data-reveal]');
+        if ('IntersectionObserver' in window && !reduce) {
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(en => {
+                    if (!en.isIntersecting) return;
+                    en.target.classList.add('in');
+                    en.target.querySelectorAll('.countup').forEach(countUp);
+                    io.unobserve(en.target);
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            targets.forEach(t => io.observe(t));
+        } else {
+            targets.forEach(t => t.classList.add('in'));
+        }
+
+        // ---- Active chip in section nav ----
+        const chips = document.querySelectorAll('.chip-nav a');
+        const sections = [...chips].map(c => document.querySelector(c.getAttribute('href')));
+        if ('IntersectionObserver' in window) {
+            const so = new IntersectionObserver(entries => {
+                entries.forEach(en => {
+                    if (!en.isIntersecting) return;
+                    if (document.querySelector('.chip-nav a.active')?.getAttribute('href') === '#' + en.target.id) return;
+                    chips.forEach(c => c.classList.toggle('active', c.getAttribute('href') === '#' + en.target.id));
+                    const active = document.querySelector('.chip-nav a.active');
+                    const bar = document.querySelector('.chip-nav');
+                    if (active && bar.scrollWidth > bar.clientWidth) {
+                        bar.scrollTo({ left: active.offsetLeft - (bar.clientWidth - active.offsetWidth) / 2, behavior: 'smooth' });
+                    }
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            sections.forEach(s => s && so.observe(s));
+        }
+    </script>
+</body>
+</html>
