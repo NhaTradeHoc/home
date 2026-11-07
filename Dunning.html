@@ -89,19 +89,32 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
 
-    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+    <!-- Navigation (header đồng bộ toàn site) -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl" data-nth-header="v2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="flex-shrink-0 flex items-center group">
-                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
-                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                    <span class="font-extrabold text-xl sm:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
                 </a>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
-                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Dịch Vụ</a>
-                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
-                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Cộng Đồng</a>
+                <div class="hidden lg:flex space-x-10 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Hoàn Phí<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="index.html#khoa-hoc" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Khóa Học<span class="absolute -top-1.5 -right-3 w-2 h-2 bg-trade-yellow rounded-full animate-pulse"></span><span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Dịch Vụ<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="kien-thuc.html" aria-current="page" class="text-sm uppercase tracking-widest text-trade-yellow transition-colors duration-300 relative group">Kiến Thức<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-full"></span></a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"><i class="fa-brands fa-telegram mr-2"></i>Cộng Đồng</a>
                 </div>
+                <button id="mobile-menu-btn" type="button" aria-label="Mở menu" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden text-trade-yellow hover:text-white focus:outline-none p-2 -mr-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-trade-blue border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html#hoan-phi" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Hoàn Phí</a>
+                <a href="index.html#khoa-hoc" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Khóa Học <span class="ml-2 text-[10px] font-black bg-trade-yellow text-trade-blue px-1.5 py-0.5 align-middle">HOT</span></a>
+                <a href="index.html#dich-vu" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Dịch Vụ</a>
+                <a href="kien-thuc.html" aria-current="page" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-trade-yellow border-trade-yellow border-l-2 pl-4">Kiến Thức</a>
+                <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="block mt-4 px-3 py-3 text-center border border-trade-yellow text-trade-yellow font-bold uppercase"><i class="fa-brands fa-telegram mr-2"></i>Tham Gia Cộng Đồng</a>
             </div>
         </div>
     </nav>
@@ -386,9 +399,9 @@
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
                     <ul class="space-y-4 text-sm text-gray-400">
                         <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
-                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#khoa-hoc" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
                         <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                        <li><a href="dieu-khoan.html" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
                     </ul>
                 </div>
 
@@ -565,5 +578,6 @@
             }
         });
     </script>
+    <script data-nth-header-js>(function(){var b=document.getElementById('mobile-menu-btn'),m=document.getElementById('mobile-menu');if(!b||!m)return;b.addEventListener('click',function(){var h=m.classList.toggle('hidden');b.setAttribute('aria-expanded',String(!h));});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');b.setAttribute('aria-expanded','false');});});})();</script>
 </body>
 </html>

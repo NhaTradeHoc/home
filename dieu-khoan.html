@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều Khoản Sử Dụng - Nhà Trade Học</title>
+    <meta name="description" content="Điều khoản sử dụng website và dịch vụ của Nhà Trade Học: phạm vi dịch vụ, cảnh báo rủi ro, liên kết đối tác, học phí & ưu đãi, dữ liệu cá nhân.">
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1RWVY1S0DZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1RWVY1S0DZ');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'trade-blue': '#00167c',
+                        'trade-light-blue': '#1e40af',
+                        'trade-dark': '#020617',
+                        'trade-yellow': '#ffdf2b',
+                        'trade-white': '#ffffff',
+                    },
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'brutal': '4px 4px 0px 0px rgba(255, 255, 255, 0.2)',
+                        'brutal-dark': '4px 4px 0px 0px rgba(0, 22, 124, 0.1)',
+                        'brutal-yellow': '4px 4px 0px 0px #ffdf2b',
+                        'brutal-blue': '4px 4px 0px 0px #00167c',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .terms section { scroll-margin-top: 6.5rem; }
+        .terms h2 { font-weight: 900; color: #00167c; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.25rem; margin-bottom: 1rem; display: flex; align-items: baseline; gap: .75rem; }
+        .terms h2 .num { font-size: .8rem; color: #ffffff; background: #00167c; padding: .15rem .5rem; letter-spacing: .05em; }
+        .terms p { color: #4b5563; line-height: 1.8; margin-bottom: .9rem; }
+        .terms ul { margin: 0 0 1rem 0; }
+        .terms ul li { position: relative; padding-left: 1.5rem; color: #4b5563; line-height: 1.75; margin-bottom: .5rem; }
+        .terms ul li::before { content: "➤"; position: absolute; left: 0; top: 0; color: #00167c; font-size: .75rem; }
+        .terms strong { color: #00167c; }
+        .toc a.active { color: #00167c; border-color: #ffdf2b; background: #fffbe6; font-weight: 800; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
+
+    <!-- Navigation (header đồng bộ toàn site) -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl" data-nth-header="v2">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                    <span class="font-extrabold text-xl sm:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                </a>
+                <div class="hidden lg:flex space-x-10 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Hoàn Phí<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="index.html#khoa-hoc" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Khóa Học<span class="absolute -top-1.5 -right-3 w-2 h-2 bg-trade-yellow rounded-full animate-pulse"></span><span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Dịch Vụ<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Kiến Thức<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"><i class="fa-brands fa-telegram mr-2"></i>Cộng Đồng</a>
+                </div>
+                <button id="mobile-menu-btn" type="button" aria-label="Mở menu" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden text-trade-yellow hover:text-white focus:outline-none p-2 -mr-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-trade-blue border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html#hoan-phi" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Hoàn Phí</a>
+                <a href="index.html#khoa-hoc" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Khóa Học <span class="ml-2 text-[10px] font-black bg-trade-yellow text-trade-blue px-1.5 py-0.5 align-middle">HOT</span></a>
+                <a href="index.html#dich-vu" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Dịch Vụ</a>
+                <a href="kien-thuc.html" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Kiến Thức</a>
+                <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="block mt-4 px-3 py-3 text-center border border-trade-yellow text-trade-yellow font-bold uppercase"><i class="fa-brands fa-telegram mr-2"></i>Tham Gia Cộng Đồng</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 bg-trade-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="inline-block px-3 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase tracking-widest mb-6">Pháp lý</div>
+            <h1 class="text-4xl md:text-6xl font-black uppercase mb-6 leading-tight">Điều Khoản <span class="text-trade-yellow">Sử Dụng</span></h1>
+            <p class="text-lg text-gray-300 font-light leading-relaxed max-w-3xl border-l-4 border-trade-yellow pl-6">
+                Vui lòng đọc kỹ trước khi sử dụng website, đăng ký khóa học, dịch vụ hoặc mở tài khoản giao dịch qua các liên kết của Nhà Trade Học.
+            </p>
+            <p class="mt-6 text-xs uppercase tracking-widest text-gray-400 font-bold"><i class="fa-regular fa-calendar mr-2 text-trade-yellow"></i>Hiệu lực từ ngày 07/11/2026 · Cập nhật lần cuối: 07/11/2026</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+            <!-- Mục lục -->
+            <aside class="lg:col-span-4 xl:col-span-3">
+                <div class="lg:sticky lg:top-28 bg-white border border-gray-200 p-5">
+                    <p class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-3">Mục lục</p>
+                    <nav class="toc space-y-1 text-sm" aria-label="Mục lục điều khoản">
+                        <a href="#dk-1" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">1. Chấp thuận điều khoản</a>
+                        <a href="#dk-2" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">2. Định nghĩa</a>
+                        <a href="#dk-3" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">3. Phạm vi dịch vụ</a>
+                        <a href="#dk-4" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">4. Không phải tư vấn đầu tư</a>
+                        <a href="#dk-5" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">5. Cảnh báo rủi ro</a>
+                        <a href="#dk-6" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">6. Đối tác &amp; hoàn phí</a>
+                        <a href="#dk-7" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">7. Khóa học, học phí &amp; ưu đãi</a>
+                        <a href="#dk-8" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">8. Nghĩa vụ người dùng</a>
+                        <a href="#dk-9" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">9. Sở hữu trí tuệ</a>
+                        <a href="#dk-10" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">10. Dữ liệu cá nhân &amp; cookie</a>
+                        <a href="#dk-11" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">11. Giới hạn trách nhiệm</a>
+                        <a href="#dk-12" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">12. Thay đổi điều khoản</a>
+                        <a href="#dk-13" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">13. Luật áp dụng</a>
+                        <a href="#dk-14" class="block px-3 py-1.5 border-l-2 border-transparent text-gray-600 hover:text-trade-blue hover:border-trade-yellow">14. Liên hệ</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Nội dung -->
+            <article class="terms lg:col-span-8 xl:col-span-9 bg-white border border-gray-200 p-6 md:p-12 space-y-12">
+
+                <!-- Tóm tắt rủi ro -->
+                <div class="border-2 border-trade-blue bg-trade-yellow/20 p-5 md:p-6 shadow-[4px_4px_0px_0px_#00167c]">
+                    <p class="font-black text-trade-blue uppercase tracking-wide mb-2"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Tóm tắt quan trọng</p>
+                    <p class="!mb-0 text-sm !text-gray-700">Nhà Trade Học cung cấp <strong>nội dung giáo dục và công cụ tham khảo</strong>, không phải sàn giao dịch hay đơn vị tư vấn đầu tư. Giao dịch Forex, vàng, tài sản mã hóa, chứng khoán và các sản phẩm có đòn bẩy tiềm ẩn <strong>rủi ro mất một phần hoặc toàn bộ vốn</strong>. Bạn tự chịu trách nhiệm với mọi quyết định giao dịch của mình.</p>
+                </div>
+
+                <section id="dk-1">
+                    <h2><span class="num">01</span> Chấp thuận điều khoản</h2>
+                    <p>Website Nhà Trade Học (sau đây gọi là <strong>"Website"</strong>) do Nhà Trade Học (<strong>"chúng tôi"</strong>) vận hành. Bằng việc truy cập, sử dụng Website hoặc đăng ký bất kỳ dịch vụ nào, bạn xác nhận đã đọc, hiểu và đồng ý với Điều khoản sử dụng này. Nếu không đồng ý, vui lòng ngừng sử dụng Website.</p>
+                    <p>Để đăng ký khóa học, dịch vụ hoặc mở tài khoản giao dịch qua các liên kết trên Website, bạn cần đủ 18 tuổi và có đầy đủ năng lực hành vi dân sự theo quy định pháp luật.</p>
+                </section>
+
+                <section id="dk-2">
+                    <h2><span class="num">02</span> Định nghĩa</h2>
+                    <ul>
+                        <li><strong>Dịch vụ:</strong> khóa học Đào tạo Thực chiến, Tín hiệu VIP, Scalping Tool, Copy Trade, chương trình Hoàn phí (Backcom), báo cáo thị trường và các nội dung kiến thức trên Website.</li>
+                        <li><strong>Đối tác:</strong> các tổ chức bên thứ ba cung cấp dịch vụ giao dịch mà Website có liên kết giới thiệu, hiện gồm Exness, Binance và SSI.</li>
+                        <li><strong>Người dùng / bạn:</strong> cá nhân truy cập Website hoặc sử dụng Dịch vụ.</li>
+                        <li><strong>Học viên:</strong> Người dùng đã đăng ký và được xác nhận tham gia khóa học.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-3">
+                    <h2><span class="num">03</span> Phạm vi dịch vụ</h2>
+                    <p>Nhà Trade Học cung cấp nội dung giáo dục, đào tạo và công cụ tham khảo về thị trường tài chính (ngoại hối, vàng, tài sản mã hóa, chứng khoán).</p>
+                    <p>Chúng tôi <strong>không phải</strong> là sàn giao dịch, công ty chứng khoán, tổ chức môi giới hay đơn vị quản lý quỹ; <strong>không nhận tiền ủy thác đầu tư</strong>, không giữ tiền giao dịch của bạn và không trực tiếp thực hiện giao dịch thay bạn.</p>
+                </section>
+
+                <section id="dk-4">
+                    <h2><span class="num">04</span> Không phải tư vấn đầu tư</h2>
+                    <p>Mọi nội dung trên Website và các kênh của Nhà Trade Học (bài viết, báo cáo, tín hiệu, chỉ báo, bài giảng, bình luận trong cộng đồng) chỉ nhằm mục đích <strong>giáo dục và tham khảo</strong>. Đây không phải là khuyến nghị mua/bán, lời mời chào hay tư vấn đầu tư, tài chính, pháp lý hoặc thuế được cá nhân hóa cho bạn.</p>
+                    <p>Kết quả trong quá khứ, bao gồm số liệu hiệu suất và biểu đồ minh họa, <strong>không bảo đảm</strong> kết quả trong tương lai.</p>
+                </section>
+
+                <section id="dk-5">
+                    <h2><span class="num">05</span> Cảnh báo rủi ro</h2>
+                    <ul>
+                        <li>Giao dịch sản phẩm có đòn bẩy (Forex, CFD, hợp đồng tương lai, tài sản mã hóa) có mức rủi ro cao; bạn có thể mất một phần hoặc toàn bộ số vốn đã nạp.</li>
+                        <li>Giá tài sản mã hóa biến động rất mạnh và có thể không được bảo vệ như các tài sản tài chính truyền thống tại nơi bạn cư trú.</li>
+                        <li>Tín hiệu, Scalping Tool và Copy Trade là công cụ hỗ trợ; chúng có thể sai lệch, chậm trễ hoặc gián đoạn do lỗi kỹ thuật, đường truyền hoặc biến động thị trường.</li>
+                        <li>Chỉ giao dịch bằng số tiền bạn chấp nhận mất. Hãy cân nhắc tình hình tài chính, kinh nghiệm, khẩu vị rủi ro và tham vấn chuyên gia độc lập khi cần.</li>
+                        <li>Bạn có trách nhiệm tự tìm hiểu và tuân thủ quy định pháp luật nơi bạn cư trú về việc tham gia giao dịch ngoại hối, tài sản mã hóa và sử dụng dịch vụ của tổ chức nước ngoài.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-6">
+                    <h2><span class="num">06</span> Liên kết đối tác, mã giới thiệu &amp; hoàn phí</h2>
+                    <ul>
+                        <li>Website có chứa liên kết và mã giới thiệu (partner / referral code) của các Đối tác. Khi bạn mở tài khoản qua các liên kết này, Nhà Trade Học có thể nhận hoa hồng giới thiệu từ Đối tác; một phần được chia lại cho bạn theo chương trình <a href="hoan-phi.html" class="text-trade-blue font-bold underline underline-offset-2">Hoàn phí</a>.</li>
+                        <li>Việc mở và sử dụng tài khoản tại Đối tác chịu sự điều chỉnh của điều khoản và chính sách riêng của Đối tác. Nhà Trade Học không kiểm soát và không chịu trách nhiệm về hoạt động, sự cố, việc nạp/rút tiền hay tình trạng pháp lý của Đối tác.</li>
+                        <li>Mức hoàn phí có thể thay đổi theo chính sách của Đối tác và sẽ được cập nhật trên Website.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-7">
+                    <h2><span class="num">07</span> Khóa học, học phí &amp; ưu đãi</h2>
+                    <ul>
+                        <li>Học phí, lịch khai giảng và hình thức thanh toán được công bố tại <a href="khoa-hoc.html" class="text-trade-blue font-bold underline underline-offset-2">trang Khóa học</a> tại thời điểm đăng ký. Việc đăng ký chỉ được xác nhận khi Nhà Trade Học thông báo đã nhận đủ học phí.</li>
+                        <li>Các chương trình ưu đãi (Flash Sale, mã giảm giá, ưu đãi mở tài khoản qua Đối tác…) có điều kiện và thời hạn riêng, <strong>không cộng dồn</strong> và không quy đổi thành tiền, trừ khi có thông báo khác.</li>
+                        <li>Với ưu đãi mở tài khoản qua Đối tác: tài khoản phải được mở mới bằng liên kết hoặc mã đối tác của Nhà Trade Học và đối chiếu được trong hệ thống Đối tác. Chúng tôi có quyền từ chối hoặc thu hồi ưu đãi nếu thông tin không chính xác hoặc có dấu hiệu gian lận.</li>
+                        <li>Việc bảo lưu, đổi lịch học hoặc hoàn học phí (nếu có) được thỏa thuận cụ thể với Học viên khi đăng ký.</li>
+                        <li>Học liệu (slide, video, tài liệu, chỉ báo) chỉ dành cho Học viên sử dụng cá nhân; nghiêm cấm chia sẻ, sao chép hoặc bán lại.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-8">
+                    <h2><span class="num">08</span> Nghĩa vụ của người dùng</h2>
+                    <p>Khi sử dụng Website và Dịch vụ, bạn cam kết không:</p>
+                    <ul>
+                        <li>Sử dụng Website cho mục đích trái pháp luật, lừa đảo hoặc gây hại cho người khác.</li>
+                        <li>Mạo danh Nhà Trade Học, đội ngũ của chúng tôi hoặc Đối tác.</li>
+                        <li>Tấn công, can thiệp hệ thống, thu thập dữ liệu tự động gây ảnh hưởng đến hoạt động của Website.</li>
+                        <li>Đăng tải nội dung vi phạm pháp luật, xúc phạm, quảng cáo trái phép (spam) trong cộng đồng.</li>
+                        <li>Cung cấp thông tin sai lệch khi đăng ký khóa học hoặc kích hoạt ưu đãi.</li>
+                    </ul>
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 text-sm text-gray-700">
+                        <p class="!mb-0"><i class="fa-solid fa-shield-halved text-red-500 mr-2"></i><strong>Cảnh báo mạo danh:</strong> Nhà Trade Học <strong>không bao giờ</strong> yêu cầu bạn cung cấp mật khẩu, mã OTP, khóa bí mật (private key / seed phrase) hay chuyển tiền để "giao dịch hộ". Chỉ thanh toán học phí theo thông tin hiển thị chính thức trên Website.</p>
+                    </div>
+                </section>
+
+                <section id="dk-9">
+                    <h2><span class="num">09</span> Quyền sở hữu trí tuệ</h2>
+                    <p>Toàn bộ nội dung trên Website, bao gồm thương hiệu "Nhà Trade Học", bài viết, báo cáo, hình ảnh, video, slide bài giảng và chỉ báo, thuộc quyền sở hữu của Nhà Trade Học hoặc bên cấp phép hợp pháp.</p>
+                    <p>Bạn được xem và trích dẫn ngắn có ghi rõ nguồn cho mục đích phi thương mại. Mọi hình thức sao chép, phân phối, chỉnh sửa khác cần có sự đồng ý bằng văn bản của Nhà Trade Học.</p>
+                </section>
+
+                <section id="dk-10">
+                    <h2><span class="num">10</span> Dữ liệu cá nhân &amp; cookie</h2>
+                    <ul>
+                        <li><strong>Thông tin thu thập:</strong> họ tên, số điện thoại, tài khoản Telegram khi bạn liên hệ hoặc đăng ký; ID tài khoản giao dịch khi bạn kích hoạt ưu đãi hoặc đăng ký hoàn phí; dữ liệu truy cập ẩn danh qua Google Analytics.</li>
+                        <li><strong>Mục đích:</strong> xác nhận đăng ký, đối chiếu ưu đãi và hoàn phí với Đối tác, hỗ trợ Học viên và cải thiện Website.</li>
+                        <li><strong>Cookie &amp; bộ nhớ trình duyệt:</strong> Website dùng cookie và bộ nhớ trình duyệt (localStorage) để ghi nhớ trạng thái ưu đãi, thời gian khuyến mãi và thống kê truy cập. Bạn có thể xóa dữ liệu này trong phần cài đặt trình duyệt.</li>
+                        <li>Chúng tôi <strong>không bán</strong> dữ liệu cá nhân của bạn. Dữ liệu chỉ được chia sẻ với Đối tác ở mức cần thiết để đối chiếu tài khoản, hoặc khi cơ quan nhà nước có thẩm quyền yêu cầu theo quy định pháp luật.</li>
+                        <li>Bạn có quyền yêu cầu xem, chỉnh sửa hoặc xóa dữ liệu cá nhân của mình bằng cách liên hệ email tại Mục 14.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-11">
+                    <h2><span class="num">11</span> Giới hạn trách nhiệm</h2>
+                    <p>Website và Dịch vụ được cung cấp trên cơ sở "nguyên trạng" và "sẵn có". Trong phạm vi pháp luật cho phép, Nhà Trade Học không chịu trách nhiệm đối với:</p>
+                    <ul>
+                        <li>Thua lỗ phát sinh từ quyết định giao dịch của bạn.</li>
+                        <li>Thiệt hại phát sinh từ việc sử dụng hoặc không thể sử dụng Website, tín hiệu, chỉ báo và công cụ.</li>
+                        <li>Sự cố, gián đoạn, mất dữ liệu do lỗi kỹ thuật, đường truyền hoặc do bên thứ ba.</li>
+                        <li>Nội dung, sản phẩm và hoạt động của website hoặc Đối tác bên thứ ba.</li>
+                    </ul>
+                </section>
+
+                <section id="dk-12">
+                    <h2><span class="num">12</span> Thay đổi điều khoản</h2>
+                    <p>Chúng tôi có thể cập nhật Điều khoản này khi cần thiết. Phiên bản mới có hiệu lực kể từ thời điểm đăng tải trên Website; ngày cập nhật được ghi ở đầu trang. Việc bạn tiếp tục sử dụng Website sau thời điểm đó đồng nghĩa với việc chấp nhận các thay đổi.</p>
+                </section>
+
+                <section id="dk-13">
+                    <h2><span class="num">13</span> Luật áp dụng &amp; giải quyết tranh chấp</h2>
+                    <p>Điều khoản này được điều chỉnh bởi pháp luật nước Cộng hòa xã hội chủ nghĩa Việt Nam. Tranh chấp phát sinh trước hết được giải quyết thông qua thương lượng, hòa giải; nếu không thành, một trong các bên có quyền đưa vụ việc ra Tòa án có thẩm quyền tại Việt Nam theo quy định pháp luật.</p>
+                </section>
+
+                <section id="dk-14">
+                    <h2><span class="num">14</span> Liên hệ</h2>
+                    <div class="grid sm:grid-cols-3 gap-4">
+                        <a href="mailto:contact.nhatradehoc@gmail.com" class="border border-gray-200 p-4 hover:border-trade-blue transition-colors">
+                            <i class="fa-solid fa-envelope text-trade-blue mb-2"></i>
+                            <p class="!mb-0 text-xs font-bold uppercase tracking-widest text-gray-400">Email</p>
+                            <p class="!mb-0 text-sm font-bold text-trade-blue break-all">contact.nhatradehoc@gmail.com</p>
+                        </a>
+                        <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="border border-gray-200 p-4 hover:border-trade-blue transition-colors">
+                            <i class="fa-brands fa-telegram text-trade-blue mb-2"></i>
+                            <p class="!mb-0 text-xs font-bold uppercase tracking-widest text-gray-400">Telegram</p>
+                            <p class="!mb-0 text-sm font-bold text-trade-blue">Cộng đồng Nhà Trade Học</p>
+                        </a>
+                        <div class="border border-gray-200 p-4">
+                            <i class="fa-solid fa-location-dot text-trade-blue mb-2"></i>
+                            <p class="!mb-0 text-xs font-bold uppercase tracking-widest text-gray-400">Địa chỉ</p>
+                            <p class="!mb-0 text-sm font-bold text-trade-blue">Hà Nội, Việt Nam</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#000d4a] border-t border-white/10 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div class="lg:col-span-2 pr-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed max-w-md text-sm border-l border-white/20 pl-4">
+                        Chúng tôi không hứa hẹn làm giàu nhanh chóng. Chúng tôi cung cấp kiến thức chuẩn, công cụ đúng và tư duy kỷ luật.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cosmic.prophet259/" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-facebook-f text-lg"></i></a>
+                        <a href="https://www.tiktok.com/@nha_trade_hoc_academy" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                        <a href="https://www.youtube.com/@NhaTradeHoc" target="_blank" class="w-12 h-12 border border-white/20 flex items-center justify-center text-white hover:border-trade-yellow hover:text-trade-blue hover:bg-trade-yellow transition-all duration-300"><i class="fa-brands fa-youtube text-lg"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
+                    <ul class="space-y-4">
+                        <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Cơ chế hoàn phí</a></li>
+                        <li><a href="index.html#khoa-hoc" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium">Cộng đồng Telegram</a></li>
+                        <li><a href="dieu-khoan.html" class="text-trade-yellow text-sm font-medium">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên hệ</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start text-sm text-gray-400"><i class="fa-solid fa-envelope mt-1 mr-3 text-trade-yellow"></i>contact.nhatradehoc@gmail.com</li>
+                        <li class="flex items-start text-sm text-gray-400"><i class="fa-solid fa-location-dot mt-1 mr-3 text-trade-yellow"></i>Hà Nội, Việt Nam</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center opacity-50 hover:opacity-100 transition-opacity">
+                <p class="text-gray-500 text-xs mb-4 md:mb-0 uppercase tracking-widest">© 2026 Nhà Trade Học. All rights reserved.</p>
+                <p class="text-gray-600 text-xs italic">Giao dịch tài chính tiềm ẩn rủi ro.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tô sáng mục đang đọc trong mục lục
+        (function() {
+            const links = [...document.querySelectorAll('.toc a')];
+            const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    links.forEach(a => a.classList.remove('active'));
+                    const a = map.get(e.target.id);
+                    if (a) a.classList.add('active');
+                });
+            }, { rootMargin: '-30% 0px -60% 0px' });
+            document.querySelectorAll('.terms section[id]').forEach(s => io.observe(s));
+        })();
+    </script>
+    <script data-nth-header-js>(function(){var b=document.getElementById('mobile-menu-btn'),m=document.getElementById('mobile-menu');if(!b||!m)return;b.addEventListener('click',function(){var h=m.classList.toggle('hidden');b.setAttribute('aria-expanded',String(!h));});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');b.setAttribute('aria-expanded','false');});});})();</script>
+</body>
+</html>

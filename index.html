@@ -56,6 +56,9 @@
         }
     </script>
     <style>
+        html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 5rem; }
+
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #00167c; }
@@ -132,47 +135,32 @@
 </head>
 <body class="bg-trade-blue text-trade-white font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue overflow-x-hidden relative">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-trade-blue/80 backdrop-blur-md border-b border-white/10 transition-all duration-300 shadow-2xl" id="navbar">
+    <!-- Navigation (header đồng bộ toàn site) -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl" data-nth-header="v2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <!-- Logo with Link -->
-                <a href="index.html" class="flex-shrink-0 flex items-center">
-                    <span class="font-extrabold text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                <a href="#" class="flex-shrink-0 flex items-center">
+                    <span class="font-extrabold text-xl sm:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
                 </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#hoan-phi" class="text-sm uppercase tracking-widest hover:text-trade-yellow transition-colors duration-300 relative group">
-                        Hoàn Phí
-                        <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-trade-yellow transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#dich-vu" class="text-sm uppercase tracking-widest hover:text-trade-yellow transition-colors duration-300 relative group">
-                        Dịch Vụ
-                        <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-trade-yellow transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest hover:text-trade-yellow transition-colors duration-300 relative group">
-                        Kiến Thức
-                        <span class="absolute -bottom-2 left-0 w-0 h-0.5 bg-trade-yellow transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="https://t.me/nhatradehocspace" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-brutal hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-                        Tham Gia
-                    </a>
+                <div class="hidden lg:flex space-x-10 items-center">
+                    <a href="#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Hoàn Phí<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="#khoa-hoc" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Khóa Học<span class="absolute -top-1.5 -right-3 w-2 h-2 bg-trade-yellow rounded-full animate-pulse"></span><span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Dịch Vụ<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Kiến Thức<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"><i class="fa-brands fa-telegram mr-2"></i>Cộng Đồng</a>
                 </div>
-
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-trade-yellow hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+                <button id="mobile-menu-btn" type="button" aria-label="Mở menu" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden text-trade-yellow hover:text-white focus:outline-none p-2 -mr-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-trade-blue border-b border-white/10">
-            <div class="px-4 pt-2 pb-6 space-y-2">
-                <a href="#hoan-phi" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Hoàn Phí</a>
-                <a href="#dich-vu" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Dịch Vụ</a>
-                <a href="kien-thuc.html" class="block px-3 py-2 text-base font-medium hover:text-trade-yellow border-l-2 border-transparent hover:border-trade-yellow pl-4">Kiến Thức</a>
-                <a href="https://t.me/nhatradehocspace" class="block mt-4 px-3 py-2 text-center border border-trade-yellow text-trade-yellow font-bold uppercase">Tham Gia Cộng Đồng</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-trade-blue border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#hoan-phi" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Hoàn Phí</a>
+                <a href="#khoa-hoc" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Khóa Học <span class="ml-2 text-[10px] font-black bg-trade-yellow text-trade-blue px-1.5 py-0.5 align-middle">HOT</span></a>
+                <a href="#dich-vu" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Dịch Vụ</a>
+                <a href="kien-thuc.html" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Kiến Thức</a>
+                <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="block mt-4 px-3 py-3 text-center border border-trade-yellow text-trade-yellow font-bold uppercase"><i class="fa-brands fa-telegram mr-2"></i>Tham Gia Cộng Đồng</a>
             </div>
         </div>
     </nav>
@@ -313,6 +301,97 @@
         </div>
     </section>
 
+    <!-- Section 2: Khóa học Đào tạo Thực chiến (sector nổi bật) -->
+    <section id="khoa-hoc" class="relative py-24 lg:py-32 bg-[#000d4a] border-y-4 border-trade-yellow overflow-hidden">
+        <div class="absolute inset-0 bg-grid opacity-70 pointer-events-none"></div>
+        <div class="absolute -top-40 -left-40 w-[28rem] h-[28rem] bg-trade-yellow/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 right-0 w-96 h-96 bg-trade-light-blue/30 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <!-- Nội dung chính -->
+                <div class="lg:col-span-7 reveal-on-scroll effect-slide-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase tracking-widest mb-6">
+                        <i class="fa-solid fa-graduation-cap"></i> Chương trình đào tạo độc quyền
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-black text-white uppercase leading-[1.1] tracking-tight mb-8">
+                        Đào Tạo<br>Thực Chiến<br>
+                        <span class="relative inline-block text-trade-blue bg-trade-yellow px-4 py-1 mt-3 transform -skew-x-12 shadow-lg">Pro Trader</span>
+                    </h2>
+                    <p class="text-lg text-gray-200 italic leading-relaxed border-l-4 border-trade-yellow pl-5 mb-10 max-w-2xl">
+                        "Không lý thuyết suông. Chúng tôi đào tạo bạn trở thành một "Hunter" trên thị trường từ A-Z"
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-10 max-w-2xl">
+                        <div class="border border-white/15 bg-white/5 p-4 sm:p-5 backdrop-blur-sm hover:border-trade-yellow transition-colors">
+                            <div class="text-3xl sm:text-4xl font-black text-trade-yellow mb-1">08</div>
+                            <p class="text-xs sm:text-sm text-gray-300 font-bold">Chủ đề thực chiến<br class="sm:hidden"> · 90+ phút/buổi</p>
+                        </div>
+                        <div class="border border-white/15 bg-white/5 p-4 sm:p-5 backdrop-blur-sm hover:border-trade-yellow transition-colors">
+                            <div class="text-3xl sm:text-4xl font-black text-trade-yellow mb-1">15+</div>
+                            <p class="text-xs sm:text-sm text-gray-300 font-bold">Thế đánh trong mọi điều kiện thị trường</p>
+                        </div>
+                        <div class="border border-white/15 bg-white/5 p-4 sm:p-5 backdrop-blur-sm hover:border-trade-yellow transition-colors">
+                            <div class="text-3xl sm:text-4xl font-black text-trade-yellow mb-1">1-1</div>
+                            <p class="text-xs sm:text-sm text-gray-300 font-bold">Coaching cá nhân hóa theo lịch của bạn</p>
+                        </div>
+                        <div class="border border-white/15 bg-white/5 p-4 sm:p-5 backdrop-blur-sm hover:border-trade-yellow transition-colors">
+                            <div class="text-3xl sm:text-4xl font-black text-trade-yellow mb-1"><i class="fa-solid fa-infinity"></i></div>
+                            <p class="text-xs sm:text-sm text-gray-300 font-bold">Bảo hành kiến thức trọn đời</p>
+                        </div>
+                    </div>
+
+                    <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-white mb-10 max-w-2xl">
+                        <li class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> Thông hiểu nguyên lý vận động của thị trường</li>
+                        <li class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> Tư duy đúng đắn trong đầu tư, giao dịch</li>
+                        <li class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> Đọc vị dòng tiền lớn, theo chân người khổng lồ</li>
+                        <li class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> Xây dựng hệ thống giao dịch cá nhân</li>
+                    </ul>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="khoa-hoc.html" class="px-8 py-4 bg-trade-yellow text-trade-blue font-black text-sm uppercase tracking-widest text-center shadow-[4px_4px_0px_0px_rgba(255,255,255,0.25)] hover:bg-white hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                            Xem chi tiết khóa học <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="khoa-hoc.html#uu-dai" class="px-8 py-4 border border-trade-yellow text-trade-yellow font-bold text-sm uppercase tracking-widest text-center hover:bg-trade-yellow hover:text-trade-blue transition-all">
+                            <i class="fa-solid fa-gift mr-2"></i> Nhận ưu đãi -25%
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Thẻ lộ trình + lịch khai giảng -->
+                <div class="lg:col-span-5 reveal-on-scroll effect-slide-right">
+                    <div class="bg-white text-trade-blue border-2 border-trade-yellow shadow-[8px_8px_0px_0px_#ffdf2b]">
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                            <h3 class="font-black uppercase tracking-wider">Lộ trình 08 buổi</h3>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500"><i class="fa-solid fa-laptop mr-1"></i> Online 1-1</span>
+                        </div>
+                        <ol class="divide-y divide-gray-100 text-sm">
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">01</span><span class="font-bold">Nguyên lý vận động &amp; Thành phần thị trường</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">02</span><span class="font-bold">Sự kiện thị trường &amp; Cách tạo sóng</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">03</span><span class="font-bold">Tư duy thực chiến (Mindset)</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">04</span><span class="font-bold">Thiết lập vị thế (Setup)</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">05</span><span class="font-bold">Giao dịch với Xu hướng</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5"><span class="font-black text-gray-300 w-6">06</span><span class="font-bold">Giao dịch Thị trường Đi ngang</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5 bg-trade-yellow/10"><span class="font-black text-trade-blue w-6">07</span><span class="font-bold">Kỹ thuật nâng cao (Hedging, DCA)</span><span class="ml-auto text-[9px] font-black uppercase bg-trade-blue text-trade-yellow px-1.5 py-0.5">Nâng cao</span></li>
+                            <li class="flex items-center gap-4 px-6 py-2.5 bg-trade-yellow/10"><span class="font-black text-trade-blue w-6">08</span><span class="font-bold">Quy trình giao dịch Intraday</span><span class="ml-auto text-[9px] font-black uppercase bg-trade-blue text-trade-yellow px-1.5 py-0.5">Nâng cao</span></li>
+                        </ol>
+                        <div class="bg-gray-50 border-t-2 border-trade-blue px-6 py-5 space-y-3">
+                            <p class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-500"><i class="fa-regular fa-calendar-check mr-1"></i> Lịch khai giảng</p>
+                            <div class="flex items-center justify-between opacity-60">
+                                <span class="font-bold text-gray-500 uppercase text-sm">Tháng <span class="js-intake-cur">--/----</span></span>
+                                <span class="bg-red-600 text-white text-[10px] font-bold px-2 py-1 uppercase">Đã Full</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-black text-trade-blue uppercase text-sm">Tháng <span class="js-intake-next">--/----</span></span>
+                                <span class="bg-green-600 text-white text-[10px] font-bold px-2 py-1 uppercase animate-pulse">Mở đăng ký</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Section 3: Dịch vụ -->
     <section id="dich-vu" class="py-24 bg-trade-blue border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -322,32 +401,8 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Training Service -->
-                <div class="group border border-white/10 hover-lift bg-white/5 p-8 flex flex-col h-full relative overflow-hidden reveal-on-scroll effect-zoom-up shadow-xl backdrop-blur-md">
-                    <div class="flex justify-between items-start mb-6 w-full">
-                        <div class="w-16 h-16 border-2 border-trade-yellow flex items-center justify-center group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors duration-300">
-                            <i class="fa-solid fa-graduation-cap text-3xl text-white group-hover:text-trade-blue"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white uppercase tracking-tight whitespace-nowrap text-right">Đào Tạo <br>Thực Chiến</h3>
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-white leading-relaxed text-sm italic border-l-4 border-trade-yellow pl-4">"Không lý thuyết suông. Chúng tôi đào tạo bạn trở thành một "Hunter" trên thị trường từ A-Z"</p>
-                    </div>
-                    <div class="space-y-3 mb-8 pl-2 text-xs text-white">
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">08 chủ đề</span> dưới góc nhìn thực chiến (90+ phút/buổi)</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">15+ thế đánh</span> trong mọi điều kiện thị trường</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Thông hiểu về nguyên lý vận động của thị trường</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Tư duy đúng đắn trong đầu tư, giao dịch</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Đọc vị dòng tiền lớn, theo chân người khồng lồ</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Xây dựng Hệ thống giao dịch cá nhân</span></div>
-                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span><span class="font-bold text-trade-yellow">Bảo hành kiến thức trọn đời</span> & <span class="font-bold text-trade-yellow">Coaching 1-1</span></span></div>
-                    </div>
-                    <!-- UPDATED: Button "Tìm hiểu thêm" links to "khoa-hoc.html" -->
-                    <a href="khoa-hoc.html" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Tìm hiểu thêm</a>
-                </div>
-
                 <!-- Signal Service & Chart -->
-                <div class="group border border-white/10 hover-lift bg-white/5 p-8 flex flex-col h-full reveal-on-scroll effect-zoom-up delay-200 shadow-xl backdrop-blur-md">
+                <div class="group border border-white/10 hover-lift bg-white/5 p-8 flex flex-col h-full reveal-on-scroll effect-zoom-up shadow-xl backdrop-blur-md">
                     <div class="flex justify-between items-start mb-8">
                         <div class="w-16 h-16 border-2 border-trade-yellow flex items-center justify-center group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors duration-300">
                             <i class="fa-solid fa-bolt text-3xl text-white group-hover:text-trade-blue"></i>
@@ -368,6 +423,35 @@
                         <p class="text-white mt-4 text-xs italic">"Con số không biết nói dối. Hãy để lợi nhuận chứng minh hiệu quả."</p>
                     </div>
                     <a href="https://t.me/nhatradehocspace" target="_blank" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Nhận Tín Hiệu</a>
+                </div>
+
+                <!-- SCALPING TOOL: chỉ báo hỗ trợ mua/bán ngắn hạn cho intraday -->
+                <div class="group border border-white/10 hover-lift bg-white/5 p-8 flex flex-col h-full reveal-on-scroll effect-zoom-up delay-200 shadow-xl backdrop-blur-md">
+                    <div class="flex justify-between items-start mb-8">
+                        <div class="w-16 h-16 border-2 border-trade-yellow flex items-center justify-center group-hover:bg-trade-yellow group-hover:text-trade-blue transition-colors duration-300">
+                            <i class="fa-solid fa-crosshairs text-3xl text-white group-hover:text-trade-blue"></i>
+                        </div>
+                        <div class="text-right">
+                            <h3 class="text-2xl font-bold text-white uppercase mb-1">Scalping Tool</h3>
+                            <p class="text-[10px] text-trade-yellow uppercase tracking-widest font-bold">Intraday Indicator</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-white text-[10px] uppercase tracking-widest mb-4 font-bold text-right">Minh họa tín hiệu Buy / Sell</p>
+                        <div class="border border-white/10 bg-white/5 p-2 shadow-inner backdrop-blur-sm relative h-40">
+                            <canvas id="scalpingChart" class="w-full h-full block" aria-label="Minh họa chỉ báo Scalping Tool" role="img"></canvas>
+                        </div>
+                    </div>
+                    <div class="mb-6 border-l-4 border-trade-yellow pl-4">
+                        <p class="text-white leading-relaxed text-sm italic">"Chỉ báo hỗ trợ ra quyết định Mua/Bán ngắn hạn, thiết kế riêng cho giao dịch trong ngày (Intraday)."</p>
+                    </div>
+                    <div class="space-y-3 mb-8 pl-2 text-xs text-white">
+                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Tín hiệu Mua/Bán hiển thị trực quan trên biểu đồ</span></div>
+                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Tối ưu cho khung thời gian ngắn, lướt sóng trong ngày</span></div>
+                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Hỗ trợ xác định điểm vào &amp; thoát lệnh</span></div>
+                        <div class="flex items-start"><span class="text-trade-yellow mr-2">➤</span> <span>Độc quyền cho học viên <a href="#khoa-hoc" class="font-bold text-trade-yellow underline underline-offset-2">Đào tạo Thực chiến</a></span></div>
+                    </div>
+                    <a href="https://t.me/mmto1b?text=Ch%C3%A0o%20Admin%2C%20t%C3%B4i%20mu%E1%BB%91n%20t%C3%ACm%20hi%E1%BB%83u%20v%E1%BB%81%20Scalping%20Tool" target="_blank" rel="noopener" class="mt-auto text-center w-full py-4 bg-trade-yellow text-trade-blue hover:bg-white hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all font-bold text-sm uppercase tracking-[0.2em]">Nhận Scalping Tool</a>
                 </div>
 
                 <!-- COPY TRADE SERVICE (Updated) -->
@@ -550,9 +634,9 @@
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
                     <ul class="space-y-4">
                         <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
-                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#khoa-hoc" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
                         <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                        <li><a href="dieu-khoan.html" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
                     </ul>
                 </div>
 
@@ -633,10 +717,6 @@
 
     <!-- Scripts -->
     <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -922,6 +1002,111 @@
             setInterval(createBubble, 600);
         })();
 
+        // --- LỊCH KHAI GIẢNG: tháng hiện tại ĐÃ FULL, tháng sau MỞ ĐĂNG KÝ (theo giờ Việt Nam) ---
+        (function() {
+            let y, m;
+            try {
+                const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: 'numeric' }).formatToParts(new Date());
+                y = +p.find(x => x.type === 'year').value;
+                m = +p.find(x => x.type === 'month').value;
+            } catch (e) {
+                const d = new Date(); y = d.getFullYear(); m = d.getMonth() + 1;
+            }
+            const pad = n => String(n).padStart(2, '0');
+            const ny = m === 12 ? y + 1 : y, nm = m === 12 ? 1 : m + 1;
+            document.querySelectorAll('.js-intake-cur').forEach(el => el.textContent = `${pad(m)}/${y}`);
+            document.querySelectorAll('.js-intake-next').forEach(el => el.textContent = `${pad(nm)}/${ny}`);
+        })();
+
+        // --- SCALPING TOOL: biểu đồ minh họa tín hiệu Buy/Sell (EMA nhanh cắt EMA chậm) ---
+        (function() {
+            const canvas = document.getElementById('scalpingChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const STEP = 9; // px mỗi nến
+            const kFast = 2 / (5 + 1), kSlow = 2 / (13 + 1);
+            let W = 0, H = 0, t = 0, price = 100, fast = 100, slow = 100;
+            let candles = [];
+
+            function nextCandle() {
+                t++;
+                const drift = Math.sin(t / 4.5) * 1.1 + Math.sin(t / 1.7) * 0.3;
+                const open = price;
+                const close = open + drift + (Math.random() - 0.5) * 1.6;
+                const high = Math.max(open, close) + Math.random() * 0.9;
+                const low = Math.min(open, close) - Math.random() * 0.9;
+                const prevDiff = fast - slow;
+                fast = close * kFast + fast * (1 - kFast);
+                slow = close * kSlow + slow * (1 - kSlow);
+                const diff = fast - slow;
+                const signal = prevDiff <= 0 && diff > 0 ? 'buy' : (prevDiff >= 0 && diff < 0 ? 'sell' : null);
+                price = close;
+                return { open, close, high, low, fast, slow, signal };
+            }
+            for (let i = 0; i < 40; i++) nextCandle(); // làm "nóng" đường EMA
+
+            function marker(cx, cy, buy) {
+                ctx.fillStyle = buy ? '#22c55e' : '#ef4444';
+                ctx.beginPath();
+                if (buy) { ctx.moveTo(cx, cy); ctx.lineTo(cx - 5, cy + 7); ctx.lineTo(cx + 5, cy + 7); }
+                else { ctx.moveTo(cx, cy); ctx.lineTo(cx - 5, cy - 7); ctx.lineTo(cx + 5, cy - 7); }
+                ctx.closePath();
+                ctx.fill();
+                ctx.fillText(buy ? 'BUY' : 'SELL', cx, buy ? cy + 17 : cy - 10);
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                if (!candles.length) return;
+                let min = Infinity, max = -Infinity;
+                candles.forEach(c => { min = Math.min(min, c.low, c.slow); max = Math.max(max, c.high, c.slow); });
+                const pad = (max - min) * 0.3 || 1;
+                min -= pad; max += pad;
+                const y = v => H - ((v - min) / (max - min)) * H;
+                const x = i => W - (candles.length - i) * STEP + STEP / 2;
+
+                candles.forEach((c, i) => {
+                    const color = c.close >= c.open ? '#22c55e' : '#ef4444';
+                    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(x(i), y(c.high)); ctx.lineTo(x(i), y(c.low)); ctx.stroke();
+                    const top = y(Math.max(c.open, c.close));
+                    ctx.fillRect(x(i) - STEP * 0.3, top, STEP * 0.6, Math.max(1, Math.abs(y(c.open) - y(c.close))));
+                });
+                [['slow', 'rgba(255,255,255,0.45)'], ['fast', '#ffdf2b']].forEach(([key, color]) => {
+                    ctx.beginPath(); ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+                    candles.forEach((c, i) => i ? ctx.lineTo(x(i), y(c[key])) : ctx.moveTo(x(i), y(c[key])));
+                    ctx.stroke();
+                });
+                ctx.font = 'bold 9px Manrope, sans-serif';
+                ctx.textAlign = 'center';
+                candles.forEach((c, i) => {
+                    if (c.signal === 'buy') marker(x(i), y(c.low) + 6, true);
+                    if (c.signal === 'sell') marker(x(i), y(c.high) - 6, false);
+                });
+            }
+
+            function resize() {
+                const dpr = window.devicePixelRatio || 1;
+                W = canvas.clientWidth; H = canvas.clientHeight;
+                if (!W || !H) return;
+                canvas.width = W * dpr; canvas.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                const need = Math.ceil(W / STEP) + 1;
+                while (candles.length < need) candles.push(nextCandle());
+                while (candles.length > need) candles.shift();
+                draw();
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            setInterval(() => {
+                if (document.hidden || !W) return;
+                candles.push(nextCandle());
+                candles.shift();
+                draw();
+            }, 900);
+        })();
+
         // --- MODAL LOGIC ---
         const modal = document.getElementById('brokerModal');
         const modalContent = document.getElementById('modalContent');
@@ -1018,5 +1203,6 @@
             }
         });
     </script>
+    <script data-nth-header-js>(function(){var b=document.getElementById('mobile-menu-btn'),m=document.getElementById('mobile-menu');if(!b||!m)return;b.addEventListener('click',function(){var h=m.classList.toggle('hidden');b.setAttribute('aria-expanded',String(!h));});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');b.setAttribute('aria-expanded','false');});});})();</script>
 </body>
 </html>

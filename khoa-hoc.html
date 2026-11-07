@@ -57,21 +57,32 @@
 </head>
 <body class="bg-gray-50 text-trade-blue font-sans antialiased selection:bg-trade-yellow selection:text-trade-blue">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+    <!-- Navigation (header đồng bộ toàn site) -->
+    <nav id="navbar" class="fixed top-0 inset-x-0 w-full z-50 bg-trade-blue/90 backdrop-blur-md border-b border-white/10 shadow-2xl" data-nth-header="v2">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
-                <a href="index.html" class="flex-shrink-0 flex items-center group">
-                    <i class="fa-solid fa-arrow-left text-trade-yellow mr-3 group-hover:-translate-x-1 transition-transform"></i>
-                    <span class="font-extrabold text-xl md:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                    <span class="font-extrabold text-xl sm:text-2xl tracking-wider uppercase text-white">Nhà Trade Học</span>
                 </a>
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Hoàn Phí</a>
-                    <a href="index.html#kien-thuc" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors">Kiến Thức</a>
-                    <a href="https://t.me/mmto1b" target="_blank" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all font-bold text-sm uppercase">Đăng Ký Ngay</a>
+                <div class="hidden lg:flex space-x-10 items-center">
+                    <a href="index.html#hoan-phi" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Hoàn Phí<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="index.html#khoa-hoc" aria-current="page" class="text-sm uppercase tracking-widest text-trade-yellow transition-colors duration-300 relative group">Khóa Học<span class="absolute -top-1.5 -right-3 w-2 h-2 bg-trade-yellow rounded-full animate-pulse"></span><span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-full"></span></a>
+                    <a href="index.html#dich-vu" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Dịch Vụ<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="kien-thuc.html" class="text-sm uppercase tracking-widest text-white hover:text-trade-yellow transition-colors duration-300 relative group">Kiến Thức<span class="absolute -bottom-2 left-0 h-0.5 bg-trade-yellow transition-all duration-300 w-0 group-hover:w-full"></span></a>
+                    <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="px-6 py-2 border border-trade-yellow text-trade-yellow hover:bg-trade-yellow hover:text-trade-blue transition-all duration-300 font-bold text-sm uppercase shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"><i class="fa-brands fa-telegram mr-2"></i>Cộng Đồng</a>
                 </div>
-                <!-- Mobile Menu Button (Optional, added specifically for layout balance) -->
-                 <a href="https://t.me/mmto1b" target="_blank" class="md:hidden px-4 py-2 border border-trade-yellow text-trade-yellow text-xs font-bold uppercase rounded hover:bg-trade-yellow hover:text-trade-blue transition-all">Đăng Ký</a>
+                <button id="mobile-menu-btn" type="button" aria-label="Mở menu" aria-controls="mobile-menu" aria-expanded="false" class="lg:hidden text-trade-yellow hover:text-white focus:outline-none p-2 -mr-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-trade-blue border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html#hoan-phi" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Hoàn Phí</a>
+                <a href="index.html#khoa-hoc" aria-current="page" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-trade-yellow border-trade-yellow border-l-2 pl-4">Khóa Học <span class="ml-2 text-[10px] font-black bg-trade-yellow text-trade-blue px-1.5 py-0.5 align-middle">HOT</span></a>
+                <a href="index.html#dich-vu" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Dịch Vụ</a>
+                <a href="kien-thuc.html" class="block px-3 py-3 text-base font-bold uppercase tracking-wider text-white border-transparent hover:text-trade-yellow hover:border-trade-yellow border-l-2 pl-4">Kiến Thức</a>
+                <a href="https://t.me/nhatradehocspace" target="_blank" rel="noopener" class="block mt-4 px-3 py-3 text-center border border-trade-yellow text-trade-yellow font-bold uppercase"><i class="fa-brands fa-telegram mr-2"></i>Tham Gia Cộng Đồng</a>
             </div>
         </div>
     </nav>
@@ -250,20 +261,21 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <!-- Status -->
+                <!-- Tự động: tháng hiện tại luôn ĐÃ FULL, chỉ mở đăng ký tháng kế tiếp (giờ Việt Nam) -->
                 <div class="space-y-4">
                     <div class="bg-gray-100 p-4 border border-gray-200 opacity-60">
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-gray-500 uppercase">Tháng 05/2026</span>
+                            <span class="font-bold text-gray-500 uppercase">Tháng <span class="js-intake-cur">--/----</span></span>
                             <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 uppercase">Đã Full</span>
                         </div>
                         <p class="text-xs text-gray-400 mt-1">Đã kín lịch học viên.</p>
                     </div>
                     <div class="bg-green-50 p-4 border border-green-200">
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-trade-blue uppercase">Tháng 06/2026</span>
+                            <span class="font-bold text-trade-blue uppercase">Tháng <span class="js-intake-next">--/----</span></span>
                             <span class="bg-green-600 text-white text-xs font-bold px-2 py-1 uppercase animate-pulse">Mở đăng ký</span>
                         </div>
-                        <p class="text-xs text-green-700 mt-1 font-bold">Bắt đầu từ 01/06/2026</p>
+                        <p class="text-xs text-green-700 mt-1 font-bold">Khai giảng từ <span class="js-intake-next-start">--/--/----</span> đến <span class="js-intake-next-end">--/--/----</span></p>
                     </div>
                 </div>
 
@@ -283,7 +295,8 @@
             <div class="space-y-6">
                 <div>
                     <label class="block text-xs font-bold uppercase text-trade-blue mb-2">1. Chọn Ngày Bắt Đầu (Dự kiến)</label>
-                    <input type="date" id="startDate" min="2026-06-01" class="w-full p-3 border border-gray-300 focus:border-trade-blue focus:outline-none font-mono text-sm bg-gray-50">
+                    <input type="date" id="startDate" class="w-full p-3 border border-gray-300 focus:border-trade-blue focus:outline-none font-mono text-sm bg-gray-50">
+                    <p class="text-xs text-gray-500 mt-2"><i class="fa-solid fa-circle-info mr-1"></i> Hiện chỉ nhận đăng ký khai giảng trong tháng <strong class="js-intake-next">--/----</strong>.</p>
                 </div>
 
                 <div>
@@ -325,7 +338,7 @@
 
         <!-- NEW: Pricing & Flash Sale - FIX 3: Sửa hiển thị trên mobile, giảm padding, sửa badge bị cắt -->
         <!-- Sửa: p-12 thành p-6 md:p-12 để đỡ tốn chỗ trên mobile -->
-        <div class="text-center bg-trade-blue text-white p-6 md:p-12 relative overflow-hidden shadow-brutal-yellow rounded-lg mx-auto max-w-4xl">
+        <div id="hoc-phi" class="text-center bg-trade-blue text-white p-6 md:p-12 relative overflow-hidden shadow-brutal-yellow rounded-lg mx-auto max-w-4xl scroll-mt-28">
             <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             
             <h2 class="text-2xl md:text-3xl font-black uppercase mb-6 md:mb-8 relative z-10">Chi Phí Khóa Học</h2>
@@ -344,6 +357,10 @@
                     <!-- Nhãn Coupon (Hidden by default) -->
                     <span id="couponBadge" class="absolute -top-4 -right-4 md:-top-6 md:-right-12 bg-green-600 text-white text-[10px] md:text-sm font-black px-2 md:px-4 py-1 uppercase transform rotate-12 shadow-lg border-2 border-white z-20 whitespace-nowrap hidden">
                         Coupon -25%
+                    </span>
+                    <!-- Nhãn ưu đãi mở tài khoản đối tác (Hidden by default) -->
+                    <span id="partnerBadge" class="absolute -top-4 -right-4 md:-top-6 md:-right-12 bg-green-600 text-white text-[10px] md:text-sm font-black px-2 md:px-4 py-1 uppercase transform rotate-12 shadow-lg border-2 border-white z-20 whitespace-nowrap hidden">
+                        Ưu đãi đối tác -25%
                     </span>
                 </div>
             </div>
@@ -366,6 +383,18 @@
                     ĐĂNG KÝ NGAY <i class="fa-solid fa-bolt ml-3"></i>
                 </button>
                 <p class="mt-4 text-xs text-gray-400 italic">Dành riêng cho khách hàng lần đầu truy cập.</p>
+            </div>
+
+            <!-- Ưu đãi mở tài khoản giao dịch qua Nhà Trade Học -->
+            <div id="uu-dai" class="relative z-10 mt-8 pt-6 border-t border-white/15">
+                <div id="partnerOffer" class="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-5">
+                    <p class="text-sm text-gray-200"><i class="fa-solid fa-gift text-trade-yellow mr-2"></i>Giảm <strong class="text-trade-yellow">25% học phí</strong> khi mở tài khoản giao dịch qua Nhà Trade Học (Exness · Binance · SSI)</p>
+                    <button type="button" onclick="openPromo()" class="px-5 py-2 border border-trade-yellow text-trade-yellow font-bold text-xs uppercase tracking-widest hover:bg-trade-yellow hover:text-trade-blue transition-colors whitespace-nowrap">Nhận ưu đãi</button>
+                </div>
+                <div id="partnerApplied" class="hidden flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-sm">
+                    <p class="text-green-300 font-bold"><i class="fa-solid fa-circle-check mr-2"></i><span id="partnerAppliedText">Đã áp dụng ưu đãi mở tài khoản</span></p>
+                    <button type="button" onclick="openPromo(1)" class="text-xs text-gray-400 underline underline-offset-2 hover:text-white">Đổi tài khoản</button>
+                </div>
             </div>
         </div>
 
@@ -469,9 +498,9 @@
                     <h4 class="text-white font-black uppercase tracking-widest mb-8 text-lg">Liên kết</h4>
                     <ul class="space-y-4">
                         <li><a href="index.html#hoan-phi" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cơ chế hoàn phí</a></li>
-                        <li><a href="index.html#dich-vu" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
+                        <li><a href="index.html#khoa-hoc" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Khóa học thực chiến</a></li>
                         <li><a href="index.html#cong-dong" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Cộng đồng Telegram</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
+                        <li><a href="dieu-khoan.html" class="text-gray-400 hover:text-trade-yellow transition-colors text-sm font-medium hover:pl-2 transition-all">Điều khoản sử dụng</a></li>
                     </ul>
                 </div>
 
@@ -641,11 +670,188 @@
         </div>
     </div>
 
+    <!-- PROMO POPUP: Ưu đãi -25% học phí khi mở tài khoản giao dịch qua Nhà Trade Học -->
+    <div id="promoModal" class="fixed inset-0 z-[65] hidden items-center justify-center bg-black/75 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
+        <div id="promoBox" class="relative w-full max-w-lg bg-white border-2 border-trade-yellow shadow-[8px_8px_0px_0px_#ffdf2b] transform scale-95 transition-transform duration-300 max-h-[92vh] overflow-y-auto">
+            <button type="button" onclick="closePromo()" aria-label="Đóng" class="absolute top-3 right-3 z-20 w-9 h-9 bg-white/10 text-white hover:bg-trade-yellow hover:text-trade-blue flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-times text-lg"></i>
+            </button>
+
+            <!-- Banner -->
+            <div class="relative bg-trade-blue text-white px-6 pt-7 pb-6 overflow-hidden">
+                <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 28px 28px;"></div>
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-trade-yellow/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="relative">
+                    <span class="inline-block text-[10px] font-black uppercase tracking-[0.2em] bg-trade-yellow text-trade-blue px-2 py-1 mb-4">Ưu đãi độc quyền</span>
+                    <div class="flex items-end gap-4">
+                        <span id="promoTitle" class="text-6xl md:text-7xl font-black text-trade-yellow leading-none tracking-tighter">-25%</span>
+                        <span class="text-sm md:text-base font-black uppercase leading-tight pb-1">Học phí khóa<br>Đào tạo Thực chiến</span>
+                    </div>
+                    <p class="text-sm text-gray-300 mt-4">Khi mở tài khoản giao dịch mới qua Nhà Trade Học tại 1 trong 3 đối tác.</p>
+                    <p class="mt-2 text-sm"><span class="text-gray-400 line-through mr-2">15.000.000đ</span><span class="text-trade-yellow font-black text-lg">11.250.000đ</span></p>
+                </div>
+            </div>
+
+            <!-- Bước 1: Chọn sàn -->
+            <div data-promo-step="1" class="p-6">
+                <p class="text-[11px] font-black uppercase tracking-widest text-gray-500 mb-4">Bước 1 · Chọn nơi mở tài khoản</p>
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" onclick="promoPick('exness')" class="group border-2 border-gray-200 hover:border-trade-blue p-3 md:p-4 bg-gray-50 hover:bg-white transition-all flex flex-col items-center hover:-translate-y-1">
+                        <span class="text-lg md:text-xl font-extrabold text-trade-blue">Exness</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Forex &amp; Gold</span>
+                    </button>
+                    <button type="button" onclick="promoPick('binance')" class="group border-2 border-gray-200 hover:border-trade-blue p-3 md:p-4 bg-gray-50 hover:bg-white transition-all flex flex-col items-center hover:-translate-y-1">
+                        <span class="text-lg md:text-xl font-extrabold text-trade-blue">Binance</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Crypto</span>
+                    </button>
+                    <button type="button" onclick="promoPick('ssi')" class="group border-2 border-gray-200 hover:border-trade-blue p-3 md:p-4 bg-gray-50 hover:bg-white transition-all flex flex-col items-center hover:-translate-y-1">
+                        <span class="text-lg md:text-xl font-extrabold text-trade-blue">SSI</span>
+                        <span class="text-[9px] md:text-[10px] uppercase tracking-widest text-gray-500 font-bold mt-1">Stock VN</span>
+                    </button>
+                </div>
+                <ol class="mt-5 space-y-1.5 text-xs text-gray-600">
+                    <li><span class="font-black text-trade-blue mr-1">1.</span> Chọn sàn và mở tài khoản bằng link / mã đối tác của Nhà Trade Học.</li>
+                    <li><span class="font-black text-trade-blue mr-1">2.</span> Hoàn tất đăng ký rồi quay lại trang này.</li>
+                    <li><span class="font-black text-trade-blue mr-1">3.</span> Nhập ID tài khoản — ưu đãi -25% được áp dụng ngay.</li>
+                </ol>
+                <button type="button" onclick="closePromo()" class="mt-5 w-full text-center text-[11px] text-gray-400 hover:text-trade-blue underline underline-offset-2">Để sau</button>
+            </div>
+
+            <!-- Bước 2: Mở tài khoản -->
+            <div data-promo-step="2" class="p-6 hidden">
+                <button type="button" onclick="promoStep(1)" class="text-[11px] font-bold uppercase tracking-widest text-gray-400 hover:text-trade-blue mb-3"><i class="fa-solid fa-arrow-left mr-1"></i> Chọn sàn khác</button>
+                <p class="text-[11px] font-black uppercase tracking-widest text-gray-500 mb-4">Bước 2 · Mở tài khoản <span class="text-trade-blue js-promo-broker">Exness</span></p>
+                <div class="flex gap-4 items-center mb-4">
+                    <div class="bg-gray-100 p-2 border border-gray-200 flex-shrink-0">
+                        <img id="promoQR" src="" alt="QR đăng ký" class="w-24 h-24 md:w-28 md:h-28 object-contain">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase mb-1">Mã đối tác (Partner code)</p>
+                        <div class="flex">
+                            <input type="text" id="promoCode" class="w-full min-w-0 bg-gray-50 border border-gray-300 p-2 text-trade-blue font-bold font-mono text-sm focus:outline-none" readonly>
+                            <button type="button" onclick="copyText(document.getElementById('promoCode').value)" class="bg-trade-blue text-white px-3 hover:bg-trade-yellow hover:text-trade-blue transition-colors text-xs font-bold uppercase"><i class="fa-regular fa-copy"></i></button>
+                        </div>
+                        <a id="promoGuide" href="#" target="_blank" rel="noopener" class="inline-block mt-2 text-xs font-bold text-trade-blue hover:text-trade-yellow italic underline underline-offset-4">Hướng dẫn từng bước <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                    </div>
+                </div>
+                <a id="promoOpenLink" href="#" target="_blank" rel="noopener" onclick="promoMarkPending()" class="block w-full py-4 bg-trade-yellow text-trade-blue font-black uppercase text-sm text-center tracking-wider shadow-[4px_4px_0px_0px_#00167c] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                    Mở tài khoản <span class="js-promo-broker">Exness</span> <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i>
+                </a>
+                <p class="text-xs text-gray-500 mt-3 leading-relaxed"><i class="fa-solid fa-circle-info text-trade-blue mr-1"></i> Trang đăng ký mở ở tab mới. Đăng ký xong, quay lại tab này — ưu đãi sẽ tự động chuyển sang bước kích hoạt.</p>
+                <button type="button" onclick="promoStep(3)" class="mt-4 w-full py-3 border border-trade-blue text-trade-blue font-bold text-xs uppercase tracking-widest hover:bg-trade-blue hover:text-white transition-colors">Tôi đã mở tài khoản xong <i class="fa-solid fa-arrow-right ml-1"></i></button>
+            </div>
+
+            <!-- Bước 3: Kích hoạt ưu đãi -->
+            <div data-promo-step="3" class="p-6 hidden">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 bg-green-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-check"></i></div>
+                    <div>
+                        <p class="font-black text-trade-blue uppercase leading-tight">Chào mừng bạn quay lại!</p>
+                        <p class="text-xs text-gray-500">Bước 3 · Kích hoạt ưu đãi cho tài khoản <span class="js-promo-broker font-bold">Exness</span></p>
+                    </div>
+                </div>
+                <label for="promoUid" class="block text-[11px] font-black uppercase tracking-widest text-trade-blue mb-2"><span id="promoUidLabel">ID tài khoản</span> vừa mở</label>
+                <input type="text" id="promoUid" inputmode="text" autocomplete="off" class="w-full p-3 border-2 border-gray-300 focus:border-trade-blue focus:outline-none font-mono text-sm bg-gray-50" placeholder="">
+                <p id="promoErr" class="text-xs text-red-600 font-bold mt-2 hidden"></p>
+                <button type="button" onclick="promoActivate()" class="mt-4 w-full py-4 bg-trade-blue text-white font-black uppercase text-sm tracking-wider hover:bg-trade-yellow hover:text-trade-blue transition-colors">
+                    Kích hoạt ưu đãi -25% <i class="fa-solid fa-bolt ml-2"></i>
+                </button>
+                <p class="text-[11px] text-gray-400 mt-3 leading-relaxed">Admin sẽ đối chiếu ID này trong hệ thống đối tác trước khi xác nhận học phí ưu đãi. Chưa mở xong? <button type="button" onclick="promoStep(2)" class="underline underline-offset-2 hover:text-trade-blue">Quay lại bước 2</button></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút mở lại ưu đãi -->
+    <button id="promoFab" type="button" onclick="openPromo()" class="fixed bottom-4 left-4 z-[55] hidden items-center gap-2 bg-trade-yellow text-trade-blue font-black text-xs uppercase tracking-wider px-4 py-3 border-2 border-trade-blue shadow-[4px_4px_0px_0px_#00167c] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
+        <i class="fa-solid fa-gift text-base animate-bounce"></i> Giảm 25% học phí
+    </button>
+
+    <!-- Thông báo nhanh -->
+    <div id="promoToast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[80] hidden bg-green-600 text-white font-bold text-sm px-5 py-3 shadow-2xl border-2 border-white max-w-[90vw] text-center"></div>
+
     <!-- Script -->
     <script>
-        const DURATION = 72 * 60 * 60 * 1000; 
-        let isFlashSaleActive = true; 
+        const DURATION = 72 * 60 * 60 * 1000;
+        let isFlashSaleActive = true;
         let isCouponApplied = false;
+
+        // --- Lưu trữ an toàn (localStorage có thể bị chặn ở chế độ ẩn danh) ---
+        function readStore(key) { try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; } }
+        function writeStore(key, val) { try { if (val == null) localStorage.removeItem(key); else localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+
+        // --- ƯU ĐÃI MỞ TÀI KHOẢN ĐỐI TÁC (-25%) ---
+        const PARTNER_KEY = 'nthPartnerDiscount'; // {broker, uid, ts} khi đã kích hoạt
+        const PENDING_KEY = 'nthPromoPending';    // {broker, ts} khi đã bấm link mở tài khoản
+        const BROKERS = {
+            exness: {
+                name: 'Exness', code: '12yyhitqq7',
+                link: 'https://one.exnessonelink.com/a/12yyhitqq7',
+                guide: 'cai-dat-backcom-exness.html',
+                idLabel: 'Số tài khoản / ID Exness', placeholder: 'VD: 12345678'
+            },
+            binance: {
+                name: 'Binance', code: 'NHATRADEHOC',
+                link: 'https://accounts.binance.com/register?ref=NHATRADEHOC',
+                guide: 'huong-dan-mo-tai-khoan-binance.html',
+                idLabel: 'UID Binance', placeholder: 'VD: 123456789'
+            },
+            ssi: {
+                name: 'SSI', code: '3186 - BÙI THÀNH CÔNG',
+                link: 'https://www.ssi.com.vn/khach-hang-ca-nhan/mo-tai-khoan?mgm=3186',
+                guide: 'huong-dan-mo-tai-khoan-ssi.html',
+                idLabel: 'Số tài khoản SSI', placeholder: 'Số tài khoản chứng khoán SSI'
+            }
+        };
+        let partnerDiscount = readStore(PARTNER_KEY);
+        if (partnerDiscount && !BROKERS[partnerDiscount.broker]) partnerDiscount = null;
+
+        // --- LỊCH KHAI GIẢNG (giờ Việt Nam): tháng hiện tại luôn ĐÃ FULL, chỉ mở đăng ký tháng kế tiếp ---
+        const INTAKE = (function() {
+            let y, m;
+            try {
+                const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: 'numeric' }).formatToParts(new Date());
+                y = +p.find(x => x.type === 'year').value;
+                m = +p.find(x => x.type === 'month').value;
+            } catch (e) {
+                const d = new Date(); y = d.getFullYear(); m = d.getMonth() + 1;
+            }
+            const pad = n => String(n).padStart(2, '0');
+            const ny = m === 12 ? y + 1 : y, nm = m === 12 ? 1 : m + 1;
+            const lastDay = new Date(ny, nm, 0).getDate(); // ngày cuối của tháng kế tiếp
+            return {
+                cur: `${pad(m)}/${y}`,
+                next: `${pad(nm)}/${ny}`,
+                startISO: `${ny}-${pad(nm)}-01`,
+                endISO: `${ny}-${pad(nm)}-${pad(lastDay)}`,
+                startVN: `01/${pad(nm)}/${ny}`,
+                endVN: `${pad(lastDay)}/${pad(nm)}/${ny}`
+            };
+        })();
+        document.querySelectorAll('.js-intake-cur').forEach(el => el.textContent = INTAKE.cur);
+        document.querySelectorAll('.js-intake-next').forEach(el => el.textContent = INTAKE.next);
+        document.querySelectorAll('.js-intake-next-start').forEach(el => el.textContent = INTAKE.startVN);
+        document.querySelectorAll('.js-intake-next-end').forEach(el => el.textContent = INTAKE.endVN);
+        document.getElementById('startDate').min = INTAKE.startISO;
+        document.getElementById('startDate').max = INTAKE.endISO;
+
+        // --- Hiển thị giá: Flash Sale / Coupon / Ưu đãi đối tác đều -25%, KHÔNG cộng dồn ---
+        function hasDiscount() { return isFlashSaleActive || isCouponApplied || !!partnerDiscount; }
+        function maskId(id) { id = String(id || ''); return id.length > 4 ? '••••' + id.slice(-4) : id; }
+        function renderPricing() {
+            const discounted = hasDiscount();
+            document.getElementById('priceSale').innerText = discounted ? "11.250.000đ" : "15.000.000đ";
+            document.getElementById('priceOriginal').classList.toggle('hidden', !discounted);
+            const badge = partnerDiscount ? 'partner' : (isCouponApplied ? 'coupon' : (isFlashSaleActive ? 'sale' : null));
+            document.getElementById('saleBadge').classList.toggle('hidden', badge !== 'sale');
+            document.getElementById('couponBadge').classList.toggle('hidden', badge !== 'coupon');
+            document.getElementById('partnerBadge').classList.toggle('hidden', badge !== 'partner');
+            document.getElementById('partnerOffer').classList.toggle('hidden', !!partnerDiscount);
+            document.getElementById('partnerApplied').classList.toggle('hidden', !partnerDiscount);
+            if (partnerDiscount) {
+                document.getElementById('partnerAppliedText').innerText =
+                    `Đã áp dụng ưu đãi -25% · Tài khoản ${BROKERS[partnerDiscount.broker].name} ${maskId(partnerDiscount.uid)}`;
+            }
+        }
 
         // SHA-256 Hashing Helper for Coupon Security
         async function sha256(message) {
@@ -680,10 +886,8 @@
             const endTime = getEndTime();
             const now = new Date().getTime();
             let distance = endTime - now;
+            const wasActive = isFlashSaleActive;
 
-            const priceSale = document.getElementById('priceSale');
-            const priceOriginal = document.getElementById('priceOriginal');
-            const saleBadge = document.getElementById('saleBadge');
             const countdownEl = document.getElementById("countdown");
             const countdownContainer = document.getElementById("countdownContainer");
             const expiredMsg = document.getElementById("expiredMsg");
@@ -697,17 +901,14 @@
                 countdownContainer.classList.add('hidden');
                 expiredMsg.classList.remove('hidden');
 
-                // Nếu chưa nhập mã giảm giá -> Về giá gốc
-                if (!isCouponApplied) {
-                    priceSale.innerText = "15.000.000đ";
-                    priceOriginal.classList.add('hidden');
-                    saleBadge.classList.add('hidden');
-                }
+                // Không còn Flash Sale -> giá gốc, trừ khi có coupon / ưu đãi đối tác
+                if (wasActive) renderPricing();
                 return;
             }
 
             // Nếu còn giờ
             isFlashSaleActive = true;
+            if (!wasActive) renderPricing();
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -722,6 +923,7 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+        renderPricing();
 
         // --- COUPON LOGIC ---
         async function applyCoupon() {
@@ -744,28 +946,14 @@
                 msg.innerText = "Áp dụng mã thành công! Giảm 25%.";
                 msg.classList.remove('hidden', 'text-red-600');
                 msg.classList.add('text-green-600');
-                
-                // Update UI Pricing Immediately
-                document.getElementById('priceSale').innerText = "11.250.000đ";
-                document.getElementById('priceOriginal').classList.remove('hidden'); // Show original 15m
-                document.getElementById('priceOriginal').innerText = "15.000.000đ";
-                
-                document.getElementById('saleBadge').classList.add('hidden'); // Hide Flash Sale badge
-                document.getElementById('couponBadge').classList.remove('hidden'); // Show Coupon badge
-                
+                renderPricing();
             } else {
                 // Fail
                 isCouponApplied = false;
                 msg.innerText = "Mã giảm giá không hợp lệ hoặc đã hết hạn.";
                 msg.classList.remove('hidden', 'text-green-600');
                 msg.classList.add('text-red-600');
-                
-                // Reset UI if Flash Sale also expired
-                if (!isFlashSaleActive) {
-                    document.getElementById('priceSale').innerText = "15.000.000đ";
-                    document.getElementById('priceOriginal').classList.add('hidden');
-                    document.getElementById('couponBadge').classList.add('hidden');
-                }
+                renderPricing();
             }
         }
 
@@ -835,12 +1023,15 @@
             const timeSlot = document.getElementById('timeSlot').value;
             
             if (!startDateValue) return alert("Vui lòng chọn ngày bắt đầu dự kiến!");
-            if (new Date(startDateValue) < new Date('2026-06-01')) return alert("Lịch trống sớm nhất bắt đầu từ ngày 01/06/2026!");
+            if (startDateValue < INTAKE.startISO || startDateValue > INTAKE.endISO) {
+                return alert(`Tháng ${INTAKE.cur} đã kín lịch. Hiện chỉ nhận khai giảng trong tháng ${INTAKE.next} (từ ${INTAKE.startVN} đến ${INTAKE.endVN}).`);
+            }
             if (selectedDays.length !== 2) return alert("Vui lòng chọn 2 buổi học trong tuần!");
             if (!validateSchedule()) return alert("Vui lòng chọn lịch học cách nhau ít nhất 2 ngày!");
 
             // Check if Start Date matches selected days
-            const startDayOfWeek = new Date(startDateValue).getDay();
+            const [sy, sm, sd] = startDateValue.split('-').map(Number);
+            const startDayOfWeek = new Date(sy, sm - 1, sd).getDay(); // đọc theo giờ địa phương
             const selectedDaysInts = selectedDays.map(d => parseInt(d));
             if (!selectedDaysInts.includes(startDayOfWeek)) {
                 const dayNames = {0: 'Chủ Nhật', 1: 'Thứ 2', 2: 'Thứ 3', 3: 'Thứ 4', 4: 'Thứ 5', 5: 'Thứ 6', 6: 'Thứ 7'};
@@ -858,14 +1049,16 @@
                 <p><strong>Khung giờ:</strong> ${timeSlot}</p>
                 <p><strong>Ngày bắt đầu:</strong> ${startDateValue}</p>
                 ${isCouponApplied ? '<p class="text-green-600 font-bold mt-1"><i class="fa-solid fa-check"></i> Đã áp dụng mã giảm giá</p>' : ''}
+                ${partnerDiscount ? `<p class="text-green-600 font-bold mt-1"><i class="fa-solid fa-check"></i> Ưu đãi mở tài khoản ${BROKERS[partnerDiscount.broker].name} (ID ${maskId(partnerDiscount.uid)}) – Admin sẽ đối chiếu trước khi xác nhận</p>` : ''}
             `;
             scheduleSummary.classList.remove('hidden');
 
-            // Determine if Discount is active (Flash Sale OR Coupon)
-            const finalDiscount = isFlashSaleActive || isCouponApplied;
+            // Có ưu đãi khi: Flash Sale còn hạn HOẶC Coupon HOẶC Ưu đãi đối tác (không cộng dồn)
+            const finalDiscount = hasDiscount();
 
             // Prepare Telegram Msg
-            const msg = `Chào Admin, tôi đã thanh toán khóa học.\n- Lịch: ${selectedDaysText}\n- Giờ: ${timeSlot}\n- Ngày bắt đầu: ${startDateValue}\n- Giá: ${finalDiscount ? '11.250.000' : '15.000.000'}`;
+            const partnerLine = partnerDiscount ? `\n- Ưu đãi mở TK: ${BROKERS[partnerDiscount.broker].name} – ID ${partnerDiscount.uid}` : '';
+            const msg = `Chào Admin, tôi đã thanh toán khóa học.\n- Lịch: ${selectedDaysText}\n- Giờ: ${timeSlot}\n- Ngày bắt đầu: ${startDateValue}\n- Giá: ${finalDiscount ? '11.250.000' : '15.000.000'}${partnerLine}`;
             confirmLink.href = `https://t.me/mmto1b?text=${encodeURIComponent(msg)}`;
 
             // Banking Info
@@ -956,7 +1149,147 @@
         function closeSlideModal() { slideModal.classList.add('opacity-0'); setTimeout(() => { slideModal.classList.add('hidden'); document.body.style.overflow = ''; }, 300); }
         slideModal.addEventListener('click', (e) => { if (e.target === slideModal || e.target.id === 'slideContainer') closeSlideModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !slideModal.classList.contains('hidden')) closeSlideModal(); });
+
+        // ================= PROMO POPUP: -25% học phí khi mở tài khoản đối tác =================
+        // Luồng: Chọn sàn -> mở link đối tác ở TAB MỚI -> khách quay lại tab này (hoặc vào lại trang)
+        // -> popup tự chuyển sang bước nhập ID -> áp dụng giá ưu đãi. Admin đối chiếu ID khi xác nhận thanh toán.
+        const promoModal = document.getElementById('promoModal');
+        const promoBox = document.getElementById('promoBox');
+        const promoFab = document.getElementById('promoFab');
+        const PROMO_PENDING_TTL = 7 * 24 * 60 * 60 * 1000; // giữ trạng thái "đang mở tài khoản" 7 ngày
+        let promoBroker = null;
+        let promoAwaitingReturn = false;
+
+        function promoStep(n) {
+            promoModal.querySelectorAll('[data-promo-step]').forEach(el => el.classList.toggle('hidden', el.dataset.promoStep !== String(n)));
+            if (n === 3 && promoBroker) {
+                const b = BROKERS[promoBroker];
+                const input = document.getElementById('promoUid');
+                document.getElementById('promoUidLabel').innerText = b.idLabel;
+                input.placeholder = b.placeholder;
+                document.getElementById('promoErr').classList.add('hidden');
+                setTimeout(() => input.focus(), 350);
+            }
+            promoBox.scrollTop = 0;
+        }
+
+        function promoPick(key) {
+            const b = BROKERS[key];
+            if (!b) return;
+            promoBroker = key;
+            document.querySelectorAll('.js-promo-broker').forEach(el => el.innerText = b.name);
+            document.getElementById('promoCode').value = b.code;
+            document.getElementById('promoOpenLink').href = b.link;
+            document.getElementById('promoGuide').href = b.guide;
+            document.getElementById('promoQR').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(b.link)}`;
+            promoStep(2);
+        }
+
+        function promoMarkPending() {
+            promoAwaitingReturn = true;
+            writeStore(PENDING_KEY, { broker: promoBroker, ts: Date.now() });
+        }
+
+        function readPending() {
+            const p = readStore(PENDING_KEY);
+            if (p && BROKERS[p.broker] && Date.now() - p.ts < PROMO_PENDING_TTL) return p;
+            if (p) writeStore(PENDING_KEY, null);
+            return null;
+        }
+
+        function updateFab() {
+            const show = !partnerDiscount && promoModal.classList.contains('hidden');
+            promoFab.classList.toggle('hidden', !show);
+            promoFab.classList.toggle('flex', show);
+        }
+
+        function openPromo(step) {
+            const pending = readPending();
+            if (!step) step = (pending && !partnerDiscount) ? 3 : 1;
+            if (step >= 2) promoPick(pending ? pending.broker : (promoBroker || 'exness'));
+            promoStep(step);
+            promoModal.classList.remove('hidden');
+            promoModal.classList.add('flex');
+            updateFab();
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                promoModal.classList.remove('opacity-0');
+                promoBox.classList.remove('scale-95');
+                promoBox.classList.add('scale-100');
+            }, 10);
+            try { sessionStorage.setItem('nthPromoSeen', '1'); } catch (e) {}
+        }
+
+        function closePromo() {
+            promoModal.classList.add('opacity-0');
+            promoBox.classList.remove('scale-100');
+            promoBox.classList.add('scale-95');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                promoModal.classList.add('hidden');
+                promoModal.classList.remove('flex');
+                updateFab();
+            }, 300);
+        }
+
+        function showToast(text) {
+            const t = document.getElementById('promoToast');
+            t.innerText = text;
+            t.classList.remove('hidden');
+            clearTimeout(showToast.timer);
+            showToast.timer = setTimeout(() => t.classList.add('hidden'), 4500);
+        }
+
+        function promoActivate() {
+            const input = document.getElementById('promoUid');
+            const err = document.getElementById('promoErr');
+            const uid = input.value.trim().replace(/\s+/g, '');
+            if (!promoBroker || !/^[A-Za-z0-9-]{5,20}$/.test(uid)) {
+                err.innerText = `Vui lòng nhập đúng ${promoBroker ? BROKERS[promoBroker].idLabel : 'ID tài khoản'} (5–20 ký tự chữ hoặc số).`;
+                err.classList.remove('hidden');
+                input.focus();
+                return;
+            }
+            partnerDiscount = { broker: promoBroker, uid: uid, ts: Date.now() };
+            writeStore(PARTNER_KEY, partnerDiscount);
+            writeStore(PENDING_KEY, null);
+            promoAwaitingReturn = false;
+            renderPricing();
+            closePromo();
+            showToast(`🎉 Đã áp dụng ưu đãi -25% học phí cho tài khoản ${BROKERS[promoBroker].name}!`);
+            setTimeout(() => document.getElementById('hoc-phi').scrollIntoView({ behavior: 'smooth', block: 'center' }), 350);
+        }
+
+        promoModal.addEventListener('click', (e) => { if (e.target === promoModal) closePromo(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !promoModal.classList.contains('hidden')) closePromo(); });
+        document.getElementById('promoUid').addEventListener('keydown', (e) => { if (e.key === 'Enter') promoActivate(); });
+
+        // Khách quay lại tab này sau khi mở tài khoản ở tab mới -> tự chuyển sang bước kích hoạt
+        function onPromoReturn() {
+            if (!promoAwaitingReturn || partnerDiscount || document.visibilityState !== 'visible') return;
+            promoAwaitingReturn = false;
+            openPromo(3);
+        }
+        document.addEventListener('visibilitychange', onPromoReturn);
+        window.addEventListener('focus', onPromoReturn);
+
+        // Khởi tạo: vào lại trang sau khi mở tài khoản / link #uu-dai / tự hiện sau 5 giây (1 lần mỗi phiên)
+        (function initPromo() {
+            if (partnerDiscount) return updateFab();
+            const pending = readPending();
+            if (location.hash === '#uu-dai') return setTimeout(() => openPromo(), 600);
+            if (pending) return setTimeout(() => openPromo(3), 800);
+            updateFab();
+            let seen = false;
+            try { seen = sessionStorage.getItem('nthPromoSeen') === '1'; } catch (e) {}
+            if (seen) return;
+            setTimeout(() => {
+                const busy = !document.getElementById('paymentModal').classList.contains('hidden') || !slideModal.classList.contains('hidden');
+                if (!busy && !partnerDiscount && promoModal.classList.contains('hidden')) openPromo();
+            }, 5000);
+        })();
     </script>
 
+    <script data-nth-header-js>(function(){var b=document.getElementById('mobile-menu-btn'),m=document.getElementById('mobile-menu');if(!b||!m)return;b.addEventListener('click',function(){var h=m.classList.toggle('hidden');b.setAttribute('aria-expanded',String(!h));});m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){m.classList.add('hidden');b.setAttribute('aria-expanded','false');});});})();</script>
 </body>
 </html>
